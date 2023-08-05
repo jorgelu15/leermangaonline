@@ -1,4 +1,8 @@
 
+import Facebook from "../../img/facebook.svg"
+import Instagram from "../../img/instagram.svg"
+import Discord from "../../img/discord.svg"
+
 const Footer = (props) => {
 
     return (
@@ -45,8 +49,18 @@ const Footer = (props) => {
                     <div className="social">
                         <p><i>LEER</i><b>MANGA</b>ONLINE</p>
                         <div className="sep-v"></div>
-                        
+                        <img src={Facebook}/>
+                        <img src={Instagram}/>
+                        <img src={Discord}/>
                     </div>
+                    <p className="copyr">Copyright 2023 LeerMangaOnline, Todos los derechos reservados.</p>
+                </div>
+                <div className="ftb-right">
+                    <select name="" id="">
+                        <option value="Auto">Auto</option>
+                        <option value="Dia">Dia</option>
+                        <option value="Noche">Noche</option>
+                    </select>
                 </div>
             </div>
         </footer>
