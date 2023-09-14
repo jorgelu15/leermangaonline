@@ -8,7 +8,7 @@ import routes from './helpers/routes'
 import Register from './pages/Register'
 
 function App() {
-  const [count, setCount] = useState(0)
+  //const [count, setCount] = useState(0)
 
   return (
     <BrowserRouter>

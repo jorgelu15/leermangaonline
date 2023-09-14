@@ -2,7 +2,7 @@
   width: 100vw;
   margin: 0 auto;
   text-align: center;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(4, 1, 18);
 }
 
 * {
@@ -105,6 +105,7 @@
   max-width: auto;
   position: relative;
   margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .wrapper .carousel {
@@ -139,6 +140,310 @@
   .list-menu {
     display: none !important;
   }
+}
+
+/* Main */
+
+.home-mng{
+  width: 100%;
+  display: flex;
+  padding: 0px 35px;
+}
+
+.main-home{
+  width: 70%;
+  /* background-color: #00162955; */
+  padding-bottom: 60px;
+  padding-right: 35px;
+}
+
+.aside-home{
+  width: 30%;
+  /* background-color: #00ffff12; */
+}
+
+.sec-categoria{
+  margin-bottom: 60px;
+}
+
+.sec-menu ul{
+  display: flex;
+  justify-content: space-between;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.sec-menu li{
+  width: 33.3%;
+  padding: 10px;
+  border: 1px solid black;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.sec-menu .cat-active{
+  background-color: rgb(106, 1, 1);
+}
+
+.sec-cards{
+  display: flex;
+  padding-top: 20px;
+  overflow: visible;
+  justify-content: space-between;
+}
+
+
+.sec-cards .card{
+  height: 300px;
+  width: 200px;
+  min-width: 200px;
+  max-height: 300px;
+  border: 2px solid rgb(106, 97, 97);
+
+  background-image: url("../src/img/oshinoko.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px;
+  padding-top: 10px;
+  
+}
+
+
+.sec-cards .card div{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+
+.sec-cards .card .categoria{
+  background-color: rgb(4, 149, 4);
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.sec-cards .card .calificacion{
+  background-color: rgb(178, 10, 10);
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 20px;
+  margin-right: -30px;
+  margin-top: -30px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  z-index: 2000;
+}
+
+.sec-cards .card .nombre{
+  color: white;
+  font-weight: 700;
+  z-index: 1000;
+  width: 100%;
+  height: 50px;
+  padding: 0px 10px;
+  display: flex;
+  align-items: end;
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 25%, rgba(16,26,32,0.7231267507002801) 100%);
+}
+
+.sec-grupos{
+  text-align: left;
+  margin-top: 60px;
+}
+
+.sec-grupos h2{
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.sec-grupos .sec-cards{
+  justify-content: space-between;
+}
+
+.sec-grupos .sec-cards .card{
+  background-image: url("img/isugo.jpg");
+  background-position: center;
+  width: 400px;
+  min-width: 400px;
+  border: none;
+}
+
+.sec-grupos .sec-cards .card .nombre{
+  height: 150px;
+  background: rgb(255,255,255);
+  padding-bottom: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 10%, rgba(0,0,0,1) 100%);
+}
+
+.sec-noticias{
+  text-align: left;
+  margin-top: 60px;
+}
+
+.sec-noticias h2{
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.sec-noticias .cards{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.sec-noticias .card{
+  background-color: #24252c;
+  padding: 30px;
+  display: flex;
+  width: 48%;
+}
+
+.sec-noticias .card img{
+  height: 200px;
+  width: 160px;
+  margin-right: 30px;
+  object-fit: cover;
+}
+
+.sec-noticias .card h3{
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.sec-noticias .card p{
+  font-size: 0.9rem;
+}
+
+.sec-noticias .card .info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sec-noticias .card .fecha{
+  color: #909090;
+}
+
+.sec-subidos{
+  text-align: left;
+  margin-top: 60px;
+}
+
+.sec-subidos h2{
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.sec-subidos .sec-cards{
+  margin-bottom: 40px;
+}
+
+.sec-tops{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px 0px;
+  background: rgb(143,0,0);
+  background: linear-gradient(180deg, rgba(143,0,0,1) 0%, rgba(83,0,0,1) 55%, rgba(0,0,0,1) 100%);
+}
+
+.cont-semanal{
+  width: 50%;
+  padding: 0px 40px;
+  text-align: left;
+}
+
+.sec-tops h3{ 
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+}
+
+.sec-tops .cont-img{
+  background-image: url("../src/img/oshinoko.png");
+  background-size: cover;
+  background-position: center;
+  width: 70px;
+  height: 100px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.sec-tops .cont-img p{
+  background-color: rgb(22, 21, 25);
+  color: #f0dd93;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -15px;
+  font-size: 1.2rem;
+}
+
+.sec-tops .card{
+  display: flex;
+  padding: 10px 0px;
+}
+
+.sec-tops .card .info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sec-tops .card .nombre{
+  margin-top: 15px;
+}
+
+.sec-tops .card .categoria{
+  background-color: rgb(4, 149, 4);
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cont-mensual{
+  width: 50%;
+  padding: 0px 40px;
+  text-align: left;
+}
+
+
+.sec-dibujo h2{
+  font-size: 1.6rem;
+  text-align: left;
+  padding-left: 5px;
+  margin-top: 30px;
+}
+
+.sec-dibujo .cont-img{
+  margin-top: 25px;
+  background-color: #1e1e21;
+  padding: 20px 30px;
+}
+
+.sec-dibujo .cont-img img{
+  width: 100%;
+  border-radius: 20px;
+}
+
+.sec-joindc img{
+  width: 100%;
+  margin-top: 20px;
 }
 
 /* Footer ////////////////////////////////// */
