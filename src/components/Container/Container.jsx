@@ -25,54 +25,17 @@ const Container = (props) => {
                             </ul>
                         </div>
                         <div className="sec-cards">
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-                            
+                            {
+                                new Array(5).fill("").map((item, idx) => (
+                                    <div className="card" key={idx}>
+                                        <div>
+                                            <p className="categoria">Manga</p>
+                                            <p className="calificacion">8.0</p>
+                                        </div>
+                                        <p className="nombre">OSHI NO KO</p>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </section>
 
@@ -85,54 +48,17 @@ const Container = (props) => {
                             </ul>
                         </div>
                         <div className="sec-cards">
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-                            
+                            {
+                                new Array(5).fill("").map((item, idx) => (
+                                    <div className="card">
+                                        <div>
+                                            <p className="categoria">Manga</p>
+                                            <p className="calificacion">8.0</p>
+                                        </div>
+                                        <p className="nombre">OSHI NO KO</p>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </section>
 
@@ -145,276 +71,95 @@ const Container = (props) => {
                             </ul>
                         </div>
                         <div className="sec-cards">
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
+                            {
+                                new Array(5).fill("").map((item, idx) => (
+                                    <div className="card">
+                                        <div>
+                                            <p className="categoria">Manga</p>
+                                            <p className="calificacion">8.0</p>
+                                        </div>
+                                        <p className="nombre">OSHI NO KO</p>
+                                    </div>
+                                ))
+                            }
 
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-                            
                         </div>
                     </section>
 
                     <section className="sec-grupos">
                         <h2>Los mejores scan/grupos del mes</h2>
                         <div className="sec-cards">
-                            <div className="card">
-                                <div>
-                                    <p></p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                <p></p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                <p></p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
+                            {
+                                new Array(3).fill("").map((item, idx) => (
+                                    <div className="card" key={idx}>
+                                        <div>
+                                            <p></p>
+                                            <p className="calificacion">8.0</p>
+                                        </div>
+                                        <p className="nombre">OSHI NO KO</p>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </section>
 
                     <section className="sec-noticias">
                         <h2>Ultimas Noticias</h2>
-                        
+
                         <div className="cards">
-                            <div className="card">
-                                <img src={stafs}/>
-                                <div className="info">
-                                    <div>
-                                        <h3>Se buscan STAFFS</h3>
-                                        <p>Se busca personal con o sin experiencia con ganas de colaborar, somos un scan que se decica a la traduccion
-                                            de mangas que fueron abandonados por otros scan, o que son poco conocidos, se busca Redrawer, traductores.
-                                        </p>
+                            {
+                                new Array(2).fill("").map((item, idx) => (
+                                    <div className="card" key={idx}>
+                                        <img src={stafs} />
+                                        <div className="info">
+                                            <div>
+                                                <h3>Se buscan STAFFS</h3>
+                                                <p>Se busca personal con o sin experiencia con ganas de colaborar, somos un scan que se decica a la traduccion
+                                                    de mangas que fueron abandonados por otros scan, o que son poco conocidos, se busca Redrawer, traductores.
+                                                </p>
+                                            </div>
+                                            <p className="fecha">08/03/2023</p>
+                                        </div>
                                     </div>
-                                    <p className="fecha">08/03/2023</p>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <img src={stafs}/>
-                                <div className="info">
-                                    <div>
-                                        <h3>Se buscan STAFFS</h3>
-                                        <p>Se busca personal con o sin experiencia con ganas de colaborar, somos un scan que se decica a la traduccion
-                                            de mangas que fueron abandonados por otros scan, o que son poco conocidos, se busca Redrawer, traductores.
-                                        </p>
-                                    </div>
-                                    <p className="fecha">08/03/2023</p>
-                                </div>
-                            </div>
+                                ))
+                            }
                         </div>
                     </section>
 
                     <section className="sec-subidos">
-                        
+
                         <h2>Ultimos Subidos</h2>
                         <div className="sec-cards">
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-                            
-                        </div>
-
-                        <div className="sec-cards">
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-                            
+                            {
+                                new Array(12).fill("").map((item, idx) => (
+                                    <div className="card" key={idx}>
+                                        <div>
+                                            <p className="categoria">Manga</p>
+                                            <p className="calificacion">8.0</p>
+                                        </div>
+                                        <p className="nombre">OSHI NO KO</p>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </section>
 
                     <section className="sec-subidos">
-                        
+
                         <h2>Tendencias</h2>
                         <div className="sec-cards">
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
+                            {
+                                new Array(6).fill("").map((item, idx) => (
+                                    <div className="card" key={idx}>
+                                        <div>
+                                            <p className="categoria">Manga</p>
+                                            <p className="calificacion">8.0</p>
+                                        </div>
+                                        <p className="nombre">OSHI NO KO</p>
+                                    </div>
+                                ))
+                            }
 
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-
-                            <div className="card">
-                                <div>
-                                    <p className="categoria">Manga</p>
-                                    <p className="calificacion">8.0</p>
-                                </div>
-                                <p className="nombre">OSHI NO KO</p>
-                            </div>
-                            
                         </div>
 
                         <div className="sec-cards">
@@ -465,11 +210,11 @@ const Container = (props) => {
                                 </div>
                                 <p className="nombre">OSHI NO KO</p>
                             </div>
-                            
+
                         </div>
                     </section>
                 </main>
-                
+
                 <aside className="aside-home">
                     <section className="sec-tops">
 
@@ -537,7 +282,7 @@ const Container = (props) => {
                                         <p className="nombre">[OSHI NO KO]</p>
                                         <p className="categoria">Manga</p>
                                     </div>
-                                </div>   
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -553,7 +298,7 @@ const Container = (props) => {
                     <section className="sec-dibujo">
                         <h2>Dibujo del Mes</h2>
                         <div className="cont-img">
-                            <img src={isugo}/>
+                            <img src={isugo} />
                         </div>
                     </section>
                 </aside>

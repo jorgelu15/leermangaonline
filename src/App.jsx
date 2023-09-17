@@ -6,6 +6,7 @@ import AuthLayout from './layouts/AuthLayout'
 import Login from './pages/Login'
 import routes from './helpers/routes'
 import Register from './pages/Register'
+import Home from './pages/Home'
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -14,7 +15,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<AuthLayout />}>
-          <Route index element={<Login />} />
+          <Route index element={<Home />} />
+          <Route path={routes.login} element={<Login />} />
           <Route path={routes.register} element={<Register />} />
           {/*<Route path={routes.forgotPassword+"/:token"} />
           <Route path={routes.confirmAccount} />

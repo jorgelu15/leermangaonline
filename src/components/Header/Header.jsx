@@ -16,7 +16,15 @@ const Header = (props) => {
                 </div>
                 <div className="nav-right">
                     <div>
-                        <p><i>Perfil</i></p>
+                        <p>
+                            <input type="search" placeholder="Buscar..." className="input-style search" />
+                        </p>
+                        <p>
+                            ACCEDER
+                        </p>
+                        <p>
+                            REGISTRARSE
+                        </p>
                     </div>
                 </div>
             </nav>
