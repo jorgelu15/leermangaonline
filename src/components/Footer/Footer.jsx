@@ -2,6 +2,7 @@
 import Facebook from "../../img/facebook.svg"
 import Instagram from "../../img/instagram.svg"
 import Discord from "../../img/discord.svg"
+import BasicAccordion from "../Container/BasicAccordion"
 
 const Footer = (props) => {
 
@@ -44,6 +45,11 @@ const Footer = (props) => {
                     </div>
                 </div>
             </div>
+
+            <div className="menu-accordion">
+                <BasicAccordion></BasicAccordion>
+            </div>
+            
             <div className="footer-botton">
                 <div className="ftb-left">
                     <div className="social">

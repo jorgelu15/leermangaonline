@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 
-import Container from "../components/Container/Container";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import ContainerHome from "../components/Container/ContainerHome";
 
 const Home = () => {
 
   return (
     <>
       <Header/>
-      <Container/>
+      <ContainerHome/>
       <Footer/>
     </>
   );
