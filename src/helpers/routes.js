@@ -3,7 +3,9 @@ const routes = {
     login: "/login",
     register: "/register",
     forgotPassword: "/forgot-password",
-    confirmAccount: "/confirm-account"
+    confirmAccount: "/confirm-account",
+    perfil: "/perfil",
+    manga: "/manga"
 }
 
 export default routes;

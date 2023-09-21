@@ -21,6 +21,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path={routes.login} element={<Login />} />
           <Route path={routes.register} element={<Register />} />
+          <Route path={routes.perfil} element={<Perfil />} />
+          <Route path={routes.manga} element={<Manga />} />
           {/*<Route path={routes.forgotPassword+"/:token"} />
           <Route path={routes.confirmAccount} />
           <Route path={routes.newPassword} /> */}
