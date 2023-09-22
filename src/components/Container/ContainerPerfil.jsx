@@ -4,8 +4,15 @@ import React, { useRef } from 'react';
 
 import FotoPerfil from "../../img/fotoperfil.jpg"
 import TabsCategory from "../Tabs/TabsCategory"
+import FormPerfil from "../Form/FormPerfil";
 
 const ContainerPerfil = (props) => {
+
+    const [ viewPerfil, setViewPerfil ] = useState(false)
+
+    const changeViewPr = () => {
+        setViewPerfil(!viewPerfil)
+    }
 
     const items = {
         tabs: 5,
@@ -58,7 +65,9 @@ const ContainerPerfil = (props) => {
                     </div>
 
                     <div className="info">
-                        <p className="username">dgdavid2 <a className="btn-perfil" href="#">Editar perfil</a></p>
+                        <p className="username">Dgdavid2 
+                            <a className={`${viewPerfil ? 'btn-pf-active' : null} btn-perfil`} onClick={()=>{changeViewPr()}}>Editar perfil</a>
+                        </p>
                         <div className="etiq-cards">
                             <div className="card">Masculino</div>
                             <div className="card">2023-04-11</div>
@@ -68,9 +77,13 @@ const ContainerPerfil = (props) => {
                 </div>
             </div>
 
-            <TabsCategory items={items}></TabsCategory>
+            <div className={`${viewPerfil ? 'hidden-indicator' : null}`}>
+                <TabsCategory items={items} viewPerfil={viewPerfil} setViewPerfil={setViewPerfil}></TabsCategory>
+            </div>
 
-            
+            <div className="cont-perfil-info">
+                { viewPerfil ? <FormPerfil/> : null }
+            </div>
         </div>
     )
 }

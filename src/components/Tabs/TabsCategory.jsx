@@ -43,7 +43,7 @@ function a11yProps(index) {
 
 export default function TabsCategory(props) {
 
-  const { items } = props;
+  const { items, viewPerfil, setViewPerfil } = props;
 
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -52,11 +52,16 @@ export default function TabsCategory(props) {
     setValue(newValue);
   };
 
+  const handleClick = () => {
+    setViewPerfil(false);
+  };
+
   return (
     <Box sx={{ width: '100%', marginBottom: 8 }}>
       <div className='cont-tabs'>
         <Tabs
           value={value}
+          onClick={handleClick}
           onChange={handleChange}
           indicatorColor="secondary"
           textColor="inherit"
@@ -78,44 +83,47 @@ export default function TabsCategory(props) {
         </Tabs>
       </div>
       
-      <div style={{backgroundColor: '#e9eaed', paddingTop: 20, paddingBottom: 20}}>
-        <div className='cont-tabs'>
-        {
-          items ? 
-          items.cont.map((item, idx) => {
-            return(
+      { !viewPerfil ? 
+        <div style={{backgroundColor: '#e9eaed', paddingTop: 20, paddingBottom: 20}}>
+          <div className='cont-tabs'>
+          {
+            items ? 
+            items.cont.map((item, idx) => {
+              return(
+                
+                <TabPanel value={value} index={idx} dir={theme.direction}>
+                <h3 className='title'>Mangas {item.tab}s</h3>
+                <div className="sec-cards">
+                  {
+                    item.cards.length ?
+                    item.cards.map((card)=>{
+                      return (
+                        <div className="cont-card">
+                          <div className="card">
+                          <div>
+                            <p className="categoria">{card.categoria}</p>
+                            <p className="calificacion">{card.calif}</p>
+                          </div>
+                          <p className="nombre">{card.nombre}</p>
+                          </div>
+                        </div>
+                      )
+                    }) :
+                    <div>
+                      <h4 className='mensaje'>No hay mangas</h4>
+                    </div>
+                  }
+                </div>
+              </TabPanel>
               
-              <TabPanel value={value} index={idx} dir={theme.direction}>
-              <h3 className='title'>Mangas {item.tab}s</h3>
-              <div className="sec-cards">
-                {
-                  item.cards.length ?
-                  item.cards.map((card)=>{
-                    return (
-                      <div className="cont-card">
-                        <div className="card">
-                        <div>
-                          <p className="categoria">{card.categoria}</p>
-                          <p className="calificacion">{card.calif}</p>
-                        </div>
-                        <p className="nombre">{card.nombre}</p>
-                        </div>
-                      </div>
-                    )
-                  }) :
-                  <div>
-                    <h4 className='mensaje'>No hay mangas</h4>
-                  </div>
-                }
-              </div>
-            </TabPanel>
+              )
+            }) : null
             
-            )
-          }) : null
-          
-        }
+          }
+          </div>
         </div>
-      </div>
+        : null
+      }
       
     </Box>
   );

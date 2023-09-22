@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AuthLayout from './layouts/AuthLayout'
@@ -12,7 +11,6 @@ import Vermanga from './pages/Vermanga'
 import Perfil from './pages/Perfil'
 
 function App() {
-  //const [count, setCount] = useState(0)
 
   return (
     <BrowserRouter>

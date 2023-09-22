@@ -1,0 +1,152 @@
+
+/* Header //////////////////////////////////// */
+
+.header-manga {
+    width: 100%;
+    background: rgb(17,17,17);
+    background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(29,29,29,1) 20%, rgba(29,29,29,1) 75%, rgba(0,0,0,1) 95%);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  padding-top: 30px;
+}
+
+.nav-left {
+  display: flex;
+}
+
+.nav-left ul {
+  display: flex;
+}
+
+.nav-left ul li {
+  margin-right: 40px;
+}
+
+.nav-left ul li a {
+  color: var(--white);
+  font-weight: 400;
+}
+
+.nav-right > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-right > div p {
+  margin: 0 10px;
+}
+
+
+.header-vermanga{
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5074404761904762) 50%, rgba(0,0,0,1) 100%);
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-vermanga .info{
+  display: flex;
+}
+
+.header-vermanga .info div{
+  display: flex;
+}
+
+.header-vermanga .nav-left p{
+  margin-left: 10px;
+}
+
+.header-vermanga .nav-left a{
+  margin: 0px 20px;
+}
+
+.header-vermanga .info a{
+  margin: 0px 20px;
+  color: greenyellow;
+}
+
+.header-vermanga .navbar{
+  padding: 20px 0px;
+  padding-right: 30px;
+  padding-top: 30px;
+}
+
+.header-vermanga .nav-right button{  
+  width: 32px;
+  height: 32px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.header-vermanga .nav-right img{  
+  width: 12px;
+}
+  
+@media (max-width: 1200px) {
+  
+  .header-vermanga{
+    position: relative;
+    background-color: #262941;
+    width: 100%;
+  }
+
+  .header-vermanga .nav-right{
+    position: absolute;
+    right: 0;
+  }
+
+  .header-vermanga .nav-right{
+    margin-right: 15px;
+  }
+
+
+  .header-vermanga .nav-left{
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .header-vermanga .info div{
+    flex-direction: column;
+  }
+
+  .header-vermanga .info {
+    flex-direction: column;
+    padding-top: 20px;
+  }
+
+  .header-vermanga .info .title {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+
+  .header-vermanga .navbar {
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 100%;
+  }
+
+  .header-vermanga .nav-left p{
+    margin: 0;
+  }
+
+  .header-vermanga .info a{
+    margin: 0;
+  }
+  
+}
+
+@media (max-width: 760px) {
+  .navbar .nav-right {
+    display: none;
+  }
+}
+  
