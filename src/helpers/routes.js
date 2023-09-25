@@ -6,6 +6,8 @@ const routes = {
     confirmAccount: "/confirm-account",
     perfil: "/perfil",
     manga: "/manga",
+    vermanga: "/vermanga",
+    subirmanga: "/subirmanga",
     terms: "/terms-polit"
 }
 
