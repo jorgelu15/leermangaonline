@@ -5,7 +5,9 @@ const routes = {
     forgotPassword: "/forgot-password",
     confirmAccount: "/confirm-account",
     perfil: "/perfil",
-    manga: "/manga"
+    manga: "/manga",
+    vermanga: "/vermanga",
+    subirmanga: "/subirmanga",
 }
 
 export default routes;
