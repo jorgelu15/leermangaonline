@@ -8,6 +8,7 @@ const routes = {
     manga: "/manga",
     vermanga: "/vermanga",
     subirmanga: "/subirmanga",
+    terms: "/terms-polit"
 }
 
 export default routes;
