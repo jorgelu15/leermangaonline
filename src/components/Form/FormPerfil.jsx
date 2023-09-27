@@ -3,27 +3,27 @@ const FormPerfil = () => {
 
     return (
         <div className="perfil-info">
-            <h3>Editar Perfil</h3>
-            <p className="title">Datos principales</p>
+            <h3>Datos de Perfil</h3>
+            {/* <p className="title">Datos principales</p> */}
             <div className="form-info">
                 <div className="box">
                     <label htmlFor="usuario">Usuario</label>
-                    <input type="text" placeholder="Usuario"/>
+                    <input type="text"/>
                 </div>
 
                 <div className="box">
                     <label htmlFor="correo">Correo</label>
-                    <input type="text" placeholder="Correo"/>
+                    <input type="text"/>
                 </div>
 
                 <div className="box">
                     <label htmlFor="clave">Contraseña</label>
-                    <input type="password" placeholder="Contraseña"/>
+                    <input type="password"/>
                 </div>
 
                 <div className="box">
                     <label htmlFor="clave">Repetir contraseña</label>
-                    <input type="password" placeholder="Repetir contraseña"/>
+                    <input type="password"/>
                 </div>
 
                 <div className="box box-avatar">
@@ -37,7 +37,7 @@ const FormPerfil = () => {
             <div className="form-info">
                 <div className="box">
                     <label htmlFor="telefono">Telefono</label>
-                    <input type="tel" placeholder="Telefono"/>
+                    <input type="tel"/>
                 </div>
 
                 <div className="box">
@@ -61,23 +61,23 @@ const FormPerfil = () => {
             <div className="form-info">
                 <div className="box">
                     <label htmlFor="facebook">Facebook</label>
-                    <input type="text" placeholder="Url de su perfil de facebook"/>
+                    <input type="text"/>
                 </div>
 
                 <div className="box">
                     <label htmlFor="twitter">Twitter</label>
-                    <input type="text" placeholder="Url de su perfil de twitter"/>
+                    <input type="text"/>
                 </div>
 
                 <div className="box">
                     <label htmlFor="instagram">Instagram</label>
-                    <input type="text" placeholder="Url de su perfil de instagram"/>
+                    <input type="text"/>
                 </div>
             </div>
 
             <button className="btn-guardar">Guardar</button>
 
-            <p className="mensaje-elim">La eliminacion de la cuenta es <b>Permanente</b></p>
+            <p className="mensaje-elim">Ten cuidado la eliminacion de la cuenta es <b>Permanente</b></p>
             <button className="btn-eliminar">Eliminar cuenta</button>
         </div>
     );

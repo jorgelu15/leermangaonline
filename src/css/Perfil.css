@@ -76,7 +76,6 @@
   background-color: rgb(19, 102, 185) !important;
 }
 
-
 .cont-portada .info .username{
   display: flex;
   align-items: center;
@@ -106,6 +105,10 @@
   color: #2f89f0;
   padding-left: 15px;
   font-weight: 500;
+}
+
+.box-mangas-pf{
+  background-color: rgb(26, 26, 40) !important;
 }
 
 .cont-perfil .css-1tgvusm{
@@ -158,13 +161,14 @@
   left: 0;
   right: 0;
   /* background-color: rgb(233, 234, 237); */
-  background-image: radial-gradient(rgba(255,255,255,.25),rgba(255,255,255,0) 40%),radial-gradient(hsla(44,100%,66%,1) 30%,hsla(338,68%,65%,1),hsla(338,68%,65%,.4) 41%,transparent 52%),radial-gradient(hsla(272,100%,60%,1) 37%,transparent 46%),linear-gradient(155deg,transparent 65%,hsla(142,70%,49%,1) 95%),linear-gradient(45deg,hsla(213,100%,44%,1),hsla(209,100%,53%,1));
+  /* background-image: radial-gradient(rgba(255,255,255,.25),rgba(255,255,255,0) 40%),radial-gradient(hsla(44,100%,66%,1) 30%,hsla(338,68%,65%,1),hsla(338,68%,65%,.4) 41%,transparent 52%),radial-gradient(hsla(272,100%,60%,1) 37%,transparent 46%),linear-gradient(155deg,transparent 65%,hsla(142,70%,49%,1) 95%),linear-gradient(45deg,hsla(213,100%,44%,1),hsla(209,100%,53%,1)); */
   background-position: bottom left,109% 68%,109% 68%,center,center;
   background-position-x: left, 109%, 109%, center, center;
   background-position-y: bottom, 68%, 68%, center, center;
   background-size: 200% 200%,285% 500%,285% 500%,cover,cover;
   background-repeat: no-repeat;
-  opacity: .1;
+  background: rgb(26, 26, 40) !important;
+  /* opacity: .1; */
   z-index: -10;
 }
 
@@ -178,7 +182,7 @@
   padding: 0px 15px;
   color: rgb(255, 255, 255);
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 40px;
   z-index: 100;
 }
 
@@ -215,25 +219,33 @@
 
 .form-info .box label{
   margin-bottom: 5px;
-  font-size: 1.1rem;
+  /* font-size: 1.1rem; */
+  font-weight: bold;
 }
 
 .form-info .box input{
-  background-color: white;
-  padding: 10px 15px;
-  border: 1px solid rgb(184, 184, 184);
-  font-size: 1rem;
   min-width: 90%;
-  color: black;
+  padding: 5px 10px;
+  margin: 5px 0px;
+  outline: none;
+  /* width: 100%; */
+  font-size: 1.1rem;
+  background-color: rgb(31, 31, 31);
+  border: 1px solid rgb(83, 90, 117);
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
 }
 
 .form-info .box select{
-  background-color: white;
-  padding: 10px 12px;
-  border: 1px solid rgb(184, 184, 184);
-  font-size: 1rem;
   min-width: 90%;
-  color: black;
+  padding: 5px 10px;
+  margin: 5px 0px;
+  /* width: 100%; */
+  font-size: 1.1rem;
+  background-color: rgb(31, 31, 31);
+  border: 1px solid rgb(83, 90, 117);
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
 }
 
 .perfil-info .separador{
@@ -253,6 +265,20 @@
   border: none;
 }
 
+.perfil-info .btn-guardar{
+  padding: 15px 50px;
+  background-color: rgb(0, 149, 255);
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.perfil-info .btn-guardar:hover{
+  background-color: rgb(7, 118, 197);
+  color: rgb(193, 193, 193);
+}
+
 .perfil-info .btn-eliminar{
   background-color: rgb(194, 21, 21);
   color: #ffffff;
@@ -264,6 +290,20 @@
   margin-top: 15px;
   margin-bottom: 30px;
   border: none;
+}
+
+.perfil-info .btn-eliminar{
+  padding: 15px 30px;
+  background: rgb(60, 65, 83);
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: rgb(255, 0, 0);
+}
+
+.perfil-info .btn-eliminar:hover{
+  color: rgb(146, 0, 0);
 }
 
 .mensaje-elim{

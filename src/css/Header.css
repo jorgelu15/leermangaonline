@@ -3,8 +3,9 @@
 
 .header-manga {
     width: 100%;
-    background: rgb(17,17,17);
-    background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(29,29,29,1) 20%, rgba(29,29,29,1) 75%, rgba(0,0,0,1) 95%);
+    /* background: rgb(4, 6, 20); */
+    background-color: rgb(15, 17, 31);
+    /* background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(29,29,29,1) 20%, rgba(29,29,29,1) 75%, rgba(0,0,0,1) 95%); */
 }
 
 .navbar {
@@ -20,6 +21,7 @@
 
 .nav-left ul {
   display: flex;
+  align-items: center;
 }
 
 .nav-left ul li {

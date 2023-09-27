@@ -8,7 +8,7 @@ import stafs from "../../img/buscastafs.jpg"
 import chatej from "../../img/chatmanga.png"
 import joindc from "../../img/joindc.png"
 
-import BasicTabs from "../Tabs/BasicTabs";
+import TabsHome from "../Tabs/TabsHome";
 import TabsTop from "../Tabs/TabsTop";
 
 
@@ -78,9 +78,9 @@ const ContainerHome = (props) => {
             <div className="home-mng">
                 <main className="main-home">
 
-                    <BasicTabs items={items}></BasicTabs>
-                    <BasicTabs items={items}></BasicTabs>
-                    <BasicTabs items={items}></BasicTabs>
+                    <TabsHome items={items}></TabsHome>
+                    <TabsHome items={items}></TabsHome>
+                    <TabsHome items={items}></TabsHome>
 
                     <section className="sec-grupos">
                         <h2>Los mejores scan/grupos del mes</h2>
