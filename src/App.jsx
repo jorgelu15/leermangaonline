@@ -10,6 +10,7 @@ import Manga from "./pages/Manga"
 import Vermanga from './pages/Vermanga'
 import Perfil from './pages/Perfil'
 import Subirmanga from './pages/Subirmanga'
+import Terms from './pages/Terms'
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
           <Route path={routes.perfil} element={<Perfil />} />
           <Route path={routes.manga} element={<Manga />} />
           <Route path={routes.vermanga} element={<Vermanga />} />
-          <Route path={routes.subirmanga} element={<Subirmanga />} />
+          <Route path={routes.subirmanga} element={<Subirmanga />}/>
+          <Route path={routes.terms} element={<Terms/>} />
           {/*<Route path={routes.forgotPassword+"/:token"} />
           <Route path={routes.confirmAccount} />
           <Route path={routes.newPassword} /> */}
