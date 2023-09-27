@@ -81,18 +81,18 @@
   margin-right: 3px;
 }
 
-.subir-view p{
-  margin-top: 20px;
-  margin-bottom: 40px;
+.subir-view .terminos{
+  margin-top: 40px;
+  margin-bottom: 30px;
 }
 
-.subir-view span{
+.subir-view .terminos span{
   color: rgb(33, 125, 245);
 }
 
 /* section-two ---------------------- */
 
-.section1{
+.section2{
   display: none;
 }
 
@@ -134,7 +134,7 @@
 }
 
 .subir-view .cont-files h3{
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .subir-view .cont-files .box-paginas{
@@ -186,3 +186,183 @@
   margin-right: 10px;
 }
 
+.box-recomendacion div{
+  margin-left: 14px;
+}
+
+.box-recomendacion div p{
+  margin: 0;
+  margin-bottom: 14px;
+}
+
+.box-recomendacion .info{
+  margin-top: 40px;
+  margin-bottom: 30px;
+  color: rgb(122, 133, 159);
+}
+
+.box-recomendacion .info a{
+  color: rgb(34, 118, 187);
+  font-weight: bold;
+}
+
+.box-form .cards{
+  display: flex;
+  gap: 0 14px;
+  margin-bottom: 30px;
+}
+
+.box-form .card{
+  width: 150px;
+  /* border: 1px solid rgba(255, 255, 255, 0.283); */
+}
+
+.box-form .card .img{
+  position: relative;
+  width: 150px;
+  height: 190px;
+  background-color: rgba(78, 87, 118, 0.608);
+}
+
+.box-form .card .number{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: rgb(0, 149, 255);
+}
+
+.box-form .card p{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 30px;
+}
+
+.box-form .card .btn-close{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 15px;
+  border: none;
+  background-color: rgb(88, 88, 88);
+  right: 0;
+  top: 0;
+  margin-right: 6px;
+  margin-top: 6px;
+}
+
+.box-form .card .btn-close img{
+  width: 20px;
+}
+
+
+.box-form .card-add{
+  width: 150px;
+  /* border: 1px solid rgba(255, 255, 255, 0.283); */
+}
+
+.box-form .card-add .img{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 150px;
+  height: 190px;
+  padding-bottom: 20px;
+  background-color: rgba(78, 87, 118, 0.608);
+  cursor: pointer;
+}
+
+.box-form .card-add .img img{
+  width: 70px;
+}
+
+.box-form .form-input{
+  display: flex;
+  flex-direction: column;
+}
+
+.box-form .form-input textarea{
+  padding: 5px 10px;
+  font-size: 1.1rem;
+  background-color: rgb(31, 31, 31);
+  border: 1px solid rgb(121, 119, 119);
+  border-radius: 3px;
+}
+
+.box-button{
+  display: flex;
+  width: 100%;
+}
+
+.box-button .borrador{
+  padding: 15px 30px;
+  background: none;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 20px;
+  color: rgb(0, 149, 255);
+}
+
+.box-button .borrador:hover{
+  color: rgb(3, 94, 159);
+}
+
+.box-button .guardar{
+  padding: 15px 40px;
+  background-color: rgb(0, 149, 255);
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.box-button .guardar:hover{
+  background-color: rgb(7, 118, 197);
+  color: rgb(193, 193, 193);
+}
+
+@media (max-width: 900px) {
+  .subir-view .cont-files{
+    display: block;
+  }
+
+  .section1,
+  .section2{
+    padding: 15px;
+  }
+
+  .listing-nav{
+    padding-left: 20px;
+  }
+
+  .subir-view .cont-opcion a{
+    width: 100%;
+  }
+
+  .subir-view h3{
+    font-size: 1.8rem;
+  }
+
+  .subir-view .img-folder{
+    height: 140px;
+  }
+  
+  .subir-view .cont-opcion{
+    padding-bottom: 10px;
+  }
+
+  .subir-view .cont-opcion a p{
+    font-size: 1rem;
+  }
+}

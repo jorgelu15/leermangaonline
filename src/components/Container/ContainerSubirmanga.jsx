@@ -5,6 +5,7 @@ import React, { useRef } from 'react';
 import addicon from '../../img/add.svg'
 import arrow from '../../img/arrow-right.svg'
 import folder from '../../img/folder.svg'
+import close from '../../img/close.svg'
 
 const ContainerSubirmanga = (props) => {
 
@@ -28,10 +29,9 @@ const ContainerSubirmanga = (props) => {
                         <a href="#"><img src={addicon}/><p>Agregar nuevo episodio a una obra</p></a>
                     </div>
 
-                    <p>A la hora de subir una obra, corrobore sin falta nuestros <span>Términos de Servicio</span> y los <span>Lineamientos de Publicación</span>.</p>
                 </section>
 
-                <section>
+                <section className="section2">
                     <div className="cont-obra">
                         <div className="form-input">
                             <label htmlFor="">Nombre de obra</label>
@@ -59,7 +59,7 @@ const ContainerSubirmanga = (props) => {
                                 <div className="card">
                                     <div className="img">
                                         <div className="number">1</div>
-                                        <button className="btn-close"></button>
+                                        <button className="btn-close"><img src={close}/></button>
                                     </div>
                                     <p>1142px × 1552px</p>
                                 </div>
@@ -67,14 +67,14 @@ const ContainerSubirmanga = (props) => {
                                 <div className="card-add">
                                     <div className="img">
                                         <img src={addicon}/>
-                                        <p>Añadir paginas</p>
+                                        <p>Añadir pagina</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="form-input">
-                                <label htmlFor="">Palabra del Autor</label>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <h3>Palabras del autor</h3>
+                                <textarea name="" id="" cols="30" rows="4"></textarea>
                             </div>
                         </div>
                         <div className="box-recomendacion">
@@ -84,14 +84,18 @@ const ContainerSubirmanga = (props) => {
                                 <p>Todas las páginas tienen el mismo tamaño de imagen</p>
                                 <p>Más de 8 páginas</p>
                             </div>
-                            <p>Entre más recomendaciones cumplas, tendrás cierta ventaja en el ranking de los <a href="#">Scanlation Awards</a>.</p>
+                            <p className="info">Entre más recomendaciones cumplas, tendrás cierta ventaja en el ranking de los <a href="#">Scanlation Awards</a>.</p>
                         </div>
                         <div className="box-button">
-                            <button>Guardar borrar</button>
-                            <button>Guardar y publicar</button>
+                            <div>
+                                <button className="borrador">Guardar borrador</button>
+                                <button className="guardar">Guardar e ir a publicar</button>
+                            </div>
                         </div>
                     </div>
                 </section>
+
+                <p className="terminos">A la hora de subir una obra, corrobore sin falta nuestros <span>Términos de Servicio</span> y los <span>Lineamientos de Publicación</span>.</p>
             </div>
         </div>
     )
