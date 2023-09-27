@@ -1,13 +1,13 @@
 import { useState } from "react"
 import React, { useRef } from 'react';
 
-import CustomizedAccordions from "../Container/Accordion";
+import TermTabs from "../Tabs/TabsTerms";
 
-const ContainerTerms= (props) => {
+const ContainerTerms = (props) => {
 
-    return(
+    return (
         <div>
-            
+            <TermTabs></TermTabs>
         </div>
     )
 }

@@ -9,7 +9,7 @@ const Subirmanga = () => {
   return (
     <>
       <Header/>
-        <ContainerSubirmanga/>
+      <ContainerSubirmanga/>
       <Footer/>
     </>
   );

@@ -85,7 +85,7 @@ export default function CustomizedAccordions() {
 
   return (
     <div  className='accordion'>
-      {caps.map((cap)=>(<Accordion sx={{backgroundColor: 'rgb(46, 46, 46)', color: '#fff'}} expanded={expanded === cap.panel} onChange={handleChange(cap.panel)}>
+      {caps.map((cap)=>(<Accordion sx={{backgroundColor: 'rgb(46, 46, 46)', color: '#fff'}} onChange={handleChange(cap.panel)}>
         <AccordionSummary aria-controls= {cap.panel+"d-content"} id={cap.panel+"d-header"}>
           <Typography>Capitulo {cap.cap}</Typography>
         </AccordionSummary>

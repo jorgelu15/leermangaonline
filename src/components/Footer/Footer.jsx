@@ -2,7 +2,7 @@
 import Facebook from "../../img/facebook.svg"
 import Instagram from "../../img/instagram.svg"
 import Discord from "../../img/discord.svg"
-import BasicAccordion from "../Container/BasicAccordion"
+import BasicAccordion from "../Accordions/BasicAccordion"
 
 const Footer = (props) => {
 
