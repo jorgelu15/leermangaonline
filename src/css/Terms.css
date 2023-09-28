@@ -1,12 +1,16 @@
 .container .cont-terms{
     max-width: 1280px;
     margin: auto;
-    border: 1px solid white;
-    border-radius: 10px;
-    background-color: rgb(46, 46, 46);
+    /* border: 1px solid white; */
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.099);
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.container .cont-terms h2{
+    margin: 14px 0px;
 }
 
 .container .cont-terms hr{
@@ -25,4 +29,41 @@
 #accordionbottom{
     border-bottom-left-radius: 10px 10px;
     border-bottom-right-radius: 10px 10px;
+}
+
+.cont-term{
+    margin: 30px 0px;
+    min-height: 40vh;
+}
+
+.css-usue2q-MuiPaper-root-MuiAccordion-root{
+    background: none !important;
+}
+
+.css-yw020d-MuiAccordionSummary-expandIconWrapper{
+    color: white !important;
+}
+
+.css-13xfq8m-MuiTabPanel-root{
+    padding: 0px !important;
+}
+
+.css-ta84vm-MuiAccordionDetails-root{
+    padding-left: 38px !important;
+}
+
+.css-1aquho2-MuiTabs-indicator{
+    height: 4px !important;
+}
+
+
+@media (max-width: 760px) {
+  
+    .container .cont-terms{
+        border-radius: 0px;
+    }
+
+    .css-69z67c-MuiTabs-scroller{
+        border-bottom: 1px solid rgba(255, 255, 255, 0.499);
+    }
 }

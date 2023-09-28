@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function BasicAccordion() {
+export default function AccordionFooter() {
   return (
     <div>
       <Accordion sx={{backgroundColor: "transparent", color: "white"}}>

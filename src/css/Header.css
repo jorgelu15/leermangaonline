@@ -33,6 +33,11 @@
   font-weight: 400;
 }
 
+.nav-right{
+  display: flex;
+  align-items: center;
+}
+
 .nav-right > div {
   display: flex;
   flex-direction: row;
@@ -43,10 +48,32 @@
   margin: 0 10px;
 }
 
+.nav-right button{
+  display: none;
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+}
+
+.nav-right button img{
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 760px) {
+  
+  .nav-right button{
+    display: inline-block !important;
+  }
+
+}
+
+/* header-vermanga ----------------------------------------------------------------------------------------------- */
 
 .header-vermanga{
   background: rgb(0,0,0);
-  background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5074404761904762) 50%, rgba(0,0,0,1) 100%);
+  background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5074404761904762) 30%, rgba(0,0,0,1) 100%);
   position: absolute;
   width: 100%;
   z-index: 1000;
@@ -55,6 +82,7 @@
 
 .header-vermanga .info{
   display: flex;
+  font-weight: bold;
 }
 
 .header-vermanga .info div{
@@ -71,7 +99,7 @@
 
 .header-vermanga .info a{
   margin: 0px 20px;
-  color: greenyellow;
+  color: rgb(0, 238, 255);
 }
 
 .header-vermanga .navbar{
@@ -148,7 +176,7 @@
 }
 
 @media (max-width: 760px) {
-  .navbar .nav-right {
+  .navbar .nav-right > div {
     display: none;
   }
 }

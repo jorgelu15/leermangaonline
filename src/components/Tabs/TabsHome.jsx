@@ -6,6 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
 
 
 function TabPanel(props) {
@@ -88,13 +89,15 @@ export default function BasicTabs(props) {
                 item.cards.map((card)=>{
                   return (
                     <div className="cont-card">
-                      <div className="card">
-                      <div>
-                        <p className="categoria">{card.categoria}</p>
-                        <p className="calificacion">{card.calif}</p>
-                      </div>
-                      <p className="nombre">{card.nombre}</p>
-                      </div>
+                      <Link to='vermanga'>
+                        <div className="card" style={{backgroundImage: `url('${card.url}')`}}>
+                        <div>
+                          <p className="categoria">{card.categoria}</p>
+                          <p className="calificacion">{card.calif}</p>
+                        </div>
+                        <p className="nombre">{card.nombre}</p>
+                        </div>
+                      </Link>
                     </div>
                   )
                 })

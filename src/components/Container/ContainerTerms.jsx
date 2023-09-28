@@ -6,7 +6,7 @@ import TermTabs from "../Tabs/TabsTerms";
 const ContainerTerms = (props) => {
 
     return (
-        <div>
+        <div className="cont-term">
             <TermTabs></TermTabs>
         </div>
     )

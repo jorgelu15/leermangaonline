@@ -1,4 +1,6 @@
 
+import menubar from '../../img/menu-bar.svg'
+
 const Header = (props) => {
 
     return (
@@ -19,13 +21,10 @@ const Header = (props) => {
                         <p>
                             <input type="search" placeholder="Buscar..." className="input-style search" />
                         </p>
-                        <p>
-                            ACCEDER
-                        </p>
-                        <p>
-                            REGISTRARSE
-                        </p>
+                        <p>ACCEDER</p>
+                        <p>REGISTRARSE</p>
                     </div>
+                    <button><img src={menubar} alt="" /></button>
                 </div>
             </nav>
         </header>
