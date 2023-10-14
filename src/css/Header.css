@@ -61,6 +61,15 @@
   height: 30px;
 }
 
+.nav-right p a{
+  color: white;
+  cursor: pointer;
+}
+
+.nav-right p a:hover{
+  color: rgb(225, 25, 25);
+}
+
 @media (max-width: 760px) {
   
   .nav-right button{

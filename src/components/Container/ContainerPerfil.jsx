@@ -5,8 +5,12 @@ import React, { useRef } from 'react';
 import FotoPerfil from "../../img/fotoperfil.jpg"
 import TabsCategory from "../Tabs/TabsCategory"
 import FormPerfil from "../Form/FormPerfil";
+import useAuth from "../../hooks/useAuth";
 
 const ContainerPerfil = (props) => {
+
+    const { usuario } = useAuth();
+    console.log(usuario)
 
     const [ viewPerfil, setViewPerfil ] = useState(false)
 
@@ -65,7 +69,7 @@ const ContainerPerfil = (props) => {
                     </div>
 
                     <div className="info">
-                        <p className="username">Dgdavid2 
+                        <p className="username">{usuario.usuario}
                             <a className={`${viewPerfil ? 'btn-pf-active' : null} btn-perfil`} onClick={()=>{changeViewPr()}}>Editar perfil</a>
                         </p>
                         <div className="etiq-cards">
