@@ -10,7 +10,6 @@ import useAuth from "../../hooks/useAuth";
 const ContainerPerfil = (props) => {
 
     const { usuario } = useAuth();
-    console.log(usuario)
 
     const [ viewPerfil, setViewPerfil ] = useState(false)
 
@@ -69,8 +68,9 @@ const ContainerPerfil = (props) => {
                     </div>
 
                     <div className="info">
-                        <p className="username">{usuario.usuario}
-                            <a className={`${viewPerfil ? 'btn-pf-active' : null} btn-perfil`} onClick={()=>{changeViewPr()}}>Editar perfil</a>
+                        <p className="username">
+                            <span>{usuario.usuario}</span>
+                            <a className={`${viewPerfil ? 'btn-pf-active' : null} btn-perfil`} onClick={()=>{changeViewPr()}}>Ver Perfil</a>
                         </p>
                         <div className="etiq-cards">
                             <div className="card">Masculino</div>

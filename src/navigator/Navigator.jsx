@@ -44,13 +44,13 @@ const router = createBrowserRouter([
       element: <ProtectedRoute/>,
       children: [
         {
+          path: routes.subirmanga,
+          element: <Subirmanga />
+        },
+        {
           path: routes.perfil,
           element: <Perfil />
         },
-        {
-          path: routes.subirmanga,
-          element: <Subirmanga />
-        }
       ]
     },
 ]);
