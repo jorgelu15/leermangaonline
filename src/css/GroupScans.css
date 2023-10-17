@@ -1,0 +1,28 @@
+.scan-groups .groups-content{
+    max-width: 1280px;
+    margin: auto;
+}
+
+.groups-content .groups{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.groups-content .groups .card{
+    background-image: url(../img/portada-scan.jpg);
+    height: 150px;
+    width: 300px;
+    background-position: 50%;
+    background-size: cover;
+    margin: 10px;
+}
+
+.groups .card .desc-card-scan{
+    background-color: #0000007a;
+    display: flex;
+    justify-content: space-between;
+}
+
+.groups .card .desc-card-scan p{
+    padding: 2%;
+}
