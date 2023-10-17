@@ -11,10 +11,10 @@ const Header = (props) => {
                     </ul>
                     <div className="info">
                         <div>
-                            <p className='title'><a href="#">Naruto </a>Capitulo 376</p>
-                            <p>Subido por <a href="#">Joker Fansub</a></p>
+                            <p className='title'><a href="#">Jujutsu Kaisen </a>Capitulo 70.00 Inventario Oculto...</p>
+                            <p>Subido por <a href="#">El club de askin</a></p>
                         </div>
-                        <p>MANGA. El sentido de la lectura es de derecha a izquierda</p>
+                        <p>MANGA. El sentido de la lectura es de izquierda a derecha</p>
                     </div>
                     
                 </div>

@@ -2,7 +2,8 @@
 import Facebook from "../../img/facebook.svg"
 import Instagram from "../../img/instagram.svg"
 import Discord from "../../img/discord.svg"
-import BasicAccordion from "../Accordions/BasicAccordion"
+
+import AccordionFooter from "../Mui/Accordions/AccordionFooter"
 
 const Footer = (props) => {
 
@@ -47,7 +48,7 @@ const Footer = (props) => {
             </div>
 
             <div className="menu-accordion">
-                <BasicAccordion></BasicAccordion>
+                <AccordionFooter></AccordionFooter>
             </div>
             
             <div className="footer-botton">

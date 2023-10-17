@@ -4,9 +4,9 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import PoliticsAccordion from '../Accordions/PoliticsAccordion'
+import AccordionPolitics from '../Accordions/AccordionPolitics'
 import AccordionNormas from '../Accordions/AccordionNormas';
-import TermsAccordion from '../Accordions/PoliticsAccordion';
+import AccordionTerms from '../Accordions/AccordionTerms';
 
 export default function TermTabs() {
   const [value, setValue] = React.useState('1');
@@ -31,7 +31,7 @@ export default function TermTabs() {
                 <h2>Terminos de servicio</h2>
                 <hr/>
                 <div>
-                    <TermsAccordion></TermsAccordion>
+                    <AccordionTerms></AccordionTerms>
                 </div>
             </div>
         </div></TabPanel>
@@ -41,7 +41,7 @@ export default function TermTabs() {
                 <h2>Politicas de privacidad</h2>
                 <hr/>
                 <div>
-                    <PoliticsAccordion></PoliticsAccordion>
+                    <AccordionPolitics></AccordionPolitics>
                 </div>
             </div>
         </div></TabPanel>

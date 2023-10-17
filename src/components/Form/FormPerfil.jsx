@@ -1,84 +1,142 @@
+import { useContext, useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import ModalGrupo from "../Modal/ModalGrupo";
+import gruposContext from "../../context/grupos/gruposContext";
+
+import CardScan from "../Card/cardScan";
+
+import group from "../../img/group.svg"
+import setting from "../../img/settings.png"
+import background from "../../img/background.jpg"
 
 const FormPerfil = () => {
 
+    const { usuario } = useAuth();
+    const { grupos, grupo, getGrupos } = useContext(gruposContext)
+
+    const [ viewEdit, setViewEdit ] = useState(true)
+    const [ openMG, setOpenMG ] = useState(false)
+    
+
+    useEffect(() => {
+        getGrupos(usuario?.id_usuario)
+    }, [grupo])
+
     return (
         <div className="perfil-info">
-            <h3>Editar Perfil</h3>
-            <p className="title">Datos principales</p>
-            <div className="form-info">
-                <div className="box">
-                    <label htmlFor="usuario">Usuario</label>
-                    <input type="text" placeholder="Usuario"/>
+
+        { viewEdit ? 
+            <div className="perfil-datos">
+                <h3>Datos de Perfil</h3>
+                <div className="form-info">
+                    <div className="box">
+                        <label htmlFor="usuario">Usuario</label>
+                        <input type="text"/>
+                    </div>
+
+                    <div className="box">
+                        <label htmlFor="correo">Correo</label>
+                        <input type="text"/>
+                    </div>
+
+                    <div className="box">
+                        <label htmlFor="clave">Contraseña</label>
+                        <input type="password"/>
+                    </div>
+
+                    <div className="box">
+                        <label htmlFor="clave">Repetir contraseña</label>
+                        <input type="password"/>
+                    </div>
+
+                    <div className="box box-avatar">
+                        <label htmlFor="avatar">Avatar</label>
+                        <input type="file"/>
+                        <p>La imagen debe ser jpg, png o bmp.</p>
+                    </div>
+                </div>
+                <span className="separador"></span>
+
+                <div className="form-info">
+                    <div className="box">
+                        <label htmlFor="telefono">Telefono</label>
+                        <input type="tel"/>
+                    </div>
+
+                    <div className="box">
+                        <label htmlFor="gais">Pais</label>
+                        <select name="pais">
+                            <option value="Colombia">Colombia</option>
+                            <option value="Colombia">España</option>
+                        </select>
+                    </div>
+
+                    <div className="box">
+                        <label htmlFor="genero">Genero</label>
+                        <select name="genero">
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div className="box">
-                    <label htmlFor="correo">Correo</label>
-                    <input type="text" placeholder="Correo"/>
+                <div className="form-info">
+                    <div className="box">
+                        <label htmlFor="facebook">Facebook</label>
+                        <input type="text"/>
+                    </div>
+
+                    <div className="box">
+                        <label htmlFor="twitter">Twitter</label>
+                        <input type="text"/>
+                    </div>
+
+                    <div className="box">
+                        <label htmlFor="instagram">Instagram</label>
+                        <input type="text"/>
+                    </div>
                 </div>
 
-                <div className="box">
-                    <label htmlFor="clave">Contraseña</label>
-                    <input type="password" placeholder="Contraseña"/>
-                </div>
+                <button className="btn-guardar">Guardar</button>
 
-                <div className="box">
-                    <label htmlFor="clave">Repetir contraseña</label>
-                    <input type="password" placeholder="Repetir contraseña"/>
-                </div>
+                <p className="mensaje-elim">Ten cuidado la eliminacion de la cuenta es <b>Permanente</b></p>
+                <button className="btn-eliminar">Eliminar cuenta</button>
+            </div> 
+        :
+            <div className="perfil-grupos">
+                <h3>Mis Grupos</h3>
 
-                <div className="box box-avatar">
-                    <label htmlFor="avatar">Avatar</label>
-                    <input type="file"/>
-                    <p>La imagen debe ser jpg, png o bmp.</p>
+                <button onClick={() => setOpenMG(true)} className={'btn-crear-grupo'}>Crear grupo</button>
+
+                {/* { grupo != null ? <p>{grupo.correo}</p> : null} */}
+
+                <div className="cards-scan">
+
+                {
+                    grupos ?
+                        grupos.length !== 0 ? grupos.map((item) => item.estado ? (
+                            <CardScan key={item.id_grupo} grupo={item}></CardScan>
+                        ) : null) :
+                        <div>
+                            <p className="">No hay grupos</p>
+                        </div> 
+                    : <p className="">No hay grupos</p>
+                }
+
+                </div>
+                
+            </div>
+        }
+            
+            <div className="perfil-botones">
+                <h3>Opciones</h3>
+                <div>
+                    <button onClick={() => setViewEdit(true)} className={'btn-perfil'}>Editar perfil</button>
+                    <button onClick={() => setViewEdit(false)} className={'btn-perfil'}>Mis grupos</button>
                 </div>
             </div>
-            <span className="separador"></span>
-
-            <div className="form-info">
-                <div className="box">
-                    <label htmlFor="telefono">Telefono</label>
-                    <input type="tel" placeholder="Telefono"/>
-                </div>
-
-                <div className="box">
-                    <label htmlFor="gais">Pais</label>
-                    <select name="pais">
-                        <option value="Colombia">Colombia</option>
-                        <option value="Colombia">España</option>
-                    </select>
-                </div>
-
-                <div className="box">
-                    <label htmlFor="genero">Genero</label>
-                    <select name="genero">
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-            </div>
-
-            <div className="form-info">
-                <div className="box">
-                    <label htmlFor="facebook">Facebook</label>
-                    <input type="text" placeholder="Url de su perfil de facebook"/>
-                </div>
-
-                <div className="box">
-                    <label htmlFor="twitter">Twitter</label>
-                    <input type="text" placeholder="Url de su perfil de twitter"/>
-                </div>
-
-                <div className="box">
-                    <label htmlFor="instagram">Instagram</label>
-                    <input type="text" placeholder="Url de su perfil de instagram"/>
-                </div>
-            </div>
-
-            <button className="btn-guardar">Guardar</button>
-
-            <p className="mensaje-elim">La eliminacion de la cuenta es <b>Permanente</b></p>
-            <button className="btn-eliminar">Eliminar cuenta</button>
+            <ModalGrupo open={openMG} setOpen={setOpenMG}></ModalGrupo>
         </div>
     );
   };

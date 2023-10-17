@@ -3,15 +3,23 @@
 
 .header-manga {
     width: 100%;
-    background: rgb(17,17,17);
-    background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(29,29,29,1) 20%, rgba(29,29,29,1) 75%, rgba(0,0,0,1) 95%);
+    /* background: rgb(4, 6, 20); */
+    background-color: rgb(15, 17, 31);
+    /* background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(29,29,29,1) 20%, rgba(29,29,29,1) 75%, rgba(0,0,0,1) 95%); */
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
+  padding: 20px 0px;
+  padding-top: 25px;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.header--home .navbar{
+  max-width: none;
   padding: 20px 60px;
-  padding-top: 30px;
 }
 
 .nav-left {
@@ -20,6 +28,7 @@
 
 .nav-left ul {
   display: flex;
+  align-items: center;
 }
 
 .nav-left ul li {
@@ -29,6 +38,11 @@
 .nav-left ul li a {
   color: var(--white);
   font-weight: 400;
+}
+
+.nav-right{
+  display: flex;
+  align-items: center;
 }
 
 .nav-right > div {
@@ -41,10 +55,41 @@
   margin: 0 10px;
 }
 
+.nav-right button{
+  display: none;
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+}
+
+.nav-right button img{
+  width: 30px;
+  height: 30px;
+}
+
+.nav-right p a{
+  color: white;
+  cursor: pointer;
+}
+
+.nav-right p a:hover{
+  color: rgb(149, 204, 255);
+}
+
+@media (max-width: 760px) {
+  
+  .nav-right button{
+    display: inline-block !important;
+  }
+
+}
+
+/* header-vermanga ----------------------------------------------------------------------------------------------- */
 
 .header-vermanga{
   background: rgb(0,0,0);
-  background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5074404761904762) 50%, rgba(0,0,0,1) 100%);
+  background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5074404761904762) 30%, rgba(0,0,0,1) 100%);
   position: absolute;
   width: 100%;
   z-index: 1000;
@@ -53,6 +98,7 @@
 
 .header-vermanga .info{
   display: flex;
+  font-weight: bold;
 }
 
 .header-vermanga .info div{
@@ -69,7 +115,7 @@
 
 .header-vermanga .info a{
   margin: 0px 20px;
-  color: greenyellow;
+  color: rgb(0, 238, 255);
 }
 
 .header-vermanga .navbar{
@@ -146,7 +192,7 @@
 }
 
 @media (max-width: 760px) {
-  .navbar .nav-right {
+  .navbar .nav-right > div {
     display: none;
   }
 }

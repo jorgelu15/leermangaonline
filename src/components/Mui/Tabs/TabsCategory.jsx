@@ -84,7 +84,7 @@ export default function TabsCategory(props) {
       </div>
       
       { !viewPerfil ? 
-        <div style={{backgroundColor: '#e9eaed', paddingTop: 20, paddingBottom: 20}}>
+        <div className='box-mangas-pf' style={{paddingTop: 20, paddingBottom: 20}}>
           <div className='cont-tabs'>
           {
             items ? 
@@ -92,7 +92,7 @@ export default function TabsCategory(props) {
               return(
                 
                 <TabPanel value={value} index={idx} dir={theme.direction}>
-                <h3 className='title'>Mangas {item.tab}s</h3>
+                <h3 className='title'>Obras {item.tab}s</h3>
                 <div className="sec-cards">
                   {
                     item.cards.length ?
