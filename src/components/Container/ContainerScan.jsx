@@ -12,6 +12,7 @@ const ContainerScan = (props) => {
     const changeViewPr = () => {
         setViewScan(!viewScan)
     }
+    
 
     const items = {
         tabs: 3,
