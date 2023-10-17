@@ -11,6 +11,10 @@ import Perfil from '../pages/Perfil'
 import Panel from '../pages/Panel'
 import Subirmanga from '../pages/Subirmanga'
 import Terms from '../pages/Terms'
+import Scanlation from '../pages/Scanlation'
+import GroupScans from '../pages/GroupScans'
+
+
 
 import routes from '../helpers/routes'
 
@@ -40,6 +44,14 @@ const router = createBrowserRouter([
     {
       path: routes.terms,
       element: <Terms />
+    },
+    {
+      path: routes.scanlation,
+      element: <Scanlation />
+    },
+    {
+      path: routes.groups,
+      element: <GroupScans />
     },
     {
       path: '/',

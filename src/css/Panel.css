@@ -45,6 +45,7 @@
 .panel .content-panel{
   display: flex;
   flex: 1;
+  height: 80%;
 }
 
 .panel .menu-panel{

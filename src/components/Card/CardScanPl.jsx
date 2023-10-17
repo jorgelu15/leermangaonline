@@ -10,7 +10,7 @@ import setting from "../../img/settings.png"
 import { useNavigate } from "react-router-dom";
 
 
-const CardScan = (props) => {
+const CardScanPl = (props) => {
     const {
         grupo,
     } = props;
@@ -53,4 +53,4 @@ const CardScan = (props) => {
 
 }
 
-export default CardScan;
+export default CardScanPl;

@@ -3,7 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import ModalGrupo from "../Modal/ModalGrupo";
 import gruposContext from "../../context/grupos/gruposContext";
 
-import CardScan from "../Card/cardScan";
+import CardScanPl from "../Card/CardScanPl";
 
 import group from "../../img/group.svg"
 import setting from "../../img/settings.png"
@@ -116,7 +116,7 @@ const FormPerfil = () => {
                 {
                     grupos ?
                         grupos.length !== 0 ? grupos.map((item) => item.estado ? (
-                            <CardScan key={item.id_grupo} grupo={item}></CardScan>
+                            <CardScanPl key={item.id_grupo} grupo={item}></CardScanPl>
                         ) : null) :
                         <div>
                             <p className="">No hay grupos</p>
