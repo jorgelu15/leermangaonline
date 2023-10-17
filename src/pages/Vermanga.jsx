@@ -8,7 +8,9 @@ const Vermanga = () => {
 
   return (
     <>
-      <HeaderManga/>
+      <div className="header--home">
+        <HeaderManga/>
+      </div>
       <ContainerVermanga/>
       <Footer/>
     </>
