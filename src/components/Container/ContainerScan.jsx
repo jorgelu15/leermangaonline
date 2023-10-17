@@ -2,7 +2,7 @@ import { useState } from "react"
 import React, { useRef } from 'react';
 
 import FotoPerfil from "../../img/fotoperfil.jpg";
-import TabsScan from "../Tabs/TabsScan";
+import TabsScan from "../Mui/Tabs/TabsScan";
 import FormScan from "../Form/FormScan";
 import CardsScan from "../cards/CardsScan";
 
