@@ -55,6 +55,7 @@ const ContainerScan = (props) => {
             // console.log(solicitud, "linea 45")
         }
     }
+    
 
 
     const items = {
