@@ -3,16 +3,23 @@ import useAuth from "../../hooks/useAuth";
 import ModalGrupo from "../Modal/ModalGrupo";
 import gruposContext from "../../context/grupos/gruposContext";
 
+import CardScan from "../Card/cardScan";
+
+import group from "../../img/group.svg"
+import setting from "../../img/settings.png"
+import background from "../../img/background.jpg"
+
 const FormPerfil = () => {
 
     const { usuario } = useAuth();
+    const { grupos, grupo, getGrupos } = useContext(gruposContext)
+
     const [ viewEdit, setViewEdit ] = useState(true)
-
     const [ openMG, setOpenMG ] = useState(false)
-
-    const { grupo } = useContext(gruposContext)
+    
 
     useEffect(() => {
+        getGrupos(usuario?.id_usuario)
     }, [grupo])
 
     return (
@@ -98,11 +105,27 @@ const FormPerfil = () => {
             </div> 
         :
             <div className="perfil-grupos">
-                <h3>Mis grupos</h3>
-
-                { grupo != null ? <p>{grupo.correo}</p> : null}
+                <h3>Mis Grupos</h3>
 
                 <button onClick={() => setOpenMG(true)} className={'btn-crear-grupo'}>Crear grupo</button>
+
+                {/* { grupo != null ? <p>{grupo.correo}</p> : null} */}
+
+                <div className="cards-scan">
+
+                {
+                    grupos ?
+                        grupos.length !== 0 ? grupos.map((item) => item.estado ? (
+                            <CardScan key={item.id_grupo} grupo={item}></CardScan>
+                        ) : null) :
+                        <div>
+                            <p className="">No hay grupos</p>
+                        </div> 
+                    : <p className="">No hay grupos</p>
+                }
+
+                </div>
+                
             </div>
         }
             

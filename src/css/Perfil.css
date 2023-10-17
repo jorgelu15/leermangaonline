@@ -225,7 +225,7 @@
 }
 
 .perfil-grupos .btn-crear-grupo{
-  background-color: rgb(20, 143, 28);
+  background-color: rgb(70, 181, 78);
   color: #ffffff;
   font-size: 1.2rem;
   padding: 5px 16px;
@@ -238,7 +238,7 @@
 }
 
 .perfil-grupos .btn-crear-grupo:hover{
-  background-color: rgb(13, 98, 19);
+  background-color: rgb(27, 152, 35);
 }
 
 .perfil-datos{
@@ -523,7 +523,100 @@
   }
 }
 
-/*-----------------------------------------------------------*/
+/* cards scan ----------------------------------------------- */
+
+.cards-scan{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+  margin: 30px 0px;
+}
+
+.cards-scan .card{
+  height: 200px;
+  width: 48%;
+  max-height: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.202);
+}
+
+.cards-scan .card .top{
+  min-height: inherit;
+  height: 150px;
+  background-image: url('../img/background.jpg');
+  background-position: center 70%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  cursor: pointer;
+}
+
+.cards-scan .card .top::before{
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.703);
+}
+
+.cards-scan .card .title{
+  display: flex;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  background-color: #000000c6;
+  margin: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.cards-scan .card .cont{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  position: relative;
+  z-index: 10;
+}
+
+.cards-scan .card .etiq{
+  padding: 2px 5px;
+  font-size: 0.9rem;
+  background-color: rgb(233, 60, 60);
+}
+
+.cards-scan .card .count{
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.cards-scan .card .count img{
+  margin-right: 5px;
+}
+
+.cards-scan .card .conf{
+  padding: 15px;
+  height: 48px;
+  background-color: #2b2b2b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cards-scan .card .conf:hover{
+  background-color: #1d1d1d;
+}
+
+.cards-scan .card .conf img{
+  height: 16px;
+  margin-right: 5px;
+  filter: invert(1);
+}
+
+/* Modal grupo -----------------------------------------------*/
 .overlay-bg {
   background: rgba(1, 3, 40, 0.38);
   position: fixed;

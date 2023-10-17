@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client'
 
 import './index.css'
 import './css/styles.jsx'
-import Navigator from './navigator/Navigator'
 import App from './App'
+
+import { SnackbarProvider } from "notistack";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-    <App />
+    <SnackbarProvider maxSnack={3} autoHideDuration={4000}>
+      <App />
+    </SnackbarProvider>
   // </React.StrictMode>,
 )

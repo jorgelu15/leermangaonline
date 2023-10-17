@@ -5,6 +5,7 @@ const routes = {
     forgotPassword: "/forgot-password",
     confirmAccount: "/confirm-account",
     perfil: "/perfil",
+    panel: "/panel",
     manga: "/manga",
     vermanga: "/vermanga",
     subirmanga: "/subirmanga",

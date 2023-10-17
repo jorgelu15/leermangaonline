@@ -3,7 +3,7 @@ import { useState } from "react"
 import React, { useRef } from 'react';
 
 import FotoPerfil from "../../img/fotoperfil.jpg"
-import TabsCategory from "../Tabs/TabsCategory"
+import TabsCategory from "../Mui/Tabs/TabsCategory"
 import FormPerfil from "../Form/FormPerfil";
 import useAuth from "../../hooks/useAuth";
 

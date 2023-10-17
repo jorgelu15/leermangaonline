@@ -8,10 +8,12 @@ import Home from '../pages/Home'
 import Manga from "../pages/Manga"
 import Vermanga from '../pages/Vermanga'
 import Perfil from '../pages/Perfil'
+import Panel from '../pages/Panel'
 import Subirmanga from '../pages/Subirmanga'
 import Terms from '../pages/Terms'
 
 import routes from '../helpers/routes'
+
 
 
 const router = createBrowserRouter([
@@ -46,6 +48,10 @@ const router = createBrowserRouter([
         {
           path: routes.subirmanga,
           element: <Subirmanga />
+        },
+        {
+          path: routes.panel,
+          element: <Panel />
         },
         {
           path: routes.perfil,

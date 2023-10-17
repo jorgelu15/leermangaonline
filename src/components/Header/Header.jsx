@@ -25,7 +25,7 @@ const Header = (props) => {
                         <li><Link to={routes.home}><i>LEER</i><b>MANGA</b>ONLINE</Link></li>
                     </ul>
                     <ul className="list-menu">
-                        <li><a href="#">DIRECTORIO</a></li>
+                        <li><Link to={routes.panel}>DIRECTORIO</Link></li>
                         <li><a href="#">GRUPOS</a></li>
                         <li><a href="#">FORO</a></li>
                     </ul>

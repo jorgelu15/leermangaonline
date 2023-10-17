@@ -3,7 +3,7 @@ import Facebook from "../../img/facebook.svg"
 import Instagram from "../../img/instagram.svg"
 import Discord from "../../img/discord.svg"
 
-import AccordionFooter from "../Accordions/AccordionFooter"
+import AccordionFooter from "../Mui/Accordions/AccordionFooter"
 
 const Footer = (props) => {
 

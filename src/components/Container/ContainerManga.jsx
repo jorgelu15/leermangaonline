@@ -2,7 +2,7 @@
 import { useState } from "react"
 import React, { useRef } from 'react';
 
-import CustomizedAccordions from "../Accordions/Accordion";
+import CustomizedAccordions from "../Mui/Accordions/Accordion";
 import image from "../../img/portada.jpg"
 import chat from "../../img/chat.png"
 

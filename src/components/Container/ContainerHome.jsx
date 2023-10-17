@@ -8,8 +8,8 @@ import stafs from "../../img/buscastafs.jpg"
 import chatej from "../../img/chatmanga.png"
 import joindc from "../../img/joindc.png"
 
-import TabsHome from "../Tabs/TabsHome";
-import TabsTop from "../Tabs/TabsTop";
+import TabsHome from "../Mui/Tabs/TabsHome";
+import TabsTop from "../Mui/Tabs/TabsTop";
 
 
 const ContainerHome = (props) => {

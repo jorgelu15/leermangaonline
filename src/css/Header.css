@@ -11,8 +11,15 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  padding: 20px 0px;
+  padding-top: 25px;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.header--home .navbar{
+  max-width: none;
   padding: 20px 60px;
-  padding-top: 30px;
 }
 
 .nav-left {
@@ -67,7 +74,7 @@
 }
 
 .nav-right p a:hover{
-  color: rgb(225, 25, 25);
+  color: rgb(149, 204, 255);
 }
 
 @media (max-width: 760px) {

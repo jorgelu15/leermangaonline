@@ -12,7 +12,7 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
-  transition: all .2s;
+  /* transition: all .2s; */
 }
 
 :root {
@@ -1125,3 +1125,22 @@
 /* .cont-login .form{
   margin: 40px 0px;
 } */
+
+
+
+/* alertas -------------------------------------- */
+
+
+.go167266335{
+  font-size: 1rem !important;
+  box-shadow: none !important;
+}
+
+.go3162094071{
+  padding-left: 16px !important;
+}
+
+/* success */
+.go1725278324{
+  background-color: rgba(59, 157, 59, 0.9) !important;
+}

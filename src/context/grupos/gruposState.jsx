@@ -7,6 +7,8 @@ import GruposReducer from './gruposReducer';
 import {
     INSERTAR_GRUPO_EXITOSO,
     REGISTRO_GRUPO_ERROR,
+    OBTENER_GRUPOS,
+    OBTENER_GRUPOS_ERROR,
 } from '../../types';
 
 const GruposState = props => {
@@ -36,6 +38,22 @@ const GruposState = props => {
         }
     }
 
+    const getGrupos = async (id_usuario) => {
+        try {
+            const respuesta = await clienteAxios.get(`/grupo/${id_usuario}/`);
+            dispatch({
+                type: OBTENER_GRUPOS,
+                payload: respuesta.data.grupos
+            })
+        } catch (error) {
+  
+            dispatch({
+                type: OBTENER_GRUPOS_ERROR,
+                payload: error.response.data.msg
+            })
+        }
+    }
+
     return (
         <GruposContext.Provider
             value={{
@@ -43,6 +61,7 @@ const GruposState = props => {
                 grupos: state.grupos,
                 msg: state.msg,
                 insertGrupo,
+                getGrupos,
             }}
         >
             {props.children}

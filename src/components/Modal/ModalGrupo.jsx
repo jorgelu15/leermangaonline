@@ -2,6 +2,7 @@
 import { useContext, useState } from "react";
 import close from "../../img/close.svg";
 import gruposContext from "../../context/grupos/gruposContext";
+import { useSnackbar } from "notistack";
 
 const ModalGrupo = (props) => {
     const {
@@ -10,9 +11,11 @@ const ModalGrupo = (props) => {
     } = props;
 
     const { insertGrupo, grupo } = useContext(gruposContext)
+    const { enqueueSnackbar } = useSnackbar()
 
     const [ nombre, setNombre ] = useState('')
     const [ correo, setCorreo ] = useState('')
+
 
     const handlerSubmit = (e) => {
         e.preventDefault();
@@ -22,9 +25,15 @@ const ModalGrupo = (props) => {
           return;
         }
 
-        console.log("llegoo al boton")
-
         insertGrupo({id_usuario: "1", nombre, correo})
+
+        enqueueSnackbar("Grupo creado", {
+            variant: "success",
+            anchorOrigin: {
+                vertical: "bottom",
+                horizontal: "right"
+            }
+        })
     };
 
     if (!open) return null;
