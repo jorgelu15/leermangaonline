@@ -3,7 +3,6 @@ import React, { useRef } from 'react';
 
 import FotoPerfil from "../../img/fotoperfil.jpg";
 import TabsScan from "../Mui/Tabs/TabsScan";
-import FormScan from "../Form/FormScan";
 import CardsScan from "../cards/CardsScan";
 
 const ContainerScan = (props) => {
@@ -63,9 +62,6 @@ const ContainerScan = (props) => {
                         <img src={FotoPerfil} alt="scanProfile" />
                     </div>
                     <div className="info">
-                        <p className="username">SD TYN Scanlations
-                            <a className={`${viewScan ? 'btn-pf-active' : null} btn-scan`} onClick={()=>{changeViewPr()}}>Editar scan</a>
-                        </p>
                         <div className="etiq-cards">
                             <div className="card">2023-04-11</div>
                             <div className="card">Colombia</div>
@@ -74,19 +70,15 @@ const ContainerScan = (props) => {
                 </div>
             </div>
 
-            <div className={`${viewScan ? 'hidden-indicator' : null} scan-content`}>
+            <div className="scan-content">
                 <TabsScan items={items} viewScan={viewScan} setViewScan={setViewScan}></TabsScan>
                 <div className="members">
                     <h2>Miembros</h2>
-                    <button className= "btn-scan">Agregar miembro</button>
+                    <button className= "btn-scan">solicitar ingreso</button>
                     <div className="member-cards">
                         {members.map((member) => (<CardsScan key={member.id} member={member}/>))}
                     </div>
                 </div>
-            </div>
-
-            <div className="cont-scan-info">
-                { viewScan ? <FormScan/> : null }
             </div>
         </div>
     )
