@@ -1,17 +1,61 @@
-import { useState } from "react"
+import { useState, useContext, useEffect } from "react"
 import React, { useRef } from 'react';
 
 import FotoPerfil from "../../img/fotoperfil.jpg";
+import routes from "../../helpers/routes";
+import { Link } from "react-router-dom";
+import { useSnackbar } from "notistack";
+
+import useAuth from "../../hooks/useAuth";
+import gruposContext from "../../context/grupos/gruposContext";
+
 import TabsScan from "../Mui/Tabs/TabsScan";
 import CardsScan from "../cards/CardsScan";
 
+
 const ContainerScan = (props) => {
 
-    const [ viewScan, setViewScan ] = useState(false)
+    
+    const { usuario } = useAuth();
+    const { grupo, solicitud, insertSolicitud } = useContext(gruposContext)
+    const { enqueueSnackbar } = useSnackbar()
 
-    const changeViewPr = () => {
-        setViewScan(!viewScan)
+    const [ statusSl, setStatusSl ] = useState(false);
+
+    useEffect(() => {
+
+        // console.log(solicitud?.id_grupo, grupo?.id_grupo, "linea 27")
+        // console.log(solicitud?.id_usuario, usuario?.id_usuario, "linea 28")
+        
+        if(solicitud != null){
+            setStatusSl((solicitud?.id_grupo === grupo?.id_grupo &&
+                solicitud?.id_usuario === usuario?.id_usuario))
+        }
+
+        // console.log((solicitud?.id_grupo !== grupo?.id_grupo &&
+        //     solicitud?.id_usuario !== usuario?.id_usuario), "linea 32")
+    }, [solicitud])
+
+    useEffect(() => {
+    }, [statusSl])
+
+    const handleSolicitud = (e) => {
+        e.preventDefault();
+
+        if (!statusSl) {
+            enqueueSnackbar("Solicitud Enviada", {
+                variant: "success",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            })
+
+            insertSolicitud({id_usuario: usuario?.id_usuario, id_grupo: grupo?.id_grupo})
+            // console.log(solicitud, "linea 45")
+        }
     }
+
 
     const items = {
         tabs: 3,
@@ -63,18 +107,22 @@ const ContainerScan = (props) => {
                     </div>
                     <div className="info">
                         <div className="etiq-cards">
-                            <div className="card">2023-04-11</div>
-                            <div className="card">Colombia</div>
+                            <h4>{grupo?.nombre}</h4>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div className="scan-content">
-                <TabsScan items={items} viewScan={viewScan} setViewScan={setViewScan}></TabsScan>
+                <TabsScan items={items}></TabsScan>
                 <div className="members">
                     <h2>Miembros</h2>
-                    <button className= "btn-scan">solicitar ingreso</button>
+                    { usuario?.id_usuario !== grupo?.id_usuario ?   
+                        statusSl ? <button className="btn-scan">Solicitud Realizada</button> 
+                                 : <button onClick={handleSolicitud} className="btn-scan">Solicitar ingreso</button> 
+                    : <button className="btn-scan">Gestionar</button>
+                    }
+                    
                     <div className="member-cards">
                         {members.map((member) => (<CardsScan key={member.id} member={member}/>))}
                     </div>

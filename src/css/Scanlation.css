@@ -70,6 +70,15 @@
     align-items: flex-start;
     padding: 5px 30px;
   }
+
+  .cont-portada .info h4{
+    font-size: 2rem;
+    margin-top: -16px;
+  }
+
+  .cont-scan .cont-portada .info{
+    padding-top: 0;
+  }
   
   .cont-portada .info .btn-scan{
     background-color: rgb(33, 129, 225);
@@ -258,6 +267,17 @@
     border-radius: 3px;
     border: 0;
     width: 100%;
+    cursor: pointer;
+    transition: .5s;
+  }
+
+  .scan-content .members .btn-scan:hover{
+    background-color: rgb(25, 102, 179);
+  }
+  
+
+  .scan-content .members .btn-scan a{
+    color: #ffffff;
   }
 
   .cont-scan .css-11yukd5-MuiTabs-indicator{

@@ -6,6 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useState } from 'react';
 
 
 function TabPanel(props) {
@@ -43,17 +44,13 @@ function a11yProps(index) {
 
 export default function TabsScan(props) {
 
-  const { items, viewScan, setViewScan } = props;
+  const { items } = props;
 
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleClick = () => {
-    setViewScan(false);
   };
 
   return (
@@ -61,7 +58,6 @@ export default function TabsScan(props) {
       <div className='cont-tabs'>
         <Tabs
           value={value}
-          onClick={handleClick}
           onChange={handleChange}
           indicatorColor="secondary"
           textColor="inherit"
@@ -77,53 +73,48 @@ export default function TabsScan(props) {
             }) : null
           }
 
-          {/* <Tab label="Mangas" {...a11yProps(0)} />
-          <Tab label="P.Manwas" {...a11yProps(1)} />
-          <Tab label="P.Manhuas" {...a11yProps(2)} /> */}
         </Tabs>
       </div>
       
-      { !viewScan ? 
-        <div style={{backgroundColor: '#e9eaed'}}>
-          <div className='cont-tabs'>
-          {
-            items ? 
-            items.cont.map((item, idx) => {
-              return(
-                
-                <TabPanel value={value} index={idx} dir={theme.direction}>
-                <h3 className='title'>Proyectos {item.tab}</h3>
-                <div className="sec-cards">
-                  {
-                    item.cards.length ?
-                    item.cards.map((card)=>{
-                      return (
-                        <div className="cont-card">
-                          <div className="card">
-                          <div>
-                            <p className="categoria">{card.categoria}</p>
-                            <p className="calificacion">{card.calif}</p>
-                          </div>
-                          <p className="nombre">{card.nombre}</p>
-                          </div>
-                        </div>
-                      )
-                    }) :
-                    <div>
-                      <h4 className='mensaje'>No hay mangas</h4>
-                    </div>
-                  }
-                </div>
-              </TabPanel>
+      <div style={{backgroundColor: '#e9eaed'}}>
+        <div className='cont-tabs'>
+        {
+          items ? 
+          items.cont.map((item, idx) => {
+            return(
               
-              )
-            }) : null
+              <TabPanel value={value} index={idx} dir={theme.direction}>
+              <h3 className='title'>Proyectos {item.tab}</h3>
+              <div className="sec-cards">
+                {
+                  item.cards.length ?
+                  item.cards.map((card)=>{
+                    return (
+                      <div className="cont-card">
+                        <div className="card">
+                        <div>
+                          <p className="categoria">{card.categoria}</p>
+                          <p className="calificacion">{card.calif}</p>
+                        </div>
+                        <p className="nombre">{card.nombre}</p>
+                        </div>
+                      </div>
+                    )
+                  }) :
+                  <div>
+                    <h4 className='mensaje'>No hay mangas</h4>
+                  </div>
+                }
+              </div>
+            </TabPanel>
             
-          }
-          </div>
+            )
+          }) : null
+          
+        }
         </div>
-        : null
-      }
+      </div>
+        
       
     </Box>
   );
