@@ -1,7 +1,7 @@
 import { useState } from "react"
 import React, { useRef } from 'react';
 
-import CardsGroups from "../cards/CardsGroups";
+import CardGroups from "../cards/CardGroups";
 
 const ContainerGroupScans = (props) => {
 
@@ -24,7 +24,7 @@ const ContainerGroupScans = (props) => {
             </div>
             <div className="groups-content">
                 <div className="groups">
-                    {scans.map((scan) => (<CardsGroups key={scan.id} scan={scan}/>))}
+                    {scans.map((scan) => (<CardGroups key={scan.id} scan={scan}/>))}
                 </div>
             </div>
         </div>

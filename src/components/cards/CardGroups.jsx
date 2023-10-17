@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default function CardsGroups(scan){
+export default function CardGroups(scan){
     return(
         <div className='card'>
             <div className='desc-card-scan'>
