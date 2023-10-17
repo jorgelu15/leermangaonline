@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 
 import FotoPerfil from "../../img/fotoperfil.jpg"
 import TabsCategory from "../Tabs/TabsCategory"
-import FormPerfil from "../Form/FormPerfil";
+import FormPerfil from "../Form/FormPerfil"
 
 const ContainerPerfil = (props) => {
 

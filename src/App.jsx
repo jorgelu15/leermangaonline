@@ -11,6 +11,8 @@ import Vermanga from './pages/Vermanga'
 import Perfil from './pages/Perfil'
 import Subirmanga from './pages/Subirmanga'
 import Terms from './pages/Terms'
+import Scanlation from './pages/Scanlation'
+import GroupScans from './pages/GroupScans'
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
           <Route path={routes.vermanga} element={<Vermanga />} />
           <Route path={routes.subirmanga} element={<Subirmanga />}/>
           <Route path={routes.terms} element={<Terms/>} />
+          <Route path={routes.scanlation} element={<Scanlation/>}></Route>
+          <Route path={routes.groups} element={<GroupScans/>}></Route>
           {/*<Route path={routes.forgotPassword+"/:token"} />
           <Route path={routes.confirmAccount} />
           <Route path={routes.newPassword} /> */}
