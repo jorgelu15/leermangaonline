@@ -2,8 +2,12 @@
 import { useContext, useState } from "react";
 import { useSnackbar } from "notistack";
 
+import gruposContext from "../../context/grupos/gruposContext";
+import routes from "../../helpers/routes";
+
 import group from "../../img/group.svg"
 import setting from "../../img/settings.png"
+import { useNavigate } from "react-router-dom";
 
 
 const CardScan = (props) => {
@@ -11,16 +15,22 @@ const CardScan = (props) => {
         grupo,
     } = props;
 
+    const { getGrupo } = useContext(gruposContext)
     const { enqueueSnackbar } = useSnackbar()
 
-    const handleClick = () => {
-        enqueueSnackbar("Gestion en curso", {
-            variant: "success",
+    let navigate = useNavigate();
+
+
+    const handleClick = async () => {
+        enqueueSnackbar("Bienvenido al Panel de administracion", {
+            variant: "default",
             anchorOrigin: {
                 vertical: "bottom",
                 horizontal: "right"
             }
         })
+        await getGrupo(grupo.id_grupo)
+        navigate(routes.panel)
     }
 
     return (

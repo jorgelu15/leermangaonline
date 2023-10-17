@@ -138,6 +138,10 @@
   height: 6px;
 }
 
+.css-11yukd5-MuiTabs-indicator{
+  background-color: #2795b0 !important;
+}
+
 .cont-perfil .hidden-indicator .css-11yukd5-MuiTabs-indicator{
   display: none !important;
 }

@@ -28,6 +28,10 @@
   margin-right: 6px;
 }
 
+.header-panel .nav-right p{
+  margin-left: 26px;
+}
+
 /* ----------------------------------------------------- */
 
 .panel{
@@ -62,6 +66,7 @@
 
 .panel .perfil-menu .nombre{
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 .panel .lista{

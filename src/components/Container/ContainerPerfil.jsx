@@ -69,7 +69,7 @@ const ContainerPerfil = (props) => {
 
                     <div className="info">
                         <p className="username">
-                            <span>{usuario.usuario}</span>
+                            <span>{usuario?.usuario}</span>
                             <a className={`${viewPerfil ? 'btn-pf-active' : null} btn-perfil`} onClick={()=>{changeViewPr()}}>Ver Perfil</a>
                         </p>
                         <div className="etiq-cards">

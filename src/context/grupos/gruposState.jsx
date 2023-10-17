@@ -7,6 +7,7 @@ import GruposReducer from './gruposReducer';
 import {
     INSERTAR_GRUPO_EXITOSO,
     REGISTRO_GRUPO_ERROR,
+    OBTENER_GRUPO,
     OBTENER_GRUPOS,
     OBTENER_GRUPOS_ERROR,
 } from '../../types';
@@ -38,6 +39,21 @@ const GruposState = props => {
         }
     }
 
+    const getGrupo = async (id_grupo) => {
+        try {
+            dispatch({
+                type: OBTENER_GRUPO,
+                payload: state.grupos.find((item) => item.id_grupo == id_grupo)
+            })
+        } catch (error) {
+  
+            dispatch({
+                type: OBTENER_GRUPOS_ERROR,
+                payload: error.response.data.msg
+            })
+        }
+    }
+
     const getGrupos = async (id_usuario) => {
         try {
             const respuesta = await clienteAxios.get(`/grupo/${id_usuario}/`);
@@ -62,6 +78,7 @@ const GruposState = props => {
                 msg: state.msg,
                 insertGrupo,
                 getGrupos,
+                getGrupo,
             }}
         >
             {props.children}

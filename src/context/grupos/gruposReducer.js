@@ -1,6 +1,7 @@
 import {
     INSERTAR_GRUPO_EXITOSO,
     REGISTRO_GRUPO_ERROR,
+    OBTENER_GRUPO,
     OBTENER_GRUPOS,
     OBTENER_GRUPOS_ERROR,
 } from '../../types';
@@ -18,6 +19,11 @@ export default (state, action) => {
             return {
                 ...state,
                 msg: action.payload
+            }
+        case OBTENER_GRUPO:
+            return {
+                ...state,
+                grupo: action.payload
             }
         case OBTENER_GRUPOS:
             return {
