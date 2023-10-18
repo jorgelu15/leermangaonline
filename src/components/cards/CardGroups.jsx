@@ -1,11 +1,35 @@
 import * as React from 'react';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
 
-export default function CardGroups(scan){
+import routes from "../../helpers/routes";
+import gruposContext from '../../context/grupos/gruposContext';
+
+
+export default function CardGroups(props){
+
+    const {
+        scan
+    } = props;
+
+    const { getGrupo } = useContext(gruposContext)
+    const { enqueueSnackbar } = useSnackbar()
+
+    let navigate = useNavigate();
+
+
+    const handleClick = async () => {
+
+        await getGrupo(scan.id_grupo)
+        navigate(routes.scanlation)
+    }
+
     return(
-        <div className='card'>
+        <div onClick={handleClick} className='card'>
             <div className='desc-card-scan'>
-                <p>{scan.scan.nombre}</p>
-                <p>{scan.scan.nmembers}</p>
+                <p>{scan.nombre}</p>
+                <p>{scan.estado}</p>
             </div>
         </div>
     );

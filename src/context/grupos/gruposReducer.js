@@ -4,6 +4,8 @@ import {
     OBTENER_GRUPO,
     OBTENER_GRUPOS,
     OBTENER_GRUPOS_ERROR,
+    INSERTAR_SOLICITUD,
+    INSERTAR_SOLICITUD_ERROR
 } from '../../types';
 
 export default (state, action) => {
@@ -31,6 +33,16 @@ export default (state, action) => {
                 grupos: action.payload
             }
         case OBTENER_GRUPOS_ERROR:
+            return {
+                ...state,
+                msg: action.payload
+            }
+        case INSERTAR_SOLICITUD:
+            return {
+                ...state,
+                solicitud: action.payload
+            }
+        case INSERTAR_SOLICITUD_ERROR:
             return {
                 ...state,
                 msg: action.payload

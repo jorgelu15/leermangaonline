@@ -10,6 +10,8 @@ import {
     OBTENER_GRUPO,
     OBTENER_GRUPOS,
     OBTENER_GRUPOS_ERROR,
+    INSERTAR_SOLICITUD,
+    INSERTAR_SOLICITUD_ERROR
 } from '../../types';
 
 const GruposState = props => {
@@ -17,6 +19,7 @@ const GruposState = props => {
     const initialState = {
         grupo: null,
         grupos: null,
+        solicitud: null,
         msg: null
     }
 
@@ -70,15 +73,52 @@ const GruposState = props => {
         }
     }
 
+    const getAllGrupos = async (id_usuario) => {
+        try {
+            const respuesta = await clienteAxios.get(`/grupo/all/`);
+            dispatch({
+                type: OBTENER_GRUPOS,
+                payload: respuesta.data.grupos
+            })
+        } catch (error) {
+  
+            dispatch({
+                type: OBTENER_GRUPOS_ERROR,
+                payload: error.response.data.msg
+            })
+        }
+    }
+
+    const insertSolicitud = async (datos) => {
+        
+        try {
+            const respuesta = await clienteAxios.post('/usuariogrupo/', datos);
+            
+            dispatch({
+                type: INSERTAR_SOLICITUD,
+                payload: respuesta.data.usuariogrupo
+            })
+
+        } catch (error) {
+            dispatch({
+                type: INSERTAR_SOLICITUD_ERROR,
+                payload: error.response.data.msg
+            })
+        }
+    }
+
     return (
         <GruposContext.Provider
             value={{
                 grupo: state.grupo,
                 grupos: state.grupos,
+                solicitud: state.solicitud,
                 msg: state.msg,
                 insertGrupo,
+                insertSolicitud,
                 getGrupos,
                 getGrupo,
+                getAllGrupos,
             }}
         >
             {props.children}

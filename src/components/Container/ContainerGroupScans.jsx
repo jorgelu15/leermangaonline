@@ -1,9 +1,19 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import React, { useRef } from 'react';
+
+import useAuth from "../../hooks/useAuth";
+import gruposContext from "../../context/grupos/gruposContext";
 
 import CardGroups from "../cards/CardGroups";
 
 const ContainerGroupScans = (props) => {
+
+    const { usuario } = useAuth();
+    const { grupos, getAllGrupos } = useContext(gruposContext)
+
+    useEffect(() => {
+        getAllGrupos()
+    }, [])
 
     const scans = [
         {nombre:'KigdomScan',nmembers:20, id:0},
@@ -24,7 +34,7 @@ const ContainerGroupScans = (props) => {
             </div>
             <div className="groups-content">
                 <div className="groups">
-                    {scans.map((scan) => (<CardGroups key={scan.id} scan={scan}/>))}
+                    {grupos?.map((scan) => (<CardGroups key={scan.id_grupo} scan={scan}/>))}
                 </div>
             </div>
         </div>
