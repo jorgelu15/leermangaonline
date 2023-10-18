@@ -55,6 +55,7 @@ const ContainerScan = (props) => {
                     {nombre: "jujutsu", categoria: "manga", calif: "8.0", url: "img"},
                     {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"},
                     {nombre: "jujutsu", categoria: "manga", calif: "8.0", url: "img"},
+                    {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"},
                     {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"}
                     
                 ]
