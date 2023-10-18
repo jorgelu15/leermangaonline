@@ -301,12 +301,11 @@
     padding: 5px 12px;
     border-radius: 3px;
     border: 0;
-    width: 100%;
     cursor: pointer;
     transition: .5s;
   }
 
-  .scan-content .members .btn-scan:hover{
+  .scan-content .members .btn-req-member:hover{
     background-color: rgb(25, 102, 179);
   }
   
@@ -383,6 +382,10 @@
     .cont-scan .scan-content{
       display: flex;
       flex-direction: column;
+    }
+
+    .members .member-titles{
+      justify-content: space-between;
     }
 
     .members .member-cards{

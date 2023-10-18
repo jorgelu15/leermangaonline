@@ -57,6 +57,7 @@ const ContainerScan = (props) => {
                     {nombre: "jujutsu", categoria: "manga", calif: "8.0", url: "img"},
                     {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"},
                     {nombre: "jujutsu", categoria: "manga", calif: "8.0", url: "img"},
+                    {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"},
                     {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"}
                     
                 ]
@@ -102,7 +103,7 @@ const ContainerScan = (props) => {
             <div className="scan-content">
                 <TabsScan items={items}></TabsScan>
                 <div className="members">
-                    
+                    <div className="member-titles">
                     <h2>Miembros</h2>
                     {/* { console.log(statusSl, "linea 117")} */}
                     { 
