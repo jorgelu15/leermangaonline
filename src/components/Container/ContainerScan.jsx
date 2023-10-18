@@ -51,7 +51,12 @@ const ContainerScan = (props) => {
                 tab: "Populares",
                 cards: [
                     {nombre: "jujutsu", categoria: "manga", calif: "8.0", url: "img"},
+                    {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"},
+                    {nombre: "jujutsu", categoria: "manga", calif: "8.0", url: "img"},
+                    {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"},
+                    {nombre: "jujutsu", categoria: "manga", calif: "8.0", url: "img"},
                     {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"}
+                    
                 ]
             },
             {
@@ -96,21 +101,24 @@ const ContainerScan = (props) => {
                         <div className="etiq-cards">
                             <h4>{grupo?.nombre}</h4>
                         </div>
+                        <div className="desc-scan">
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div className="scan-content">
                 <TabsScan items={items}></TabsScan>
+                <TabsScan items={items}></TabsScan>
                 <div className="members">
+                    
                     <h2>Miembros</h2>
                     { usuario?.id !== grupo?.usuarioId ?   
                         statusSl.length !== 0 
-                        ? <button className="btn-scan">Solicitud Realizada</button> 
-                        : <button onClick={handleSolicitud} className="btn-scan">Solicitar ingreso</button> 
-                    : <button className="btn-scan">Gestionar</button>
+                        ? <button className="btn-req-member">Solicitud Realizada</button> 
+                        : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
+                    : <button className="btn-req-member">Gestionar</button>
                     }
-                    
                     <div className="member-cards">
                         {members.map((member) => (<CardsScan key={member.id} member={member}/>))}
                     </div>
