@@ -2,35 +2,35 @@ import { useEffect, useState } from "react"
 import React, { useRef } from 'react';
 import { useContext } from "react";
 
-import TableMiembros from "../../Mui/Tables/TableMiembros";
+import TableSolicitudes from "../../Mui/Tables/TableSolicitudes";
 
 import gruposContext from "../../../context/grupos/gruposContext";
 
 
-const PanelMiembros = (props) => {
+const PanelSolicitudes = (props) => {
 
     const { solicitudes } = useContext(gruposContext)
     const [ filterSolic, setFilterSolic ] = useState([])
 
     useEffect(() => {
-        setFilterSolic(solicitudes?.filter((item) => item.estado === 1))
+        setFilterSolic(solicitudes?.filter((item) => item.estado === 0))
     }, [solicitudes])
 
     useEffect(() => {
     }, [filterSolic])
+
 
     return (
         <div className="panel-miembros">
 
             <div className="cont-miembros">
                 <div className="titulo">
-                    <h2>Miembros</h2>
-                    <p>Miembros totales: {filterSolic ? filterSolic.length : 0}</p>
+                    <h2>Solicitudes</h2>
+                    <p>Solicitudes pendientes: {filterSolic ? filterSolic.length : 0}</p>
                 </div>
                 <div className="c-table">
-                    
-                    {filterSolic.length !== 0 ? <TableMiembros solicitudesV={filterSolic}></TableMiembros>
-                    : <p className="mensaje">No hay miembros.</p>}
+                    {filterSolic.length !== 0 ? <TableSolicitudes solicitudesV={filterSolic}></TableSolicitudes> 
+                    : <p className="mensaje">No hay solicitudes pendientes.</p>}
                 </div>
             </div>
     
@@ -38,4 +38,4 @@ const PanelMiembros = (props) => {
     )
 }
 
-export default PanelMiembros;
+export default PanelSolicitudes;

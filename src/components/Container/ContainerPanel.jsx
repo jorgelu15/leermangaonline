@@ -2,9 +2,9 @@
 import { useContext, useState } from "react"
 import React, { useRef } from 'react';
 
-import TableMiembros from "../Mui/Tables/TableMiembros"
 
 import scan from "../../img/gruposcan.png"
+import PanelSolicitudes from "./Panel/PanelSolicitudes";
 import PanelMiembros from "./Panel/PanelMiembros";
 
 import panelC from "../../img/tachometer-alt-solid.svg"
@@ -22,7 +22,16 @@ import gruposContext from "../../context/grupos/gruposContext";
 const ContainerPanel = (props) => {
 
     const { usuario } = useAuth();
-    const { grupo } = useContext(gruposContext)
+    const { grupo, solicitudes } = useContext(gruposContext)
+
+    const { autenticado, usuarioAutenticado } = useAuth();
+
+    const [ panel, setPanel ] = useState(4)
+
+
+    const handleChangePl = (pag) => {
+        setPanel(pag)
+    }
 
     return (
         <div className="content-panel">
@@ -34,12 +43,24 @@ const ContainerPanel = (props) => {
                 <div className="lista">
                     <p>MENU</p>
                     <ul>
-                        <li><img src={panelC} /><a href="#">Panel de control</a></li>
-                        <li><img src={libroP} /><a href="#">Proyectos</a></li>
-                        <li><img src={miembros}/><a href="#">Miembros</a></li>
-                        <li><img src={personas} /><a href="#">Joints</a></li>
-                        <li><img src={registro} /><a href="#">Registro</a></li>
-                        <li><img src={config} /><a href="#">Informacion</a></li>
+                        <li className={panel == 1 ? 'active' : ''} onClick={() => handleChangePl(1)}>
+                            <img src={panelC}/><a>Panel de control</a>
+                        </li>
+                        <li className={panel == 2 ? 'active' : ''} onClick={() => handleChangePl(2)}>
+                            <img src={libroP} /><a>Proyectos</a>
+                        </li>
+                        <li className={panel == 3 ? 'active' : ''} onClick={() => handleChangePl(3)}>
+                            <img src={miembros}/><a>Miembros</a>
+                        </li>
+                        <li className={panel == 4 ? 'active' : ''} onClick={() => handleChangePl(4)}>
+                            <img src={personas} /><a>Solicitudes</a>
+                        </li>
+                        <li className={panel == 5 ? 'active' : ''} onClick={() => handleChangePl(5)}>
+                            <img src={registro} /><a>Registro</a>
+                        </li>
+                        <li className={panel == 6 ? 'active' : ''} onClick={() => handleChangePl(6)}>
+                            <img src={config} /><a>Informacion</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -66,7 +87,8 @@ const ContainerPanel = (props) => {
                         </div>
                     </div>
 
-                    <PanelMiembros/>
+                    { panel == 3 ?<PanelMiembros/> : null }
+                    { panel == 4 ?<PanelSolicitudes/> : null }
 
                 </div>
             </main>

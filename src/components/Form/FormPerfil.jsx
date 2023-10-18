@@ -5,9 +5,6 @@ import gruposContext from "../../context/grupos/gruposContext";
 
 import CardScanPl from "../Card/CardScanPl";
 
-import group from "../../img/group.svg"
-import setting from "../../img/settings.png"
-import background from "../../img/background.jpg"
 
 const FormPerfil = () => {
 
@@ -19,7 +16,7 @@ const FormPerfil = () => {
     
 
     useEffect(() => {
-        getGrupos(usuario?.id_usuario)
+        getGrupos(usuario?.id)
     }, [grupo])
 
     return (
@@ -109,14 +106,12 @@ const FormPerfil = () => {
 
                 <button onClick={() => setOpenMG(true)} className={'btn-crear-grupo'}>Crear grupo</button>
 
-                {/* { grupo != null ? <p>{grupo.correo}</p> : null} */}
-
                 <div className="cards-scan">
 
                 {
                     grupos ?
                         grupos.length !== 0 ? grupos.map((item) => item.estado ? (
-                            <CardScanPl key={item.id_grupo} grupo={item}></CardScanPl>
+                            <CardScanPl key={item.id} grupo={item}></CardScanPl>
                         ) : null) :
                         <div>
                             <p className="">No hay grupos</p>
