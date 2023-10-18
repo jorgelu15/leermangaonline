@@ -16,14 +16,14 @@ const ContainerGroupScans = (props) => {
     }, [])
 
     const scans = [
-        {nombre:'KigdomScan',nmembers:20, id:0},
-        {nombre:'Spain Traductions',nmembers:17,id:1},
-        {nombre:'ComeScan',nmembers:10,id:2},
-        {nombre:'NoxionScanner',nmembers:5, id:3},
-        {nombre:'Letan Traductions',nmembers:35,id:4},
-        {nombre:'BluePhoenix Translations',nmembers:31,id:5},
-        {nombre:'RxNonstop Translations',nmembers:27,id:6},
-        {nombre:'Darkskin Scanner',nmembers:16,id:7}
+        {nombre: 'KigdomScan', nmembers: 20, id: 0},
+        {nombre: 'Spain Traductions', nmembers: 17, id: 1},
+        {nombre: 'ComeScan', nmembers: 10, id: 2},
+        {nombre: 'NoxionScanner', nmembers: 5, id: 3},
+        {nombre: 'Letan Traductions', nmembers: 35, id: 4},
+        {nombre: 'BluePhoenix Translations',nmembers: 31, id: 5},
+        {nombre: 'RxNonstop Translations',nmembers: 27, id: 6},
+        {nombre: 'Darkskin Scanner', nmembers: 16, id: 7}
     ]
 
     return (
@@ -34,7 +34,7 @@ const ContainerGroupScans = (props) => {
             </div>
             <div className="groups-content">
                 <div className="groups">
-                    {grupos?.map((scan) => (<CardGroups key={scan.id_grupo} scan={scan}/>))}
+                    {grupos?.map((scan) => (<CardGroups key={scan.id} scan={scan}/>))}
                 </div>
             </div>
         </div>

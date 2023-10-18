@@ -21,7 +21,7 @@ export default function CardGroups(props){
 
     const handleClick = async () => {
 
-        await getGrupo(scan.id_grupo)
+        await getGrupo(scan)
         navigate(routes.scanlation)
     }
 

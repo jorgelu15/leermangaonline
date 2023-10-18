@@ -1,11 +1,11 @@
 import {
     INSERTAR_GRUPO_EXITOSO,
-    REGISTRO_GRUPO_ERROR,
     OBTENER_GRUPO,
     OBTENER_GRUPOS,
-    OBTENER_GRUPOS_ERROR,
     INSERTAR_SOLICITUD,
-    INSERTAR_SOLICITUD_ERROR
+    OBTENER_SOLICITUDES,
+    ACTUALIZAR_SOLICITUD,
+    MENSAJE_ERROR
 } from '../../types';
 
 export default (state, action) => {
@@ -17,11 +17,6 @@ export default (state, action) => {
                 grupo: action.payload.grupo,
                 grupos: [...state.grupos, action.payload.grupo]
             }
-        case REGISTRO_GRUPO_ERROR:
-            return {
-                ...state,
-                msg: action.payload
-            }
         case OBTENER_GRUPO:
             return {
                 ...state,
@@ -32,17 +27,23 @@ export default (state, action) => {
                 ...state,
                 grupos: action.payload
             }
-        case OBTENER_GRUPOS_ERROR:
-            return {
-                ...state,
-                msg: action.payload
-            }
         case INSERTAR_SOLICITUD:
             return {
                 ...state,
-                solicitud: action.payload
+                solicitud: action.payload,
+                solicitudes: [...state.solicitudes, action.payload]
             }
-        case INSERTAR_SOLICITUD_ERROR:
+        case OBTENER_SOLICITUDES:
+            return {
+                ...state,
+                solicitudes: action.payload
+            }
+        case ACTUALIZAR_SOLICITUD:
+            return {
+                ...state,
+                solicitudes: state.solicitudes.map((item) => item.id === action.payload.id ? action.payload : item)
+            }
+        case MENSAJE_ERROR:
             return {
                 ...state,
                 msg: action.payload

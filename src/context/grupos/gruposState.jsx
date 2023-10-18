@@ -6,12 +6,12 @@ import GruposReducer from './gruposReducer';
 
 import {
     INSERTAR_GRUPO_EXITOSO,
-    REGISTRO_GRUPO_ERROR,
     OBTENER_GRUPO,
     OBTENER_GRUPOS,
-    OBTENER_GRUPOS_ERROR,
     INSERTAR_SOLICITUD,
-    INSERTAR_SOLICITUD_ERROR
+    OBTENER_SOLICITUDES,
+    ACTUALIZAR_SOLICITUD,
+    MENSAJE_ERROR
 } from '../../types';
 
 const GruposState = props => {
@@ -20,6 +20,7 @@ const GruposState = props => {
         grupo: null,
         grupos: null,
         solicitud: null,
+        solicitudes: null,
         msg: null
     }
 
@@ -36,30 +37,30 @@ const GruposState = props => {
         } catch (error) {
   
             dispatch({
-                type: REGISTRO_GRUPO_ERROR,
+                type: MENSAJE_ERROR,
                 payload: error.response.data.msg
             })
         }
     }
 
-    const getGrupo = async (id_grupo) => {
+    const getGrupo = async (grupo) => {
         try {
             dispatch({
                 type: OBTENER_GRUPO,
-                payload: state.grupos.find((item) => item.id_grupo == id_grupo)
+                payload: grupo
             })
         } catch (error) {
   
             dispatch({
-                type: OBTENER_GRUPOS_ERROR,
+                type: MENSAJE_ERROR,
                 payload: error.response.data.msg
             })
         }
     }
 
-    const getGrupos = async (id_usuario) => {
+    const getGrupos = async (usuarioId) => {
         try {
-            const respuesta = await clienteAxios.get(`/grupo/${id_usuario}/`);
+            const respuesta = await clienteAxios.get(`/grupo/${usuarioId}/`);
             dispatch({
                 type: OBTENER_GRUPOS,
                 payload: respuesta.data.grupos
@@ -67,13 +68,13 @@ const GruposState = props => {
         } catch (error) {
   
             dispatch({
-                type: OBTENER_GRUPOS_ERROR,
+                type: MENSAJE_ERROR,
                 payload: error.response.data.msg
             })
         }
     }
 
-    const getAllGrupos = async (id_usuario) => {
+    const getAllGrupos = async () => {
         try {
             const respuesta = await clienteAxios.get(`/grupo/all/`);
             dispatch({
@@ -83,7 +84,7 @@ const GruposState = props => {
         } catch (error) {
   
             dispatch({
-                type: OBTENER_GRUPOS_ERROR,
+                type: MENSAJE_ERROR,
                 payload: error.response.data.msg
             })
         }
@@ -93,7 +94,7 @@ const GruposState = props => {
         
         try {
             const respuesta = await clienteAxios.post('/usuariogrupo/', datos);
-            
+            console.log(respuesta.data, "linea 97")
             dispatch({
                 type: INSERTAR_SOLICITUD,
                 payload: respuesta.data.usuariogrupo
@@ -101,7 +102,43 @@ const GruposState = props => {
 
         } catch (error) {
             dispatch({
-                type: INSERTAR_SOLICITUD_ERROR,
+                type: MENSAJE_ERROR,
+                payload: error.response.data.msg
+            })
+        }
+    }
+
+    const getSolicitudes = async (grupoId) => {
+        // console.log("llega aca: ", grupoId)
+        try {
+            const respuesta = await clienteAxios.get(`/usuariogrupo/${grupoId}/`);
+            console.log(respuesta.data.usuariogrupo)
+            dispatch({
+                type: OBTENER_SOLICITUDES,
+                payload: respuesta.data.usuariogrupo
+            })
+        } catch (error) {
+  
+            dispatch({
+                type: MENSAJE_ERROR,
+                payload: error.response.data.msg
+            })
+        }
+    }
+
+    const updateSolicitud = async (datos) => {
+        try {
+            const respuesta = await clienteAxios.put('/usuariogrupo/', datos);
+
+            console.log(respuesta.data.usuarioGrupo, "linea 132")
+            dispatch({
+                type: ACTUALIZAR_SOLICITUD,
+                payload: respuesta.data.usuariogrupo
+            })
+        } catch (error) {
+  
+            dispatch({
+                type: MENSAJE_ERROR,
                 payload: error.response.data.msg
             })
         }
@@ -113,12 +150,15 @@ const GruposState = props => {
                 grupo: state.grupo,
                 grupos: state.grupos,
                 solicitud: state.solicitud,
+                solicitudes: state.solicitudes,
                 msg: state.msg,
                 insertGrupo,
                 insertSolicitud,
                 getGrupos,
                 getGrupo,
                 getAllGrupos,
+                getSolicitudes,
+                updateSolicitud,
             }}
         >
             {props.children}

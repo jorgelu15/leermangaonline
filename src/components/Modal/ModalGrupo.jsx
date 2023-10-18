@@ -25,7 +25,7 @@ const ModalGrupo = (props) => {
           return;
         }
 
-        insertGrupo({id_usuario: "1", nombre, correo})
+        insertGrupo({usuarioId: "1", nombre, correo})
 
         enqueueSnackbar("Grupo creado", {
             variant: "success",

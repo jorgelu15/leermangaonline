@@ -1,7 +1,6 @@
-import { useState, useContext, useEffect } from "react"
 import React, { useRef } from 'react';
+import { useState, useContext, useEffect } from "react"
 
-import FotoPerfil from "../../img/fotoperfil.jpg";
 import routes from "../../helpers/routes";
 import { Link } from "react-router-dom";
 import { useSnackbar } from "notistack";
@@ -11,38 +10,28 @@ import gruposContext from "../../context/grupos/gruposContext";
 
 import TabsScan from "../Mui/Tabs/TabsScan";
 import CardsScan from "../cards/CardsScan";
+import FotoPerfil from "../../img/fotoperfil.jpg";
 
 
 const ContainerScan = (props) => {
 
-    
     const { usuario } = useAuth();
-    const { grupo, solicitud, insertSolicitud } = useContext(gruposContext)
+    const { grupo, solicitudes, insertSolicitud } = useContext(gruposContext)
     const { enqueueSnackbar } = useSnackbar()
 
-    const [ statusSl, setStatusSl ] = useState(false);
+    const [ statusSl, setStatusSl ] = useState([]);
 
     useEffect(() => {
+        console.log(solicitudes, "linea 25", solicitudes?.find((item) => (item.grupoId === grupo.id && item.usuarioId === usuario.id)))
+        let stat = solicitudes?.find((item) => (item.grupoId === grupo.id && item.usuarioId === usuario.id));
+        setStatusSl(stat ? stat : [])
+    }, [solicitudes])
 
-        // console.log(solicitud?.id_grupo, grupo?.id_grupo, "linea 27")
-        // console.log(solicitud?.id_usuario, usuario?.id_usuario, "linea 28")
-        
-        if(solicitud != null){
-            setStatusSl((solicitud?.id_grupo === grupo?.id_grupo &&
-                solicitud?.id_usuario === usuario?.id_usuario))
-        }
-
-        // console.log((solicitud?.id_grupo !== grupo?.id_grupo &&
-        //     solicitud?.id_usuario !== usuario?.id_usuario), "linea 32")
-    }, [solicitud])
-
-    useEffect(() => {
-    }, [statusSl])
 
     const handleSolicitud = (e) => {
         e.preventDefault();
 
-        if (!statusSl) {
+        if (statusSl.length === 0) {
             enqueueSnackbar("Solicitud Enviada", {
                 variant: "success",
                 anchorOrigin: {
@@ -51,12 +40,9 @@ const ContainerScan = (props) => {
                 }
             })
 
-            insertSolicitud({id_usuario: usuario?.id_usuario, id_grupo: grupo?.id_grupo})
-            // console.log(solicitud, "linea 45")
+            insertSolicitud({usuarioId: usuario?.id, grupoId: grupo?.id})
         }
     }
-    
-
 
     const items = {
         tabs: 3,
@@ -118,9 +104,10 @@ const ContainerScan = (props) => {
                 <TabsScan items={items}></TabsScan>
                 <div className="members">
                     <h2>Miembros</h2>
-                    { usuario?.id_usuario !== grupo?.id_usuario ?   
-                        statusSl ? <button className="btn-scan">Solicitud Realizada</button> 
-                                 : <button onClick={handleSolicitud} className="btn-scan">Solicitar ingreso</button> 
+                    { usuario?.id !== grupo?.usuarioId ?   
+                        statusSl.length !== 0 
+                        ? <button className="btn-scan">Solicitud Realizada</button> 
+                        : <button onClick={handleSolicitud} className="btn-scan">Solicitar ingreso</button> 
                     : <button className="btn-scan">Gestionar</button>
                     }
                     

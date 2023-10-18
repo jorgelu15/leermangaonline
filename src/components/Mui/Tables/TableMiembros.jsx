@@ -17,6 +17,11 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { TableHead } from '@mui/material';
 
+import { useSnackbar } from 'notistack';
+import { useContext } from 'react';
+import gruposContext from '../../../context/grupos/gruposContext';
+import useAuth from '../../../hooks/useAuth';
+
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -78,20 +83,30 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(usuario, correo, fecha) {
-  return { usuario, correo, fecha };
-}
+// function createData(usuario, correo, fecha) {
+//   return { usuario, correo, fecha };
+// }
 
-const rows = [
-  createData('Douglas guerrero', 'dguerrero921@gmail.com', '16/10/2023'),
-  createData('Sergio leon', 'sluisleon@gmail.com', '17/10/2023'),
-  createData('Jorge guardo', 'jguardor@gmail.com', '20/9/2023'),
-  createData('Jhony de oro', 'ionimau99@gmail.com', '11/10/2023'),
-  createData('Luis espitaleta', 'lumiesal@gmail.com', '15/10/2023'),
-]
+// const rows = [
+//   createData('Douglas guerrero', 'dguerrero921@gmail.com', '16/10/2023'),
+//   createData('Sergio leon', 'sluisleon@gmail.com', '17/10/2023'),
+//   createData('Jorge guardo', 'jguardor@gmail.com', '20/9/2023'),
+//   createData('Jhony de oro', 'ionimau99@gmail.com', '11/10/2023'),
+//   createData('Luis espitaleta', 'lumiesal@gmail.com', '15/10/2023'),
+// ]
 // .sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
-export default function TableMiembros() {
+export default function TableMiembros(props) {
+
+  const {
+    solicitudesV
+  } = props;
+
+  // console.log(solicitudesV, "linea 106")
+
+  const { enqueueSnackbar } = useSnackbar()
+
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -108,6 +123,22 @@ export default function TableMiembros() {
     setPage(0);
   };
 
+  const { updateSolicitud } = useContext(gruposContext)
+  
+
+  const handleExpulsar = (solic) => {
+
+    enqueueSnackbar("Miembro expulsado", {
+      variant: "success",
+      anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "right"
+      }
+    })
+    updateSolicitud({usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 3})
+    
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -120,24 +151,24 @@ export default function TableMiembros() {
           </TableRow>
         </TableHead>
         <TableBody>
+          {/* {console.log(solicitudesV, "linea 128")} */}
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <TableRow key={row.usuario}>
+            ? solicitudesV?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : solicitudesV ? solicitudesV : []
+          ).map((solicitud) => (
+            <TableRow key={solicitud.usuario}>
               <TableCell component="th" scope="row">
-                {row.usuario}
+                {solicitud.Usuario?.usuario}
               </TableCell>
               <TableCell component="th" align="center">
-                {row.correo}
+                {solicitud.Usuario?.correo}
               </TableCell>
               <TableCell component="th" align="center">
-                {row.fecha}
+                {solicitud.createdAt}
               </TableCell>
               <TableCell component="th" align="center">
                 <div className='table-btn-cont'>
-                  {/* <button className='table-btn-ac'>Aceptar</button> */}
-                  <button className='table-btn-re'>Expulsar</button>
+                  <button onClick={() => {handleExpulsar(solicitud)}}  className='table-btn-re'>Expulsar</button>
                 </div>
               </TableCell>
             </TableRow>
@@ -153,7 +184,7 @@ export default function TableMiembros() {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
-              count={rows.length}
+              count={solicitudesV.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{

@@ -29,7 +29,7 @@ const CardScanPl = (props) => {
                 horizontal: "right"
             }
         })
-        await getGrupo(grupo.id_grupo)
+        await getGrupo(grupo)
         navigate(routes.panel)
     }
 
@@ -41,7 +41,7 @@ const CardScanPl = (props) => {
                 </div>
                 <div className="cont">
                     <div className="etiq">UPLOADER</div>
-                    <div className="count"><img src={group} />{grupo?.id_grupo}</div>
+                    <div className="count"><img src={group} />{grupo?.id}</div>
                 </div>
             </div>
             <div onClick={handleClick} className="conf">

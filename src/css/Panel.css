@@ -84,11 +84,16 @@
   align-items: center;
   padding: 10px;
   border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .panel .lista ul li:hover{
   background-color: #ffffff2d;
-  cursor: pointer;
+}
+
+.panel .lista ul .active{
+  background-color: #ffffff2d;
 }
 
 .panel .lista img{
@@ -186,6 +191,12 @@
 
 .panel-miembros .cont-miembros .c-table{
   padding: 20px;
+  min-height: 200px;
+}
+
+.panel-miembros .c-table .mensaje{
+  margin-left: 4px;
+  margin: 10px 4px;
 }
 
 .panel-miembros .cont-miembros .titulo{
