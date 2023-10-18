@@ -1,27 +1,19 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
 
-import FotoMember from "../../img/member.png"
+import PhotoMember from "../../img/member.jpg"
 
 export default function CardsScan(member) {
   return (
-    <Card sx={{ maxWidth: 345, margin: 1}}>
-      <CardMedia
-        sx={{ height: 100}}
-        image={FotoMember}
-        title="Miembro"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="p" component="div">
-            <strong>{member.member.nombre}</strong>
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-            <strong>{member.member.rol}</strong>
-        </Typography>
-      </CardContent>
-    </Card>
+  <div className="member-card">
+    <div className="card-border-top">
+    </div>
+    <div className='info-member'>
+      <span><strong>{member.member.nombre}</strong></span>
+      <p className="rol">{member.member.rol}</p>
+    </div>
+    <div className="img">
+      <img src={PhotoMember} alt="" />
+    </div>
+  </div>
   );
 }

@@ -7,13 +7,6 @@ import CardsScan from "../cards/CardsScan";
 
 const ContainerScan = (props) => {
 
-    const [ viewScan, setViewScan ] = useState(false)
-
-    const changeViewPr = () => {
-        setViewScan(!viewScan)
-    }
-    
-
     const items = {
         tabs: 3,
         cont: [
@@ -21,7 +14,12 @@ const ContainerScan = (props) => {
                 tab: "Populares",
                 cards: [
                     {nombre: "jujutsu", categoria: "manga", calif: "8.0", url: "img"},
+                    {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"},
+                    {nombre: "jujutsu", categoria: "manga", calif: "8.0", url: "img"},
+                    {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"},
+                    {nombre: "jujutsu", categoria: "manga", calif: "8.0", url: "img"},
                     {nombre: "oshi no ko", categoria: "manga", calif: "8.0", url: "img"}
+                    
                 ]
             },
             {
@@ -67,15 +65,19 @@ const ContainerScan = (props) => {
                             <div className="card">2023-04-11</div>
                             <div className="card">Colombia</div>
                         </div>
+                        <div className="desc-scan">
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div className="scan-content">
-                <TabsScan items={items} viewScan={viewScan} setViewScan={setViewScan}></TabsScan>
+                <TabsScan items={items}></TabsScan>
                 <div className="members">
-                    <h2>Miembros</h2>
-                    <button className= "btn-scan">solicitar ingreso</button>
+                    <div className="member-titles">
+                        <h2>Miembros</h2>
+                        <button className= "btn-req-member">solicitar ingreso</button>
+                    </div>
                     <div className="member-cards">
                         {members.map((member) => (<CardsScan key={member.id} member={member}/>))}
                     </div>

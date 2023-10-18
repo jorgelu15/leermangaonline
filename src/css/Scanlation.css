@@ -222,7 +222,7 @@
 
   .cont-scan .scan-content{
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 75% 25%;
   }
 
   .cont-scan .css-1ujnqem-MuiTabs-root{
@@ -236,7 +236,9 @@
 
   .scan-content .members{
     margin-left: 10px;
-    margin-top: 40px;
+    margin-top: 10px;
+    background-color: rgb(233, 234, 237);
+    color: #2f89f0;
   }
 
   .scan-content .members h2{
@@ -250,14 +252,46 @@
     margin-bottom: 10px;
   }
 
-  .scan-content .members .btn-scan{
+  .member-card {
+    width: 95%;
+    height: 200px;
+    border: none;
+    margin: 5px;
+    color: #ffffff;
+  }
+  
+  .card span {
+    font-weight: 600;
+    text-align: center;
+    display: block;
+    font-size: 1.3em;
+  }
+  
+  .card .rol {
+    font-weight: 400;
+    display: block;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 1em;
+  }
+
+  .member-card .info-member{
+    background-color: #252525;
+  }
+  
+  .member-card img{
+    width: 100%;
+    background: #e8e8e8;
+    margin: auto;
+  }
+
+  .scan-content .members .btn-req-member{
     background-color: rgb(33, 129, 225);
     color: #ffffff;
     font-size: 1.2rem;
     padding: 5px 12px;
     border-radius: 3px;
     border: 0;
-    width: 100%;
   }
 
   .cont-scan .css-11yukd5-MuiTabs-indicator{
@@ -267,6 +301,22 @@
   
   .cont-scan .hidden-indicator .css-11yukd5-MuiTabs-indicator{
     display: none !important;
+  }
+
+  .scan-content .sec-cards{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+  }
+
+  .scan-content .sec-cards .cont-card{
+    width: 95%;
+  }
+
+
+  .members .member-titles{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
   
   
@@ -308,14 +358,26 @@
 
     .members .member-cards{
       display: grid;
-      width: 100%;
       grid-template-columns: repeat(5, 1fr);
-      margin-bottom: 10px;
+    }
+
+    .members .member-cards .member-card{
+      height: auto;
     }
 
     .scan-content .members{
       margin-left: 5px;
       margin-right: 5px;
+    }
+  }
+
+  @media (max-width: 920px) {
+    .scan-content .sec-cards{
+      grid-template-columns: repeat(3,1fr);
+    }
+
+    .members .member-cards{
+      grid-template-columns: repeat(4, 1fr);
     }
   }
   
@@ -381,6 +443,10 @@
     .cont-scan .css-11yukd5-MuiTabs-indicator{
       display: none;
     }
+
+    .members .member-cards{
+      grid-template-columns: repeat(3, 1fr);
+    }
     
   }
   
@@ -400,5 +466,12 @@
   
     .scan-info .btn-eliminar {
       width: 100%;
+    }
+
+    .scan-content .sec-cards{
+      grid-template-columns: repeat(2,1fr);
+    }
+    .members .member-cards{
+      grid-template-columns: repeat(2, 1fr);
     }
   }
