@@ -123,15 +123,15 @@ const ContainerScan = (props) => {
 
             <div className="scan-content">
                 <TabsScan items={items}></TabsScan>
-                <TabsScan items={items}></TabsScan>
                 <div className="members">
-                    
+                    <div className="member-titles">
                     <h2>Miembros</h2>
                     { usuario?.id_usuario !== grupo?.id_usuario ?   
                         statusSl ? <button className="btn-req-member">Solicitud Realizada</button> 
-                                 : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
-                    : <button className="btn-req-member">Gestionar</button>
+                        : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
+                        : <button className="btn-req-member">Gestionar</button>
                     }
+                    </div>
                     <div className="member-cards">
                         {members.map((member) => (<CardsScan key={member.id} member={member}/>))}
                     </div>
