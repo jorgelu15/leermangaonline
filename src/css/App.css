@@ -961,7 +961,7 @@
   display: none !important;
 } */
 
-.css-1ujnqem-MuiTabs-root{
+.main-home .css-1ujnqem-MuiTabs-root{
   border-radius: 10px !important;
   margin-bottom: 20px;
 }
@@ -974,8 +974,12 @@
   opacity: 1 !important;
 }
 
+.main-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected{
+  background-color: rgb(177, 5, 5);
+}
+
 .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected{
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 
 .css-8je8zh-MuiTouchRipple-root{

@@ -109,7 +109,6 @@ const ContainerScan = (props) => {
 
             <div className="scan-content">
                 <TabsScan items={items}></TabsScan>
-                <TabsScan items={items}></TabsScan>
                 <div className="members">
                     
                     <h2>Miembros</h2>
