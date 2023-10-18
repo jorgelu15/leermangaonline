@@ -11,6 +11,7 @@ import {
     INSERTAR_SOLICITUD,
     OBTENER_SOLICITUDES,
     ACTUALIZAR_SOLICITUD,
+    OBTENER_MIEMBROS,
     MENSAJE_ERROR
 } from '../../types';
 
@@ -19,6 +20,7 @@ const GruposState = props => {
     const initialState = {
         grupo: null,
         grupos: null,
+        miembros: null,
         solicitud: null,
         solicitudes: null,
         msg: null
@@ -130,7 +132,7 @@ const GruposState = props => {
         try {
             const respuesta = await clienteAxios.put('/usuariogrupo/', datos);
 
-            console.log(respuesta.data.usuarioGrupo, "linea 132")
+            console.log(respuesta.data.usuariogrupo, "linea 132")
             dispatch({
                 type: ACTUALIZAR_SOLICITUD,
                 payload: respuesta.data.usuariogrupo
@@ -144,11 +146,22 @@ const GruposState = props => {
         }
     }
 
+    const getMiembros = () => {
+        try {
+            dispatch({
+                type: OBTENER_MIEMBROS,
+                payload: state.solicitudes.filter((item) => item.estado == 1)
+            })
+        } catch (error) {
+        }
+    }
+
     return (
         <GruposContext.Provider
             value={{
                 grupo: state.grupo,
                 grupos: state.grupos,
+                miembros: state.miembros,
                 solicitud: state.solicitud,
                 solicitudes: state.solicitudes,
                 msg: state.msg,
@@ -159,6 +172,7 @@ const GruposState = props => {
                 getAllGrupos,
                 getSolicitudes,
                 updateSolicitud,
+                getMiembros,
             }}
         >
             {props.children}

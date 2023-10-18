@@ -334,6 +334,14 @@
   }
 
 
+  .cont-scan .desc-scan p{
+    font-size: 1.2rem;
+    max-width: 600px;
+    text-align: left;
+    margin-top: 5px;
+  }
+
+
   .members .member-titles{
     display: flex;
     align-items: center;

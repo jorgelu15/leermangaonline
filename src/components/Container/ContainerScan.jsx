@@ -16,15 +16,17 @@ import FotoPerfil from "../../img/fotoperfil.jpg";
 const ContainerScan = (props) => {
 
     const { usuario } = useAuth();
-    const { grupo, solicitudes, insertSolicitud } = useContext(gruposContext)
+    const { grupo, solicitudes, miembros, insertSolicitud, getMiembros } = useContext(gruposContext)
     const { enqueueSnackbar } = useSnackbar()
 
     const [ statusSl, setStatusSl ] = useState([]);
 
     useEffect(() => {
-        console.log(solicitudes, "linea 25", solicitudes?.find((item) => (item.grupoId === grupo.id && item.usuarioId === usuario.id)))
+        // console.log(solicitudes, "linea 25", solicitudes?.find((item) => (item.grupoId === grupo.id && item.usuarioId === usuario.id)))
         let stat = solicitudes?.find((item) => (item.grupoId === grupo.id && item.usuarioId === usuario.id));
         setStatusSl(stat ? stat : [])
+
+        getMiembros()
     }, [solicitudes])
 
 
@@ -76,17 +78,6 @@ const ContainerScan = (props) => {
         ]
     }
 
-    const members = [
-        {nombre:'DgDavid21',rol:'Creador del scan', id:0},
-        {nombre:'SergioLeon25',rol:'Segundo al mando',id:1},
-        {nombre:'Kuroro',rol:'Traductor',id:2},
-        {nombre:'Noxion',rol:'Traductor', id:3},
-        {nombre:'Letan',rol:'Traductor',id:4},
-        {nombre:'BluePhoenix',rol:'Traductor',id:5},
-        {nombre:'RxNonstop',rol:'Traductor',id:6},
-        {nombre:'Darkskin',rol:'Traductor',id:7}
-    ]
-
     return (
         <div className="cont-scan">
             <div className="scan-port">
@@ -102,6 +93,7 @@ const ContainerScan = (props) => {
                             <h4>{grupo?.nombre}</h4>
                         </div>
                         <div className="desc-scan">
+                            <p>{grupo?.descripcion}</p>
                         </div>
                     </div>
                 </div>
@@ -112,14 +104,17 @@ const ContainerScan = (props) => {
                 <div className="members">
                     
                     <h2>Miembros</h2>
-                    { usuario?.id !== grupo?.usuarioId ?   
-                        statusSl.length !== 0 
+                    {/* { console.log(statusSl, "linea 117")} */}
+                    { 
+                    statusSl.length !== 0 
+                    ? statusSl.estado === 0 
                         ? <button className="btn-req-member">Solicitud Realizada</button> 
-                        : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
-                    : <button className="btn-req-member">Gestionar</button>
+                        : statusSl.estado === 1 ? <button className="btn-req-member">Gestionar</button> : null
+                    : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
                     }
+                    
                     <div className="member-cards">
-                        {members.map((member) => (<CardsScan key={member.id} member={member}/>))}
+                        {miembros?.map((miembro) => (<CardsScan key={miembro.id} miembro={miembro}/>))}
                     </div>
                 </div>
             </div>

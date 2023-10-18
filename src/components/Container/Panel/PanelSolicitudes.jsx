@@ -30,8 +30,10 @@ const PanelSolicitudes = (props) => {
                     <p>Solicitudes pendientes: {filterSolic ? filterSolic.length : 0}</p>
                 </div>
                 <div className="c-table">
-                    {filterSolic.length !== 0 ? <TableSolicitudes solicitudesV={filterSolic}></TableSolicitudes> 
-                    : <p className="mensaje">No hay solicitudes pendientes.</p>}
+                    {filterSolic ? filterSolic.length !== 0 ? <TableSolicitudes solicitudesV={filterSolic}></TableSolicitudes> 
+                    : <p className="mensaje">No hay solicitudes pendientes.</p> : 
+                      <p className="mensaje">No hay solicitudes pendientes.</p>
+                    }
                 </div>
             </div>
     
