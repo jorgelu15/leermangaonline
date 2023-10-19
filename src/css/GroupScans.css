@@ -27,3 +27,12 @@
 .groups .card .desc-card-scan p{
     padding: 2%;
 }
+
+.group-query{
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(31, 31, 31);
+    outline: none;
+    border: 1px solid rgb(83, 90, 117);
+    color: white;
+}

@@ -88,11 +88,11 @@ export default function TabsTop(props) {
                 item.cards.map((card)=>{
                   return (
                     <div className="card">
-                      <div className="cont-img">
+                      <div className="cont-img" style={{backgroundImage:`url(${card.url})`}}>
                         <p>{card.calif}</p>
                       </div>
                       <div className="info">
-                        <p className="nombre">[{card.nombre}]</p>
+                        <p className="nombre">{card.nombre}</p>
                         <p className="categoria">{card.categoria}</p>
                       </div>
                     </div>

@@ -29,7 +29,7 @@ const ContainerGroupScans = (props) => {
     return (
         <div className="scan-groups">
             <div className="query">
-                <input type="text" className="group-query"/>
+                <input type="text" className="group-query" placeholder="Buscar..."/>
                 <button>search</button>
             </div>
             <div className="groups-content">

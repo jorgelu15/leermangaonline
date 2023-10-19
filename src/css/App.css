@@ -222,7 +222,8 @@
 
 .sec-grupos .sec-cards .card {
   background-image: url("../img/isugo.jpg");
-  background-position: center;
+  background-position: center;  
+  background-repeat: no-repeat;
   border: none;
   width: 100%;
 }
@@ -322,7 +323,6 @@
 }
 
 .sec-tops .cont-img {
-  background-image: url("../img/oshinoko.png");
   background-size: cover;
   background-position: center;
   width: 70px;
@@ -362,6 +362,7 @@
 
 .sec-tops .card .categoria {
   background-color: rgb(4, 149, 4);
+  width: 110px;
   color: white;
   font-weight: 600;
   padding: 10px;
