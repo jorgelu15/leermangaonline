@@ -104,15 +104,16 @@ const ContainerScan = (props) => {
                 <TabsScan items={items}></TabsScan>
                 <div className="members">
                     <div className="member-titles">
-                    <h2>Miembros</h2>
-                    {/* { console.log(statusSl, "linea 117")} */}
-                    { 
-                    statusSl.length !== 0 
-                    ? statusSl.estado === 0 
-                        ? <button className="btn-req-member">Solicitud Realizada</button> 
-                        : statusSl.estado === 1 ? <button className="btn-req-member">Gestionar</button> : null
-                    : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
-                    }
+                        <h2>Miembros</h2>
+                        {/* { console.log(statusSl, "linea 117")} */}
+                        { 
+                        statusSl.length !== 0 
+                        ? statusSl.estado === 0 
+                            ? <button className="btn-req-member">Solicitud Realizada</button> 
+                            : statusSl.estado === 1 ? <button className="btn-req-member">Gestionar</button> : null
+                        : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
+                        }
+                    </div>
                     
                     <div className="member-cards">
                         {miembros?.map((miembro) => (<CardsScan key={miembro.id} miembro={miembro}/>))}
