@@ -33,7 +33,6 @@ const ContainerHome = (props) => {
                     {nombre: "Isekai Shoukan wa", categoria: "Manga", calif: "6.17", url: "https://otakuteca.com/images/books/cover/63813864eafb7.jpg"},
                     {nombre: "Kagurabachi", categoria: "Manga", calif: "6.71", url: "https://otakuteca.com/images/books/cover/65076987c0141.jpg"},
                     
-                    
                 ]
             },
             {

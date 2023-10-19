@@ -10,7 +10,7 @@ import gruposContext from "../../context/grupos/gruposContext";
 
 import TabsScan from "../Mui/Tabs/TabsScan";
 import CardsScan from "../cards/CardsScan";
-import FotoPerfil from "../../img/fotoperfil.jpg";
+import FotoPerfil from "../../img/isugo.jpg";
 
 
 const ContainerScan = (props) => {
@@ -88,6 +88,7 @@ const ContainerScan = (props) => {
                     <div className="img">
                         <div className="type-scan">Scanlation</div>
                         <img src={FotoPerfil} alt="scanProfile" />
+                        
                     </div>
                     <div className="info">
                         <div className="etiq-cards">
@@ -101,24 +102,26 @@ const ContainerScan = (props) => {
             </div>
 
             <div className="scan-content">
-                <TabsScan items={items}></TabsScan>
-                <div className="members">
-                    <div className="member-titles">
-                        <h2>Miembros</h2>
-                        {/* { console.log(statusSl, "linea 117")} */}
-                        { 
-                        statusSl.length !== 0 
-                        ? statusSl.estado === 0 
-                            ? <button className="btn-req-member">Solicitud Realizada</button> 
-                            : statusSl.estado === 1 ? <button className="btn-req-member">Gestionar</button> : null
-                        : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
-                        }
+                <TabsScan items={items}>
+                    <div className="members">
+                        <div className="member-titles">
+                            <h2>Miembros</h2>
+                            
+                            { 
+                            statusSl.length !== 0 
+                            ? statusSl.estado === 0 
+                                ? <button className="btn-req-member">Solicitud Realizada</button> 
+                                : statusSl.estado === 1 ? <button className="btn-req-member">Gestionar</button> : null
+                            : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
+                            }
+                        </div>
+                        
+                        <div className="member-cards">
+                            {miembros?.map((miembro) => (<CardsScan key={miembro.id} miembro={miembro}/>))}
+                        </div>
                     </div>
-                    
-                    <div className="member-cards">
-                        {miembros?.map((miembro) => (<CardsScan key={miembro.id} miembro={miembro}/>))}
-                    </div>
-                </div>
+                </TabsScan>
+                
             </div>
         </div>
     )

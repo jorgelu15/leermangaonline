@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import routes from "../../helpers/routes";
 import gruposContext from '../../context/grupos/gruposContext';
 
+import userimg from '../../img/group-users.svg'
 
 export default function CardGroups(props){
 
@@ -29,7 +30,7 @@ export default function CardGroups(props){
         <div onClick={handleClick} className='card'>
             <div className='desc-card-scan'>
                 <p>{scan.nombre}</p>
-                <p>{scan.estado}</p>
+                <p><img src={userimg} />{scan.estado}</p>
             </div>
         </div>
     );
