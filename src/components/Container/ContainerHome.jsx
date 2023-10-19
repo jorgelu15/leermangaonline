@@ -124,7 +124,7 @@ const ContainerHome = (props) => {
                                 <div className="card">
                                     <div>
                                         <p></p>
-                                        <p className="calificacion">1</p>
+                                        <p className="calificacion">3</p>
                                     </div>
                                     <p className="nombre">RAKUEN TRANSLATIONS</p>
                                 </div>

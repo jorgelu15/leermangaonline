@@ -50,6 +50,7 @@
   object-fit: cover;
   margin-left: 14px;
   width: calc(100% / 3);
+  border-radius: 20px;
 }
 
 .carousel img:first-child {

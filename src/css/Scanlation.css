@@ -224,6 +224,7 @@
   width: 100%;
   grid-template-columns: repeat(2, 1fr);
   margin-bottom: 10px;
+  padding-top: 20px;
 }
 .member-card {
   width: 95%;

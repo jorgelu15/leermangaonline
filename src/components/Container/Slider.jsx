@@ -1,7 +1,13 @@
 
 import { useState } from "react"
-import Jujutsu from "../../img/jujutsu.png"
+
 import React, { useRef } from 'react';
+
+import Jujutsu from "../../img/jujutsu.png"
+
+import slider1 from "../../img/slider1.jpg"
+import slider2 from "../../img/slider2.jpg"
+import slider3 from "../../img/slider3.jpg"
 
 const Slider = (props) => {
 
@@ -43,11 +49,11 @@ const Slider = (props) => {
                 onTouchEnd={handleMouseU}
                 ref={carouselRef}
                 >
-                <img src={Jujutsu}/>
-                <img src={Jujutsu}/>
-                <img src={Jujutsu}/>
-                <img src={Jujutsu}/>
-                <img src={Jujutsu}/>
+                <img src={slider2}/>
+                <img src={slider1}/>
+                <img src={slider3}/>
+                <img src={slider2}/>
+                <img src={slider1}/>
             </div>
         </div>
     )

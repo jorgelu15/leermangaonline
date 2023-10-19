@@ -99,7 +99,7 @@ export default function TabsCategory(props) {
                     item.cards.map((card)=>{
                       return (
                         <div className="cont-card">
-                          <div className="card">
+                          <div className="card" style={{backgroundImage: `url('${card.url}')`}}>
                           <div>
                             <p className="categoria">{card.categoria}</p>
                             <p className="calificacion">{card.calif}</p>
@@ -110,7 +110,7 @@ export default function TabsCategory(props) {
                       )
                     }) :
                     <div>
-                      <h4 className='mensaje'>No hay mangas</h4>
+                      <h4 className='mensaje'>No hay obras</h4>
                     </div>
                   }
                 </div>

@@ -92,7 +92,7 @@ export default function TabsScan(props) {
                   item.cards.map((card)=>{
                     return (
                       <div className="cont-card">
-                        <div className="card">
+                        <div className="card" style={{backgroundImage: `url('${card.url}')`}}>
                         <div>
                           <p className="categoria">{card.categoria}</p>
                           <p className="calificacion">{card.calif}</p>
