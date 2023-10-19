@@ -986,6 +986,7 @@
   text-transform: none !important;
   color: white !important;
   opacity: 1 !important;
+  min-width: fit-content !important;
 }
 
 .main-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root,
