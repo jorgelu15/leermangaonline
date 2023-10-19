@@ -25,9 +25,9 @@ const Header = (props) => {
                         <li><Link to={routes.home}><i>LEER</i><b>MANGA</b>ONLINE</Link></li>
                     </ul>
                     <ul className="list-menu">
-                        <li><Link to={routes.panel}>DIRECTORIO</Link></li>
+                        <li><Link>DIRECTORIO</Link></li>
                         <li><Link to={routes.groups}>GRUPOS</Link></li>
-                        <li><a href="#">FORO</a></li>
+                        <li><Link>FORO</Link></li>
                     </ul>
                 </div>
                 <div className="nav-right">
@@ -49,7 +49,7 @@ const Header = (props) => {
                         }
                         
                     </div>
-                    <button><img src={menubar} alt="" /></button>
+                    {/* <button><img src={menubar} alt="" /></button> */}
                 </div>
             </nav>
         </header>

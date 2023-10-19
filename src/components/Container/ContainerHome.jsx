@@ -20,19 +20,18 @@ const ContainerHome = (props) => {
             {
                 tab: "Mangas",
                 cards: [
-                    {nombre: "jujutsu Kaisen", categoria: "manga", calif: "8.53", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.jpg"},
-                    {nombre: "oshi no ko", categoria: "manga", calif: "9.05", url: "https://otakuteca.com/images/books/cover/5efe4afd1d0c5.jpg"},
-                    {nombre: "Kanojo, Okarishimasu", categoria: "manga", calif: "3.91", url: "https://otakuteca.com/images/books/cover/606cda6f538c7.jpg"},
-                    {nombre: "Class de 2 Banme ni...", categoria: "manga", calif: "8.40", url: "https://otakuteca.com/images/books/cover/62e1dbb29f444.jpg"},
-                    {nombre: "Kanan-sama Might be...", categoria: "manga", calif: "8.92", url: "https://otakuteca.com/images/books/cover/629634d78ab1c.jpg"},
-                    {nombre: "Senshitibu boi", categoria: "manga", calif: "7.38", url: "https://otakuteca.com/images/books/cover/646dff10a1fa2.jpg"},
-                    {nombre: "El mundo paralelo con...", categoria: "manga", calif: "7.50", url: "https://otakuteca.com/images/books/cover/65010240f0a56.jpg"},
-                    {nombre: "KINGDOW", categoria: "manga", calif: "9.59", url: "https://otakuteca.com/images/books/cover/5bc121ab8e186.jpg"},
-                    {nombre: "Isekai Ship Summoning", categoria: "manga", calif: "9.00", url: "https://otakuteca.com/images/books/cover/61708df723eda.jpg"},
-                    {nombre: "Yuusha Shoukan ni Ma", categoria: "manga", calif: "8.54", url: "https://otakuteca.com/images/books/cover/5dbfb96f1ef61.jpg"},
-                    {nombre: "Isekai Shoukan wa", categoria: "manga", calif: "6.17", url: "https://otakuteca.com/images/books/cover/63813864eafb7.jpg"},
-                    {nombre: "Kagurabachi", categoria: "manga", calif: "6.71", url: "https://otakuteca.com/images/books/cover/65076987c0141.jpg"},
-                    
+                    {nombre: "jujutsu Kaisen", categoria: "Manga", calif: "8.53", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.jpg"},
+                    {nombre: "oshi no ko", categoria: "Manga", calif: "9.05", url: "https://otakuteca.com/images/books/cover/5efe4afd1d0c5.jpg"},
+                    {nombre: "Kanojo, Okarishimasu", categoria: "Manga", calif: "3.91", url: "https://otakuteca.com/images/books/cover/606cda6f538c7.jpg"},
+                    {nombre: "Class de 2 Banme ni...", categoria: "Manga", calif: "8.40", url: "https://otakuteca.com/images/books/cover/62e1dbb29f444.jpg"},
+                    {nombre: "Kanan-sama Might be...", categoria: "Manga", calif: "8.92", url: "https://otakuteca.com/images/books/cover/629634d78ab1c.jpg"},
+                    {nombre: "Senshitibu boi", categoria: "Manga", calif: "7.38", url: "https://otakuteca.com/images/books/cover/646dff10a1fa2.jpg"},
+                    {nombre: "El mundo paralelo con...", categoria: "Manga", calif: "7.50", url: "https://otakuteca.com/images/books/cover/65010240f0a56.jpg"},
+                    {nombre: "KINGDOW", categoria: "Manga", calif: "9.59", url: "https://otakuteca.com/images/books/cover/5bc121ab8e186.jpg"},
+                    {nombre: "Isekai Ship Summoning", categoria: "Manga", calif: "9.00", url: "https://otakuteca.com/images/books/cover/61708df723eda.jpg"},
+                    {nombre: "Yuusha Shoukan ni Ma", categoria: "Manga", calif: "8.54", url: "https://otakuteca.com/images/books/cover/5dbfb96f1ef61.jpg"},
+                    {nombre: "Isekai Shoukan wa", categoria: "Manga", calif: "6.17", url: "https://otakuteca.com/images/books/cover/63813864eafb7.jpg"},
+                    {nombre: "Kagurabachi", categoria: "Manga", calif: "6.71", url: "https://otakuteca.com/images/books/cover/65076987c0141.jpg"},
                     
                 ]
             },

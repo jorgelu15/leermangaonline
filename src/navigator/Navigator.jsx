@@ -61,10 +61,22 @@ const router = createBrowserRouter([
           path: routes.subirmanga,
           element: <Subirmanga />
         },
+      ]
+    },
+    {
+      path: '/',
+      element: <ProtectedRoute/>,
+      children: [
         {
           path: routes.panel,
           element: <Panel />
         },
+      ]
+    },
+    {
+      path: '/',
+      element: <ProtectedRoute/>,
+      children: [
         {
           path: routes.perfil,
           element: <Perfil />

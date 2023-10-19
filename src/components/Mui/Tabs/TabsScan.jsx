@@ -78,6 +78,7 @@ export default function TabsScan(props) {
       
       <div style={{backgroundColor: '#e9eaed'}}>
         <div className='cont-tabs'>
+          <div className='proyect'> 
         {
           items ? 
           items.cont.map((item, idx) => {
@@ -107,11 +108,13 @@ export default function TabsScan(props) {
                 }
               </div>
             </TabPanel>
-            
             )
           }) : null
           
         }
+        </div>
+        { props.children }
+
         </div>
       </div>
         

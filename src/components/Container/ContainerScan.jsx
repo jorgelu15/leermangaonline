@@ -10,13 +10,13 @@ import gruposContext from "../../context/grupos/gruposContext";
 
 import TabsScan from "../Mui/Tabs/TabsScan";
 import CardsScan from "../cards/CardsScan";
-import FotoPerfil from "../../img/fotoperfil.jpg";
+import FotoPerfil from "../../img/isugo.jpg";
 
 
 const ContainerScan = (props) => {
 
     const { usuario } = useAuth();
-    const { grupo, solicitudes, insertSolicitud } = useContext(gruposContext)
+    const { grupo, solicitudes, miembros, insertSolicitud, getMiembros } = useContext(gruposContext)
     const { enqueueSnackbar } = useSnackbar()
 
     const [ statusSl, setStatusSl ] = useState([]);
@@ -25,6 +25,8 @@ const ContainerScan = (props) => {
         // console.log(solicitudes, "linea 25", solicitudes?.find((item) => (item.grupoId === grupo.id && item.usuarioId === usuario.id)))
         let stat = solicitudes?.find((item) => (item.grupoId === grupo.id && item.usuarioId === usuario.id));
         setStatusSl(stat ? stat : [])
+
+        getMiembros()
     }, [solicitudes])
 
 
@@ -77,17 +79,6 @@ const ContainerScan = (props) => {
         ]
     }
 
-    const members = [
-        {nombre:'DgDavid21',rol:'Creador del scan', id:0},
-        {nombre:'SergioLeon25',rol:'Segundo al mando',id:1},
-        {nombre:'Kuroro',rol:'Traductor',id:2},
-        {nombre:'Noxion',rol:'Traductor', id:3},
-        {nombre:'Letan',rol:'Traductor',id:4},
-        {nombre:'BluePhoenix',rol:'Traductor',id:5},
-        {nombre:'RxNonstop',rol:'Traductor',id:6},
-        {nombre:'Darkskin',rol:'Traductor',id:7}
-    ]
-
     return (
         <div className="cont-scan">
             <div className="scan-port">
@@ -97,33 +88,40 @@ const ContainerScan = (props) => {
                     <div className="img">
                         <div className="type-scan">Scanlation</div>
                         <img src={FotoPerfil} alt="scanProfile" />
+                        
                     </div>
                     <div className="info">
                         <div className="etiq-cards">
                             <h4>{grupo?.nombre}</h4>
                         </div>
                         <div className="desc-scan">
+                            <p>{grupo?.descripcion}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div className="scan-content">
-                <TabsScan items={items}></TabsScan>
-                <div className="members">
-                    <div className="member-titles">
-                    <h2>Miembros</h2>
-                    { usuario?.id !== grupo?.usuarioId ?   
-                        statusSl.length !== 0 
-                        ? <button className="btn-req-member">Solicitud Realizada</button> 
-                        : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
-                    : <button className="btn-req-member">Gestionar</button>
-                    }
+                <TabsScan items={items}>
+                    <div className="members">
+                        <div className="member-titles">
+                            <h2>Miembros</h2>
+                            
+                            { 
+                            statusSl.length !== 0 
+                            ? statusSl.estado === 0 
+                                ? <button className="btn-req-member">Solicitud Realizada</button> 
+                                : statusSl.estado === 1 ? <button className="btn-req-member">Gestionar</button> : null
+                            : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button> 
+                            }
+                        </div>
+                        
+                        <div className="member-cards">
+                            {miembros?.map((miembro) => (<CardsScan key={miembro.id} miembro={miembro}/>))}
+                        </div>
                     </div>
-                    <div className="member-cards">
-                        {members.map((member) => (<CardsScan key={member.id} member={member}/>))}
-                    </div>
-                </div>
+                </TabsScan>
+                
             </div>
         </div>
     )

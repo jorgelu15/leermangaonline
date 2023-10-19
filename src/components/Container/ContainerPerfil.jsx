@@ -1,11 +1,14 @@
-
+import * as React from 'react';
 import { useState } from "react"
-import React, { useRef } from 'react';
+// import React, { useRef } from 'react';
 
-import FotoPerfil from "../../img/fotoperfil.jpg"
+import FotoPerfil from "../../img/perfil1.jpg"
 import TabsCategory from "../Mui/Tabs/TabsCategory"
 import FormPerfil from "../Form/FormPerfil";
 import useAuth from "../../hooks/useAuth";
+
+import Avatar from '@mui/material/Avatar';
+import { deepOrange, deepPurple } from '@mui/material/colors';
 
 const ContainerPerfil = (props) => {
 
@@ -64,7 +67,9 @@ const ContainerPerfil = (props) => {
                 <div className="cont-portada">
 
                     <div className="img">
-                        <img src={FotoPerfil} alt="" />
+                        {/* <Avatar sx={{ width: 200, height: 200 }}></Avatar> */}
+                        <Avatar src={FotoPerfil} sx={{ width: 200, height: 200 }}></Avatar>
+                        {/* <img src={FotoPerfil} alt="" /> */}
                     </div>
 
                     <div className="info">

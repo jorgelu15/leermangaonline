@@ -5,6 +5,7 @@ import {
     INSERTAR_SOLICITUD,
     OBTENER_SOLICITUDES,
     ACTUALIZAR_SOLICITUD,
+    OBTENER_MIEMBROS,
     MENSAJE_ERROR
 } from '../../types';
 
@@ -42,6 +43,11 @@ export default (state, action) => {
             return {
                 ...state,
                 solicitudes: state.solicitudes.map((item) => item.id === action.payload.id ? action.payload : item)
+            }
+        case OBTENER_MIEMBROS:
+            return {
+                ...state,
+                miembros: action.payload
             }
         case MENSAJE_ERROR:
             return {

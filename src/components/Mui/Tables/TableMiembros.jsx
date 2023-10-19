@@ -145,6 +145,7 @@ export default function TableMiembros(props) {
         <TableHead>
           <TableRow>
             <TableCell>Usuario</TableCell>
+            <TableCell align="center">Rol</TableCell>
             <TableCell align="center">Correo</TableCell>
             <TableCell align="center">Fecha de entrada</TableCell>
             <TableCell align="center">Acciones</TableCell>
@@ -156,9 +157,12 @@ export default function TableMiembros(props) {
             ? solicitudesV?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : solicitudesV ? solicitudesV : []
           ).map((solicitud) => (
-            <TableRow key={solicitud.usuario}>
+            <TableRow key={solicitud.id}>
               <TableCell component="th" scope="row">
                 {solicitud.Usuario?.usuario}
+              </TableCell>
+              <TableCell component="th" align="center">
+                {solicitud.rol}
               </TableCell>
               <TableCell component="th" align="center">
                 {solicitud.Usuario?.correo}
@@ -168,7 +172,11 @@ export default function TableMiembros(props) {
               </TableCell>
               <TableCell component="th" align="center">
                 <div className='table-btn-cont'>
-                  <button onClick={() => {handleExpulsar(solicitud)}}  className='table-btn-re'>Expulsar</button>
+                  { solicitud.rol === "admin" 
+                  ? <button className='table-btn-ac'>Contactar</button> 
+                  : <button onClick={() => {handleExpulsar(solicitud)}}  className='table-btn-re'>Expulsar</button>
+                  }
+                  
                 </div>
               </TableCell>
             </TableRow>

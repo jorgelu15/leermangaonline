@@ -6,6 +6,8 @@ import gruposContext from "../../context/grupos/gruposContext";
 
 import CardGroups from "../cards/CardGroups";
 
+import lupa from "../../img/lupa.svg"
+
 const ContainerGroupScans = (props) => {
 
     const { usuario } = useAuth();
@@ -28,11 +30,12 @@ const ContainerGroupScans = (props) => {
 
     return (
         <div className="scan-groups">
-            <div className="query">
-                <input type="text" className="group-query" placeholder="Buscar..."/>
-                <button>search</button>
-            </div>
+            
             <div className="groups-content">
+                <div className="query">
+                    <input type="text" className="input-src" placeholder="Buscar..."/>
+                    <button><img src={lupa}></img></button>
+                </div>
                 <div className="groups">
                     {grupos?.map((scan) => (<CardGroups key={scan.id} scan={scan}/>))}
                 </div>
