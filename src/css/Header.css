@@ -73,6 +73,7 @@
   cursor: pointer;
 }
 
+.nav-left a:hover,
 .nav-right p a:hover{
   color: rgb(149, 204, 255);
 }
@@ -191,9 +192,17 @@
   
 }
 
+
 @media (max-width: 760px) {
   .navbar .nav-right > div {
     display: none;
   }
+
+  .header--home .navbar{
+    padding: 20px;
+    padding-top: 25px;
+  }
+
+
 }
   

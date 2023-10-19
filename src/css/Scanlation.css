@@ -1,6 +1,6 @@
 .cont-scan{
-    width: 100%;
-  }
+  width: 100%;
+}
   
   .scan-port{
     width: 100%;
@@ -29,70 +29,6 @@
     background-position: center;
     background-size: cover;
     z-index: 0;
-  }
-  
-  .cont-portada{
-    max-width: 1280px;
-    margin: auto;
-    position: relative;
-    z-index: 100;
-    display: flex;
-    padding-top: 30px;
-    padding-bottom: 10px;
-  }
-  
-  .cont-portada img{
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-  }
-
-  .cont-portada .img{
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content: center;
-  }
-
-  .cont-portada .img .type-scan{
-    background-color: rgb(33, 129, 225);
-    color: #ffffff;
-    font-size: 1.2rem;
-    padding: 5px 12px;
-    border-radius: 3px;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  .cont-portada .info{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 5px 30px;
-  }
-
-  .cont-portada .info h4{
-    font-size: 2rem;
-    margin-top: -16px;
-  }
-
-  .cont-scan .cont-portada .info{
-    padding-top: 0;
-  }
-  
-  .cont-portada .info .btn-scan{
-    background-color: rgb(33, 129, 225);
-    color: #ffffff;
-    font-size: 1.2rem;
-    padding: 5px 12px;
-    border-radius: 3px;
-    margin-left: 25px;
-    cursor: pointer;
-    user-select: none;
-  }
-  
-  .cont-portada .info .btn-scan:hover{
-    background-color: rgb(19, 102, 185);
   }
   
   .btn-pf-active{
@@ -349,21 +285,6 @@
   
   
   @media (max-width: 1200px) {
-    
-    .cont-portada {
-      padding-top: 30px;
-      justify-content: center;
-    }
-  
-    .cont-portada .info{
-      padding-left: 20px;
-      padding-right: 0px;
-    }
-  
-    .cont-portada img{
-      width: 250px;
-      height: 250px;
-    }
   
     .scan-info {
       padding-right: 26px;
@@ -414,43 +335,7 @@
   }
   
   @media (max-width: 760px) {
-  
-    .cont-portada {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .cont-portada .info .username{
-      font-size: 2rem;
-    }
-  
-    .cont-portada img{
-      padding: 6px;
-      width: 98%;
-      height: 98%;
-    }
-  
-    .cont-portada .info .btn-scan{
-      font-size: 1rem;
-    }
-  
-    .cont-portada .info{
-      display: flex;
-      align-items: center;
-      padding: 0;
-    }
-  
-    .cont-portada .etiq-cards {
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-  
-    .cont-portada .etiq-cards .card{
-      margin-bottom: 6px;
-    }
-  
+
     .cont-scan .css-1vw5i9y-MuiButtonBase-root-MuiTab-root{
       font-size: 0.8rem !important;
     }

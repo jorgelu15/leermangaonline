@@ -84,7 +84,7 @@ export default function TabsCategory(props) {
       </div>
       
       { !viewPerfil ? 
-        <div className='box-mangas-pf' style={{paddingTop: 20, paddingBottom: 20}}>
+        <div className='box-mangas-pf'>
           <div className='cont-tabs'>
           {
             items ? 
