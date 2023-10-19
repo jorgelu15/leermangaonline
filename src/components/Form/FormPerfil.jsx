@@ -28,12 +28,12 @@ const FormPerfil = () => {
                 <div className="form-info">
                     <div className="box">
                         <label htmlFor="usuario">Usuario</label>
-                        <input type="text"/>
+                        <input type="text" value={usuario?.usuario}/>
                     </div>
 
                     <div className="box">
                         <label htmlFor="correo">Correo</label>
-                        <input type="text"/>
+                        <input type="text" value={usuario?.correo}/>
                     </div>
 
                     <div className="box">

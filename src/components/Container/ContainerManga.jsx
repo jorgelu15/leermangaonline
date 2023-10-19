@@ -6,8 +6,12 @@ import CustomizedAccordions from "../Mui/Accordions/Accordion";
 import image from "../../img/portada.jpg"
 import chat from "../../img/chat.png"
 
+import useAuth from "../../hooks/useAuth";
+
 
 const ContainerManga = (props) => {
+
+    const { usuario } = useAuth();
 
     return (
         <div>

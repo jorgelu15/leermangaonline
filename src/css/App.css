@@ -141,7 +141,7 @@
   height: 250px;
   width: 100%;
   max-height: 300px;
-  border: 2px solid rgb(36 36 36);
+  border: 2px solid rgb(205 243 246 / 68%);
 
   background-image: url("../img/oshinoko.png");
   background-size: cover;
@@ -153,7 +153,7 @@
   padding: 0px;
   padding-top: 10px;
   cursor: pointer;
-  box-shadow: 0px 0px 20px #ffffff38;
+  box-shadow: 0px 0px 20px #7e7e7e40;
   position: relative;
   transition: ease .2s;
 }
@@ -987,6 +987,7 @@
   color: white !important;
   opacity: 1 !important;
   min-width: fit-content !important;
+  padding: 12px 30px !important;
 }
 
 .main-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root,

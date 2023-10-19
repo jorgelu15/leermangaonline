@@ -17,6 +17,7 @@ const Header = (props) => {
     //     }
     //   }, [autenticado]);
 
+
     return (
         <header className="header-manga">
             <nav className="navbar">

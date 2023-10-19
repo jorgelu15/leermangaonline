@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import moon from '../../img/moon.svg'
+import routes from '../../helpers/routes';
 
 const Header = (props) => {
 
@@ -7,7 +9,7 @@ const Header = (props) => {
             <nav className="navbar">
                 <div className="nav-left">
                     <ul>
-                        <li><a href="#"><i>LEER</i><b>MANGA</b>ONLINE</a></li>
+                        <li><Link to={routes.home}><i>LEER</i><b>MANGA</b>ONLINE</Link></li>
                     </ul>
                     <div className="info">
                         <div>
