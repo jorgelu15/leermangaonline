@@ -4,6 +4,7 @@ import menubar from '../../img/menu-bar.svg'
 import routes from '../../helpers/routes';
 import useAuth from '../../hooks/useAuth';
 import { useEffect } from 'react';
+import AccountMenu from '../Mui/Menu/AccountMenu';
 
 const Header = (props) => {
 
@@ -44,8 +45,9 @@ const Header = (props) => {
                             :
                             
                             <>
-                                <p><Link to={routes.perfil}>PERFIL</Link></p>
-                                <p><a onClick={() => logOut()}>CERRAR</a></p>
+                                <AccountMenu></AccountMenu>
+                                {/* <p><Link to={routes.perfil}>PERFIL</Link></p>
+                                <p><a onClick={() => logOut()}>CERRAR</a></p> */}
                             </>
                         }
                         
