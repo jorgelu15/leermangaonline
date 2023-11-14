@@ -5,19 +5,53 @@ import gruposContext from "../../context/grupos/gruposContext";
 
 import CardScanPl from "../Card/CardScanPl";
 
+import { v4 } from 'uuid';
+import perfilContext from "../../context/perfil/perfilContext";
+
 
 const FormPerfil = () => {
 
     const { usuario } = useAuth();
-    const { grupos, grupo, getGrupos } = useContext(gruposContext)
+    const { grupos, grupo, getGrupos } = useContext(gruposContext);
+
+    const { updatePerfil } = useContext(perfilContext);
+
+    const [userEdit, setUserEdit] = useState({});
+    const onChangeUser = e => {
+        setUserEdit({
+            ...userEdit,
+            [e.target.name]: e.target.value
+        })
+    }
 
     const [ viewEdit, setViewEdit ] = useState(true)
     const [ openMG, setOpenMG ] = useState(false)
     
+    const [archivo, setArchivo] = useState(null);
+    const subirArchivo = (e) => {
+        setArchivo(e);
+    }
+
+    useEffect(() => {
+        setUserEdit(usuario);
+    }, [usuario]);
 
     useEffect(() => {
         getGrupos(usuario?.id)
     }, [grupo])
+
+    const actualizarUsuario = () => {
+        const f = new FormData();
+
+        if(archivo !== null){
+            const nombreCortado = archivo.name.split('.');
+            const extension = nombreCortado[nombreCortado.length - 1];
+            const newName = v4() + '.' + extension;
+            f.append("archivo", archivo, newName);
+        }
+        f.append("data", JSON.stringify(userEdit));
+        updatePerfil(usuario?.id, f);
+    }
 
     return (
         <div className="perfil-info">
@@ -28,17 +62,17 @@ const FormPerfil = () => {
                 <div className="form-info">
                     <div className="box">
                         <label htmlFor="usuario">Usuario</label>
-                        <input type="text" value={usuario?.usuario}/>
+                        <input type="text" name="usuario" value={userEdit?.usuario} onChange={onChangeUser}/>
                     </div>
 
                     <div className="box">
                         <label htmlFor="correo">Correo</label>
-                        <input type="text" value={usuario?.correo}/>
+                        <input type="text" name="correo" value={userEdit?.correo} onChange={onChangeUser}/>
                     </div>
 
                     <div className="box">
                         <label htmlFor="clave">Contraseña</label>
-                        <input type="password"/>
+                        <input type="password" name="password"/>
                     </div>
 
                     <div className="box">
@@ -48,7 +82,7 @@ const FormPerfil = () => {
 
                     <div className="box box-avatar">
                         <label htmlFor="avatar">Avatar</label>
-                        <input type="file"/>
+                        <input type="file" onChange={(e) => subirArchivo(e.target.files[0])}/>
                         <p>La imagen debe ser jpg, png o bmp.</p>
                     </div>
                 </div>
@@ -57,20 +91,22 @@ const FormPerfil = () => {
                 <div className="form-info">
                     <div className="box">
                         <label htmlFor="telefono">Telefono</label>
-                        <input type="tel"/>
+                        <input type="tel" name="telefono" value={userEdit?.telefono} onChange={onChangeUser}/>
                     </div>
 
                     <div className="box">
                         <label htmlFor="gais">Pais</label>
-                        <select name="pais">
+                        <select name="pais" value={userEdit?.pais} onChange={onChangeUser}>
+                            <option value="">Seleccione una opción</option>
                             <option value="Colombia">Colombia</option>
-                            <option value="Colombia">España</option>
+                            <option value="Espana">España</option>
                         </select>
                     </div>
 
                     <div className="box">
                         <label htmlFor="genero">Genero</label>
-                        <select name="genero">
+                        <select name="genero" value={userEdit?.genero} onChange={onChangeUser}>
+                            <option value="">Seleccione una opción</option>
                             <option value="masculino">Masculino</option>
                             <option value="femenino">Femenino</option>
                             <option value="otro">Otro</option>
@@ -81,21 +117,21 @@ const FormPerfil = () => {
                 <div className="form-info">
                     <div className="box">
                         <label htmlFor="facebook">Facebook</label>
-                        <input type="text"/>
+                        <input type="text" name="facebook" value={userEdit?.facebook} onChange={onChangeUser}/>
                     </div>
 
                     <div className="box">
                         <label htmlFor="twitter">Twitter</label>
-                        <input type="text"/>
+                        <input type="text" name="twitter" value={userEdit?.twitter} onChange={onChangeUser}/>
                     </div>
 
                     <div className="box">
                         <label htmlFor="instagram">Instagram</label>
-                        <input type="text"/>
+                        <input type="text" name="instagram" value={userEdit?.instagram} onChange={onChangeUser}/>
                     </div>
                 </div>
 
-                <button className="btn-guardar">Guardar</button>
+                <button className="btn-guardar" onClick={actualizarUsuario}>Guardar</button>
 
                 <p className="mensaje-elim">Ten cuidado la eliminacion de la cuenta es <b>Permanente</b></p>
                 <button className="btn-eliminar">Eliminar cuenta</button>

@@ -36,9 +36,9 @@ const PerfilState = props => {
         }
     }
 
-    const updatePerfil = async (datos) => {
+    const updatePerfil = async (usuarioId, file) => {
         try {
-            const respuesta = await clienteAxios.put('/perfil/', datos);
+            const respuesta = await clienteAxios.put(`/usuarios/${usuarioId}/`, file);
 
             dispatch({
                 type: ACTUALIZAR_PERFIL,
