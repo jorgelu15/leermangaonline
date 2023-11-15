@@ -35,7 +35,7 @@ export default function AccountMenu() {
 
     return (
         <React.Fragment>
-        <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', cursor: 'pointer' }}>
             
             <Tooltip title="Perfil">
             <Box

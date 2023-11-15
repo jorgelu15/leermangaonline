@@ -106,12 +106,15 @@ const FormPerfil = () => {
 
                 <button onClick={() => setOpenMG(true)} className={'btn-crear-grupo'}>Crear grupo</button>
 
+                {/* <MagicMotion> */}
                 <div className="cards-scan">
 
                 {
                     grupos ?
                         grupos.length !== 0 ? grupos.map((item) => item.estado ? (
+                            
                             <CardScanPl key={item.id} grupo={item}></CardScanPl>
+                            
                         ) : null) :
                         <div>
                             <p className="">No hay grupos</p>
@@ -120,6 +123,7 @@ const FormPerfil = () => {
                 }
 
                 </div>
+                {/* </MagicMotion> */}
                 
             </div>
         }

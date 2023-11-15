@@ -11,15 +11,16 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0px;
-  padding-top: 25px;
+  padding-top: 5px;
   max-width: 1280px;
   margin: auto;
 }
 
 .header--home .navbar{
   max-width: none;
-  padding: 20px 60px;
+  padding: 0px 10px;
+  padding-top: 5px;
+  padding-right: 20px;
 }
 
 .nav-left {
@@ -38,6 +39,10 @@
 .nav-left ul li a {
   color: var(--white);
   font-weight: 400;
+}
+
+.nav-left img {
+  height: 80px;
 }
 
 .nav-right{

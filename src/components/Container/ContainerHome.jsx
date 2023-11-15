@@ -20,41 +20,41 @@ const ContainerHome = (props) => {
             {
                 tab: "Mangas",
                 cards: [
-                    {nombre: "jujutsu Kaisen", categoria: "Manga", calif: "8.53", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.jpg"},
-                    {nombre: "oshi no ko", categoria: "Manga", calif: "9.05", url: "https://otakuteca.com/images/books/cover/5efe4afd1d0c5.jpg"},
-                    {nombre: "Kanojo, Okarishimasu", categoria: "Manga", calif: "3.91", url: "https://otakuteca.com/images/books/cover/606cda6f538c7.jpg"},
-                    {nombre: "Class de 2 Banme ni...", categoria: "Manga", calif: "8.40", url: "https://otakuteca.com/images/books/cover/62e1dbb29f444.jpg"},
-                    {nombre: "Kanan-sama Might be...", categoria: "Manga", calif: "8.92", url: "https://otakuteca.com/images/books/cover/629634d78ab1c.jpg"},
-                    {nombre: "Senshitibu boi", categoria: "Manga", calif: "7.38", url: "https://otakuteca.com/images/books/cover/646dff10a1fa2.jpg"},
-                    {nombre: "El mundo paralelo con...", categoria: "Manga", calif: "7.50", url: "https://otakuteca.com/images/books/cover/65010240f0a56.jpg"},
-                    {nombre: "KINGDOW", categoria: "Manga", calif: "9.59", url: "https://otakuteca.com/images/books/cover/5bc121ab8e186.jpg"},
-                    {nombre: "Isekai Ship Summoning", categoria: "Manga", calif: "9.00", url: "https://otakuteca.com/images/books/cover/61708df723eda.jpg"},
-                    {nombre: "Yuusha Shoukan ni Ma", categoria: "Manga", calif: "8.54", url: "https://otakuteca.com/images/books/cover/5dbfb96f1ef61.jpg"},
-                    {nombre: "Isekai Shoukan wa", categoria: "Manga", calif: "6.17", url: "https://otakuteca.com/images/books/cover/63813864eafb7.jpg"},
-                    {nombre: "Kagurabachi", categoria: "Manga", calif: "6.71", url: "https://otakuteca.com/images/books/cover/65076987c0141.jpg"},
+                    {nombre: "jujutsu Kaisen", categoria: "Manga", calif: "8.53", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.webp"},
+                    {nombre: "oshi no ko", categoria: "Manga", calif: "9.05", url: "https://otakuteca.com/images/books/cover/5efe4afd1d0c5.webp"},
+                    {nombre: "Kanojo, Okarishimasu", categoria: "Manga", calif: "3.91", url: "https://otakuteca.com/images/books/cover/606cda6f538c7.webp"},
+                    {nombre: "Class de 2 Banme ni...", categoria: "Manga", calif: "8.40", url: "https://otakuteca.com/images/books/cover/62e1dbb29f444.webp"},
+                    {nombre: "Kanan-sama Might be...", categoria: "Manga", calif: "8.92", url: "https://otakuteca.com/images/books/cover/629634d78ab1c.webp"},
+                    {nombre: "Senshitibu boi", categoria: "Manga", calif: "7.38", url: "https://otakuteca.com/images/books/cover/646dff10a1fa2.webp"},
+                    {nombre: "El mundo paralelo con...", categoria: "Manga", calif: "7.50", url: "https://otakuteca.com/images/books/cover/65010240f0a56.webp"},
+                    {nombre: "KINGDOW", categoria: "Manga", calif: "9.59", url: "https://otakuteca.com/images/books/cover/5bc121ab8e186.webp"},
+                    {nombre: "Isekai Ship Summoning", categoria: "Manga", calif: "9.00", url: "https://otakuteca.com/images/books/cover/61708df723eda.webp"},
+                    {nombre: "Yuusha Shoukan ni Ma", categoria: "Manga", calif: "8.54", url: "https://otakuteca.com/images/books/cover/5dbfb96f1ef61.webp"},
+                    {nombre: "Isekai Shoukan wa", categoria: "Manga", calif: "6.17", url: "https://otakuteca.com/images/books/cover/63813864eafb7.webp"},
+                    {nombre: "Kagurabachi", categoria: "Manga", calif: "6.71", url: "https://otakuteca.com/images/books/cover/65076987c0141.webp"},
                     
                 ]
             },
             {
                 tab: "P.Manhwas",
                 cards: [
-                    {nombre: "Solo leveling", categoria: "manhwa", calif: "9.13", url: "https://otakuteca.com/images/books/cover/5c2efcd42cd5e.jpg"},
-                    {nombre: "Maldita reencarnación", categoria: "manhwa", calif: "9.75", url: "https://otakuteca.com/images/books/cover/62b33f5a5c0f5.jpg"},
-                    {nombre: "Registros de supervivenc...", categoria: "manhwa", calif: "8.78", url: "https://otakuteca.com/images/books/cover/61fbb5bf02e45.jpg"},
-                    {nombre: "El dios de la escuela se...", categoria: "manhwa", calif: "8.78", url: "https://otakuteca.com/images/books/cover/5d3df9c5378b5.jpg"},
-                    {nombre: "La vida despues de la muerte", categoria: "manhwa", calif: "8.89", url: "https://otakuteca.com/images/books/cover/5ddde8a92558c.jpg"},
-                    {nombre: "Guerrero de nivelacion ha...", categoria: "manhwa", calif: "10.00", url: "https://otakuteca.com/images/books/cover/645feeabbf6ae.jpg"}
+                    {nombre: "Solo leveling", categoria: "manhwa", calif: "9.13", url: "https://otakuteca.com/images/books/cover/5c2efcd42cd5e.webp"},
+                    {nombre: "Maldita reencarnación", categoria: "manhwa", calif: "9.75", url: "https://otakuteca.com/images/books/cover/62b33f5a5c0f5.webp"},
+                    {nombre: "Registros de supervivenc...", categoria: "manhwa", calif: "8.78", url: "https://otakuteca.com/images/books/cover/61fbb5bf02e45.webp"},
+                    {nombre: "El dios de la escuela se...", categoria: "manhwa", calif: "8.78", url: "https://otakuteca.com/images/books/cover/5d3df9c5378b5.webp"},
+                    {nombre: "La vida despues de la muerte", categoria: "manhwa", calif: "8.89", url: "https://otakuteca.com/images/books/cover/5ddde8a92558c.webp"},
+                    {nombre: "Guerrero de nivelacion ha...", categoria: "manhwa", calif: "10.00", url: "https://otakuteca.com/images/books/cover/645feeabbf6ae.webp"}
                 ]
             },
             {
                 tab: "P.Manhuas",
                 cards: [
-                    {nombre: "La era del gran diluvio", categoria: "manhua", calif: "10.00", url: "https://otakuteca.com/images/books/cover/642cb67221a43.jpg"},
-                    {nombre: "Song of the skywalkers", categoria: "manhua", calif: "10.00", url: "https://otakuteca.com/images/books/cover/5d5fd8924ecb7.jpg"},
-                    {nombre: "Super human era", categoria: "manhua", calif: "10.00", url: "https://otakuteca.com/images/books/cover/5fe9c73717852.jpg"},
-                    {nombre: "Mis discipulas son todas in...", categoria: "manhua", calif: "7.71", url: "https://otakuteca.com/images/books/cover/5fbb1b741ba61.jpg"},
-                    {nombre: "Comienzo de la era humana", categoria: "manhua", calif: "0.00", url: "https://otakuteca.com/images/books/cover/5f4ad3371b22a.jpg"},
-                    {nombre: "¿Mi esposa es en realidad ...", categoria: "manhua", calif: "7.50", url: "https://otakuteca.com/images/books/cover/602a535b9f308.jpg"}
+                    {nombre: "La era del gran diluvio", categoria: "manhua", calif: "10.00", url: "https://otakuteca.com/images/books/cover/642cb67221a43.webp"},
+                    {nombre: "Song of the skywalkers", categoria: "manhua", calif: "10.00", url: "https://otakuteca.com/images/books/cover/5d5fd8924ecb7.webp"},
+                    {nombre: "Super human era", categoria: "manhua", calif: "10.00", url: "https://otakuteca.com/images/books/cover/5fe9c73717852.webp"},
+                    {nombre: "Mis discipulas son todas in...", categoria: "manhua", calif: "7.71", url: "https://otakuteca.com/images/books/cover/5fbb1b741ba61.webp"},
+                    {nombre: "Comienzo de la era humana", categoria: "manhua", calif: "0.00", url: "https://otakuteca.com/images/books/cover/5f4ad3371b22a.webp"},
+                    {nombre: "¿Mi esposa es en realidad ...", categoria: "manhua", calif: "7.50", url: "https://otakuteca.com/images/books/cover/602a535b9f308.webp"}
                 ]
             }
         ]
@@ -66,21 +66,21 @@ const ContainerHome = (props) => {
             {
                 tab: "Top Semanal",
                 cards: [
-                    {nombre: "One piece", categoria: "manga", calif: "1", url: "https://otakuteca.com/images/books/cover/615b37c54415c.jpg"},
-                    {nombre: "Jujutsu kaisen", categoria: "manga", calif: "2", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.jpg"},
-                    {nombre: "Solo leveling", categoria: "manhwa", calif: "3", url: "https://otakuteca.com/images/books/cover/5c2efcd42cd5e.jpg"},
-                    {nombre: "Bersek", categoria: "manga", calif: "4", url: "https://otakuteca.com/images/books/cover/5bc80d3ce44c3.jpg"},
-                    {nombre: "Naruto", categoria: "manga", calif: "5", url: "https://otakuteca.com/images/books/cover/617ebf11e0cdf.jpg"},
+                    {nombre: "One piece", categoria: "manga", calif: "1", url: "https://otakuteca.com/images/books/cover/615b37c54415c.webp"},
+                    {nombre: "Jujutsu kaisen", categoria: "manga", calif: "2", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.webp"},
+                    {nombre: "Solo leveling", categoria: "manhwa", calif: "3", url: "https://otakuteca.com/images/books/cover/5c2efcd42cd5e.webp"},
+                    {nombre: "Bersek", categoria: "manga", calif: "4", url: "https://otakuteca.com/images/books/cover/5bc80d3ce44c3.webp"},
+                    {nombre: "Naruto", categoria: "manga", calif: "5", url: "https://otakuteca.com/images/books/cover/617ebf11e0cdf.webp"},
                 ]
             },
             {
                 tab: "Top Mensual",
                 cards: [
-                    {nombre: "One piece", categoria: "manga", calif: "1", url: "https://otakuteca.com/images/books/cover/615b37c54415c.jpg"},
-                    {nombre: "Solo leveling", categoria: "manhwa", calif: "2", url: "https://otakuteca.com/images/books/cover/5c2efcd42cd5e.jpg"},
-                    {nombre: "Jujutsu kaisen", categoria: "manga", calif: "3", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.jpg"},
-                    {nombre: "Kimetsu no yaiba", categoria: "manga", calif: "4", url: "	https://otakuteca.com/images/books/cover/6347011a463ea.jpg"},
-                    {nombre: "Naruto", categoria: "manga", calif: "5", url: "https://otakuteca.com/images/books/cover/617ebf11e0cdf.jpg"},
+                    {nombre: "One piece", categoria: "manga", calif: "1", url: "https://otakuteca.com/images/books/cover/615b37c54415c.webp"},
+                    {nombre: "Solo leveling", categoria: "manhwa", calif: "2", url: "https://otakuteca.com/images/books/cover/5c2efcd42cd5e.webp"},
+                    {nombre: "Jujutsu kaisen", categoria: "manga", calif: "3", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.webp"},
+                    {nombre: "Kimetsu no yaiba", categoria: "manga", calif: "4", url: "	https://otakuteca.com/images/books/cover/6347011a463ea.webp"},
+                    {nombre: "Naruto", categoria: "manga", calif: "5", url: "https://otakuteca.com/images/books/cover/617ebf11e0cdf.webp"},
                 ]
             }
         ]
@@ -111,7 +111,7 @@ const ContainerHome = (props) => {
                             </div>
                             
                             <div className="cont-cardgr">
-                                <div className="card" style={{backgroundImage:'url(https://scontent.fctg3-1.fna.fbcdn.net/v/t39.30808-6/312722438_218464947180693_3085361177638632951_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGcV0ksLYhdrbULqiVcTzSx-b-i0mp2Uwz5v6LSanZTDOhB-qwqSoHB5jC23-Tq5EVwY6DSg9jvvE7rDbN2sBwk&_nc_ohc=CUWXI1gZaqQAX8nhnm7&_nc_ht=scontent.fctg3-1.fna&oh=00_AfBHDerXco8id1VvSwXjIHD5qSOZXoTE_Ti9txjQco2cMQ&oe=6535BDDA)'}}>
+                                <div className="card" style={{backgroundImage:'url("https://img1.japanreader.com/images/groups/logo/6111f7e3c74b0.webp")'}}>
                                     <div>
                                         <p></p>
                                         <p className="calificacion">2</p>

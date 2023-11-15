@@ -6,6 +6,8 @@ import useAuth from '../../hooks/useAuth';
 import { useEffect } from 'react';
 import AccountMenu from '../Mui/Menu/AccountMenu';
 
+import logop1 from "../../img/logop2.png"
+
 const Header = (props) => {
 
     const { autenticado, usuario, usuarioAutenticado, logOut } = useAuth();
@@ -24,7 +26,8 @@ const Header = (props) => {
             <nav className="navbar">
                 <div className="nav-left">
                     <ul>
-                        <li><Link to={routes.home}><i>LEER</i><b>MANGA</b>ONLINE</Link></li>
+                        {/* <li><Link to={routes.home}><i>LEER</i><b>MANGA</b>ONLINE</Link></li> */}
+                        <li><Link to={routes.home}><img src={logop1} /></Link></li>
                     </ul>
                     <ul className="list-menu">
                         <li><Link>DIRECTORIO</Link></li>

@@ -3,11 +3,11 @@
 .header-panel{
   /* background-color: rgb(228, 233, 248); */
   /* background-color: #f4f7fa; */
-  height: 64px;
+  /* height: 64px; */
 }
 
 .header-panel .navbar{
-  padding: 20px 30px;
+  /* padding: 20px 30px; */
 }
 
 /* .header-panel .nav-left ul li a{
@@ -32,6 +32,10 @@
   margin-left: 26px;
 }
 
+.header-panel .nav-left img{
+  height: 70px;
+}
+
 /* ----------------------------------------------------- */
 
 .panel{
@@ -49,10 +53,12 @@
 }
 
 .panel .menu-panel{
-  width: 20%;
+  width: 16%;
   max-width: 340px;
   min-width: 160px;
-  background-color: #20578e;
+  /* background-color: #20578e; */
+  background: rgb(41, 16, 133);
+  background: linear-gradient(180deg, rgb(50, 25, 160) 0%, rgb(53, 102, 237) 100%);
   padding: 30px;
 }
 
@@ -86,6 +92,8 @@
   border-radius: 3px;
   cursor: pointer;
   user-select: none;
+  margin-bottom: 6px;
+  transition: all .2s ease;
 }
 
 .panel .lista ul li:hover{
@@ -121,22 +129,24 @@
 .panel .cont-panel .filtro{
   height: auto;
   min-height: 100%;
-  background-color: rgba(240, 240, 242, 0.92);
+  background-color: rgb(255 255 255 / 95%);
 }
 
 .panel .portada-scan{
   display: flex;
-  padding: 30px;
+  padding: 20px 30px;
   justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(241 244 248);
+  border-bottom: 1px solid #cdcdcd;
 }
 
 .panel .portada-scan .scan{
   display: flex;
+  align-items: center;
 }
 
 .panel .portada-scan img{
-  height: 100px;
+  height: 80px;
 }
 
 .portada-scan .scan div{
@@ -158,7 +168,7 @@
 
 .portada-scan .scan .descripcion{
   font-weight: 500;
-  color: rgb(161, 161, 161);
+  color: rgb(49, 80, 133);
 }
 
 .portada-scan .estado{
@@ -179,18 +189,20 @@
 /* Panel miembros ---------------------------------------- */
 
 .panel-miembros{
-  padding: 30px;
+  /* padding: 15px; */
   text-align: left;
   color: rgb(44, 44, 44);
 }
 
 .panel-miembros .cont-miembros{
   background-color: white;
-  margin-bottom: 20px;
+  padding: 30px;
+  padding-top: 20px;
+  border-bottom: 1px solid #dddddd;
 }
 
 .panel-miembros .cont-miembros .c-table{
-  padding: 20px;
+  padding: 10px 0px;
   min-height: 200px;
 }
 
@@ -204,18 +216,18 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 16px 24px;
-  border-bottom: 1px solid rgb(208, 208, 208);
+  padding: 10px 0px;
+  /* border-bottom: 1px solid rgb(208, 208, 208); */
 }
 
 .panel-miembros .cont-miembros .titulo h2{
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 /* arreglos table mui */
 
 .css-11xur9t-MuiPaper-root-MuiTableContainer-root{
-  box-shadow: none;
+  box-shadow: 0px 0px 1px 0px black !important;
 }
 
 .css-15wwp11-MuiTableHead-root{
@@ -229,6 +241,10 @@
 .css-1ygcj2i-MuiTableCell-root, 
 .css-1ndpvdd-MuiTableCell-root{
   font-weight: bold !important;
+}
+
+.css-fikjyc-MuiTableCell-root-MuiTablePagination-root{
+  border: none !important;
 }
 
 /* botones de tabla */

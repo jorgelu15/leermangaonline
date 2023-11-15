@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import upload from "../../img/upload-solid.svg"
 import userCircle from "../../img/circle-user-solid.svg"
 
+import logop1 from "../../img/logop5.png"
+
 
 const HeaderPanel = (props) => {
 
@@ -18,7 +20,7 @@ const HeaderPanel = (props) => {
             <nav className="navbar">
                 <div className="nav-left">
                     <ul>
-                        <li><Link to={routes.home}><i>LEER</i><b>MANGA</b>ONLINE</Link></li>
+                        <li><Link to={routes.home}><img src={logop1} /></Link></li>
                     </ul>
                 </div>
                 <div className="nav-right">

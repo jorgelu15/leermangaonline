@@ -10,6 +10,7 @@ import setting from "../../img/settings.png"
 import { useNavigate } from "react-router-dom";
 
 
+
 const CardScanPl = (props) => {
     const {
         grupo,
