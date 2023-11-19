@@ -7,6 +7,7 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -87,18 +88,20 @@ export default function CustomizedAccordions() {
     <div  className='accordion'>
       {caps.map((cap)=>(<Accordion sx={{backgroundColor: 'rgb(46, 46, 46)', color: '#fff'}} onChange={handleChange(cap.panel)}>
         <AccordionSummary aria-controls= {cap.panel+"d-content"} id={cap.panel+"d-header"}>
-          <Typography>Capitulo {cap.cap}</Typography>
+          <Typography>Capitulo: 0{cap.cap}</Typography>
         </AccordionSummary>
         {cap.translators.map((translator)=>(<AccordionDetails sx={{backgroundColor: '#181818'}}>
           <Typography>
+          <Link to="../vermanga">
             <div className='typography'>  
-              <div>
-                {translator.name}
-              </div>
-              <div>
-                <p>Fecha de publicacion: {translator.date}</p>
-              </div>
+                <div>
+                  {translator.name}
+                </div>
+                <div>
+                  <p>Fecha de publicacion: {translator.date}</p>
+                </div>
             </div>
+            </Link>
           </Typography>
         </AccordionDetails>))}
         

@@ -5,6 +5,7 @@ import { useContext } from "react";
 import TableSolicitudes from "../../Mui/Tables/TableSolicitudes";
 
 import gruposContext from "../../../context/grupos/gruposContext";
+import SearchSolicitudes from "../../Search/SearchMiembros";
 
 
 const PanelSolicitudes = (props) => {
@@ -27,9 +28,11 @@ const PanelSolicitudes = (props) => {
             <div className="cont-miembros">
                 <div className="titulo">
                     <h2>Solicitudes</h2>
-                    <p>Solicitudes pendientes: {filterSolic ? filterSolic.length : 0}</p>
+                    {/* <p>Solicitudes pendientes: {filterSolic ? filterSolic.length : 0}</p> */}
                 </div>
                 <div className="c-table">
+                    <SearchSolicitudes/>
+
                     {filterSolic ? filterSolic.length !== 0 ? <TableSolicitudes solicitudesV={filterSolic}></TableSolicitudes> 
                     : <p className="mensaje">No hay solicitudes pendientes.</p> : 
                       <p className="mensaje">No hay solicitudes pendientes.</p>

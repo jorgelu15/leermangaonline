@@ -16,6 +16,7 @@ import config from "../../img/user-gear-solid.svg"
 
 import useAuth from "../../hooks/useAuth";
 import gruposContext from "../../context/grupos/gruposContext";
+import PanelControl from "./Panel/PanelControl";
 
 
 
@@ -26,7 +27,7 @@ const ContainerPanel = (props) => {
 
     const { autenticado, usuarioAutenticado } = useAuth();
 
-    const [ panel, setPanel ] = useState(4)
+    const [ panel, setPanel ] = useState(1)
 
 
     const handleChangePl = (pag) => {
@@ -87,8 +88,9 @@ const ContainerPanel = (props) => {
                         </div>
                     </div>
 
-                    { panel == 3 ?<PanelMiembros/> : null }
-                    { panel == 4 ?<PanelSolicitudes/> : null }
+                    { panel == 1 && (<PanelControl/>) }
+                    { panel == 3 && (<PanelMiembros/>) }
+                    { panel == 4 && (<PanelSolicitudes/>) }
 
                 </div>
             </main>

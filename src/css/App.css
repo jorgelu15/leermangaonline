@@ -6,6 +6,10 @@
   /* background: rgb(4, 6, 20); */
 }
 
+body.dark-mode{
+  color: white;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -855,10 +859,11 @@
 /* ----------------------------- */
 
 .manga-desc{
-  background-image: linear-gradient(to bottom, transparent, black), url('../img/background.jpg');
+  /* background-image: linear-gradient(to bottom, transparent, black), url('../img/background.jpg'); */
+  background-image: linear-gradient(to bottom, transparent, black), url('../img/juj-portada.webp');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center bottom;
+  background-position: center 25%;
   width: 100vw;
 }
 
@@ -872,7 +877,7 @@
 
 .content{
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
 }
@@ -882,8 +887,17 @@
 }
 
 .desc-content .resumen{
-  text-align:start;
+  text-align: start;
   margin-left: 30px;
+}
+
+.desc-content .resumen h1{
+  font-size: 2.6rem;
+  margin-bottom: 20px;
+}
+
+.desc-content .resumen p{
+  font-size: 1.3rem;
 }
 
 .capitulos{
@@ -896,12 +910,41 @@
 }
 
 .cap-box .wid-box, .manga-type{
-  background-color:rgb(46, 46, 46);
+  background-color:rgb(31 31 40);
   text-align: left;
 }
 
 .manga-type{
   padding: 20px;
+}
+
+.manga-type div{
+  margin-bottom: 20px;
+}
+
+.manga-type .point-red{
+  background-color: rgb(228, 0, 0);
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.manga-type .public{
+  display: flex;
+  align-items: center;
+}
+
+.manga-type .compartir .socials{
+  display: flex;
+  gap: 10px;
+  padding-top: 10px;
+}
+.manga-type .compartir .socials img{
+  width: 50px;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 .cap-box{
@@ -937,18 +980,21 @@
 }
 
 .cap-box input{
-  background-color: #000;
+  margin: 0;
   padding: 10px;
-  border-radius: 5px;
-  border: none;
-  height: 40px;
-  width: 25%;
+  background-color: rgb(31, 31, 31);
+  outline: none;
+  border: 1px solid rgb(83, 90, 117);
+  color: white;
+  min-width: 220px;
+  margin-bottom: 5px;
 }
 
 .typography{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: white;
 }
 
 .capitulos .manga-type .type-titles{
@@ -956,9 +1002,10 @@
 }
 
 .generos .genero button{
-  background-color: var(--gray);
+  background-color: rgb(104, 104, 104);
   color: #ffffff;
   border-radius: 20px;
+  border: none;
   padding: 5px;
   padding-left: 15px;
   padding-right: 15px; 

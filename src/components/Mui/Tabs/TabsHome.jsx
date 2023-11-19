@@ -89,7 +89,7 @@ export default function BasicTabs(props) {
                 item.cards.map((card)=>{
                   return (
                     <div className="cont-card">
-                      <Link to='vermanga'>
+                      <Link to='manga'>
                         <div className="card" style={{backgroundImage: `url('${card.url}')`}}>
                         <div>
                           <p className="categoria">{card.categoria}</p>

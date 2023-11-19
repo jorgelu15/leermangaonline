@@ -1,10 +1,16 @@
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import React, { useRef } from 'react';
 
 import CustomizedAccordions from "../Mui/Accordions/Accordion";
-import image from "../../img/portada.jpg"
-import chat from "../../img/chat.png"
+import image from "../../img/jujutsu-manga.jpg"
+import chat from "../../img/chat.png";
+
+import red1 from "../../img/redes/red1.png";
+import red2 from "../../img/redes/red2.png";
+import red3 from "../../img/redes/red3.png";
+import red4 from "../../img/redes/red4.png";
+import red5 from "../../img/redes/red5.png";
 
 import useAuth from "../../hooks/useAuth";
 
@@ -12,6 +18,17 @@ import useAuth from "../../hooks/useAuth";
 const ContainerManga = (props) => {
 
     const { usuario } = useAuth();
+
+    useEffect(() => {
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://lmo-manga.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        
+    }, []);
+
 
     return (
         <div>
@@ -22,8 +39,8 @@ const ContainerManga = (props) => {
                             <img src={image} alt="portada"/>
                         </div>
                         <div className="resumen">
-                            <h1>Tokyo Revengers</h1>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam laborum, nostrum quaerat incidunt, numquam fuga exercitationem cupiditate consectetur aut culpa ea atque quis dignissimos maiores libero in officia. Tenetur, eos. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio ea tempora a accusantium minus nihil. Quam doloribus hic animi consequuntur incidunt, vel asperiores quaerat explicabo nesciunt cum ab pariatur porro? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus, tempore quisquam excepturi aut amet omnis esse molestiae hic laudantium, laborum numquam blanditiis tempora eaque ratione labore doloremque nisi cum expedita.</p>
+                            <h1>Jujutsu Kaisen (2018)</h1>
+                            <p>Yuji Itadori es un estudiante con una increíble fuerza física pero no tiene ningún interés en los deportes y prefiere ser parte del club de ocultismo. Un día, espíritu maligno real aparece en la escuela y cambia la vida de Yuji para siempre.</p>
                         </div>
                     </div>
                 </div>
@@ -39,7 +56,10 @@ const ContainerManga = (props) => {
                         <CustomizedAccordions></CustomizedAccordions>
                     </div>
                     <div className="chat">
-                        <img src={chat} alt="chat"/>
+                        
+                        <div id="disqus_thread"></div>
+                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                        {/* <img src={chat} alt="chat"/> */}
                     </div>
                 </div>
                 
@@ -54,7 +74,10 @@ const ContainerManga = (props) => {
                     </div>
                     <div className="estado">
                         <p className="type-titles">Estado</p>
-                        <p>Publicandose</p>
+                        <div className="public">
+                            <div className="point-red"></div>
+                            <p>Publicandose</p>
+                        </div>
                     </div>
                     <div className="tipo">
                         <p className="type-titles">Tipo</p>
@@ -63,7 +86,11 @@ const ContainerManga = (props) => {
                     <div className="compartir">
                         <p className="type-titles">Compartir</p>
                         <div className="socials">
-                            
+                            <img src={red1} />
+                            <img src={red2} />
+                            <img src={red3} />
+                            <img src={red4} />
+                            <img src={red5} />
                         </div>
                     </div>
                 </div>

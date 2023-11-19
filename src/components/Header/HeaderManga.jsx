@@ -13,7 +13,7 @@ const Header = (props) => {
                     </ul>
                     <div className="info">
                         <div>
-                            <p className='title'><a href="#">Jujutsu Kaisen </a>Capitulo 70.00 Inventario Oculto...</p>
+                            <p className='title'><Link to="../manga">Jujutsu Kaisen</Link> Capitulo 70.00 Inventario Oculto...</p>
                             <p>Subido por <a href="#">El club de askin</a></p>
                         </div>
                         <p>MANGA. El sentido de la lectura es de izquierda a derecha</p>

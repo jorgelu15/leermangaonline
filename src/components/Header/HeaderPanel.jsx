@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import upload from "../../img/upload-solid.svg"
 import userCircle from "../../img/circle-user-solid.svg"
 
-import logop1 from "../../img/logop5.png"
+import logop1 from "../../img/logop2.png"
 
 
 const HeaderPanel = (props) => {

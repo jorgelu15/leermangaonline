@@ -139,6 +139,19 @@ export default function TableMiembros(props) {
     
   }
 
+  const formatDate = (fecha) => {
+    const date = new Date(fecha);
+
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    
+    return (`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -168,7 +181,7 @@ export default function TableMiembros(props) {
                 {solicitud.Usuario?.correo}
               </TableCell>
               <TableCell component="th" align="center">
-                {solicitud.createdAt}
+                {formatDate(solicitud.createdAt)}
               </TableCell>
               <TableCell component="th" align="center">
                 <div className='table-btn-cont'>
