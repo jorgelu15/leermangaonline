@@ -146,7 +146,7 @@ body.dark-mode{
   height: 250px;
   width: 100%;
   max-height: 300px;
-  border: 2px solid rgb(205 243 246 / 68%);
+  /* border: 1px solid rgba(255, 255, 255, 0.02); */
 
   background-image: url("../img/oshinoko.png");
   background-size: cover;
@@ -165,7 +165,7 @@ body.dark-mode{
 
 .sec-cards .card:hover{
   transition: ease .2s;
-  transform: translateY(-6px);
+  transform: translateY(-4px);
 }
 
 
@@ -502,11 +502,13 @@ body.dark-mode{
 .input-style.search { 
   margin: 0;
   padding: 10px;
+  width: 250px;
   background-color: rgb(31, 31, 31);
   outline: none;
   border: 1px solid rgb(83, 90, 117);
   color: white;
   min-width: 220px;
+  font-size: 16px;
 }
 
 
@@ -1047,6 +1049,7 @@ body.dark-mode{
 .main-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected,
 .aside-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected{
   background-color: rgb(177, 5, 5) !important;
+  transition: all .5s;
 }
 
 

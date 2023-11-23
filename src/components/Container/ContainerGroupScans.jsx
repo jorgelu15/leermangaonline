@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import useAuth from "../../hooks/useAuth";
 import gruposContext from "../../context/grupos/gruposContext";
 
-import CardGroups from "../cards/CardGroups";
+import CardGroups from "../Card/CardGroups";
 import SearchGrupos from "../Search/SearchGrupos";
 
 

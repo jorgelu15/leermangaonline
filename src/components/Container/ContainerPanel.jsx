@@ -68,7 +68,7 @@ const ContainerPanel = (props) => {
             <main className="cont-panel">
                 <div className="filtro">
 
-                    <div className="portada-scan">
+                    {/* <div className="portada-scan">
                         <div className="scan">
                             <img src={scan}/>
                             <div>
@@ -86,7 +86,7 @@ const ContainerPanel = (props) => {
                                 <p>16/10/2023</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     { panel == 1 && (<PanelControl/>) }
                     { panel == 3 && (<PanelMiembros/>) }

@@ -127,6 +127,37 @@
   overflow: auto;
 }
 
+/* styles scrollbar */
+
+.panel .cont-panel::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.panel .cont-panel::-webkit-scrollbar:vertical {
+  width: 12px;
+}
+
+.panel .cont-panel::-webkit-scrollbar-button:increment,
+.panel .cont-panel::-webkit-scrollbar-button {
+  display: none;
+} 
+
+.panel .cont-panel::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.panel .cont-panel::-webkit-scrollbar-thumb {
+  background-color: rgb(159, 159, 159);
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.panel .cont-panel::-webkit-scrollbar-track {
+  border-radius: 10px;  
+}
+
+/* ---------------------------------------- */
+
 .panel .cont-panel .filtro{
   height: auto;
   min-height: 100%;

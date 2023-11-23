@@ -10,11 +10,15 @@ const Login = () => {
     const { autenticado, usuario, signIn, usuarioAutenticado } = useAuth();
     
     let navigate = useNavigate();
+    let location = useLocation();
+  
+    let from = location.state?.from?.pathname || routes.login;
 
     useEffect(() => {
-        if (!autenticado) {
-            usuarioAutenticado();
-        }
+        if (autenticado) navigate(from, { replace: true });
+      }, [autenticado, navigate, from]);
+
+    useEffect(() => {
         if (autenticado) {
             navigate(routes.home)
         }

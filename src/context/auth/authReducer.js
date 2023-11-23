@@ -39,7 +39,7 @@ export default (state, action) => {
         case USUARIO_AUTENTICADO:
             return{
                 ...state,
-                autenticado:true,
+                autenticado: true,
                 usuario: action.payload,
                 cargando: false,
                 rol: parseInt(action.payload.rol)

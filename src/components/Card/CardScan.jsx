@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import PhotoMember from "../../img/member.jpg"
 
-export default function CardsScan(props) {
+export default function CardScan(props) {
 
   const {
     miembro

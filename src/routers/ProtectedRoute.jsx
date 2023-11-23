@@ -10,7 +10,13 @@ const ProtectedRoute = () => {
   const { autenticado, usuarioAutenticado } = useAuth();
   
   useEffect(() => {
-    usuarioAutenticado();
+
+    (async () => {
+      await usuarioAutenticado();
+    })()
+    
+    console.log(autenticado, "linea 18")
+
   }, [])
 
   return autenticado ? <Outlet/> : <Navigate to={routes.login} />

@@ -9,8 +9,8 @@ import useAuth from "../../hooks/useAuth";
 import gruposContext from "../../context/grupos/gruposContext";
 
 import TabsScan from "../Mui/Tabs/TabsScan";
-import CardsScan from "../cards/CardsScan";
 import FotoPerfil from "../../img/isugo.jpg";
+import CardScan from '../Card/CardScan';
 
 
 const ContainerScan = (props) => {
@@ -133,7 +133,7 @@ const ContainerScan = (props) => {
                         </div>
                         
                         <div className="member-cards">
-                            {miembros?.map((miembro) => (<CardsScan key={miembro.id} miembro={miembro}/>))}
+                            {miembros?.map((miembro) => (<CardScan key={miembro.id} miembro={miembro}/>))}
                         </div>
                     </div>
                 </TabsScan>
