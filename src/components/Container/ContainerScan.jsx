@@ -133,7 +133,7 @@ const ContainerScan = (props) => {
                         </div>
                         
                         <div className="member-cards">
-                            {miembros?.map((miembro) => (<CardScan key={miembro.id} miembro={miembro}/>))}
+                            {miembros?.map((miembro, idx) => (<CardScan key={idx} miembro={miembro}/>))}
                         </div>
                     </div>
                 </TabsScan>

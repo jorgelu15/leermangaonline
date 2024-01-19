@@ -34,7 +34,7 @@ const ContainerGroupScans = (props) => {
             <div className="groups-content">
                 <SearchGrupos/>
                 <div className="groups">
-                    {grupos?.map((scan) => (<CardGroups key={scan.id} scan={scan}/>))}
+                    {grupos?.map((scan, idx) => (<CardGroups key={idx} scan={scan}/>))}
                 </div>
             </div>
         </div>

@@ -68,7 +68,7 @@ export default function BasicTabs(props) {
             items ? 
             items.cont.map((item, idx) => {
               return (
-                <Tab label={item.tab} {...a11yProps(idx)}/>
+                <Tab key={idx} label={item.tab} {...a11yProps(idx)}/>
               )
             }) : null
           }
@@ -83,12 +83,12 @@ export default function BasicTabs(props) {
         items ? 
         items.cont.map((item, idx) => {
           return(
-            <TabPanel value={value} index={idx} dir={theme.direction}>
+            <TabPanel key={idx} value={value} index={idx} dir={theme.direction}>
             <div className="sec-cards">
               {
-                item.cards.map((card)=>{
+                item.cards.map((card, idx)=>{
                   return (
-                    <div className="cont-card">
+                    <div className="cont-card" key={idx}>
                       <Link to='manga'>
                         <div className="card" style={{backgroundImage: `url('${card.url}')`}}>
                         <div>

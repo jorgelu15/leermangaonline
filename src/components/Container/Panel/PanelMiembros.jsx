@@ -32,7 +32,7 @@ const PanelMiembros = (props) => {
                 <div className="c-table">
                     <SearchMiembros ></SearchMiembros>
 
-                    {filterSolic.length !== 0 ? <TableMiembros solicitudesV={filterSolic}></TableMiembros>
+                    {filterSolic?.length !== 0 ? <TableMiembros solicitudesV={filterSolic}></TableMiembros>
                     : <p className="mensaje">No hay miembros.</p>}
                 </div>
             </div>

@@ -6,20 +6,24 @@ import useAuth from "../hooks/useAuth";
 // import authContext from "../context/authentication/authContext";
 
 const ProtectedRoute = () => {
-
   const { autenticado, usuarioAutenticado } = useAuth();
-  
+  const [cargando, setCargando] = useState(true);
+
   useEffect(() => {
-
-    (async () => {
+    const verificarAutenticacion = async () => {
       await usuarioAutenticado();
-    })()
-    
-    console.log(autenticado, "linea 18")
+      setCargando(false); // Marcar como no cargando después de verificar
+    };
 
-  }, [])
+    verificarAutenticacion();
+  }, [usuarioAutenticado]);
 
-  return autenticado ? <Outlet/> : <Navigate to={routes.login} />
+  if (cargando) {
+    // Puedes mostrar un indicador de carga aquí si lo deseas
+    return <div>Cargando...</div>;
+  }
+
+  return autenticado ? <Outlet /> : <Navigate to={routes.login} />;
 };
 
 export default ProtectedRoute;

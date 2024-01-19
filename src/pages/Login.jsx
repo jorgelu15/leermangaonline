@@ -8,21 +8,25 @@ import useAuth from "../hooks/useAuth";
 const Login = () => {
 
     const { autenticado, usuario, signIn, usuarioAutenticado } = useAuth();
-    
+
     let navigate = useNavigate();
     let location = useLocation();
-  
-    let from = location.state?.from?.pathname || routes.login;
 
+    let from = location.state?.from?.pathname || routes.login;
+    // let from = location;
+
+    console.log(from, "from")
+
+    //useEffect para validar si existe una sesion abierta
     useEffect(() => {
         if (autenticado) navigate(from, { replace: true });
-      }, [autenticado, navigate, from]);
+    }, [autenticado, navigate, from]);
 
     useEffect(() => {
         if (autenticado) {
             navigate(routes.home)
         }
-    }, [autenticado]);
+    }, [autenticado])
 
 
     const [correo, setCorreo] = useState('');
@@ -30,10 +34,10 @@ const Login = () => {
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-    
+
         if (correo.trim() === "" || clave.trim() === "") {
-        //   mostrarAlerta('Todos los campos son obligatorios');
-          return;
+            //   mostrarAlerta('Todos los campos son obligatorios');
+            return;
         }
 
         signIn({ correo, clave });

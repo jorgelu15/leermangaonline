@@ -147,9 +147,9 @@ const FormPerfil = () => {
 
                 {
                     grupos ?
-                        grupos.length !== 0 ? grupos.map((item) => item.estado ? (
+                        grupos.length !== 0 ? grupos.map((item, idx) => item.estado ? (
                             
-                            <CardScanPl key={item.id} grupo={item}></CardScanPl>
+                            <CardScanPl key={idx} grupo={item}></CardScanPl>
                             
                         ) : null) :
                         <div>

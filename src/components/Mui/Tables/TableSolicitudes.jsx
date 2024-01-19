@@ -125,18 +125,18 @@ export default function TableSolicitudes(props) {
   };
 
   const { updateSolicitud } = useContext(gruposContext)
-  
+
 
   const handleAceptar = (solic) => {
 
     enqueueSnackbar("Miembro Aceptado", {
       variant: "success",
       anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "right"
+        vertical: "bottom",
+        horizontal: "right"
       }
     })
-    updateSolicitud({usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 1})
+    updateSolicitud({ usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 1 })
 
   }
 
@@ -145,12 +145,12 @@ export default function TableSolicitudes(props) {
     enqueueSnackbar("Solicitud Rechazada", {
       variant: "success",
       anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "right"
+        vertical: "bottom",
+        horizontal: "right"
       }
     })
-    updateSolicitud({usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 2})
-    
+    updateSolicitud({ usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 2 })
+
   }
 
   const formatDate = (fecha) => {
@@ -162,7 +162,7 @@ export default function TableSolicitudes(props) {
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const seconds = date.getSeconds();
-    
+
     return (`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
   }
 
@@ -182,8 +182,8 @@ export default function TableSolicitudes(props) {
           {(rowsPerPage > 0
             ? solicitudesV?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : solicitudesV ? solicitudesV : []
-          ).map((solicitud) => (
-            <TableRow key={solicitud.id}>
+          ).map((solicitud, idx) => (
+            <TableRow key={idx}>
               <TableCell component="th" scope="row">
                 {solicitud.Usuario?.usuario}
               </TableCell>
@@ -195,8 +195,8 @@ export default function TableSolicitudes(props) {
               </TableCell>
               <TableCell component="th" align="center">
                 <div className='table-btn-cont'>
-                  <button onClick={() => {handleAceptar(solicitud)}} className='table-btn-ac'>Aceptar</button>
-                  <button onClick={() => {handleRechazar(solicitud)}} className='table-btn-re'>Rechazar</button>
+                  <button onClick={() => { handleAceptar(solicitud) }} className='table-btn-ac'>Aceptar</button>
+                  <button onClick={() => { handleRechazar(solicitud) }} className='table-btn-re'>Rechazar</button>
                 </div>
               </TableCell>
             </TableRow>

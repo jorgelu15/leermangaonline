@@ -86,11 +86,11 @@ export default function CustomizedAccordions() {
 
   return (
     <div  className='accordion'>
-      {caps.map((cap)=>(<Accordion sx={{backgroundColor: 'rgb(46, 46, 46)', color: '#fff'}} onChange={handleChange(cap.panel)}>
+      {caps.map((cap, idx)=>(<Accordion key={idx} sx={{backgroundColor: 'rgb(46, 46, 46)', color: '#fff'}} onChange={handleChange(cap.panel)}>
         <AccordionSummary aria-controls= {cap.panel+"d-content"} id={cap.panel+"d-header"}>
           <Typography>Capitulo: 0{cap.cap}</Typography>
         </AccordionSummary>
-        {cap.translators.map((translator)=>(<AccordionDetails sx={{backgroundColor: '#181818'}}>
+        {cap.translators.map((translator, idx)=>(<AccordionDetails key={idx} sx={{backgroundColor: '#181818'}}>
           <Typography>
           <Link to="../vermanga">
             <div className='typography'>  

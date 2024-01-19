@@ -68,7 +68,7 @@ export default function TabsScan(props) {
             items ? 
             items.cont.map((item, idx) => {
               return (
-                <Tab label={item.tab} {...a11yProps(idx)}/>
+                <Tab key={idx} label={item.tab} {...a11yProps(idx)}/>
               )
             }) : null
           }
@@ -84,14 +84,14 @@ export default function TabsScan(props) {
           items.cont.map((item, idx) => {
             return(
               
-              <TabPanel value={value} index={idx} dir={theme.direction}>
+              <TabPanel key={idx} value={value} index={idx} dir={theme.direction}>
               <h3 className='title'>Proyectos {item.tab}</h3>
               <div className="sec-cards">
                 {
                   item.cards.length ?
-                  item.cards.map((card)=>{
+                  item.cards.map((card, idx)=>{
                     return (
-                      <div className="cont-card">
+                      <div key={idx} className="cont-card">
                         <div className="card" style={{backgroundImage: `url('${card.url}')`}}>
                         <div>
                           <p className="categoria">{card.categoria}</p>

@@ -169,8 +169,8 @@ export default function TableMiembros(props) {
           {(rowsPerPage > 0
             ? solicitudesV?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : solicitudesV ? solicitudesV : []
-          ).map((solicitud) => (
-            <TableRow key={solicitud.id}>
+          )?.map((solicitud, idx) => (
+            <TableRow key={idx}>
               <TableCell component="th" scope="row">
                 {solicitud.Usuario?.usuario}
               </TableCell>
@@ -205,7 +205,7 @@ export default function TableMiembros(props) {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
-              count={solicitudesV.length}
+              count={solicitudesV?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{

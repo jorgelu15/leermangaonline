@@ -67,7 +67,7 @@ export default function TabsTop(props) {
             items ? 
             items.cont.map((item, idx) => {
               return (
-                <Tab label={item.tab} {...a11yProps(idx)}/>
+                <Tab key={idx} label={item.tab} {...a11yProps(idx)}/>
               )
             }) : null
           }
@@ -82,12 +82,12 @@ export default function TabsTop(props) {
         items ? 
         items.cont.map((item, idx) => {
           return(
-            <TabPanel value={value} index={idx} dir={theme.direction}>
+            <TabPanel key={idx} value={value} index={idx} dir={theme.direction}>
             <div style={{paddingLeft: 50}}>
               {
-                item.cards.map((card)=>{
+                item.cards.map((card, idx)=>{
                   return (
-                    <div className="card">
+                    <div className="card" key={idx}>
                       <div className="cont-img" style={{backgroundImage:`url(${card.url})`}}>
                         <p>{card.calif}</p>
                       </div>
