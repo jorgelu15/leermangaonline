@@ -1,5 +1,6 @@
-import React, { useReducer } from 'react';
+    import React, { useReducer } from 'react';
 import clienteAxios from '../../config/axios';
+import clienteAxiosUpload from '../../config/axiosUpload';
 
 import PerfilContext from './perfilContext';
 import PerfilReducer from './perfilReducer';
@@ -39,7 +40,7 @@ const PerfilState = props => {
     const updatePerfil = async (usuarioId, file) => {
         try {
             const respuesta = await clienteAxios.put(`/usuarios/${usuarioId}/`, file);
-
+            const respuesta2 = await clienteAxiosUpload.post(`/upload`, file);
             dispatch({
                 type: ACTUALIZAR_PERFIL,
                 payload: respuesta.data.perfil
