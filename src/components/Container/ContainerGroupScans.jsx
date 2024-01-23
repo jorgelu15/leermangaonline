@@ -7,7 +7,6 @@ import gruposContext from "../../context/grupos/gruposContext";
 import CardGroups from "../Card/CardGroups";
 import SearchGrupos from "../Search/SearchGrupos";
 
-
 const ContainerGroupScans = (props) => {
 
     const { usuario } = useAuth();

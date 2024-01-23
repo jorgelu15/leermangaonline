@@ -30,7 +30,7 @@ const Header = (props) => {
                         <li><Link to={routes.home}><img src={logop1} /></Link></li>
                     </ul>
                     <ul className="list-menu">
-                        <li><Link>DIRECTORIO</Link></li>
+                        <li><Link to={routes.directory}>DIRECTORIO</Link></li>
                         <li><Link to={routes.groups}>GRUPOS</Link></li>
                         <li><Link>FORO</Link></li>
                     </ul>
