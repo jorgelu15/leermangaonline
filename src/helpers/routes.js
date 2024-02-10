@@ -11,7 +11,8 @@ const routes = {
     subirmanga: "/subirmanga",
     terms: "/terms",
     scanlation: "/scanlation",
-    groups: "/groups"
+    groups: "/groups",
+    directory: "/directorio"
 }
 
 export default routes;

@@ -13,8 +13,7 @@ import Subirmanga from '../pages/Subirmanga'
 import Terms from '../pages/Terms'
 import Scanlation from '../pages/Scanlation'
 import GroupScans from '../pages/GroupScans'
-
-
+import Directory from '../pages/Directory'
 
 import routes from '../helpers/routes'
 
@@ -24,6 +23,10 @@ const router = createBrowserRouter([
     {
       path: '/',
       element: <Home />
+    },
+    {
+      path: routes.directory,
+      element: <Directory/>
     },
     {
       path: routes.login,

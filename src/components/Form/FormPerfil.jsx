@@ -46,10 +46,16 @@ const FormPerfil = () => {
         if(archivo !== null){
             const nombreCortado = archivo.name.split('.');
             const extension = nombreCortado[nombreCortado.length - 1];
-            const newName = v4() + '.' + extension;
+            // const newName = v4() + '.' + extension;
+            const newName = usuario?.id + '.' + extension;
+            setUserEdit({
+                ...userEdit,
+                avatar: newName
+            });
             f.append("archivo", archivo, newName);
         }
         f.append("data", JSON.stringify(userEdit));
+        f.append("ruta", "avatar");
         updatePerfil(usuario?.id, f);
     }
 
