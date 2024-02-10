@@ -6,7 +6,7 @@
   /* background: rgb(4, 6, 20); */
 }
 
-body.dark-mode{
+body.dark-mode {
   color: white;
 }
 
@@ -36,20 +36,81 @@ body.dark-mode{
 /* Caruousel /////////////////////////////// */
 
 .wrapper {
-  max-width: auto;
   position: relative;
+  overflow: hidden;
   margin-top: 30px;
   margin-bottom: 50px;
+  height: 100%;
+}
+
+.wrapper::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: auto;
+  bottom: -50px;
 }
 
 .wrapper .carousel {
-  font-size: 0px;
-  cursor: pointer;
-  overflow: hidden;
-  white-space: nowrap;
+  width: 44.444444%;
+  margin: 0 auto 0px;
+  height: 100%;
 }
 
-.carousel img {
+.wrapper .carousel::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+.wrapper .carousel .carousel-slider {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 100%;
+  overflow: visible;
+  opacity: 1;
+}
+
+.wrapper .carousel .carousel-slider .carousel-slider-draggable {
+  padding: 0;
+  height: 100%;
+  overflow: visible;
+}
+
+.wrapper .carousel .carousel-slider .carousel-slider-draggable .carousel-slider-track {
+  height: 100% !important;
+  overflow: hidden;
+  display: flex;
+  opacity: 1;
+  opacity: 1;
+  height: 100%;
+}
+
+.wrapper .carousel .carousel-slider .carousel-slider-draggable .carousel-slider-track .track {
+  width: 846px;
+  margin: 0;
+  transform: scale(.8);
+  display: flex;
+}
+
+.wrapper .carousel .carousel-slider .carousel-slider-draggable .carousel-slider-track .track img {
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* .carousel img {
   height: 340px;
   object-fit: cover;
   margin-left: 14px;
@@ -66,8 +127,8 @@ body.dark-mode{
     width: calc(100% / 2);
   }
 
-  .list-menu{
-    display: none!important;
+  .list-menu {
+    display: none !important;
   }
 }
 
@@ -80,7 +141,7 @@ body.dark-mode{
   .list-menu {
     display: none !important;
   }
-}
+} */
 
 /* Main */
 
@@ -134,7 +195,7 @@ body.dark-mode{
   width: 100%;
 }
 
-.cont-card{
+.cont-card {
   width: 16.66666667%;
   height: 250px;
   padding: 0 15px;
@@ -142,7 +203,7 @@ body.dark-mode{
   margin-bottom: 15px;
 }
 
-.sec-cards .card{
+.sec-cards .card {
   height: 250px;
   width: 100%;
   max-height: 300px;
@@ -163,7 +224,7 @@ body.dark-mode{
   transition: ease .2s;
 }
 
-.sec-cards .card:hover{
+.sec-cards .card:hover {
   transition: ease .2s;
   transform: translateY(-4px);
 }
@@ -184,7 +245,7 @@ body.dark-mode{
   border-radius: 15px;
 }
 
-.sec-cards .card .calificacion{
+.sec-cards .card .calificacion {
   color: white;
   background-color: rgb(208, 0, 0);
   font-weight: 600;
@@ -228,7 +289,7 @@ body.dark-mode{
 }
 
 
-.sec-grupos .cont-cardgr{
+.sec-grupos .cont-cardgr {
   width: 33.333333%;
   min-width: 250px;
   padding: 0px 15px;
@@ -238,7 +299,7 @@ body.dark-mode{
 
 .sec-grupos .sec-cards .card {
   background-image: url("../img/isugo.jpg");
-  background-position: center;  
+  background-position: center;
   background-repeat: no-repeat;
   border: none;
   width: 100%;
@@ -413,12 +474,12 @@ body.dark-mode{
   border-radius: 20px;
 }
 
-.sec-chatmanga img{
+.sec-chatmanga img {
   width: 100%;
   margin-top: 20px;
 }
 
-.sec-chatmanga img{
+.sec-chatmanga img {
   width: 100%;
   margin-top: 20px;
 }
@@ -499,7 +560,7 @@ body.dark-mode{
   color: #000;
 }
 
-.input-style.search { 
+.input-style.search {
   margin: 0;
   padding: 10px;
   width: 250px;
@@ -804,33 +865,33 @@ body.dark-mode{
   }
 }
 
-.menu-accordion{
+.menu-accordion {
   display: none;
 }
 
-.css-vuaoq9-MuiPaper-root-MuiAccordion-root.Mui-expanded{
+.css-vuaoq9-MuiPaper-root-MuiAccordion-root.Mui-expanded {
   margin: 0px !important;
 }
 
-.css-vuaoq9-MuiPaper-root-MuiAccordion-root:before{
+.css-vuaoq9-MuiPaper-root-MuiAccordion-root:before {
   display: none;
 }
 
-.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root{
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
   padding: 0px !important;
 }
 
-.css-vuaoq9-MuiPaper-root-MuiAccordion-root{
+.css-vuaoq9-MuiPaper-root-MuiAccordion-root {
   box-shadow: none !important;
   border-bottom: 1px solid white;
 }
 
-.css-vuaoq9-MuiPaper-root-MuiAccordion-root:last-of-type{
+.css-vuaoq9-MuiPaper-root-MuiAccordion-root:last-of-type {
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
 }
 
-.css-ahj2mt-MuiTypography-root{
+.css-ahj2mt-MuiTypography-root {
   text-align: left;
 }
 
@@ -840,27 +901,27 @@ body.dark-mode{
 }
 
 .css-15v22id-MuiAccordionDetails-root ul li,
-.css-15v22id-MuiAccordionDetails-root p{
+.css-15v22id-MuiAccordionDetails-root p {
   padding-bottom: 10px;
 }
 
 .css-15v22id-MuiAccordionDetails-root ul li a,
-.css-15v22id-MuiAccordionDetails-root p{
+.css-15v22id-MuiAccordionDetails-root p {
   color: rgb(201, 201, 201);
 }
 
-.css-15v22id-MuiAccordionDetails-root ul li a:hover{
+.css-15v22id-MuiAccordionDetails-root ul li a:hover {
   color: rgb(255, 255, 255);
 }
 
-.css-i4bv87-MuiSvgIcon-root{
+.css-i4bv87-MuiSvgIcon-root {
   color: white;
 }
 
 
 /* ----------------------------- */
 
-.manga-desc{
+.manga-desc {
   /* background-image: linear-gradient(to bottom, transparent, black), url('../img/background.jpg'); */
   background-image: linear-gradient(to bottom, transparent, black), url('../img/juj-portada.webp');
   background-size: cover;
@@ -869,7 +930,7 @@ body.dark-mode{
   width: 100vw;
 }
 
-.desc-content{
+.desc-content {
   max-width: 1280px;
   display: flex;
   margin: auto;
@@ -877,32 +938,32 @@ body.dark-mode{
   align-items: end;
 }
 
-.content{
+.content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
 }
 
-.desc-content .imagen img{
+.desc-content .imagen img {
   height: 380px;
 }
 
-.desc-content .resumen{
+.desc-content .resumen {
   text-align: start;
   margin-left: 30px;
 }
 
-.desc-content .resumen h1{
+.desc-content .resumen h1 {
   font-size: 2.6rem;
   margin-bottom: 20px;
 }
 
-.desc-content .resumen p{
+.desc-content .resumen p {
   font-size: 1.3rem;
 }
 
-.capitulos{
+.capitulos {
   max-width: 1280px;
   margin: auto;
   display: flex;
@@ -911,20 +972,21 @@ body.dark-mode{
   margin-bottom: 50px;
 }
 
-.cap-box .wid-box, .manga-type{
-  background-color:rgb(31 31 40);
+.cap-box .wid-box,
+.manga-type {
+  background-color: rgb(31 31 40);
   text-align: left;
 }
 
-.manga-type{
+.manga-type {
   padding: 20px;
 }
 
-.manga-type div{
+.manga-type div {
   margin-bottom: 20px;
 }
 
-.manga-type .point-red{
+.manga-type .point-red {
   background-color: rgb(228, 0, 0);
   width: 14px;
   height: 14px;
@@ -933,31 +995,32 @@ body.dark-mode{
   margin-right: 10px;
 }
 
-.manga-type .public{
+.manga-type .public {
   display: flex;
   align-items: center;
 }
 
-.manga-type .compartir .socials{
+.manga-type .compartir .socials {
   display: flex;
   gap: 10px;
   padding-top: 10px;
 }
-.manga-type .compartir .socials img{
+
+.manga-type .compartir .socials img {
   width: 50px;
   border-radius: 2px;
   cursor: pointer;
 }
 
-.cap-box{
+.cap-box {
   width: 68%;
 }
 
-.cap-box hr{
+.cap-box hr {
   width: 100%;
 }
 
-.cap-box .wid-box .start-box{
+.cap-box .wid-box .start-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -966,22 +1029,22 @@ body.dark-mode{
   padding-top: 10px;
 }
 
-.cap-box .wid-box{
+.cap-box .wid-box {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.cap-box .accordion{
+.cap-box .accordion {
   width: 100%;
 }
 
-.manga-type{
+.manga-type {
   width: 30%;
 }
 
-.cap-box input{
+.cap-box input {
   margin: 0;
   padding: 10px;
   background-color: rgb(31, 31, 31);
@@ -992,29 +1055,29 @@ body.dark-mode{
   margin-bottom: 5px;
 }
 
-.typography{
+.typography {
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
 }
 
-.capitulos .manga-type .type-titles{
+.capitulos .manga-type .type-titles {
   font-size: 25px;
 }
 
-.generos .genero button{
+.generos .genero button {
   background-color: rgb(104, 104, 104);
   color: #ffffff;
   border-radius: 20px;
   border: none;
   padding: 5px;
   padding-left: 15px;
-  padding-right: 15px; 
+  padding-right: 15px;
   margin: 5px;
 }
 
-.chat{
+.chat {
   margin-top: 50px;
 }
 
@@ -1026,12 +1089,12 @@ body.dark-mode{
 } */
 
 .main-home .css-1ujnqem-MuiTabs-root,
-.aside-home .css-1ujnqem-MuiTabs-root{
+.aside-home .css-1ujnqem-MuiTabs-root {
   border-radius: 10px !important;
   margin-bottom: 20px;
 }
 
-.css-1vw5i9y-MuiButtonBase-root-MuiTab-root{
+.css-1vw5i9y-MuiButtonBase-root-MuiTab-root {
   font-weight: bold !important;
   font-size: 1.2rem !important;
   text-transform: none !important;
@@ -1042,46 +1105,46 @@ body.dark-mode{
 }
 
 .main-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root,
-.aside-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root{
+.aside-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root {
   background-color: #ffffff0d !important;
 }
 
 .main-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected,
-.aside-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected{
+.aside-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected {
   background-color: rgb(177, 5, 5) !important;
   transition: all .5s;
 }
 
 
 
-.css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected{
+.css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected {
   /* background-color: transparent; */
 }
 
-.css-8je8zh-MuiTouchRipple-root{
+.css-8je8zh-MuiTouchRipple-root {
   display: none;
 }
 
-.css-11yukd5-MuiTabs-indicator{
+.css-11yukd5-MuiTabs-indicator {
   display: none;
 }
 
-.css-19kzrtu{
+.css-19kzrtu {
   padding: 0px !important;
 }
 
 
 @media (max-width: 1200px) {
-  
-  .cont-card{
+
+  .cont-card {
     width: 25%;
   }
 
-  .sec-noticias .cards{
+  .sec-noticias .cards {
     flex-direction: column;
   }
 
-  .sec-noticias .card{
+  .sec-noticias .card {
     width: 100%;
     margin-bottom: 15px;
   }
@@ -1089,8 +1152,8 @@ body.dark-mode{
 
 
 @media (max-width: 990px) {
-  
-  .cont-card{
+
+  .cont-card {
     width: 33.33333333%;
   }
 
@@ -1100,31 +1163,31 @@ body.dark-mode{
     width: 100%;
   }
 
-  .aside-home{
+  .aside-home {
     display: none;
   }
 
-  .main-home{
+  .main-home {
     width: 100%;
   }
 
-  .sec-grupos .cont-cardgr{
+  .sec-grupos .cont-cardgr {
     width: 49%;
   }
 
   /* -------------------------------- */
 
-  .manga-desc .desc-content .content{
+  .manga-desc .desc-content .content {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .manga-desc{
+  .manga-desc {
     background-image: var(--barStas) !important;
   }
 
-  .manga-desc .desc-content{
+  .manga-desc .desc-content {
     height: auto;
   }
 
@@ -1135,20 +1198,21 @@ body.dark-mode{
     width: 90%;
   }
 
-  .capitulos .manga-type, .capitulos .cap-box{
+  .capitulos .manga-type,
+  .capitulos .cap-box {
     width: 100%;
     margin-bottom: 25px;
   }
 
-  .capitulos .chat img{
+  .capitulos .chat img {
     width: 100%;
   }
 
-  .capitulos .chat{
+  .capitulos .chat {
     margin-top: 25px;
   }
 
-  .manga-desc .imagen{
+  .manga-desc .imagen {
     width: 100%;
     background-image: linear-gradient(to bottom, transparent, black), url('../img/background.jpg') !important;
     background-repeat: no-repeat !important;
@@ -1156,17 +1220,17 @@ body.dark-mode{
     background-size: cover;
   }
 
-  .manga-desc .imagen{
+  .manga-desc .imagen {
     padding-top: 200px;
     padding-bottom: 20px;
   }
 
-  .desc-content .resumen{
+  .desc-content .resumen {
     width: 90%;
     margin: 0;
   }
-  
-  .desc-content .resumen h1{
+
+  .desc-content .resumen h1 {
     text-align: center;
     margin-top: 30px;
     margin-bottom: 10px;
@@ -1175,27 +1239,27 @@ body.dark-mode{
 }
 
 @media (max-width: 768px) {
-  
-  .cont-card{
+
+  .cont-card {
     width: 50%;
   }
 }
 
 /* manga-view -------------------------------- */
 
-.manga-view{
+.manga-view {
   max-width: 1260px;
   margin: auto;
   margin-bottom: 40px;
 }
 
-.manga-view img{
+.manga-view img {
   width: 100%;
 }
 
 /* Login register ------------------------------- */
 
-.cont-login{
+.cont-login {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1211,16 +1275,16 @@ body.dark-mode{
 /* alertas -------------------------------------- */
 
 
-.go167266335{
+.go167266335 {
   font-size: 1rem !important;
   box-shadow: none !important;
 }
 
-.go3162094071{
+.go3162094071 {
   padding-left: 16px !important;
 }
 
 /* success */
-.go1725278324{
+.go1725278324 {
   background-color: rgba(59, 157, 59, 0.9) !important;
 }
