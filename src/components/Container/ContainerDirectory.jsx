@@ -73,17 +73,22 @@ const ContainerDirectory = (props) => {
 
     return (
         <div className="scan-groups">
+
+            <aside className="filter">
+                <div className="title">
+                    <h3>Directorio</h3>
+                </div>
+                <section className="sec-filter">
+                    <FormFilter/>
+                </section>
+            </aside>
+            
             <main className="main-home">
                 <SearchDirectory />
                 <div className="groups">
                     <CardDirectory cards={cards} />
                 </div>
             </main>
-            <aside className="filter">
-                <section className="sec-filter">
-                    <FormFilter/>
-                </section>
-            </aside>
         </div>
     )
 }
