@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 
 import lupa from "../../img/lupa.svg"
+import directorioContext from "../../context/directorio/directorioContext";
 
 const SearchDirectory = (props) => {
 
@@ -8,6 +9,7 @@ const SearchDirectory = (props) => {
 
   // const productsContext = useContext(ProductsContext);
   // const { filtrar } = productsContext;
+  const { filtrar } = useContext(directorioContext);
 
   const [busqueda, guardarBusqueda] = useState({
     codigo: "",
@@ -21,7 +23,7 @@ const SearchDirectory = (props) => {
       [e.target.name]: e.target.value,
     });
     // setPage(0);
-    // filtrar(e.target.value);
+    filtrar(e.target.value);
   };
 
   return (

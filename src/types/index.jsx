@@ -27,6 +27,10 @@ export const OBTENER_MIEMBROS = 'OBTENER_MIEMBROS';
 export const OBTENER_PERFIL = 'OBTENER_PERFIL';
 export const ACTUALIZAR_PERFIL = 'ACTUALIZAR_PERFIL';
 
+//directorio
+export const OBTENER_SERIES = 'OBTENER_SERIES';
+export const FILTRAR = 'FILTRAR';
+
 
 
 
