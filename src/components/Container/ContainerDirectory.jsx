@@ -59,6 +59,8 @@ const ContainerDirectory = (props) => {
 
     const { filtrados } = useContext(directorioContext);
 
+    const [filters, setFilters] = useState([])
+
     useEffect(() => {
         getAllGrupos()
     }, [])
@@ -82,12 +84,12 @@ const ContainerDirectory = (props) => {
                     <h3>Directorio</h3>
                 </div>
                 <section className="sec-filter">
-                    <FormFilter/>
+                    <FormFilter filters={filters} setFilters={setFilters}/>
                 </section>
             </aside>
             
             <main className="main-home">
-                <SearchDirectory />
+                <SearchDirectory filters={filters}/>
                 <div className="groups">
                     <CardDirectory cards={filtrados} />
                 </div>

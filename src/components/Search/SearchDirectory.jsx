@@ -5,7 +5,7 @@ import directorioContext from "../../context/directorio/directorioContext";
 
 const SearchDirectory = (props) => {
 
-  // const { setPage } = props;
+  const { filters } = props;
 
   // const productsContext = useContext(ProductsContext);
   // const { filtrar } = productsContext;
@@ -23,13 +23,16 @@ const SearchDirectory = (props) => {
       [e.target.name]: e.target.value,
     });
     // setPage(0);
-    filtrar(e.target.value);
   };
+
+  const onClickBuscar = () => {
+    filtrar(codigo, filters);
+  }
 
   return (
     <div className="query">
       <input type="text" className="input-src" placeholder="Buscar..." name="codigo" value={codigo} onChange={onChange}/>
-      <button><img src={lupa}></img></button>
+      <button onClick={onClickBuscar}><img src={lupa}></img></button>
     </div>
   );
 };

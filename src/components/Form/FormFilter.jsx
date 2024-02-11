@@ -1,9 +1,12 @@
 import { useState } from "react";
 import AccordionFilters from "../Mui/Accordions/AccordionFilters";
 
-const FormFilter = () => {
+const FormFilter = (props) => {
 
-    const [filters, setFilters] = useState([])
+    const {
+        filters,
+        setFilters
+      } = props;
 
     return (
         <>

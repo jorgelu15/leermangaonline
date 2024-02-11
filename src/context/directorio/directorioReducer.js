@@ -17,9 +17,11 @@ export default (state, action) => {
             return {
                 ...state,
                 filtrados: state.series.filter((item) => {
-                    const searchValue = action.payload.toLowerCase();
+                    const searchValue = action.payload[0].toLowerCase();
                     const nombreIncluido = item.nombre.toLowerCase().includes(searchValue);
-                    return nombreIncluido;
+                    const filtrosIncluidos = action.payload[1].length ? action.payload[1].every(genero => item.generos.includes(genero)) : 1;
+                    console.log(item.generos.every(genero => action.payload[1].includes(genero)));
+                    return nombreIncluido & filtrosIncluidos;
                 })
             }
         case MENSAJE_ERROR:
