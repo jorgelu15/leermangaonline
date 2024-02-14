@@ -16,7 +16,7 @@ const ProtectedRoute = () => {
     };
 
     verificarAutenticacion();
-  }, [usuarioAutenticado]);
+  }, []);
 
   if (cargando) {
     // Puedes mostrar un indicador de carga aquí si lo deseas
