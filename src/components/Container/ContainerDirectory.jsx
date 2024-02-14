@@ -8,6 +8,7 @@ import SearchDirectory from "../Search/SearchDirectory";
 import CardDirectory from "../Card/CardDirectory";
 import TabsTop from "../Mui/Tabs/TabsTop";
 import FormFilter from "../Form/FormFilter";
+import directorioContext from "../../context/directorio/directorioContext";
 
 const cards = [
     { nombre: "jujutsu Kaisen", categoria: "Manga", calif: "8.53", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.webp" },
@@ -56,6 +57,10 @@ const ContainerDirectory = (props) => {
     const { usuario } = useAuth();
     const { grupos, getAllGrupos } = useContext(gruposContext)
 
+    const { filtrados } = useContext(directorioContext);
+
+    const [filters, setFilters] = useState([])
+
     useEffect(() => {
         getAllGrupos()
     }, [])
@@ -73,17 +78,22 @@ const ContainerDirectory = (props) => {
 
     return (
         <div className="scan-groups">
-            <main className="main-home">
-                <SearchDirectory />
-                <div className="groups">
-                    <CardDirectory cards={cards} />
-                </div>
-            </main>
+
             <aside className="filter">
+                <div className="title">
+                    <h3>Directorio</h3>
+                </div>
                 <section className="sec-filter">
-                    <FormFilter/>
+                    <FormFilter filters={filters} setFilters={setFilters}/>
                 </section>
             </aside>
+            
+            <main className="main-home">
+                <SearchDirectory filters={filters}/>
+                <div className="groups">
+                    <CardDirectory cards={filtrados} />
+                </div>
+            </main>
         </div>
     )
 }
