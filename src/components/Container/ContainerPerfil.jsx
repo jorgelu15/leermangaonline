@@ -75,7 +75,7 @@ const ContainerPerfil = (props) => {
 
                     <div className="img">
                         {/* <Avatar sx={{ width: 200, height: 200 }}></Avatar> */}
-                        <Avatar src={FotoPerfil} sx={{ width: 200, height: 200 }}></Avatar>
+                        <Avatar src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/avatar/' + usuario.avatar} sx={{ width: 200, height: 200 }}></Avatar>
                         {/* <img src={FotoPerfil} alt="" /> */}
                     </div>
 
