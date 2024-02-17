@@ -131,6 +131,10 @@
   width: 75%;
 }
 
+.scan-groups .main-home .sec-cards{
+  overflow: hidden;
+}
+
 .main-home .css-1ujnqem-MuiTabs-root,
 .filter .css-1ujnqem-MuiTabs-root {
   border-radius: 10px !important;
