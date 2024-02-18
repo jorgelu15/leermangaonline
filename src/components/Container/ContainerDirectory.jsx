@@ -10,6 +10,7 @@ import directorioContext from "../../context/directorio/directorioContext";
 
 
 const ContainerDirectory = (props) => {
+    const [filters, setFilters] = useState([])
 
     const { usuario } = useAuth();
     const { filtrados } = useContext(directorioContext);
@@ -24,12 +25,19 @@ const ContainerDirectory = (props) => {
         setCounter(counter + 18)
         setData([...data, ...slice])
     }
+    
+    const initData = () => {
+        const slice = filtrados?.slice(0, 18);
+        setData(slice)
+    }
 
     useEffect(() => {
         if(filtrados){
-            getData()
-            setCounter(18)
+            initData()
+            setCounter(18)   
         }
+        // console.log(filtrados)
+        // console.log(data)
     }, [filtrados])
 
     const handleScroll = () => {
