@@ -1,8 +1,4 @@
 
-.btn-cerrar-modal{
-    display: flex;
-    align-items: center;
-}
 
 .cont-modal{
     min-width: 600px;
@@ -16,6 +12,7 @@
     padding: 15px 20px;
     background-color: rgb(40, 40, 65);
     border-bottom: 1px solid rgba(165, 165, 165, 0.41);
+    z-index: 1000;
 }
 
 .cont-modal .header-modal h3{
@@ -56,6 +53,19 @@
     color: rgb(255, 255, 255);
 }
 
+.form-modal .box select{
+    width: 100%;
+    padding: 5px 10px;
+    margin: 5px 0px;
+    outline: none;
+    /* width: 100%; */
+    font-size: 1.1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(83, 90, 117);
+    border-radius: 6px;
+    color: rgb(255, 255, 255);
+}
+
 .botons-modal{
     display: flex;
     justify-content: space-between;
@@ -76,6 +86,18 @@
 
 .botons-modal .cancel{
     background-color: rgb(88, 88, 88);
+}
+
+.btn-cerrar-modal{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 4px;
+    transition: all .2s;
+}
+
+.btn-cerrar-modal:hover{
+    background-color: rgba(255, 255, 255, 0.361);
 }
 
 @media (max-width: 760px) {

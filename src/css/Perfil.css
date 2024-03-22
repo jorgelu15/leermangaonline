@@ -7,6 +7,7 @@
 .perfil-port{
   width: 100%;
   position: relative;
+  z-index: 0;
 }
 
 .perfil-port .background:before{

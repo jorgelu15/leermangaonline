@@ -1,7 +1,4 @@
-
-import { useState } from "react"
-
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 import Jujutsu from "../../img/jujutsu.png"
 
@@ -48,13 +45,13 @@ const Slider = (props) => {
                                 width: 5922,
                                 transform: "translate3d(-1950px, 0px, 0px)"
                             }}
-                        // onMouseDown={handleMouseD}
-                        // onMouseMove={handleMouseM}
-                        // onMouseUp={handleMouseU}
-                        // onTouchStart={handleMouseD}
-                        // onTouchMove={handleMouseM}
-                        // onTouchEnd={handleMouseU}
-                        // ref={carouselRef}
+                        onMouseDown={handleMouseD}
+                        onMouseMove={handleMouseM}
+                        onMouseUp={handleMouseU}
+                        onTouchStart={handleMouseD}
+                        onTouchMove={handleMouseM}
+                        onTouchEnd={handleMouseU}
+                        ref={carouselRef}
                         >
                             <div className="track">
                                 <img src={slider1} />
