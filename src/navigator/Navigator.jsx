@@ -55,6 +55,12 @@ const Subirmanga = lazy(async () => {
     new Promise((resolve) => setTimeout(resolve, 1500)),
   ]).then(([moduleExports]) => moduleExports);
 });
+const Subirobra = lazy(async () => {
+  return Promise.all([
+    import('../pages/Subirobra'),
+    new Promise((resolve) => setTimeout(resolve, 1500)),
+  ]).then(([moduleExports]) => moduleExports);
+});
 const Terms = lazy(async () => {
   return Promise.all([
     import('../pages/Terms'),
@@ -154,6 +160,16 @@ const router = createBrowserRouter([
       {
         path: routes.subirmanga,
         element: <Suspense fallback={<FallbackLoader />}><Subirmanga /></Suspense>
+      },
+    ]
+  },
+  {
+    path: '/',
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: routes.subirobra,
+        element: <Suspense fallback={<FallbackLoader />}><Subirobra /></Suspense>
       },
     ]
   },

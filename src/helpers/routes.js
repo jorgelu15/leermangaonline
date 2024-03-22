@@ -9,6 +9,7 @@ const routes = {
     manga: "/manga",
     vermanga: "/vermanga",
     subirmanga: "/subirmanga",
+    subirobra: "/subirobra",
     terms: "/terms",
     scanlation: "/scanlation",
     groups: "/groups",

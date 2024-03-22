@@ -27,13 +27,13 @@ const ModalGrupo = (props) => {
 
         // insertGrupo({usuarioId: "1", nombre, correo})
 
-        // enqueueSnackbar("Grupo creado", {
-        //     variant: "success",
-        //     anchorOrigin: {
-        //         vertical: "bottom",
-        //         horizontal: "right"
-        //     }
-        // })
+        enqueueSnackbar("Obra creada", {
+            variant: "success",
+            anchorOrigin: {
+                vertical: "bottom",
+                horizontal: "right"
+            }
+        })
     };
 
     if (!open) return null;

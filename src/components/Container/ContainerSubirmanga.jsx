@@ -57,7 +57,16 @@ const ContainerSubirmanga = (props) => {
                             placeholder = {"Seleccione el grupo"}
                         />
                         </div>
-                        
+                    </div>
+
+                    <div className="control-form">
+                        <label htmlFor="">Capitulo</label>
+                        <div className="r-sel">
+                        <Select
+                            options = {[]}
+                            placeholder = {"Seleccione el capitulo"}
+                        />
+                        </div>
                     </div>
 
                     <div className="control-form">

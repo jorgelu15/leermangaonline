@@ -54,7 +54,8 @@
   background-color: white;
   color: #000;
   border: none;
-  height: 38px;
+  min-height: 38px;
+  /* height: 38px; */
   border-radius: 3px;
   font-size: 0.9rem;
 }
