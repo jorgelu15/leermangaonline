@@ -20,8 +20,8 @@ const SerieState = props => {
     const subirSerie = async (file) => {
         try {
             const respuesta = await clienteAxios.post(`/serie`, file);
-            console.log(respuesta);
-            // const respuesta2 = await clienteAxiosUpload.post(`/uploadSerie`, file);
+            // console.log(respuesta);
+            const respuesta2 = await clienteAxiosUpload.post(`/uploadSerie`, file);
             // dispatch({
             //     type: SUBIR_SERIE,
             //     payload: respuesta.data.perfil

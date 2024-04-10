@@ -60,7 +60,7 @@ const ContainerSubirobra = (props) => {
         const nombreCortado = e.name.split('.');
         const extension = nombreCortado[nombreCortado.length - 1];
         //asignar un identificador unico para cada serie pendiente, cada serie debe tener un id unico y la imagen y banner see guardaran con ese nombre en los archivos
-        const newName = usuario?.id + '.' + extension;//esto esta mientras
+        const newName = "banner_"+usuario?.id + '.' + extension;//esto esta mientras
         setNewSerie({
             ...newSerie,
             banner: newName
@@ -71,7 +71,7 @@ const ContainerSubirobra = (props) => {
         const nombreCortado = e.name.split('.');
         const extension = nombreCortado[nombreCortado.length - 1];
         //asignar un identificador unico para cada serie pendiente, cada serie debe tener un id unico y la imagen y banner see guardaran con ese nombre en los archivos
-        const newName = usuario?.id + '.' + extension;//esto esta mientras
+        const newName = "portada_"+usuario?.id + '.' + extension;//esto esta mientras
         setNewSerie({
             ...newSerie,
             portada: newName
@@ -92,6 +92,7 @@ const ContainerSubirobra = (props) => {
             id_usuario: usuario?.id,
             idioma: "EN"
         }));
+        f.append("ruta", "obras");
         subirSerie(f);
     }
 
