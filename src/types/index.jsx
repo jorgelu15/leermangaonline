@@ -31,6 +31,9 @@ export const ACTUALIZAR_PERFIL = 'ACTUALIZAR_PERFIL';
 export const OBTENER_SERIES = 'OBTENER_SERIES';
 export const FILTRAR = 'FILTRAR';
 
+//Serie
+export const SUBIR_SERIE = 'SUBIR_SERIE';
+
 
 
 
