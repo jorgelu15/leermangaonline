@@ -13,6 +13,8 @@ import close from '../../img/close.svg'
 import useAuth from "../../hooks/useAuth"
 import serieContext from "../../context/serie/serieContext"
 
+import { v4 } from 'uuid';
+
 
 const ContainerSubirobra = (props) => {
 
@@ -20,6 +22,9 @@ const ContainerSubirobra = (props) => {
         { label: 'Okasa', value: 'okasa'},
         { label: 'tapis', value: 'tapis'},
     ]
+    // const obraId = v4();
+
+    const [obraId, setObraId] = useState(v4());
 
     const [newSerie, setNewSerie] = useState({
         banner: "",
@@ -60,7 +65,7 @@ const ContainerSubirobra = (props) => {
         const nombreCortado = e.name.split('.');
         const extension = nombreCortado[nombreCortado.length - 1];
         //asignar un identificador unico para cada serie pendiente, cada serie debe tener un id unico y la imagen y banner see guardaran con ese nombre en los archivos
-        const newName = "banner_"+usuario?.id + '.' + extension;//esto esta mientras
+        const newName = "banner_" + obraId + '.' + extension;//esto esta mientras
         setNewSerie({
             ...newSerie,
             banner: newName
@@ -71,7 +76,7 @@ const ContainerSubirobra = (props) => {
         const nombreCortado = e.name.split('.');
         const extension = nombreCortado[nombreCortado.length - 1];
         //asignar un identificador unico para cada serie pendiente, cada serie debe tener un id unico y la imagen y banner see guardaran con ese nombre en los archivos
-        const newName = "portada_"+usuario?.id + '.' + extension;//esto esta mientras
+        const newName = "portada_" + obraId + '.' + extension;//esto esta mientras
         setNewSerie({
             ...newSerie,
             portada: newName
@@ -89,10 +94,12 @@ const ContainerSubirobra = (props) => {
         }
         f.append("data", JSON.stringify({
             ...newSerie,
+            serie_uid: obraId,
             id_usuario: usuario?.id,
             idioma: "EN"
         }));
         f.append("ruta", "obras");
+        setObraId(v4());
         subirSerie(f);
     }
 
