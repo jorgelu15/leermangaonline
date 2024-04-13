@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
+import Dashboard from '@mui/icons-material/Dashboard';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import ListIcon from '@mui/icons-material/List';
@@ -61,6 +61,7 @@ export default function AccountMenu() {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
+            
             <MenuItem onClick={handleClose}>
                 <Link to={routes.perfil} 
                     style={{display: 'flex', alignItems: 'center', color: 'black'}}>
@@ -79,7 +80,15 @@ export default function AccountMenu() {
                     Mis listas
                 </Link>
             </MenuItem>
-
+            <MenuItem onClick={handleClose}>
+                <Link to={routes.panel} 
+                    style={{display: 'flex', alignItems: 'center', color: 'black'}}>
+                    <ListItemIcon>
+                        <Dashboard fontSize="small" />
+                    </ListItemIcon>
+                    Administracion
+                </Link>
+            </MenuItem>
             <MenuItem onClick={handleClose}>
                 <Link to={routes.perfil} 
                     style={{display: 'flex', alignItems: 'center', color: 'black'}}>
