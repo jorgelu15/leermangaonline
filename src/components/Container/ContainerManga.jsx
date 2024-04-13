@@ -15,6 +15,7 @@ import red5 from "../../img/redes/red5.png";
 import useAuth from "../../hooks/useAuth";
 import { useSeries } from "../../hooks/useSeries";
 import { useParams } from "react-router-dom";
+import Rating from "./Rating";
 
 
 const ContainerManga = (props) => {
@@ -56,7 +57,10 @@ const ContainerManga = (props) => {
                             <img src={`http://upload.leermangaonline.com/uploads/obras/${serie?.banner}`} alt="portada" />
                         </div>
                         <div className="resumen">
-                            <h1>{serie?.nombre}</h1>
+                            <div className="res-top">
+                                <h2>{serie?.nombre}</h2>
+                                <Rating votos={125}></Rating>
+                            </div>
                             <p>{serie?.sinopsis}</p>
                         </div>
                     </div>
