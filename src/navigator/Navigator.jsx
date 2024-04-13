@@ -134,7 +134,7 @@ const router = createBrowserRouter([
     element: <Suspense fallback={<FallbackLoader />}><Register /></Suspense>
   },
   {
-    path: routes.manga,
+    path: routes.manga + "/:id/:serie",
     element: <Suspense fallback={<FallbackLoader />}><Manga /></Suspense>
   },
   {

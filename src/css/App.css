@@ -1214,7 +1214,7 @@ body.dark-mode {
 
   .manga-desc .imagen {
     width: 100%;
-    background-image: linear-gradient(to bottom, transparent, black), url('../img/background.jpg') !important;
+    /* background-image: linear-gradient(to bottom, transparent, black), url('../img/background.jpg') !important; */
     background-repeat: no-repeat !important;
     background-position: bottom !important;
     background-size: cover;

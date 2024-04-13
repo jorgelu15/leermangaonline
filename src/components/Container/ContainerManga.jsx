@@ -13,34 +13,51 @@ import red4 from "../../img/redes/red4.png";
 import red5 from "../../img/redes/red5.png";
 
 import useAuth from "../../hooks/useAuth";
+import { useSeries } from "../../hooks/useSeries";
+import { useParams } from "react-router-dom";
 
 
 const ContainerManga = (props) => {
 
     const { usuario } = useAuth();
+    const { serie, getSerie } = useSeries();
+    let { id } = useParams();
 
     useEffect(() => {
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://lmo-manga.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-        
-    }, []);
+        if (!serie) {
+            getSerie(id);
+        }
+    }, [])
+    console.log({ serie });
+
+    // useEffect(() => {
+    //     (function () { // DON'T EDIT BELOW THIS LINE
+    //         var d = document, s = d.createElement('script');
+    //         s.src = 'https://lmo-manga.disqus.com/embed.js';
+    //         s.setAttribute('data-timestamp', +new Date());
+    //         (d.head || d.body).appendChild(s);
+    //     })();
+
+    // }, []);
+
+
 
 
     return (
         <div>
-            <section  className="manga-desc">
+            <section className="manga-desc" style={{
+                backgroundImage: `linear-gradient(to bottom, transparent, black), url('http://upload.leermangaonline.com/uploads/obras/${serie?.portada}')`,
+            }}>
                 <div className="desc-content">
                     <div className="content">
-                        <div className="imagen">
-                            <img src={image} alt="portada"/>
+                        <div className="imagen" style={{
+                            backgroundImage: `linear-gradient(to bottom, transparent, black), url('http://upload.leermangaonline.com/uploads/obras/${serie?.portada}')`,
+                        }}>
+                            <img src={`http://upload.leermangaonline.com/uploads/obras/${serie?.banner}`} alt="portada" />
                         </div>
                         <div className="resumen">
-                            <h1>Jujutsu Kaisen (2018)</h1>
-                            <p>Yuji Itadori es un estudiante con una increíble fuerza física pero no tiene ningún interés en los deportes y prefiere ser parte del club de ocultismo. Un día, espíritu maligno real aparece en la escuela y cambia la vida de Yuji para siempre.</p>
+                            <h1>{serie?.nombre}</h1>
+                            <p>{serie?.sinopsis}</p>
                         </div>
                     </div>
                 </div>
@@ -50,19 +67,19 @@ const ContainerManga = (props) => {
                     <div className="wid-box">
                         <div className="start-box">
                             <h2>Lista de capitulos</h2>
-                            <input type="text" placeholder="Buscar"/>
+                            <input type="text" placeholder="Buscar" />
                         </div>
                         <hr />
                         <CustomizedAccordions></CustomizedAccordions>
                     </div>
                     <div className="chat">
-                        
+
                         <div id="disqus_thread"></div>
                         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                         {/* <img src={chat} alt="chat"/> */}
                     </div>
                 </div>
-                
+
                 <div className="manga-type">
                     <div className="generos">
                         <p className="type-titles">Generos</p>
@@ -76,7 +93,7 @@ const ContainerManga = (props) => {
                         <p className="type-titles">Estado</p>
                         <div className="public">
                             <div className="point-red"></div>
-                            <p>Publicandose</p>
+                            <p>{serie?.estado}</p>
                         </div>
                     </div>
                     <div className="tipo">

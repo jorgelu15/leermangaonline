@@ -111,14 +111,14 @@ const ContainerSubirobra = (props) => {
                 <form action="">
 
                     <div className="control-form">
-                        <label htmlFor="">Miniatura</label>
+                        <label htmlFor="">Banner</label>
                         <div className="r-file">
                             <input type="file" name="portada" id="portada" onChange={(e) => subirBanner(e.target.files[0])}/>
                         </div>
                     </div>
 
                     <div className="control-form">
-                        <label htmlFor="">Banner</label>
+                        <label htmlFor="">Miniatura</label>
                         <div className="r-file">
                             <input type="file" name="banner" id="banner" onChange={(e) => subirPortada(e.target.files[0])}/>
                         </div>

@@ -34,7 +34,7 @@ export const FILTRAR = 'FILTRAR';
 //Serie
 export const SUBIR_SERIE = 'SUBIR_SERIE';
 
-
+export const OBTENER_SERIE  = "OBTENER_SERIE";
 
 
 

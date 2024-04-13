@@ -8,39 +8,43 @@ import gruposContext from '../../context/grupos/gruposContext';
 
 import userimg from '../../img/group-users.svg'
 
-export default function CardDirectory(props){
+export default function CardDirectory(props) {
 
-    const {
-        cards
-    } = props;
+  const {
+    cards
+  } = props;
 
-    let navigate = useNavigate();
+  let navigate = useNavigate();
 
 
-    const handleClick = async () => {
-        await getGrupo(scan)
-        navigate(routes.scanlation)
-    }
+  const handleClick = async () => {
+    await getGrupo(scan)
+    navigate(routes.scanlation)
+  }
 
-    return(
-        <div className="sec-cards">
-        {
-          cards.map((card, idx)=>{
-            return (
-              <div className="cont-card" key={idx}>
-                <Link to='/manga'>
-                  <div className="card" style={{backgroundImage: `url('${card.url}')`}}>
+  function reemplazarEspaciosConGuiones(texto) {
+    return texto.replace(/\s/g, "-");
+  }
+
+  return (
+    <div className="sec-cards">
+      {
+        cards.map((card, idx) => {
+          return (
+            <div className="cont-card" key={idx}>
+              <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre.toLowerCase())}`}>
+                <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${card.banner}')` }}>
                   <div>
                     <p className="categoria">{card.categoria}</p>
                     <p className="calificacion">{card.calif}</p>
                   </div>
                   <p className="nombre">{card.nombre}</p>
-                  </div>
-                </Link>
-              </div>
-            )
-          })
-        }
-      </div>
-    );
+                </div>
+              </Link>
+            </div>
+          )
+        })
+      }
+    </div>
+  );
 }

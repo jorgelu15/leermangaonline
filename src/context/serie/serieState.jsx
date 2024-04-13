@@ -6,13 +6,18 @@ import SerieContext from './serieContext';
 import SerieReducer from './serieReducer';
 
 import {
+    OBTENER_SERIE,
+    OBTENER_SERIES,
     SUBIR_SERIE
 } from '../../types';
 
 const SerieState = props => {
 
     const initialState = {
-        msg: null
+        msg: null,
+        series: null,
+        serie: null,
+        seriesFiltradas: null
     }
 
     const [state, dispatch] = useReducer(SerieReducer, initialState);
@@ -35,10 +40,41 @@ const SerieState = props => {
         }
     }
 
+    const getSeries = async () => {
+        try {
+            const res = await clienteAxios.get(`/serie`)
+
+            dispatch({
+                type: OBTENER_SERIES,
+                payload: res.data.series
+            })
+        } catch (error) {
+            
+        }
+    }
+
+    const getSerie  = async  (serie_uid) => {
+        try {
+            const res = await clienteAxios.get(`/serie/${serie_uid}`);
+
+            dispatch({
+                type:  OBTENER_SERIE,
+                payload: res.data.serie
+            })
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <SerieContext.Provider
             value={{
                 msg: state.msg,
+                series: state.series,
+                seriesFiltradas: state.seriesFiltradas,
+                serie: state.serie,
+                getSeries,
+                getSerie,
                 subirSerie
             }}
         >
