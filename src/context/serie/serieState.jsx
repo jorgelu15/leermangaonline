@@ -6,8 +6,10 @@ import SerieContext from './serieContext';
 import SerieReducer from './serieReducer';
 
 import {
+    OBTENER_GENEROS_SERIE,
     OBTENER_SERIE,
     OBTENER_SERIES,
+    OBTENER_VOTOS,
     SUBIR_SERIE
 } from '../../types';
 
@@ -17,6 +19,8 @@ const SerieState = props => {
         msg: null,
         series: null,
         serie: null,
+        generosSerie: null,
+        votos: null,
         seriesFiltradas: null
     }
 
@@ -53,6 +57,32 @@ const SerieState = props => {
         }
     }
 
+    const getGeneroSerie = async (serie_uid) => {
+        try {
+            const res = await clienteAxios.get(`/generoserie/${serie_uid}`);
+
+            dispatch({
+                type: OBTENER_GENEROS_SERIE,
+                payload: res.data.serie[0]?.genero_series
+            })
+        } catch (error) {
+            
+        }
+    }
+
+    const getPromVotoSerie = async (serie_uid) => {
+        try {
+            const res = await clienteAxios.get(`/votos/${serie_uid}`)
+
+            dispatch({
+                type: OBTENER_VOTOS,
+                payload: res.data.serie
+            })
+        } catch (error) {
+            
+        }
+    }
+
     const getSerie  = async  (serie_uid) => {
         try {
             const res = await clienteAxios.get(`/serie/${serie_uid}`);
@@ -73,9 +103,13 @@ const SerieState = props => {
                 series: state.series,
                 seriesFiltradas: state.seriesFiltradas,
                 serie: state.serie,
+                generosSerie: state.generosSerie,
+                votos: state.votos,
                 getSeries,
                 getSerie,
-                subirSerie
+                subirSerie,
+                getGeneroSerie,
+                getPromVotoSerie
             }}
         >
             {props.children}

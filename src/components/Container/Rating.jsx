@@ -4,7 +4,8 @@ import React, { useRef, useState } from 'react';
 const Rating = (props) => {
     
     const {
-        votos
+        votos,
+        rate
     } = props;
 
     const [rating, setRating] = useState(0);
@@ -16,7 +17,7 @@ const Rating = (props) => {
     return (
         <div className="rating">
             <div className="number">
-                <h3>4.2</h3>
+                <h3>{rate}</h3>
             </div>
             <div className='stars'>
                 <div>

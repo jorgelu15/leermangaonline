@@ -35,8 +35,8 @@ export default function CardDirectory(props) {
               <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre.toLowerCase())}`}>
                 <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${card.banner}')` }}>
                   <div>
-                    <p className="categoria">{card.categoria}</p>
-                    <p className="calificacion">{card.calif}</p>
+                    <p className="categoria">{card.tipo}</p>
+                    <p className="calificacion">{card.votos[0].prom_vot}</p>
                   </div>
                   <p className="nombre">{card.nombre}</p>
                 </div>

@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import serieContext from "../context/serie/serieContext";
 
 export const useSeries = () => {
-    const { series, serie, seriesFiltradas, getSeries, getSerie } = useContext(serieContext);
+    const { series, serie, generosSerie, votos, seriesFiltradas, getSeries, getSerie, getGeneroSerie, getPromVotoSerie } = useContext(serieContext);
 
     useEffect(() => {
         getSeries();
@@ -11,8 +11,12 @@ export const useSeries = () => {
     return {
         series,
         serie,
+        generosSerie,
+        votos,
         seriesFiltradas,
         getSeries,
-        getSerie
+        getSerie,
+        getGeneroSerie,
+        getPromVotoSerie
     }
 }

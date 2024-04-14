@@ -5,6 +5,7 @@ import React, { useRef } from 'react';
 import CustomizedAccordions from "../Mui/Accordions/Accordion";
 import image from "../../img/jujutsu-manga.jpg"
 import chat from "../../img/chat.png";
+import route from "../../helpers/routes";
 
 import red1 from "../../img/redes/red1.png";
 import red2 from "../../img/redes/red2.png";
@@ -14,22 +15,35 @@ import red5 from "../../img/redes/red5.png";
 
 import useAuth from "../../hooks/useAuth";
 import { useSeries } from "../../hooks/useSeries";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Rating from "./Rating";
 
 
 const ContainerManga = (props) => {
 
     const { usuario } = useAuth();
-    const { serie, getSerie } = useSeries();
+    const { serie, generosSerie, votos, getSerie, getGeneroSerie, getPromVotoSerie } = useSeries();
     let { id } = useParams();
 
     useEffect(() => {
         if (!serie) {
             getSerie(id);
         }
-    }, [])
-    console.log({ serie });
+    }, []);
+
+    useEffect(() => {
+        if (!generosSerie) {
+            getGeneroSerie(id);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!votos) {
+            getPromVotoSerie(id);
+        }
+    }, []);
+
+    console.log(votos?.prom_vot)
 
     // useEffect(() => {
     //     (function () { // DON'T EDIT BELOW THIS LINE
@@ -47,19 +61,19 @@ const ContainerManga = (props) => {
     return (
         <div>
             <section className="manga-desc" style={{
-                backgroundImage: `linear-gradient(to bottom, transparent, black), url('http://upload.leermangaonline.com/uploads/obras/${serie?.portada}')`,
+                backgroundImage: `linear-gradient(to bottom, transparent, black), url('http://upload.leermangaonline.com/uploads/obras/${serie?.banner}')`,
             }}>
                 <div className="desc-content">
                     <div className="content">
                         <div className="imagen" style={{
-                            backgroundImage: `linear-gradient(to bottom, transparent, black), url('http://upload.leermangaonline.com/uploads/obras/${serie?.portada}')`,
+                            backgroundImage: `linear-gradient(to bottom, transparent, black), url('http://upload.leermangaonline.com/uploads/obras/${serie?.banner}')`,
                         }}>
-                            <img src={`http://upload.leermangaonline.com/uploads/obras/${serie?.banner}`} alt="portada" />
+                            <img src={`http://upload.leermangaonline.com/uploads/obras/${serie?.portada}`} alt="portada" />
                         </div>
                         <div className="resumen">
                             <div className="res-top">
                                 <h2>{serie?.nombre}</h2>
-                                <Rating votos={125}></Rating>
+                                <Rating  rate={votos?.prom_vot} votos={2} />
                             </div>
                             <p>{serie?.sinopsis}</p>
                         </div>
@@ -87,11 +101,11 @@ const ContainerManga = (props) => {
                 <div className="manga-type">
                     <div className="generos">
                         <p className="type-titles">Generos</p>
-                        <span className="genero"><button>Seinen</button></span>
-                        <span className="genero"><button>Drama</button></span>
-                        <span className="genero"><button>Misterio</button></span>
-                        <span className="genero"><button>Sobrenatural</button></span>
-                        <span className="genero"><button>Accion</button></span>
+                        {generosSerie?.map((serie, idx) => {
+                            return (
+                                <span key={idx} className="genero"><button>{serie.genero.genero}</button></span>
+                            )
+                        })}
                     </div>
                     <div className="estado">
                         <p className="type-titles">Estado</p>

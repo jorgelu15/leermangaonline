@@ -15,7 +15,6 @@ const ContainerDirectory = (props) => {
 
     const { usuario } = useAuth();
     const { seriesFiltradas } = useSeries();
-    console.log({ seriesFiltradas })
     // const { filtrados } = useContext(directorioContext);
 
     const [data, setData] = useState([]);
@@ -59,6 +58,7 @@ const ContainerDirectory = (props) => {
         };
     }, [counter]);
 
+    console.log({ data })
 
     return (
         <div className="scan-groups">
