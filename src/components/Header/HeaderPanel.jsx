@@ -25,6 +25,7 @@ const HeaderPanel = (props) => {
                 </div>
                 <div className="nav-right">
                     <div>
+                        <p><Link to={routes.subirobra}><img src={upload} />Subir obra</Link></p>
                         <p><Link to={routes.subirmanga}><img src={upload} />Subir capitulo</Link></p>
                         <p><Link to={routes.perfil}><img src={userCircle} />Perfil</Link></p>
                     </div>

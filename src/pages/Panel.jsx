@@ -16,10 +16,7 @@ const Panel = () => {
   const navigate = useNavigate();
   let location = useLocation();
 
-    let from = location.state?.from?.pathname || routes.login;
-
-  const { grupo } = useContext(gruposContext)
-  const { solicitudes, getSolicitudes } = useContext(gruposContext)
+  let from = location.state?.from?.pathname || routes.login;
 
   useEffect(() => {
     const verificarAutenticacion = async () => {
@@ -38,10 +35,6 @@ const Panel = () => {
     verificarAutenticacion();
 }, [autenticado, navigate, from, usuarioAutenticado]);
 
-
-  useEffect(() => {
-    getSolicitudes(grupo?.id)
-  }, []);
 
   return (
     <div className="panel">

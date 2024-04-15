@@ -31,7 +31,7 @@ const CardScanPl = (props) => {
             }
         })
         await getGrupo(grupo)
-        navigate(routes.panel)
+        navigate(routes.panel + `/${ grupo.id }/${ grupo.nombre }`)
     }
 
     return (

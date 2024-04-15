@@ -14,7 +14,7 @@ const ContainerPerfil = (props) => {
 
     const { usuario } = useAuth();
 
-    const [ viewPerfil, setViewPerfil ] = useState(false)
+    const [ viewPerfil, setViewPerfil ] = useState(true)
 
     const changeViewPr = () => {
         setViewPerfil(!viewPerfil)

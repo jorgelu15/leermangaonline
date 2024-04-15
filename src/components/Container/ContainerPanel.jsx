@@ -1,5 +1,5 @@
 
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import React, { useRef } from 'react';
 
 
@@ -19,14 +19,29 @@ import gruposContext from "../../context/grupos/gruposContext";
 import PanelControl from "./Panel/PanelControl";
 import PanelGeneros from "./Panel/PanelGeneros";
 
+import { Link, useParams } from "react-router-dom";
 
 
 const ContainerPanel = (props) => {
 
     const { usuario } = useAuth();
-    const { grupo, solicitudes } = useContext(gruposContext)
+    const { grupo, solicitudes, getGrupo, getSolicitudes } = useContext(gruposContext)
 
     const { autenticado, usuarioAutenticado } = useAuth();
+    let { id } = useParams();
+
+    useEffect(() => {
+        if (!grupo) {
+            getGrupo(id);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (grupo) {
+            getSolicitudes(grupo.id);
+        }
+    }, [grupo]);
+
 
     const [panel, setPanel] = useState(1)
 
@@ -39,8 +54,8 @@ const ContainerPanel = (props) => {
         <div className="content-panel">
             <div className="menu-panel">
                 <div className="perfil-menu">
-                    <p className="nombre">{usuario?.usuario}</p>
-                    <p className="rol">Admin</p>
+                    <p className="nombre">{ grupo?.nombre }</p>
+                    <p>{usuario?.usuario} - admin</p>
                 </div>
                 <div className="lista">
                     <p>MENU</p>
@@ -57,10 +72,10 @@ const ContainerPanel = (props) => {
                         <li className={panel == 4 ? 'active' : ''} onClick={() => handleChangePl(4)}>
                             <img src={personas} /><a>Solicitudes</a>
                         </li>
-                        <li className={panel == 5 ? 'active' : ''} onClick={() => handleChangePl(5)}>
+                        {/* <li className={panel == 5 ? 'active' : ''} onClick={() => handleChangePl(5)}>
                             <img src={registro} /><a>Generos</a>
-                        </li>
-                        <li className={panel == 6 ? 'active' : ''} onClick={() => handleChangePl(6)}>
+                        </li> */}
+                        <li className={panel == 5 ? 'active' : ''} onClick={() => handleChangePl(5)}>
                             <img src={config} /><a>Informacion</a>
                         </li>
                     </ul>
@@ -92,7 +107,7 @@ const ContainerPanel = (props) => {
                     {panel == 1 && (<PanelControl />)}
                     {panel == 3 && (<PanelMiembros />)}
                     {panel == 4 && (<PanelSolicitudes />)}
-                    {panel == 5 && (<PanelGeneros />)}
+                    {/* {panel == 5 && (<PanelGeneros />)} */}
 
                 </div>
             </main>

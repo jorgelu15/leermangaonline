@@ -178,7 +178,7 @@ const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       {
-        path: routes.panel,
+        path: routes.panel + "/:id/:grupo",
         element: <Suspense fallback={<FallbackLoader />}><Panel /></Suspense>
       },
     ]

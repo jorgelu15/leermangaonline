@@ -166,7 +166,7 @@
 
 .panel .portada-scan{
   display: flex;
-  padding: 15px 30px;
+  padding: 10px 30px;
   justify-content: space-between;
   background-color: rgb(241 244 248);
   border-bottom: 1px solid #cdcdcd49;
@@ -178,7 +178,7 @@
 }
 
 .panel .portada-scan img{
-  height: 80px;
+  height: 40px;
 }
 
 .portada-scan .scan div{
@@ -205,8 +205,7 @@
 
 .portada-scan .estado{
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  gap: 30px;
   font-weight: 500;
   color: black;
   text-align: left;

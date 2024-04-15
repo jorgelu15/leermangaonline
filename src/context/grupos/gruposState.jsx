@@ -45,11 +45,12 @@ const GruposState = props => {
         }
     }
 
-    const getGrupo = async (grupo) => {
+    const getGrupo = async (grupo_uid) => {
         try {
+            const res = await clienteAxios.get(`/grupo/one/${grupo_uid}`);
             dispatch({
                 type: OBTENER_GRUPO,
-                payload: grupo
+                payload: res.data.grupo
             })
         } catch (error) {
   

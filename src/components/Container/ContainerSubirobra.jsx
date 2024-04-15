@@ -2,6 +2,7 @@
 import { useContext, useEffect, useState } from "react"
 import React, { useRef } from 'react'
 import Select from 'react-select'
+import { useSnackbar } from "notistack";
 
 import ModalObra from '../Modal/ModalObra'
 
@@ -16,6 +17,7 @@ import generoContext from "../../context/genero/generoContext"
 
 
 import { v4 } from 'uuid';
+import routes from "../../helpers/routes";
 
 
 const ContainerSubirobra = (props) => {
@@ -27,6 +29,8 @@ const ContainerSubirobra = (props) => {
     // const obraId = v4();
 
     const [obraId, setObraId] = useState(v4());
+    const { enqueueSnackbar } = useSnackbar()
+
 
     const [newSerie, setNewSerie] = useState({
         banner: "",
@@ -109,6 +113,15 @@ const ContainerSubirobra = (props) => {
         f.append("ruta", "obras");
         setObraId(v4());
         subirSerie(f);
+
+        enqueueSnackbar("Obra creada", {
+            variant: "success",
+            anchorOrigin: {
+                vertical: "bottom",
+                horizontal: "right"
+            }
+        })
+
     }
 
     return (
