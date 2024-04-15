@@ -1,5 +1,5 @@
 
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import React, { useRef } from 'react'
 import Select from 'react-select'
 
@@ -12,6 +12,8 @@ import folder from '../../img/folder.svg'
 import close from '../../img/close.svg'
 import useAuth from "../../hooks/useAuth"
 import serieContext from "../../context/serie/serieContext"
+import generoContext from "../../context/genero/generoContext"
+
 
 import { v4 } from 'uuid';
 
@@ -40,6 +42,12 @@ const ContainerSubirobra = (props) => {
     const { usuario } = useAuth();
     
     const {subirSerie} = useContext(serieContext);
+    const { generos, getGeneros } = useContext(generoContext);
+
+
+    useEffect(() => {
+        getGeneros();
+    }, [])
 
     const {banner, portada, nombre, nombre_alt, estado, sinopsis, id_grupo, tipo} = newSerie;
 
@@ -170,13 +178,13 @@ const ContainerSubirobra = (props) => {
                         <label htmlFor="">Genero</label>
                         <div className="r-sel">
                             <select className="control-input" name="tipo" id="tipo" value={tipo} onChange={onChange}>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
+                                {generos && (
+                                    generos.map((item, idx) => {
+                                        return (
+                                            <option value={item.genero}>{item.genero}</option>
+                                        )
+                                    })
+                                )}
                             </select>
                         </div>
                     </div>

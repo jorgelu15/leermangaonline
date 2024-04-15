@@ -3,20 +3,18 @@ import { useState } from "react"
 import React, { useRef } from 'react'
 import Select from 'react-select'
 
-import ModalObra from '../Modal/ModalObra'
-
 
 import addicon from '../../img/add.svg'
 import arrow from '../../img/arrow-right.svg'
 import folder from '../../img/folder.svg'
 import close from '../../img/close.svg'
+import routes from "../../helpers/routes"
+import { Link } from "react-router-dom"
 
 
 const ContainerSubirmanga = (props) => {
 
 
-    const [ openMG, setOpenMG ] = useState(false)
-   
     const suppObras = [
         { label: 'Naruto', value: 'naruto'},
         { label: 'Jujutsu', value: 'jujutsu'},
@@ -43,7 +41,7 @@ const ContainerSubirmanga = (props) => {
                                 placeholder = {"Introduzca el titulo de la obra"}
                             />
                             <p>si la obra que quieres no esta, puedes crearla
-                                <span onClick={() => setOpenMG(true)}> undiendo aqui</span>
+                                <span><Link to={routes.subirobra}> undiendo aqui</Link></span>
                             </p>
                         </div>
                        
@@ -100,8 +98,6 @@ const ContainerSubirmanga = (props) => {
                     </div>
                 </form>
             </div>
-
-            <ModalObra open={openMG} setOpen={setOpenMG}></ModalObra>
 
         </div>
     )
