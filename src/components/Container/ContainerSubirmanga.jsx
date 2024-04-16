@@ -1,5 +1,5 @@
 
-import { useState } from "react"
+import { useContext, useState } from "react"
 import React, { useRef } from 'react'
 import Select from 'react-select'
 
@@ -10,10 +10,12 @@ import folder from '../../img/folder.svg'
 import close from '../../img/close.svg'
 import routes from "../../helpers/routes"
 import { Link } from "react-router-dom"
+import capituloContext from "../../context/capitulo/capituloContext"
 
 
 const ContainerSubirmanga = (props) => {
 
+    const { subirCapitulo } = useContext(capituloContext);
 
     const suppObras = [
         { label: 'Naruto', value: 'naruto'},
@@ -24,6 +26,39 @@ const ContainerSubirmanga = (props) => {
         { label: 'Okasa', value: 'okasa'},
         { label: 'tapis', value: 'tapis'},
     ]
+
+    const [serieCapitulo, setSerieCapitulo] = useState(null);
+    
+    const subirSerieCapitulo = (e) => {
+        setSerieCapitulo(e.target.files);
+    }
+
+    const packFiles = (files) => {
+        const data = new FormData();
+        [...files].forEach((file, i) => {
+            data.append(`file-${i}`, file, file.name)
+        })
+        return data;
+    }
+
+    const subirObra = () => {
+        if (serieCapitulo === null || serieCapitulo.length === 0) {
+            return;
+        }
+        const data = packFiles(serieCapitulo);
+
+        //variables temporales serie_uid y numeroCapitulo
+        const serie_uid = 5;
+        const numeroCapitulo = 10;
+
+        data.append("data", JSON.stringify({
+            serie_uid: serie_uid,
+            id_usuario: numeroCapitulo,
+        }));
+        data.append("ruta", "capitulos");
+        data.append("carpeta", serie_uid + '_' + numeroCapitulo);
+        subirCapitulo(data);
+    }
 
     return (
         <div className="cont-subirmanga">
@@ -84,7 +119,7 @@ const ContainerSubirmanga = (props) => {
                     <div className="control-form">
                         <label htmlFor="">Imagenes</label>
                         <div className="r-file">
-                            <input type="file" name="" id="" />
+                            <input type="file" name="serieCapitulo" id="serieCapitulo" onChange={subirSerieCapitulo} multiple/>
                         </div>
                     </div>
                     
@@ -92,7 +127,7 @@ const ContainerSubirmanga = (props) => {
                         <div className="btn-cancelar">
                             <p>Cancelar</p>
                         </div>
-                        <div className="btn-subir">
+                        <div className="btn-subir" onClick={subirObra}>
                             <p>Subir</p>
                         </div>
                     </div>
