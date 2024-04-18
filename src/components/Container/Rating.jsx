@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-
+import { useSeries } from "../../hooks/useSeries";
+import useAuth from '../../hooks/useAuth';
 
 const Rating = (props) => {
     
@@ -8,10 +9,25 @@ const Rating = (props) => {
         rate
     } = props;
 
-    const [rating, setRating] = useState(0);
+    const { usuario } = useAuth();
+    const { serie, subirVotoSerie } = useSeries();
+    const [rating, setRating] = useState(rate);
   
-    const handleClick = (value) => {
-      setRating(value);
+    const handleClick = async (value) => {
+        const datos = {
+            id_usuario: usuario?.id,
+            serie_uid: serie?.serie_uid,
+            voto: value
+        }
+        subirVotoSerie(datos)
+    };
+
+    const handleMouseEnter = (i) => {
+        setRating(i+1)
+    };
+
+    const handleMouseOut = (i) => {
+        setRating(rate)
     };
   
     return (
@@ -22,18 +38,20 @@ const Rating = (props) => {
             <div className='stars'>
                 <div>
                 {[...Array(5)].map((star, i) => {
-                const ratingValue = i + 1;
+                    const ratingValue = i + 1;
         
-                return (
-                    <span 
-                    className='star'
-                    key={i}
-                    onClick={() => handleClick(ratingValue)}
-                    style={{ cursor: 'pointer' }}
-                    >
-                    {ratingValue <= rating ? '★' : '☆'}
-                    </span>
-                );
+                    return (
+                        <span 
+                        className='star'
+                        key={i}
+                        onMouseEnter={() => handleMouseEnter(i)}
+                        onMouseOut={() => handleMouseOut(i)}
+                        onClick={() => handleClick(ratingValue)}
+                        style={{ cursor: 'pointer' }}
+                        >
+                        {ratingValue <= rating ? '★' : '☆'}
+                        </span>
+                    );
                 })}
                 </div>
                 <div>
