@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSeries } from "../../hooks/useSeries";
 import useAuth from '../../hooks/useAuth';
 
@@ -34,12 +34,14 @@ const Rating = (props) => {
         <div className="rating">
             <div className="number">
                 <h3>{rate}</h3>
+
             </div>
             <div className='stars'>
                 <div>
+                
                 {[...Array(5)].map((star, i) => {
                     const ratingValue = i + 1;
-        
+                    
                     return (
                         <span 
                         className='star'
@@ -49,7 +51,10 @@ const Rating = (props) => {
                         onClick={() => handleClick(ratingValue)}
                         style={{ cursor: 'pointer' }}
                         >
-                        {ratingValue <= rating ? '★' : '☆'}
+                        { rating ? 
+                            ratingValue <= rating ? '★' : '☆' : 
+                            ratingValue <= rate ? '★' : '☆'
+                        }
                         </span>
                     );
                 })}
