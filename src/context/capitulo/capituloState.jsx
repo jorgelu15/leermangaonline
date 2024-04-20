@@ -19,7 +19,7 @@ const CapituloState = props => {
 
     const subirCapitulo = async (file) => {
         try {
-            // const respuesta = await clienteAxios.post(`/serie`, file);
+            const respuesta = await clienteAxios.post(`/capitulo`, file);
             // console.log(respuesta);
             const respuesta2 = await clienteAxiosUpload.post(`/uploadCapitulo`, file);
             // dispatch({
