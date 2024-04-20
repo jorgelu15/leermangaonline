@@ -58,8 +58,6 @@ const ContainerDirectory = (props) => {
         };
     }, [counter]);
 
-    console.log({ data })
-
     return (
         <div className="scan-groups">
 

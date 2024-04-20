@@ -43,7 +43,10 @@ const ContainerManga = (props) => {
         }
     }, []);
 
-    console.log(votos?.prom_vot)
+    useEffect(() =>{
+    }, [votos])
+
+    // console.log(votos)
 
     // useEffect(() => {
     //     (function () { // DON'T EDIT BELOW THIS LINE
@@ -73,7 +76,7 @@ const ContainerManga = (props) => {
                         <div className="resumen">
                             <div className="res-top">
                                 <h2>{serie?.nombre}</h2>
-                                <Rating  rate={votos?.prom_vot} votos={2} />
+                                <Rating rate={votos?.prom_vot} votos={votos?.total_vot} />
                             </div>
                             <p>{serie?.sinopsis}</p>
                         </div>

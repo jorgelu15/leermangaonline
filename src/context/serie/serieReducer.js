@@ -1,9 +1,11 @@
+import { act } from 'react-dom/test-utils';
 import {
     OBTENER_GENEROS_SERIE,
     OBTENER_SERIE,
     OBTENER_SERIES,
     OBTENER_VOTOS,
-    SUBIR_SERIE
+    SUBIR_SERIE,
+    SUBIR_VOTO_SERIE
 } from '../../types';
 
 export default (state, action) => {
@@ -34,6 +36,13 @@ export default (state, action) => {
             return {
                 ...state,
                 votos: action.payload
+            }
+        case SUBIR_VOTO_SERIE:
+            console.log(action.payload, "serieReducer")
+            return {
+                ...state,
+                votos: action.payload.serie,
+                msg: action.payload.msg
             }
         default:
             return state;

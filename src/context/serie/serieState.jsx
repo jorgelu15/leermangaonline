@@ -10,7 +10,8 @@ import {
     OBTENER_SERIE,
     OBTENER_SERIES,
     OBTENER_VOTOS,
-    SUBIR_SERIE
+    SUBIR_SERIE,
+    SUBIR_VOTO_SERIE
 } from '../../types';
 
 const SerieState = props => {
@@ -31,10 +32,10 @@ const SerieState = props => {
             const respuesta = await clienteAxios.post(`/serie`, file);
             // console.log(respuesta);
             const respuesta2 = await clienteAxiosUpload.post(`/uploadSerie`, file);
-            // dispatch({
-            //     type: SUBIR_SERIE,
-            //     payload: respuesta.data.perfil
-            // })
+            dispatch({
+                type: SUBIR_SERIE,
+                payload: respuesta.data.msg
+            })
         } catch (error) {
   
             dispatch({
@@ -66,7 +67,24 @@ const SerieState = props => {
                 payload: res.data.serie[0]?.genero_series
             })
         } catch (error) {
+
+        }
+    }
+
+    const subirVotoSerie = async (datos) => {
+        try {
+            const respuesta = await clienteAxios.post('/votos', datos);
             
+            dispatch({
+                type: SUBIR_VOTO_SERIE,
+                payload: respuesta.data
+            })
+        } catch (error) {
+  
+            dispatch({
+                type: MENSAJE_ERROR,
+                payload: error.response.data.msg
+            })
         }
     }
 
@@ -83,7 +101,7 @@ const SerieState = props => {
         }
     }
 
-    const getSerie  = async  (serie_uid) => {
+    const getSerie = async  (serie_uid) => {
         try {
             const res = await clienteAxios.get(`/serie/${serie_uid}`);
 
@@ -108,6 +126,7 @@ const SerieState = props => {
                 getSeries,
                 getSerie,
                 subirSerie,
+                subirVotoSerie,
                 getGeneroSerie,
                 getPromVotoSerie
             }}

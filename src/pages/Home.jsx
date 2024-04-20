@@ -6,13 +6,13 @@ import ContainerHome from "../components/Container/ContainerHome";
 import useAuth from "../hooks/useAuth";
 
 const Home = () => {
-  const { autenticado, usuario, usuarioAutenticado, logOut } = useAuth();
+  
+  const { autenticado, usuarioAutenticado } = useAuth();
 
   useEffect(() => {
     if (!autenticado) {
       usuarioAutenticado();
     }
-    // console.log(autenticado, "linea 15")
   }, [autenticado]);
 
   return (
