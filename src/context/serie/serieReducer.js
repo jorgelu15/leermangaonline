@@ -1,5 +1,6 @@
 import { act } from 'react-dom/test-utils';
 import {
+    OBTENER_CAPITULOS,
     OBTENER_GENEROS_SERIE,
     OBTENER_SERIE,
     OBTENER_SERIES,
@@ -26,6 +27,11 @@ export default (state, action) => {
             return {
                 ...state,
                 serie: action.payload
+            }
+        case OBTENER_CAPITULOS:
+            return {
+                ...state,
+                capitulos: action.payload
             }
         case OBTENER_GENEROS_SERIE:
             return {

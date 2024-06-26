@@ -6,6 +6,7 @@ import SerieContext from './serieContext';
 import SerieReducer from './serieReducer';
 
 import {
+    OBTENER_CAPITULOS,
     OBTENER_GENEROS_SERIE,
     OBTENER_SERIE,
     OBTENER_SERIES,
@@ -20,6 +21,7 @@ const SerieState = props => {
         msg: null,
         series: null,
         serie: null,
+        capitulos: null,
         generosSerie: null,
         votos: null,
         seriesFiltradas: null
@@ -114,6 +116,18 @@ const SerieState = props => {
         }
     }
 
+    const getCapitulosSerie = async (serie_uid) => {
+        try {
+            const res = await clienteAxios.get(`/capitulo/capitulos/${serie_uid}`);
+            dispatch({
+                type:  OBTENER_CAPITULOS,
+                payload: res.data.capitulos
+            })
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <SerieContext.Provider
             value={{
@@ -121,6 +135,7 @@ const SerieState = props => {
                 series: state.series,
                 seriesFiltradas: state.seriesFiltradas,
                 serie: state.serie,
+                capitulos: state.capitulos,
                 generosSerie: state.generosSerie,
                 votos: state.votos,
                 getSeries,
@@ -128,7 +143,8 @@ const SerieState = props => {
                 subirSerie,
                 subirVotoSerie,
                 getGeneroSerie,
-                getPromVotoSerie
+                getPromVotoSerie,
+                getCapitulosSerie
             }}
         >
             {props.children}

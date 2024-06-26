@@ -77,6 +77,22 @@ const GruposState = props => {
         }
     }
 
+    const getGruposByCapitulo = async (id_grupo) => {
+        try {
+            const respuesta = await clienteAxios.get(`/grupo/capitulo/${id_grupo}/`);
+            dispatch({
+                type: OBTENER_GRUPOS,
+                payload: respuesta.data.grupos
+            })
+        } catch (error) {
+  
+            dispatch({
+                type: MENSAJE_ERROR,
+                payload: error.response.data.msg
+            })
+        }
+    }
+
     const getAllGrupos = async () => {
         try {
             const respuesta = await clienteAxios.get(`/grupo/all/`);
@@ -174,6 +190,7 @@ const GruposState = props => {
                 getSolicitudes,
                 updateSolicitud,
                 getMiembros,
+                getGruposByCapitulo,
             }}
         >
             {props.children}

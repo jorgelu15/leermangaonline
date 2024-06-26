@@ -22,8 +22,19 @@ import Rating from "./Rating";
 const ContainerManga = (props) => {
 
     const { usuario } = useAuth();
-    const { serie, generosSerie, votos, getSerie, getGeneroSerie, getPromVotoSerie } = useSeries();
+    const { serie, capitulos, generosSerie, votos, getSerie, getGeneroSerie, getPromVotoSerie, getCapitulosSerie } = useSeries();
+
     let { id } = useParams();
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredCapitulos, setFilteredCapitulos] = useState(capitulos);
+
+    useEffect(() => {
+        const results = capitulos?.filter(capitulo =>
+            capitulo.titulo.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredCapitulos(results);
+    }, [searchTerm, capitulos]);
 
     useEffect(() => {
         if (!serie) {
@@ -43,8 +54,10 @@ const ContainerManga = (props) => {
         }
     }, []);
 
-    useEffect(() =>{
+    useEffect(() => {
     }, [votos])
+
+
 
     // console.log(votos)
 
@@ -57,7 +70,6 @@ const ContainerManga = (props) => {
     //     })();
 
     // }, []);
-
 
 
 
@@ -88,10 +100,14 @@ const ContainerManga = (props) => {
                     <div className="wid-box">
                         <div className="start-box">
                             <h2>Lista de capitulos</h2>
-                            <input type="text" placeholder="Buscar" />
+                            <input
+                                type="text"
+                                placeholder="Buscar"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)} />
                         </div>
                         <hr />
-                        <CustomizedAccordions></CustomizedAccordions>
+                        <CustomizedAccordions id={id} filteredCapitulos={filteredCapitulos}></CustomizedAccordions>
                     </div>
                     <div className="chat">
 
