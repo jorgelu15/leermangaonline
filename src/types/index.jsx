@@ -1,3 +1,11 @@
+export const MANHUA  =  "Manhua";
+export const MANGA  =  "Manga";
+export const MANHWA  =  "Manhwa";
+export const NOVELA  =  "Novela";
+export const ONE_SHOT  =  "One shot";
+export const DOUJINSHI  =  "Doujinshi";
+export const OEL  =  "Oel";
+
 
 // Auth
 export const LOGIN_EXITOSO = 'LOGIN_EXITOSO';
@@ -45,5 +53,6 @@ export const SUBIR_VOTO_SERIE = "SUBIR_VOTO_SERIE";
 export const OBTENER_GENEROS  = "OBTENER_GENEROS";
 export const OBTENER_GENERO = "OBTENER_GENERO";
 export const SUBIR_GENERO = "SUBIR_GENERO";
+
 
 

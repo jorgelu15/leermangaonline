@@ -4,12 +4,16 @@ import gruposContext from "../context/grupos/gruposContext";
 export const useGrupos = () => {
     const {
         grupos,
-        getGruposByCapitulo
+        grupo,
+        getGruposByCapitulo,
+        getGrupos
     } = useContext(gruposContext);
 
 
     return {
         grupos,
-        getGruposByCapitulo
+        grupo,
+        getGruposByCapitulo,
+        getGrupos
     }
 }

@@ -7,6 +7,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
+import { useText } from '../../../hooks/useText';
+import routes from '../../../helpers/routes';
 
 
 function TabPanel(props) {
@@ -45,7 +47,7 @@ function a11yProps(index) {
 export default function BasicTabs(props) {
 
   const { items } = props;
-
+  const { reemplazarEspaciosConGuiones } = useText();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -55,7 +57,7 @@ export default function BasicTabs(props) {
 
   return (
     <Box sx={{ width: '100%', marginBottom: 8 }}>
-      <div style={{paddingLeft: 15, paddingRight: 15}}>
+      <div style={{ paddingLeft: 15, paddingRight: 15 }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -65,49 +67,43 @@ export default function BasicTabs(props) {
           aria-label="full width tabs example"
         >
           {
-            items ? 
-            items.cont.map((item, idx) => {
+            items?.cont.map((item, idx) => {
               return (
-                <Tab key={idx} label={item.tab} {...a11yProps(idx)}/>
+                <Tab key={idx} label={item.tab} {...a11yProps(idx)} />
               )
-            }) : null
+            })
           }
-
-          {/* <Tab label="Mangas" {...a11yProps(0)} />
-          <Tab label="P.Manwas" {...a11yProps(1)} />
-          <Tab label="P.Manhuas" {...a11yProps(2)} /> */}
         </Tabs>
       </div>
-      
+
       {
-        items ? 
-        items.cont.map((item, idx) => {
-          return(
+        items?.cont.map((item, idx) => {
+          return (
             <TabPanel key={idx} value={value} index={idx} dir={theme.direction}>
-            <div className="sec-cards">
-              {
-                item.cards.map((card, idx)=>{
-                  return (
-                    <div className="cont-card" key={idx}>
-                      <Link to='manga'>
-                        <div className="card" style={{backgroundImage: `url('${card.url}')`}}>
-                        <div>
-                          <p className="categoria">{card.categoria}</p>
-                          <p className="calificacion">{card.calif}</p>
-                        </div>
-                        <p className="nombre">{card.nombre}</p>
-                        </div>
-                      </Link>
-                    </div>
-                  )
-                })
-              }
-            </div>
-          </TabPanel>
+              <div className="sec-cards">
+                {
+                  item.cards?.map((card, idx) => {
+                    return (
+                      <div className="cont-card" key={idx}>
+                        <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre.toLowerCase())}`}>
+                          <div className="card" style={{ backgroundImage: `url('${card.portada}')` }}>
+                            <div>
+                              <p className="categoria">{card.tipo}</p>
+                              <p className="calificacion">3.4</p>{/*  falta la calificacion */}
+                            </div>
+                            <p className="nombre">{card.nombre}</p>
+                          </div>
+                        </Link>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </TabPanel>
           )
-        }) : null
+        })
       }
-      
+
     </Box>
   );
 }

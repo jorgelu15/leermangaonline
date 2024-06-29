@@ -1,18 +1,16 @@
 import * as React from 'react';
-import { useSnackbar } from 'notistack';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 
 import routes from "../../helpers/routes";
-import gruposContext from '../../context/grupos/gruposContext';
-
-import userimg from '../../img/group-users.svg'
+import { useText } from '../../hooks/useText';
 
 export default function CardDirectory(props) {
 
   const {
     cards
   } = props;
+
+  const { reemplazarEspaciosConGuiones } = useText();
 
   let navigate = useNavigate();
 
@@ -22,9 +20,7 @@ export default function CardDirectory(props) {
     navigate(routes.scanlation)
   }
 
-  function reemplazarEspaciosConGuiones(texto) {
-    return texto.replace(/\s/g, "-");
-  }
+
 
   return (
     <div className="sec-cards">

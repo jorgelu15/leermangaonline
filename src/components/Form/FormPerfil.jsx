@@ -7,12 +7,13 @@ import CardScanPl from "../Card/CardScanPl";
 
 import { v4 } from 'uuid';
 import perfilContext from "../../context/perfil/perfilContext";
+import { useGrupos } from "../../hooks/useGrupos";
 
 
 const FormPerfil = () => {
 
     const { usuario } = useAuth();
-    const { grupos, grupo, getGrupos } = useContext(gruposContext);
+    const { grupos, grupo, getGrupos } = useGrupos();
 
     const { updatePerfil } = useContext(perfilContext);
 
@@ -44,8 +45,10 @@ const FormPerfil = () => {
     }, [usuario]);
 
     useEffect(() => {
-        getGrupos(usuario?.id)
-    }, [grupo])
+        getGrupos(usuario?.id);
+    }, []);
+
+    console.log(grupos)
 
     const actualizarUsuario = () => {
         const f = new FormData();
