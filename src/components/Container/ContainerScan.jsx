@@ -22,7 +22,6 @@ const ContainerScan = (props) => {
     const [ statusSl, setStatusSl ] = useState([]);
 
     useEffect(() => {
-        // console.log(solicitudes, "linea 25", solicitudes?.find((item) => (item.grupoId === grupo.id && item.usuarioId === usuario.id)))
         if(usuario?.usuario){
             let stat = solicitudes?.find((item) => (item.grupoId === grupo.id && item.usuarioId === usuario.id));
             setStatusSl(stat ? stat : [])

@@ -44,7 +44,6 @@ export default (state, action) => {
                 votos: action.payload
             }
         case SUBIR_VOTO_SERIE:
-            console.log(action.payload, "serieReducer")
             return {
                 ...state,
                 votos: action.payload.serie,

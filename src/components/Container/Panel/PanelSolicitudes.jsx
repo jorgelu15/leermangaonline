@@ -15,7 +15,6 @@ const PanelSolicitudes = (props) => {
 
     useEffect(() => {
         setFilterSolic(solicitudes?.filter((item) => item.estado === 0))
-        // console.log(solicitudes?.filter((item) => item.estado === 0), "17 linea")
     }, [solicitudes])
 
     useEffect(() => {

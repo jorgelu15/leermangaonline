@@ -81,15 +81,6 @@ export default function AccountMenu() {
                 </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-                <Link to={routes.panel} 
-                    style={{display: 'flex', alignItems: 'center', color: 'black'}}>
-                    <ListItemIcon>
-                        <Dashboard fontSize="small" />
-                    </ListItemIcon>
-                    Administracion
-                </Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
                 <Link to={routes.perfil} 
                     style={{display: 'flex', alignItems: 'center', color: 'black'}}>
                     <ListItemIcon>

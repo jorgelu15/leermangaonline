@@ -105,7 +105,6 @@ export default function CustomizedAccordions({ id, filteredCapitulos, ...props }
     return str[0].toUpperCase() + str.slice(1).toLowerCase();
   }
 
-  console.log(grupos, capitulos)
 
   return (
     <div className='accordion'>

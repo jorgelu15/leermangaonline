@@ -102,7 +102,6 @@ export default function TableGeneros(props) {
     solicitudesV
   } = props;
 
-  // console.log(solicitudesV, "linea 106")
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -163,7 +162,6 @@ export default function TableGeneros(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {console.log(solicitudesV, "linea 128")} */}
           {(rowsPerPage > 0
             ? solicitudesV?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : solicitudesV ? solicitudesV : []

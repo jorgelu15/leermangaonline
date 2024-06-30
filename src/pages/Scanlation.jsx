@@ -22,7 +22,6 @@ const Scanlation = () => {
   }, [autenticado]);
 
   useEffect(() => {
-    // console.log("solicitudes de grupo: ", grupo.id)
     getSolicitudes(grupo?.id)
   }, []);
 

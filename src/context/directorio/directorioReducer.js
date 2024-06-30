@@ -16,13 +16,7 @@ export default (state, action) => {
         case FILTRAR:
             return {
                 ...state,
-                filtrados: state.series.filter((item) => {
-                    const searchValue = action.payload[0].toLowerCase();
-                    const nombreIncluido = item.nombre.toLowerCase().includes(searchValue);
-                    const filtrosIncluidos = action.payload[1].length ? action.payload[1].every(genero => item.generos.includes(genero)) : 1;
-                    console.log(item.generos.every(genero => action.payload[1].includes(genero)));
-                    return nombreIncluido & filtrosIncluidos;
-                })
+                filtrados: action.payload
             }
         case MENSAJE_ERROR:
             return {

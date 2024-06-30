@@ -11,14 +11,6 @@ import logop1 from "../../img/logop2.png"
 const Header = (props) => {
 
     const { autenticado, usuario, usuarioAutenticado, logOut } = useAuth();
-    // let location = useLocation();
-
-    // useEffect(() => {
-    //     console.log(autenticado, "linea 14")
-    //     if (!autenticado) {
-    //       usuarioAutenticado();
-    //     }
-    //   }, [autenticado]);
 
 
     return (

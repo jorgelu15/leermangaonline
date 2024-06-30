@@ -18,18 +18,47 @@ import generoContext from "../../context/genero/generoContext"
 
 import { v4 } from 'uuid';
 import routes from "../../helpers/routes";
+import { TailSpin } from "react-loader-spinner";
 
+const FallbackLoader = () => {
+    return (
+        <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "row", // Alinea los elementos en columna,
+        }}>
+            <TailSpin
+                visible={true}
+                height={24}
+                width={24}
+                color="#ffffff"
+                ariaLabel="tail-spin-loading"
+                radius={1}
+                thickness={4} // Ajusta el grosor del spinner aquí
+                wrapperStyle={{}}
+                wrapperClass=""
+                contentLoader={(props) => (
+                    <div>
+                        <TailSpin {...props} />
+                    </div>
+                )}
+            />
+        </div>
+    );
+};
 
 const ContainerSubirobra = (props) => {
 
     const suppGrupos = [
-        { label: 'Okasa', value: 'okasa'},
-        { label: 'tapis', value: 'tapis'},
+        { label: 'Okasa', value: 'okasa' },
+        { label: 'tapis', value: 'tapis' },
     ]
     // const obraId = v4();
 
     const [obraId, setObraId] = useState(v4());
     const { enqueueSnackbar } = useSnackbar()
+    const [loading, setLoading] = useState(false);
 
 
     const [newSerie, setNewSerie] = useState({
@@ -43,9 +72,11 @@ const ContainerSubirobra = (props) => {
         tipo: "",
     })
 
+
+
     const { usuario } = useAuth();
-    
-    const {subirSerie} = useContext(serieContext);
+
+    const { subirSerie } = useContext(serieContext);
     const { generos, getGeneros } = useContext(generoContext);
 
 
@@ -53,7 +84,7 @@ const ContainerSubirobra = (props) => {
         getGeneros();
     }, [])
 
-    const {banner, portada, nombre, nombre_alt, estado, sinopsis, id_grupo, tipo} = newSerie;
+    const { banner, portada, nombre, nombre_alt, estado, sinopsis, id_grupo, tipo } = newSerie;
 
     const onChange = e => {
         setNewSerie({
@@ -95,7 +126,24 @@ const ContainerSubirobra = (props) => {
         });
     }
 
-    const subirObra = () => {
+    const subirObra = async () => {
+        setLoading(true);
+        if (banner?.trim() === "" ||
+            nombre?.trim() === "" ||
+            estado?.trim() === "") {
+            enqueueSnackbar("Hay algunos campos que se deben llenar", {
+                variant: "default",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            });
+            setLoading(false);
+            return;
+        }
+
+
+
         const f = new FormData();
 
         if (bannerImg !== null) {
@@ -112,7 +160,15 @@ const ContainerSubirobra = (props) => {
         }));
         f.append("ruta", "obras");
         setObraId(v4());
-        subirSerie(f);
+        setTimeout(async () => {
+            try {
+                await subirSerie(f);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        }, 1500);
 
         enqueueSnackbar("Obra creada", {
             variant: "success",
@@ -134,35 +190,35 @@ const ContainerSubirobra = (props) => {
                     <div className="control-form">
                         <label htmlFor="">Banner</label>
                         <div className="r-file">
-                            <input type="file" name="portada" id="portada" onChange={(e) => subirBanner(e.target.files[0])}/>
+                            <input type="file" name="banner" id="banner" onChange={(e) => subirBanner(e.target.files[0])} />
                         </div>
                     </div>
 
                     <div className="control-form">
                         <label htmlFor="">Miniatura</label>
                         <div className="r-file">
-                            <input type="file" name="banner" id="banner" onChange={(e) => subirPortada(e.target.files[0])}/>
+                            <input type="file" name="portada" id="portada" onChange={(e) => subirPortada(e.target.files[0])} />
                         </div>
                     </div>
 
                     <div className="control-form">
                         <label htmlFor="">Titulo</label>
                         <div className="r-sel">
-                            <input className="control-input" type="text" placeholder="titulo de la obra" name="nombre" id="nombre" value={nombre} onChange={onChange}/>
+                            <input className="control-input" type="text" placeholder="titulo de la obra" name="nombre" id="nombre" value={nombre} onChange={onChange} />
                         </div>
                     </div>
 
                     <div className="control-form">
                         <label htmlFor="">Titulo alternativo</label>
                         <div className="r-sel">
-                            <input className="control-input" type="text" placeholder="titulo alternativo de la obra" name="nombre_alt" id="nombre_alt" value={nombre_alt} onChange={onChange}/>
+                            <input className="control-input" type="text" placeholder="titulo alternativo de la obra" name="nombre_alt" id="nombre_alt" value={nombre_alt} onChange={onChange} />
                         </div>
                     </div>
 
                     <div className="control-form">
                         <label htmlFor="">Estado</label>
                         <div className="r-sel">
-                            <input className="control-input" type="text" placeholder="Estado de la obra" name="estado" id="estado" value={estado} onChange={onChange}/>
+                            <input className="control-input" type="text" placeholder="Estado de la obra" name="estado" id="estado" value={estado} onChange={onChange} />
                         </div>
                     </div>
 
@@ -176,14 +232,14 @@ const ContainerSubirobra = (props) => {
                     <div className="control-form">
                         <label htmlFor="">Grupo</label>
                         <div className="r-sel">
-                        <Select
-                            options = {suppGrupos}
-                            placeholder = {"Seleccione el grupo"}
-                            name="id_grupo"
-                            id="id_grupo"
-                            value={{label: id_grupo, value: id_grupo}}
-                            onChange={onChangeGrupo}
-                        />
+                            <Select
+                                options={suppGrupos}
+                                placeholder={"Seleccione el grupo"}
+                                name="id_grupo"
+                                id="id_grupo"
+                                value={{ label: id_grupo, value: id_grupo }}
+                                onChange={onChangeGrupo}
+                            />
                         </div>
                     </div>
 
@@ -201,13 +257,13 @@ const ContainerSubirobra = (props) => {
                             </select>
                         </div>
                     </div>
-                    
-                    <div className="control-button">
-                        <div className="btn-cancelar">
+
+                    <div className="control-button" style={{ justifyContent: "flex-end" }}>
+                        {/* <div className="btn-cancelar">
                             <p>Cancelar</p>
-                        </div>
-                        <div className="btn-subir" onClick={subirObra}>
-                            <p>Subir</p>
+                        </div> */}
+                        <div className="btn-subir" onClick={() => subirObra()}>
+                            {loading ? <FallbackLoader /> : <p>Subir</p>}
                         </div>
                     </div>
                 </form>

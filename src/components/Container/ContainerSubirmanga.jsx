@@ -101,12 +101,7 @@ const ContainerSubirmanga = (props) => {
         }
         const data = packFiles(serieCapitulo);
 
-        //variables temporales serie_uid y numeroCapitulo
-        // const serie_uid = 5;
-        // const numeroCapitulo = 10;
-
         data.append("data", JSON.stringify(infoCap));
-        console.log(data)
         data.append("ruta", "capitulos");
         data.append("carpeta", id_grupo + '_' + serie_uid + '_' + numero);
         subirCapitulo(data);

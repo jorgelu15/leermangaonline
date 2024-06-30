@@ -13,9 +13,6 @@ const Login = () => {
     let location = useLocation();
 
     let from = location.state?.from?.pathname || routes.login;
-    // let from = location;
-
-    console.log(from, "from")
 
     //useEffect para validar si existe una sesion abierta
     useEffect(() => {

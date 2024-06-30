@@ -1,6 +1,6 @@
 
-import { useState } from "react"
 import React, { useRef } from 'react';
+import { Link } from "react-router-dom";
 import Slider from "./Slider";
 
 import isugo from "../../img/isugodibujo.png"
@@ -12,10 +12,13 @@ import TabsHome from "../Mui/Tabs/TabsHome";
 import TabsTop from "../Mui/Tabs/TabsTop";
 import { useSeries } from "../../hooks/useSeries";
 import { MANGA, MANHUA, MANHWA } from "../../types";
+import { useText } from "../../hooks/useText";
+import routes from '../../helpers/routes';
 
 
 const ContainerHome = (props) => {
     const { series } = useSeries();
+    const { reemplazarEspaciosConGuiones } = useText();
 
     let items = {
         tabs: 3,
@@ -144,7 +147,7 @@ const ContainerHome = (props) => {
                             {
                                 series?.map(serie => {
                                     return (
-                                        <div className="cont-card">
+                                        <Link to={routes.manga + `/${serie.serie_uid}/${reemplazarEspaciosConGuiones(serie.nombre.toLowerCase())}`} className="cont-card">
                                             <div className="card" style={{
                                                 backgroundImage: `url("${serie.portada}")`
                                             }}>
@@ -154,7 +157,7 @@ const ContainerHome = (props) => {
                                                 </div>
                                                 <p className="nombre">{serie.nombre}</p>
                                             </div>
-                                        </div>
+                                        </Link>
                                     )
                                 })
                             }
@@ -167,10 +170,10 @@ const ContainerHome = (props) => {
 
                         <h2>Tendencias</h2>
                         <div className="sec-cards">
-                            {
+                        {
                                 series?.map(serie => {
                                     return (
-                                        <div className="cont-card">
+                                        <Link to={routes.manga + `/${serie.serie_uid}/${reemplazarEspaciosConGuiones(serie.nombre.toLowerCase())}`} className="cont-card">
                                             <div className="card" style={{
                                                 backgroundImage: `url("${serie.portada}")`
                                             }}>
@@ -180,7 +183,7 @@ const ContainerHome = (props) => {
                                                 </div>
                                                 <p className="nombre">{serie.nombre}</p>
                                             </div>
-                                        </div>
+                                        </Link>
                                     )
                                 })
                             }

@@ -48,7 +48,6 @@ const FormPerfil = () => {
         getGrupos(usuario?.id);
     }, []);
 
-    console.log(grupos)
 
     const actualizarUsuario = () => {
         const f = new FormData();

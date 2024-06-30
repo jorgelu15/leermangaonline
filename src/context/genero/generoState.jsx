@@ -24,7 +24,6 @@ const GeneroState = props => {
     const subirGenero = async (file) => {
         try {
             const respuesta = await clienteAxios.post(`/genero`);
-            // console.log(respuesta);
     
             dispatch({
                 type: SUBIR_GENERO,

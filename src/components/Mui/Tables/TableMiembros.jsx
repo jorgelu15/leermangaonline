@@ -102,7 +102,6 @@ export default function TableMiembros(props) {
     solicitudesV
   } = props;
 
-  // console.log(solicitudesV, "linea 106")
 
   const { enqueueSnackbar } = useSnackbar()
 

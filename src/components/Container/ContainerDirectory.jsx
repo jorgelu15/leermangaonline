@@ -1,66 +1,65 @@
-import { useContext, useEffect, useState } from "react"
-import React, { useRef } from 'react';
+import { useContext, useEffect, useState } from "react";
+import React from "react";
 
 import useAuth from "../../hooks/useAuth";
-
 import SearchDirectory from "../Search/SearchDirectory";
 import CardDirectory from "../Card/CardDirectory";
 import FormFilter from "../Form/FormFilter";
 import directorioContext from "../../context/directorio/directorioContext";
 import { useSeries } from "../../hooks/useSeries";
 
-
-const ContainerDirectory = (props) => {
-    const [filters, setFilters] = useState([])
+const ContainerDirectory = () => {
+    const [filters, setFilters] = useState({
+        genero: [],
+        tipo: [],
+        demografia: []
+    });
 
     const { usuario } = useAuth();
     const { seriesFiltradas } = useSeries();
-    // const { filtrados } = useContext(directorioContext);
+    const { filtrados } = useContext(directorioContext);
 
     const [data, setData] = useState([]);
     const [counter, setCounter] = useState(0);
-    // const [loading, setLoading] = useState(false);
 
     const getData = () => {
         const end = counter + 18;
-        const slice = seriesFiltradas?.slice(counter, end);
+        const slice = (filtrados.length > 0 ? filtrados : seriesFiltradas)?.slice(counter, end);
         setCounter(counter + 18);
-        setData([...data, ...slice]);
-    }
+        setData(prevData => [...prevData, ...slice]);
+    };
 
     const initData = () => {
-        const slice = seriesFiltradas?.slice(0, 18);
-        setData(slice)
-    }
+        const slice = (filtrados?.length > 0 ? filtrados : seriesFiltradas)?.slice(0, 18);
+        setData(slice);
+    };
 
     useEffect(() => {
-        if (seriesFiltradas) {
-            initData()
-            setCounter(18)
+        if (seriesFiltradas || filtrados) {
+            initData();
+            setCounter(18);
         }
-        // console.log(filtrados)
-        // console.log(data)
-    }, [seriesFiltradas])
+    }, [seriesFiltradas, filtrados]);
 
     const handleScroll = () => {
         const scrollHeight = document.documentElement.scrollHeight;
 
         if (window.scrollY + window.innerHeight >= scrollHeight) {
-            if (counter <= seriesFiltradas?.length) getData()
+            if (counter < ((filtrados.length > 0 ? filtrados : seriesFiltradas)?.length)) {
+                getData();
+            }
         }
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-
+        window.addEventListener("scroll", handleScroll);
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
-    }, [counter]);
+    }, [counter, filters]);
 
     return (
         <div className="scan-groups">
-
             <aside className="filter">
                 <div className="title">
                     <h3>Directorio</h3>
@@ -73,13 +72,11 @@ const ContainerDirectory = (props) => {
             <main className="main-home">
                 <SearchDirectory filters={filters} />
                 <div className="groups">
-                    {data && (
-                        <CardDirectory cards={data} />
-                    )}
+                    {data && <CardDirectory cards={data} />}
                 </div>
             </main>
         </div>
-    )
-}
+    );
+};
 
 export default ContainerDirectory;

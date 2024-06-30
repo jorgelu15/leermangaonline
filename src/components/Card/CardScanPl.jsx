@@ -17,7 +17,7 @@ const CardScanPl = (props) => {
     } = props;
 
     const { getGrupo } = useContext(gruposContext)
-    const { enqueueSnackbar } = useSnackbar()
+    const { enqueueSnackbar } = useSnackbar();
 
     let navigate = useNavigate();
 

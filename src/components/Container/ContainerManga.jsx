@@ -59,7 +59,6 @@ const ContainerManga = (props) => {
 
 
 
-    // console.log(votos)
 
     // useEffect(() => {
     //     (function () { // DON'T EDIT BELOW THIS LINE
