@@ -1,19 +1,24 @@
 
-import { useState } from "react"
+import { useContext, useState } from "react"
 import React, { useRef } from 'react';
 
 import pagina1 from '../../img/pagina1.png'
 import pagina2 from '../../img/pagina2.png'
 import pagina3 from '../../img/pagina3.png'
+import vermangaContext from "../../context/vermanga/vermangaContext";
 
 const ContainerVermanga = (props) => {
+
+    const { id_grupo, serie_uid, numCap, paginas } = useContext(vermangaContext);
+    console.log(paginas)
 
     return (
         <div>
             <div className="manga-view">
-                <img src={pagina1}/>
+                {paginas?.map((capitulo, indx) => <img src={`http://upload.leermangaonline.com/uploads/capitulos/${id_grupo + '_' + serie_uid + '_' + numCap + '/' + capitulo?.url}`} alt="capitulo" key={indx} />)}
+                {/* <img src={pagina1}/>
                 <img src={pagina2}/>
-                <img src={pagina3}/>
+                <img src={pagina3}/> */}
             </div>
         </div>
     )

@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { useSeries } from '../../../hooks/useSeries';
 import { any } from 'prop-types';
 import { useGrupos } from '../../../hooks/useGrupos';
+import vermangaContext from '../../../context/vermanga/vermangaContext';
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -84,11 +85,14 @@ export default function CustomizedAccordions({ id, filteredCapitulos, ...props }
   const { capitulos, getCapitulosSerie } = useSeries();
   const { grupos, getGruposByCapitulo } = useGrupos();
 
+  const { setCapituloInfo } = React.useContext(vermangaContext);
+
   React.useEffect(() => {
     if (!capitulos) {
       getCapitulosSerie(id);
     }
   }, [])
+  console.log(filteredCapitulos);
 
 
   const handleChange =
@@ -114,7 +118,7 @@ export default function CustomizedAccordions({ id, filteredCapitulos, ...props }
         </AccordionSummary>
         {grupos?.map((translator, idx) => (<AccordionDetails key={idx} sx={{ backgroundColor: '#181818' }}>
           <Typography>
-            <Link to="../vermanga">
+            <Link to="../vermanga" onClick={() => setCapituloInfo(cap.id_capitulo, cap.id_grupo, cap.serie_uid, cap.numero)}>
               <div className='typography'>
                 <div>
                   {capitalize(translator.nombre)}

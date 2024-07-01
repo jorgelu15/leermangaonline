@@ -9,6 +9,7 @@ import DirectorioState from './context/directorio/directorioState'
 import SerieState from './context/serie/serieState'
 import GeneroState from './context/genero/generoState'
 import CapituloState from './context/capitulo/capituloState'
+import VermangaState from './context/vermanga/vermangaState'
 
 function App() {
 
@@ -20,9 +21,11 @@ function App() {
             <SerieState>
               <GeneroState>
                 <CapituloState>
+                  <VermangaState>
 
-                  <Navigator />
+                    <Navigator />
                   
+                  </VermangaState>
                 </CapituloState>
               </GeneroState>
             </SerieState>

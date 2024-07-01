@@ -54,5 +54,9 @@ export const OBTENER_GENEROS  = "OBTENER_GENEROS";
 export const OBTENER_GENERO = "OBTENER_GENERO";
 export const SUBIR_GENERO = "SUBIR_GENERO";
 
+//Paginas
+export const OBTENER_PAGINAS = "OBTENER_PAGINAS";
+export const SET_CAPITULO_ID = "SET_CAPITULO_ID";
+
 
 

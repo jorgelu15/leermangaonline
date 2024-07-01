@@ -1,5 +1,5 @@
 
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import React, { useRef } from 'react'
 import Select from 'react-select'
 
@@ -11,9 +11,39 @@ import close from '../../img/close.svg'
 import routes from "../../helpers/routes"
 import { Link } from "react-router-dom"
 import capituloContext from "../../context/capitulo/capituloContext"
+import serieContext from "../../context/serie/serieContext"
+import gruposContext from "../../context/grupos/gruposContext"
 
 
 const ContainerSubirmanga = (props) => {
+
+    const [suppObras, setSuppObras] = useState([])
+
+    const [suppGrupos, setSuppGrupos] = useState([])
+
+    const suppNumero = [
+        { label: '1', value: '1'},
+        { label: '2', value: '2'},
+        { label: '3', value: '3'},
+        { label: '4', value: '4'},
+        { label: '5', value: '5'},
+    ]
+
+    const { series } = useContext(serieContext);
+
+    useEffect(() => {
+        const newSupp = series?.map((item, indx) => ({label: item.nombre, value: item.serie_uid}));
+        setSuppObras(newSupp);
+        // console.log(series)
+    }, [series]);
+
+    const { grupos } = useContext(gruposContext);
+
+    useEffect(() => {
+        const newSupp = grupos?.map((item, indx) => ({label: item.nombre, value: item.id}));
+        setSuppGrupos(newSupp);
+        console.log(grupos)
+    }, [grupos]);
 
     const { subirCapitulo } = useContext(capituloContext);
 
@@ -54,24 +84,6 @@ const ContainerSubirmanga = (props) => {
         })
     }
 
-    const suppObras = [
-        { label: 'Naruto', value: '0'},
-        { label: 'Jujutsu', value: '1'},
-    ]
-
-    const suppGrupos = [
-        { label: 'Okasa', value: '0'},
-        { label: 'tapis', value: '1'},
-    ]
-
-    const suppNumero = [
-        { label: '1', value: '1'},
-        { label: '2', value: '2'},
-        { label: '3', value: '3'},
-        { label: '4', value: '4'},
-        { label: '5', value: '5'},
-    ]
-
     const [serieCapitulo, setSerieCapitulo] = useState(null);
     
     const subirSerieCapitulo = (e) => {
@@ -90,9 +102,9 @@ const ContainerSubirmanga = (props) => {
         if (serieCapitulo === null || serieCapitulo.length === 0) {
             return;
         }
-        if(id_grupo.trim() === ""){
-            return;
-        }
+        // if(id_grupo.trim() === ""){
+        //     return;
+        // }
         if(serie_uid.trim() === ""){
             return;
         }
