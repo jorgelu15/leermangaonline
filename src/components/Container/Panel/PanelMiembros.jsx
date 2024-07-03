@@ -6,20 +6,47 @@ import TableMiembros from "../../Mui/Tables/TableMiembros";
 
 import gruposContext from "../../../context/grupos/gruposContext";
 import SearchMiembros from "../../Search/SearchMiembros";
+import { useParams } from "react-router-dom";
+import { useGrupos } from "../../../hooks/useGrupos";
 
 
 const PanelMiembros = (props) => {
 
-    const { solicitudes } = useContext(gruposContext)
-    const [ filterSolic, setFilterSolic ] = useState([])
+    const { miembros, getMiembros } = useGrupos();
+    let { id } = useParams();
 
-    useEffect(() => {
-        setFilterSolic(solicitudes?.filter((item) => item.estado === 1))
-    }, [solicitudes])
+    const [resultados, setResultados] = useState(miembros);
+    const [paramQ, setParamQ] = useState(null);
 
-    useEffect(() => {
-    }, [filterSolic])
+    const [busqueda, guardarBusqueda] = useState({
+        usuario: "",
+        tipo: false
+    });
+    const { usuario } = busqueda;
 
+    const onChange = (e) => {
+        guardarBusqueda({
+            ...busqueda,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const buscarUsuario = () => {
+        if (usuario.trim() !== "") {
+            const resultadosBusqueda = miembros.filter((miembro) =>
+                miembro.usuario.toLowerCase().includes(usuario.toLowerCase())
+            );
+            setParamQ(usuario);
+            setResultados(resultadosBusqueda);
+        }
+    };
+
+
+    React.useEffect(() => {
+        if (!miembros) {
+            getMiembros(id);
+        }
+    }, [])
     return (
         <div className="panel-miembros">
 
@@ -30,13 +57,13 @@ const PanelMiembros = (props) => {
                 </div>
 
                 <div className="c-table">
-                    <SearchMiembros ></SearchMiembros>
+                    <SearchMiembros buscarUsuario={buscarUsuario} onChange={onChange} setResultados={setResultados} usuario={usuario} miembros={miembros} setParamQ={setParamQ} paramQ={paramQ} />
 
-                    {filterSolic?.length !== 0 ? <TableMiembros solicitudesV={filterSolic}></TableMiembros>
-                    : <p className="mensaje">No hay miembros.</p>}
+                    {resultados?.length !== 0 ? <TableMiembros miembros={resultados} />
+                        : <p className="mensaje">No hay miembros.</p>}
                 </div>
             </div>
-    
+
         </div>
     )
 }

@@ -59,6 +59,7 @@ const ContainerSubirobra = (props) => {
     const [obraId, setObraId] = useState(v4());
     const { enqueueSnackbar } = useSnackbar()
     const [loading, setLoading] = useState(false);
+    const [errorIndicator, setErrorIndicator] = useState(false);
 
 
     const [newSerie, setNewSerie] = useState({
@@ -129,8 +130,11 @@ const ContainerSubirobra = (props) => {
     const subirObra = async () => {
         setLoading(true);
         if (banner?.trim() === "" ||
+            portada?.trim() === "" ||
             nombre?.trim() === "" ||
+            sinopsis?.trim() === "" ||
             estado?.trim() === "") {
+            setErrorIndicator(true);
             enqueueSnackbar("Hay algunos campos que se deben llenar", {
                 variant: "default",
                 anchorOrigin: {
@@ -166,6 +170,19 @@ const ContainerSubirobra = (props) => {
             } catch (error) {
                 console.log(error);
             } finally {
+                f.append("data", {});
+                setNewSerie({
+                    ...newSerie,
+                    banner: "",
+                    portada: "",
+                    nombre: "",
+                    nombre_alt: "",
+                    estado: "",
+                    sinopsis: "",
+                    id_grupo: "",
+                    tipo: ""
+                })
+
                 setLoading(false);
             }
         }, 1500);
@@ -177,7 +194,6 @@ const ContainerSubirobra = (props) => {
                 horizontal: "right"
             }
         })
-
     }
 
     return (
@@ -188,23 +204,23 @@ const ContainerSubirobra = (props) => {
                 <form action="">
 
                     <div className="control-form">
-                        <label htmlFor="">Banner</label>
-                        <div className="r-file">
+                        <label htmlFor="">Banner*</label>
+                        <div className="r-file" style={errorIndicator ? { border: `2px solid Red` } : null}>
                             <input type="file" name="banner" id="banner" onChange={(e) => subirBanner(e.target.files[0])} />
                         </div>
                     </div>
 
                     <div className="control-form">
-                        <label htmlFor="">Miniatura</label>
-                        <div className="r-file">
+                        <label htmlFor="">Miniatura*</label>
+                        <div className="r-file " style={errorIndicator ? { border: `2px solid Red` } : null}>
                             <input type="file" name="portada" id="portada" onChange={(e) => subirPortada(e.target.files[0])} />
                         </div>
                     </div>
 
                     <div className="control-form">
-                        <label htmlFor="">Titulo</label>
-                        <div className="r-sel">
-                            <input className="control-input" type="text" placeholder="titulo de la obra" name="nombre" id="nombre" value={nombre} onChange={onChange} />
+                        <label htmlFor="">Titulo*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <input className="control-input" type="text" placeholder="titulo de la obra*" name="nombre" id="nombre" value={nombre} onChange={onChange} />
                         </div>
                     </div>
 
@@ -216,9 +232,14 @@ const ContainerSubirobra = (props) => {
                     </div>
 
                     <div className="control-form">
-                        <label htmlFor="">Estado</label>
-                        <div className="r-sel">
-                            <input className="control-input" type="text" placeholder="Estado de la obra" name="estado" id="estado" value={estado} onChange={onChange} />
+                        <label htmlFor="">Estado*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="estado" id="estado" value={estado} onChange={onChange} >
+                                <option value={"POR DEFECTO"}>Seleccione uno</option>
+                                <option value={"PUBLICANDOSE"}>Publicandose</option>
+                                <option value={"EN PAUSA"}>En pausa</option>
+                                <option value={"FINALIZADO"}>Finalizado</option>
+                            </select>
                         </div>
                     </div>
 
@@ -230,8 +251,8 @@ const ContainerSubirobra = (props) => {
                     </div>
 
                     <div className="control-form">
-                        <label htmlFor="">Grupo</label>
-                        <div className="r-sel">
+                        <label htmlFor="">Grupo*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
                             <Select
                                 options={suppGrupos}
                                 placeholder={"Seleccione el grupo"}
@@ -244,9 +265,9 @@ const ContainerSubirobra = (props) => {
                     </div>
 
                     <div className="control-form">
-                        <label htmlFor="">Genero</label>
-                        <div className="r-sel">
-                            <select className="control-input" name="tipo" id="tipo" value={tipo} onChange={onChange}>
+                        <label htmlFor="">Genero*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="tipo" id="tipo" value={tipo} onChange={onChange} >
                                 {generos && (
                                     generos.map((item, idx) => {
                                         return (

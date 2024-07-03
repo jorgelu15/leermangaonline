@@ -5,15 +5,19 @@ export const useGrupos = () => {
     const {
         grupos,
         grupo,
+        miembros,
         getGruposByCapitulo,
-        getGrupos
+        getGrupos,
+        getMiembros
     } = useContext(gruposContext);
 
 
     return {
         grupos,
         grupo,
+        miembros,
         getGruposByCapitulo,
-        getGrupos
+        getGrupos,
+        getMiembros
     }
 }

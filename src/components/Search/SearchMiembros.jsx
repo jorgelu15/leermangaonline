@@ -1,34 +1,38 @@
-import { useContext, useState } from "react";
-
 import lupa from "../../img/lupa.svg"
+import escoba from "../../assets/escoba.png";
 
 const SearchSolicitudes = (props) => {
-
-  // const { setPage } = props;
-
-  // const productsContext = useContext(ProductsContext);
-  // const { filtrar } = productsContext;
-
-  const [busqueda, guardarBusqueda] = useState({
-    codigo: "",
-    tipo: false
-  });
-  const { codigo } = busqueda;
-
-  const onChange = (e) => {
-    guardarBusqueda({
-      ...busqueda,
-      [e.target.name]: e.target.value,
-    });
-    // setPage(0);
-    // filtrar(e.target.value);
-  };
+  const {
+    buscarUsuario,
+    onChange,
+    usuario,
+    setResultados,
+    miembros,
+    setParamQ,
+    paramQ
+  } = props;
 
   return (
-    <div className="query">
-      <input type="text" className="input-src" placeholder="Introduzca el nombre del usuario" name="codigo" value={codigo} onChange={onChange} />
-      <button><img src={lupa}></img>Buscar</button>
-    </div>
+    <>
+      <div className="query">
+        <input type="text" className="input-src" placeholder="Introduzca el nombre del usuario" name="usuario" value={usuario} onChange={onChange} />
+        <button onClick={buscarUsuario}><img src={lupa}></img>Buscar</button>
+      </div>
+      <div className="query" style={{ alignItems: "center", justifyContent: paramQ ? "space-between" : "flex-end" }}>
+        {paramQ && (
+          <div>
+            <p>Resultados de: <span style={{ fontStyle: "italic" }}><b>{paramQ}</b></span></p>
+          </div>
+        )}
+        <button className="button" style={{ minHeight: 40, background: "#ffc107" }} onClick={() => {
+          setResultados(miembros);
+          setParamQ(null);
+        }}>
+          <img width={16} src={escoba} />
+          <p>Restablecer tabla</p>
+        </button>
+      </div>
+    </>
   );
 };
 

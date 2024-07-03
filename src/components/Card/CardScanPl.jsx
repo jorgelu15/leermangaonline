@@ -8,6 +8,7 @@ import routes from "../../helpers/routes";
 import group from "../../img/group.svg"
 import setting from "../../img/settings.png"
 import { useNavigate } from "react-router-dom";
+import { useText } from "../../hooks/useText";
 
 
 
@@ -18,6 +19,7 @@ const CardScanPl = (props) => {
 
     const { getGrupo } = useContext(gruposContext)
     const { enqueueSnackbar } = useSnackbar();
+    const { reemplazarEspaciosConGuiones } = useText();
 
     let navigate = useNavigate();
 
@@ -31,7 +33,7 @@ const CardScanPl = (props) => {
             }
         })
         await getGrupo(grupo)
-        navigate(routes.panel + `/${ grupo.id }/${ grupo.nombre }`)
+        navigate(routes.panel + `/${ grupo.id }/${ reemplazarEspaciosConGuiones(grupo.nombre.toLowerCase()) }`)
     }
 
     return (

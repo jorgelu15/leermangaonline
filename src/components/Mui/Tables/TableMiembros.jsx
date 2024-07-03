@@ -21,6 +21,8 @@ import { useSnackbar } from 'notistack';
 import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
 import useAuth from '../../../hooks/useAuth';
+import { useGrupos } from '../../../hooks/useGrupos';
+import { useParams } from 'react-router-dom';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -99,9 +101,10 @@ TablePaginationActions.propTypes = {
 export default function TableMiembros(props) {
 
   const {
-    solicitudesV
+    miembros
   } = props;
 
+ 
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -123,19 +126,19 @@ export default function TableMiembros(props) {
   };
 
   const { updateSolicitud } = useContext(gruposContext)
-  
+
 
   const handleExpulsar = (solic) => {
 
     enqueueSnackbar("Miembro expulsado", {
       variant: "success",
       anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "right"
+        vertical: "bottom",
+        horizontal: "right"
       }
     })
-    updateSolicitud({usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 3})
-    
+    updateSolicitud({ usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 3 })
+
   }
 
   const formatDate = (fecha) => {
@@ -147,7 +150,7 @@ export default function TableMiembros(props) {
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const seconds = date.getSeconds();
-    
+
     return (`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
   }
 
@@ -164,31 +167,30 @@ export default function TableMiembros(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {console.log(solicitudesV, "linea 128")} */}
           {(rowsPerPage > 0
-            ? solicitudesV?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : solicitudesV ? solicitudesV : []
+            ? miembros?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : miembros ? miembros : []
           )?.map((solicitud, idx) => (
             <TableRow key={idx}>
               <TableCell component="th" scope="row">
-                {solicitud.Usuario?.usuario}
+                {solicitud?.usuario}
               </TableCell>
               <TableCell component="th" align="center">
-                {solicitud.rol}
+                {solicitud.rol === "0" ? "Administrador" : "Miembro"}
               </TableCell>
               <TableCell component="th" align="center">
-                {solicitud.Usuario?.correo}
+                {solicitud?.correo}
               </TableCell>
               <TableCell component="th" align="center">
                 {formatDate(solicitud.createdAt)}
               </TableCell>
               <TableCell component="th" align="center">
                 <div className='table-btn-cont'>
-                  { solicitud.rol === "admin" 
-                  ? <button className='table-btn-ac'>Contactar</button> 
-                  : <button onClick={() => {handleExpulsar(solicitud)}}  className='table-btn-re'>Expulsar</button>
+                  {solicitud.rol === "0"
+                    ? <button className='table-btn-ac'>Contactar</button>
+                    : <button onClick={() => { handleExpulsar(solicitud) }} className='table-btn-re'>Expulsar</button>
                   }
-                  
+
                 </div>
               </TableCell>
             </TableRow>
@@ -204,7 +206,7 @@ export default function TableMiembros(props) {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
-              count={solicitudesV?.length}
+              count={miembros?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{

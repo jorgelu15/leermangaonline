@@ -10,8 +10,8 @@ import {
 } from '../../types';
 
 export default (state, action) => {
-    
-    switch(action.type) {
+
+    switch (action.type) {
         case INSERTAR_GRUPO_EXITOSO:
             return {
                 ...state,
@@ -45,16 +45,20 @@ export default (state, action) => {
                 solicitudes: state.solicitudes.map((item) => item.id === action.payload.id ? action.payload : item)
             }
         case OBTENER_MIEMBROS:
+            const miembros = action.payload.map(miembro => {
+                return miembro.Usuario;
+            });
+
             return {
                 ...state,
-                miembros: action.payload
+                miembros: miembros
             }
         case MENSAJE_ERROR:
             return {
                 ...state,
                 msg: action.payload
             }
-            
+
         default:
             return state;
     }

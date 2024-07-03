@@ -13,6 +13,7 @@ import { Link } from "react-router-dom"
 import capituloContext from "../../context/capitulo/capituloContext"
 import serieContext from "../../context/serie/serieContext"
 import gruposContext from "../../context/grupos/gruposContext"
+import { useSeries } from "../../hooks/useSeries"
 
 
 const ContainerSubirmanga = (props) => {
@@ -29,7 +30,7 @@ const ContainerSubirmanga = (props) => {
         { label: '5', value: '5'},
     ]
 
-    const { series } = useContext(serieContext);
+    const { series } = useSeries();
 
     useEffect(() => {
         const newSupp = series?.map((item, indx) => ({label: item.nombre, value: item.serie_uid}));

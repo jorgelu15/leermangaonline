@@ -131,7 +131,7 @@ const GruposState = props => {
         // console.log("llega aca: ", grupoId)
         try {
             const respuesta = await clienteAxios.get(`/usuariogrupo/${grupoId}/`);
-            console.log(respuesta.data.usuariogrupo)
+            
             dispatch({
                 type: OBTENER_SOLICITUDES,
                 payload: respuesta.data.usuariogrupo
@@ -163,11 +163,14 @@ const GruposState = props => {
         }
     }
 
-    const getMiembros = () => {
+    const getMiembros = async (grupoId) => {
         try {
+
+            const res = await clienteAxios.get(`/usuariogrupo/${grupoId}`);
+            
             dispatch({
                 type: OBTENER_MIEMBROS,
-                payload: state.solicitudes.filter((item) => item.estado == 1)
+                payload: res.data.usuariogrupo
             })
         } catch (error) {
         }
