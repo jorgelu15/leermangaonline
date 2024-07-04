@@ -1,9 +1,8 @@
-
-import { useEffect, useState } from "react"
-import React, { useRef } from 'react';
+import { useEffect, useState } from "react";
+import React from 'react';
 
 import CustomizedAccordions from "../Mui/Accordions/Accordion";
-import image from "../../img/jujutsu-manga.jpg"
+import image from "../../img/jujutsu-manga.jpg";
 import chat from "../../img/chat.png";
 import route from "../../helpers/routes";
 
@@ -18,9 +17,7 @@ import { useSeries } from "../../hooks/useSeries";
 import { Link, useParams } from "react-router-dom";
 import Rating from "./Rating";
 
-
 const ContainerManga = (props) => {
-
     const { usuario } = useAuth();
     const { serie, capitulos, generosSerie, votos, getSerie, getGeneroSerie, getPromVotoSerie, getCapitulosSerie } = useSeries();
 
@@ -37,40 +34,15 @@ const ContainerManga = (props) => {
     }, [searchTerm, capitulos]);
 
     useEffect(() => {
-        if (!serie) {
-            getSerie(id);
-        }
-    }, []);
+        getSerie(id);
+        getGeneroSerie(id);
+        getPromVotoSerie(id);
+        getCapitulosSerie(id);
+    }, [id]);
 
     useEffect(() => {
-        if (!generosSerie) {
-            getGeneroSerie(id);
-        }
-    }, []);
-
-    useEffect(() => {
-        if (!votos) {
-            getPromVotoSerie(id);
-        }
-    }, []);
-
-    useEffect(() => {
-    }, [votos])
-
-
-
-
-    // useEffect(() => {
-    //     (function () { // DON'T EDIT BELOW THIS LINE
-    //         var d = document, s = d.createElement('script');
-    //         s.src = 'https://lmo-manga.disqus.com/embed.js';
-    //         s.setAttribute('data-timestamp', +new Date());
-    //         (d.head || d.body).appendChild(s);
-    //     })();
-
-    // }, []);
-
-
+        setFilteredCapitulos(capitulos);
+    }, [capitulos]);
 
     return (
         <div>
@@ -109,13 +81,11 @@ const ContainerManga = (props) => {
                         <CustomizedAccordions id={id} filteredCapitulos={filteredCapitulos}></CustomizedAccordions>
                     </div>
                     <div className="chat">
-
                         <div id="disqus_thread"></div>
                         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                         {/* <img src={chat} alt="chat"/> */}
                     </div>
                 </div>
-
                 <div className="manga-type">
                     <div className="generos">
                         <p className="type-titles">Generos</p>
