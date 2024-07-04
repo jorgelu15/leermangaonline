@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react"
-import React, { useRef } from 'react';
-import { useContext } from "react";
 
 import TableMiembros from "../../Mui/Tables/TableMiembros";
 
-import gruposContext from "../../../context/grupos/gruposContext";
 import SearchMiembros from "../../Search/SearchMiembros";
 import { useParams } from "react-router-dom";
 import { useGrupos } from "../../../hooks/useGrupos";
@@ -42,11 +39,18 @@ const PanelMiembros = (props) => {
     };
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!miembros) {
             getMiembros(id);
+        } else {
+            setResultados(miembros);
         }
-    }, [])
+    }, [miembros, id]);
+
+    useEffect(() => {
+        getMiembros(id);
+    }, [id]);
+    
     return (
         <div className="panel-miembros">
 

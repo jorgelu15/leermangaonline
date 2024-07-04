@@ -1,82 +1,69 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import Jujutsu from "../../img/jujutsu.png"
+import slider1 from "../../assets/slide.jpg";
+import slider2 from "../../assets/slide.jpg";
+import slider3 from "../../assets/slide.jpg";
 
-import slider1 from "../../img/slider1.jpg"
-import slider2 from "../../img/slider2.jpg"
-import slider3 from "../../img/slider3.jpg"
+const Slider = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [slidesToShow, setSlidesToShow] = useState(3);
+    const intervalRef = useRef(null);
+    const slides = [slider1, slider2, slider3, slider1, slider2, slider3];
 
-const Slider = (props) => {
-
-    const [isDrag, setIsDrag] = useState(false)
-    const [prPageX, setPrPageX] = useState(0)
-    const [prScroll, setPrScroll] = useState(0)
-
-    const carouselRef = useRef(null);
-
-
-    const handleMouseD = (e) => {
-        setIsDrag(true)
-        setPrPageX(e.pageX || e.touches[0].pageX)
-        setPrScroll(carouselRef.current.scrollLeft)
-    }
-
-    const handleMouseM = (e) => {
-        if (isDrag) {
-            if (carouselRef.current) {
-                let positionDif = (e.pageX || e.touches[0].pageX) - prPageX;
-                carouselRef.current.scrollLeft = prScroll - positionDif;
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 1023) {
+                setSlidesToShow(1);
+            } else if (window.innerWidth <= 1599) {
+                setSlidesToShow(2);
+            } else {
+                setSlidesToShow(3);
             }
-        }
-        e.preventDefault();
-    }
+        };
 
-    const handleMouseU = (e) => {
-        setIsDrag(false)
-    }
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        intervalRef.current = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + slidesToShow) % slides.length);
+        }, 5000);
+
+        return () => {
+            clearInterval(intervalRef.current);
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [slides.length, slidesToShow]);
+
+    const getActiveIndex = () => {
+        return Math.floor(currentIndex / slidesToShow) % Math.ceil(slides.length / slidesToShow);
+    };
 
     return (
         <div className="wrapper">
-            <div className="carousel">
-                <div className="carousel-slider">
-                    <div className="carousel-slider-draggable">
-                        <div className="carousel-slider-track"
-                            style={{
-                                width: 5922,
-                                transform: "translate3d(-1950px, 0px, 0px)"
-                            }}
-                        onMouseDown={handleMouseD}
-                        onMouseMove={handleMouseM}
-                        onMouseUp={handleMouseU}
-                        onTouchStart={handleMouseD}
-                        onTouchMove={handleMouseM}
-                        onTouchEnd={handleMouseU}
-                        ref={carouselRef}
-                        >
-                            <div className="track">
-                                <img src={slider1} />
-                            </div>
-                            <div className="track">
-                                <img src={slider2} />
-                            </div>
-                            <div className="track">
-                                <img src={slider3} />
-                            </div>
-                            <div className="track" style={{ transform: "scale(1)" }}>
-                                <img src={slider1} />
-                            </div>
-                            <div className="track">
-                                <img src={slider2} />
-                            </div>
-                            <div className="track">
-                                <img src={slider3} />
-                            </div>
-                        </div>
+            <div
+                className="slider_inner"
+                style={{
+                    transform: `translateX(-${(currentIndex / slidesToShow) * 100}%)`,
+                }}
+            >
+                {slides.map((slide, index) => (
+                    <div className='slide' key={index}>
+                        <img src={slide} alt={`Slide ${index + 1}`} />
                     </div>
+                ))}
+            </div>
+            <div className='controls'>
+                <div className='inner_controls'>
+                    {[...Array(Math.ceil(slides.length / slidesToShow))].map((_, index) => (
+                        <button
+                            key={index}
+                            className={`pin-control ${index === getActiveIndex() ? 'active' : ''}`}
+                        ></button>
+                    ))}
                 </div>
             </div>
-        </div >
-    )
-}
+        </div>
+    );
+};
 
 export default Slider;
