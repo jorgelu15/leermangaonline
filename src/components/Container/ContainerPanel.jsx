@@ -20,6 +20,7 @@ import PanelControl from "./Panel/PanelControl";
 import PanelGeneros from "./Panel/PanelGeneros";
 
 import { Link, useParams } from "react-router-dom";
+import PanelProyectos from "./Panel/PanelProyectos";
 
 
 const ContainerPanel = (props) => {
@@ -105,8 +106,10 @@ const ContainerPanel = (props) => {
                     </div> */}
 
                     {panel == 1 && (<PanelControl />)}
+                    {panel == 2 && (<PanelProyectos />)}
                     {panel == 3 && (<PanelMiembros />)}
                     {panel == 4 && (<PanelSolicitudes />)}
+                    
                     {/* {panel == 5 && (<PanelGeneros />)} */}
 
                 </div>

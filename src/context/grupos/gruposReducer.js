@@ -6,7 +6,8 @@ import {
     OBTENER_SOLICITUDES,
     ACTUALIZAR_SOLICITUD,
     OBTENER_MIEMBROS,
-    MENSAJE_ERROR
+    MENSAJE_ERROR,
+    OBTENER_PROYECTOS
 } from '../../types';
 
 export default (state, action) => {
@@ -52,6 +53,11 @@ export default (state, action) => {
             return {
                 ...state,
                 miembros: miembros
+            }
+        case OBTENER_PROYECTOS:
+            return {
+                ...state,
+                proyectos: action.payload
             }
         case MENSAJE_ERROR:
             return {
