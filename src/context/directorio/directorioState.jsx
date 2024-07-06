@@ -36,9 +36,26 @@ const DirectorioState = props => {
         }
     }
 
-    const filtrar = async (busqueda) => {
+    const filtrar = async (filtros) => {
         try {
             const res = await clienteAxios.post(`/serie/filtros`, {
+                busquedaAvanzada: filtros
+            });
+            
+            dispatch({
+                type: FILTRAR,
+                payload: res.data.seriesFounded
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const buscador = async (busqueda) => {
+        
+        try {
+            const res = await clienteAxios.post(`/serie/busqueda`, {
                 busquedaAvanzada: busqueda
             });
             
@@ -50,8 +67,6 @@ const DirectorioState = props => {
         } catch (error) {
             console.log(error)
         }
-
-
     }
 
     return (
@@ -62,6 +77,7 @@ const DirectorioState = props => {
                 msg: state.msg,
                 getSeries,
                 filtrar,
+                buscador
             }}
         >
             {props.children}

@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TailSpin } from 'react-loader-spinner';
 import lupa from "../../img/lupa.svg";
 import directorioContext from "../../context/directorio/directorioContext";
+import { useLocation } from "react-router-dom";
 
 const FallbackLoader = () => {
   return (
@@ -32,8 +33,8 @@ const FallbackLoader = () => {
 };
 
 const SearchDirectory = (props) => {
-  const { filters: filtros } = props;
-  const { filtrar } = useContext(directorioContext);
+  const { filtros } = props;
+  const { filtrar, buscador } = useContext(directorioContext);
   const [loading, setLoading] = useState(false);
   const [busqueda, guardarBusqueda] = useState({
     consulta: "",
@@ -50,12 +51,21 @@ const SearchDirectory = (props) => {
   const onClickBuscar = async () => {
     setLoading(true);
     // Simular un retraso de 2 segundos antes de realizar la búsqueda
+
     setTimeout(async () => {
       try {
-        await filtrar({
-          consulta: consulta,
-          filters: filtros
-        });
+        if ((filtros?.genero.length >= 0 || filtros?.demografia.length >= 0 || filtros?.tipo.length >= 0) && consulta?.trim() === "") {
+          await filtrar({
+            filters: filtros
+          });
+          guardarBusqueda({ ...busqueda, consulta: "" });
+          return;
+        }
+
+        if (consulta?.trim() !== "") {
+          await buscador({ consulta: consulta });
+        }
+
       } catch (error) {
         console.log(error);
       } finally {
@@ -64,9 +74,24 @@ const SearchDirectory = (props) => {
     }, 1500); // 2000 milisegundos = 2 segundos
   };
 
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onClickBuscar()
+    }
+  }
+
+  const location = useLocation();
+  const query = new URLSearchParams(location.search).get('q');
+
+  useEffect(() => {
+    if (query?.trim() !== "") {
+      buscador({ consulta: query });
+    }
+  }, [query])
+
   return (
     <div className="query">
-      <input type="text" className="input-src" placeholder="Buscar..." name="consulta" value={consulta} onChange={onChange} />
+      <input type="text" className="input-src" placeholder="Buscar..." name="consulta" value={consulta} onChange={onChange} onKeyDown={onKeyDown} />
       <button onClick={onClickBuscar}>
         {loading ? <FallbackLoader /> : <img src={lupa} alt="Lupa" />}
       </button>

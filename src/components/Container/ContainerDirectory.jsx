@@ -70,7 +70,7 @@ const ContainerDirectory = () => {
             </aside>
 
             <main className="main-home">
-                <SearchDirectory filters={filters} />
+                <SearchDirectory filtros={filters} />
                 <div className="groups">
                     {data && <CardDirectory cards={data} />}
                 </div>

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import menubar from '../../img/menu-bar.svg'
 import routes from '../../helpers/routes';
 import useAuth from '../../hooks/useAuth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AccountMenu from '../Mui/Menu/AccountMenu';
 
 import logop1 from "../../img/logop2.png"
@@ -11,7 +11,31 @@ import logop1 from "../../img/logop2.png"
 const Header = (props) => {
 
     const { autenticado, usuario, usuarioAutenticado, logOut } = useAuth();
+    const navigate = useNavigate();
+    const [busqueda, guardarBusqueda] = useState({
+        consulta: "",
+    });
 
+    const { consulta } = busqueda;
+
+    const onChange = (e) => {
+        guardarBusqueda({
+            ...busqueda,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            buscador();
+        }
+    };
+
+    const buscador = () => {
+        if (consulta?.trim() !== "") {
+            navigate(`${routes.directory}?q=${consulta}`); // Redirige a la página de búsqueda con la consulta
+        }
+    };
 
     return (
         <header className="header-manga">
@@ -30,22 +54,29 @@ const Header = (props) => {
                 <div className="nav-right">
                     <div>
                         <p>
-                            <input type="search" placeholder="Buscar..." className="input-style search" />
+                            <input
+                                type="search"
+                                placeholder="Buscar..."
+                                className="input-style search"
+                                name='consulta'
+                                value={consulta}
+                                onChange={onChange}
+                                onKeyDown={handleKeyDown} />
                         </p>
-                        { !autenticado ? 
+                        {!autenticado ?
                             <>
                                 <p><Link to={routes.login}>ACCEDER</Link></p>
                                 <p><Link to={routes.register}>REGISTRARSE</Link></p>
                             </>
                             :
-                            
+
                             <>
                                 <AccountMenu></AccountMenu>
                                 {/* <p><Link to={routes.perfil}>PERFIL</Link></p>
                                 <p><a onClick={() => logOut()}>CERRAR</a></p> */}
                             </>
                         }
-                        
+
                     </div>
                     {/* <button><img src={menubar} alt="" /></button> */}
                 </div>
