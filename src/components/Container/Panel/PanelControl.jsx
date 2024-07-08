@@ -15,7 +15,7 @@ import icon_bloc from "../../../img/panel/icon-bloc.svg"
 
 
 const PanelControl = (props) => {
-
+    const { miembros, proyectos } = props;
     return (
         <div className="panel-control">
 
@@ -30,7 +30,7 @@ const PanelControl = (props) => {
                         <h4>Miembros</h4>
                         <div className="port">
                             <img src={icon_user} className="scal" />
-                            <p className="number">0</p>
+                            <p className="number">{miembros?.length}</p>
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@ const PanelControl = (props) => {
                         <h4>Subidas</h4>
                         <div className="port">
                             <img src={icon_up} />
-                            <p className="number">0</p>
+                            <p className="number">{proyectos?.length}</p>
                         </div>
                     </div>
 
@@ -78,8 +78,8 @@ const PanelControl = (props) => {
                 <h3 className="titulo-dt">datos generales de los proyectos</h3>
             </div>
             <div className="cont-graf">
-                <GraphicSeguidores/>
-                <GraphicSubidas/>
+                <GraphicSeguidores />
+                <GraphicSubidas />
             </div>
 
             <div className="cont-graf info-reglas">
@@ -95,14 +95,14 @@ const PanelControl = (props) => {
                         <p>No se permite editar o eliminar la hoja de créditos del scan original.</p>
                         <p>No se permiten subidas duplicadas, capítulos incompletos o capítulos duplicados con distinta numeración (Se considera duplicado cuando se trata del mismo capítulo y procedente del mismo scan.).</p>
                     </div>
-                    <div> 
+                    <div>
                         <h4>Validacion de capitulos</h4>
                         <p>El tiempo de validación depende de la disponibilidad de los moderadores (entre 24 y 48 horas)</p>
                     </div>
                     <p className="ayuda">Si tienes alguna duda o pregunta sobre las publicaciones puedes ponerte en contacto con nosotros a través de nuestro formulario de contacto o correo electrónico.</p>
                 </div>
             </div>
-    
+
         </div>
     )
 }

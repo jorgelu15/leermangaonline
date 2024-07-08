@@ -2,7 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import menubar from '../../img/menu-bar.svg'
 import routes from '../../helpers/routes';
-import useAuth from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 import { useEffect } from 'react';
 
 import upload from "../../img/upload-solid.svg"
@@ -13,7 +13,6 @@ import logop1 from "../../img/logop2.png"
 
 const HeaderPanel = (props) => {
 
-    const { autenticado, usuario, usuarioAutenticado, logOut } = useAuth();
 
     return (
         <header className="header-manga header-panel">

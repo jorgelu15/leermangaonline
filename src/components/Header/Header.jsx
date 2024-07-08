@@ -2,7 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import menubar from '../../img/menu-bar.svg'
 import routes from '../../helpers/routes';
-import useAuth from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 import { useEffect, useState } from 'react';
 import AccountMenu from '../Mui/Menu/AccountMenu';
 
@@ -10,7 +10,7 @@ import logop1 from "../../img/logop2.png"
 
 const Header = (props) => {
 
-    const { autenticado, usuario, usuarioAutenticado, logOut } = useAuth();
+    const { autenticado } = useAuth();
     const navigate = useNavigate();
     const [busqueda, guardarBusqueda] = useState({
         consulta: "",

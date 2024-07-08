@@ -191,6 +191,19 @@ const GruposState = props => {
         }
     }
 
+    const buscar = async (busqueda) => {
+        try {
+            const res = await clienteAxios.post(`/grupo/busqueda`, busqueda);
+            
+            dispatch({
+                type: OBTENER_GRUPOS,
+                payload: res.data.grupos
+            })
+        } catch (error) {
+
+        }
+    }
+
     return (
         <GruposContext.Provider
             value={{
@@ -210,7 +223,8 @@ const GruposState = props => {
                 updateSolicitud,
                 getMiembros,
                 getGruposByCapitulo,
-                getProyectos
+                getProyectos,
+                buscar
             }}
         >
             {props.children}

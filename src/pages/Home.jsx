@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import ContainerHome from "../components/Container/ContainerHome";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 const Home = () => {
-  
+
   const { autenticado, usuarioAutenticado } = useAuth();
 
   useEffect(() => {
@@ -20,8 +20,8 @@ const Home = () => {
       <div className="header--home">
         <Header />
       </div>
-      <ContainerHome/>
-      <Footer/>
+      <ContainerHome />
+      <Footer />
     </>
   );
 };

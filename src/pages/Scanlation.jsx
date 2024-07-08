@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 import ContainerScan from "../components/Container/ContainerScan";
 import Footer from "../components/Footer/Footer";
 
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 import gruposContext from "../context/grupos/gruposContext";
 
 
@@ -18,20 +18,20 @@ const Scanlation = () => {
     if (!autenticado) {
       usuarioAutenticado();
     }
-    
+
   }, [autenticado]);
 
   useEffect(() => {
     getSolicitudes(grupo?.id)
   }, []);
 
-    return (
-      <>
-        <Header/>
-        <ContainerScan/>
-        <Footer/>
-      </>
-    );
-  };
-  
-  export default Scanlation;
+  return (
+    <>
+      <Header />
+      <ContainerScan />
+      <Footer />
+    </>
+  );
+};
+
+export default Scanlation;

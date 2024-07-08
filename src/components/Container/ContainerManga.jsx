@@ -12,7 +12,7 @@ import red3 from "../../img/redes/red3.png";
 import red4 from "../../img/redes/red4.png";
 import red5 from "../../img/redes/red5.png";
 
-import useAuth from "../../hooks/useAuth";
+import {useAuth} from "../../hooks/useAuth";
 import { useSeries } from "../../hooks/useSeries";
 import { Link, useParams } from "react-router-dom";
 import Rating from "./Rating";

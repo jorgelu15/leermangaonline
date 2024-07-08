@@ -1,5 +1,28 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import authContext from "../context/auth/authContext";
 
-import AuthContext from '../context/auth/authContext';
+export const useAuth = () => {
+    const {
+        usuario,
+        autenticado,
+        signIn,
+        signUp,
+        usuarioAutenticado,
+        logOut
+    } = useContext(authContext);
 
-export default () => useContext(AuthContext);
+    useEffect(() => {
+        if (!usuario) {
+            usuarioAutenticado();
+        }
+    }, [])
+
+    return {
+        usuario,
+        autenticado,
+        signIn,
+        signUp,
+        usuarioAutenticado,
+        logOut
+    }
+}

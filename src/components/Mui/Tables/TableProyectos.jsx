@@ -15,13 +15,23 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import { TableHead } from '@mui/material';
+import { Modal, TableHead, Typography } from '@mui/material';
 
 import { useSnackbar } from 'notistack';
 import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
-import useAuth from '../../../hooks/useAuth';
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -111,35 +121,6 @@ export default function TableProyectos(props) {
     setPage(0);
   };
 
-  const { updateSolicitud } = useContext(gruposContext)
-
-
-  const handleAceptar = (solic) => {
-
-    enqueueSnackbar("Miembro Aceptado", {
-      variant: "success",
-      anchorOrigin: {
-        vertical: "bottom",
-        horizontal: "right"
-      }
-    })
-    updateSolicitud({ usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 1 })
-
-  }
-
-  const handleRechazar = (solic) => {
-
-    enqueueSnackbar("Solicitud Rechazada", {
-      variant: "success",
-      anchorOrigin: {
-        vertical: "bottom",
-        horizontal: "right"
-      }
-    })
-    updateSolicitud({ usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 2 })
-
-  }
-
   const formatDate = (fecha) => {
     const date = new Date(fecha);
 
@@ -152,6 +133,16 @@ export default function TableProyectos(props) {
 
     return (`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
   }
+
+  const [modalProjects, setModalProjects] = React.useState({
+    update: false,
+    delete: false
+  });
+  const handleOpenUpdate = () => {
+    setModalProjects({ ...modalProjects, update: !modalProjects.update, delete: false })
+  };
+  const handleClose = () => setModalProjects({ ...modalProjects, update: false, delete: false });
+  const handleOpenDelete = () => setModalProjects({ ...modalProjects, update: false, delete: !modalProjects.delete });
 
   return (
     <TableContainer component={Paper}>
@@ -185,8 +176,8 @@ export default function TableProyectos(props) {
               </TableCell>
               <TableCell component="th" align="center">
                 <div className='table-btn-cont'>
-                  <button onClick={() => { handleAceptar(solicitud) }} className='table-btn-ac'>Actualizar</button>
-                  <button onClick={() => { handleRechazar(solicitud) }} className='table-btn-re'>Eliminar</button>
+                  <button onClick={() => { handleOpenUpdate(solicitud) }} className='table-btn-ac'>Actualizar</button>
+                  <button onClick={() => { handleOpenDelete(solicitud) }} className='table-btn-re'>Eliminar</button>
                 </div>
               </TableCell>
             </TableRow>
@@ -218,6 +209,87 @@ export default function TableProyectos(props) {
           </TableRow>
         </TableFooter>
       </Table>
+      <Modal
+        open={modalProjects?.update}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Actualizar serie</Typography>
+          <div className="query">
+            <input type="text" className="input-src" placeholder="Titulo" style={{ width: '100%' }} />
+          </div>
+          <div className="query">
+            <input type="text" className="input-src" placeholder="Titulo alternativo" style={{ width: '100%' }} />
+          </div>
+          <div className="query">
+            <textarea className="input-src" name="sinopsis" id="sinopsis" cols="30" rows="4" placeholder="presentacion..."
+              style={{ background: 'white', width: "100%", resize: "none", color: "black", padding: 5, border: '1px solid #dfdfdf' }}></textarea>
+          </div>
+          <div className="query">
+            <select className='input-src' style={{ width: "100%" }}>
+              <option>Seleccione un estado</option>
+              <option>Publicandose</option>
+              <option>En pausa</option>
+              <option>Finalizado</option>
+            </select>
+          </div>
+          <div className="query">
+            <select className='input-src' style={{ width: "100%" }}>
+              <option>Seleccione un tipo</option>
+              <option>Manga</option>
+              <option>Manhua</option>
+              <option>Manhwa</option>
+              <option>Novela</option>
+              <option>One shot</option>
+              <option>Doujinshi</option>
+              <option>Oel</option>
+            </select>
+          </div>
+          <div className="query">
+            <select className='input-src' style={{ width: "100%" }}>
+              <option>Seleccione la demografia</option>
+              <option>Seinen</option>
+              <option>Shoujo</option>
+              <option>shounen</option>
+              <option>Josei</option>
+              <option>Kodomo</option>
+            </select>
+          </div>
+          <div className="query">
+            <select className='input-src' style={{ width: "100%" }}>
+              <option>Seleccione los idioma</option>
+              <option>Seinen</option>
+              <option>Shoujo</option>
+              <option>shounen</option>
+              <option>Josei</option>
+              <option>Kodomo</option>
+            </select>
+          </div>
+          <div className="query">
+            <button style={{ width: "100%", padding: 10 }}>Actualizar</button>
+          </div>
+        </Box>
+      </Modal>
+      <Modal
+        open={modalProjects?.delete}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Esta seguro de eliminar estas serie?</Typography>
+          <div style={{ flexDirection: 'row', display: 'flex', width: "100%", justifyContent: "space-between" }}>
+            <div className="query">
+              <button style={{ width: "98%", padding: 10 }}>Si</button>
+            </div>
+            <div className="query">
+              <button onClick={handleClose} style={{ width: "98%", padding: 10, backgroundColor: "#2a7cce" }}>No</button>
+            </div>
+          </div>
+        </Box>
+      </Modal>
     </TableContainer>
   );
 }

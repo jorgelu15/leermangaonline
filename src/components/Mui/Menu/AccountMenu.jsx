@@ -15,7 +15,7 @@ import Logout from '@mui/icons-material/Logout';
 import ListIcon from '@mui/icons-material/List';
 import routes from '../../../helpers/routes';
 import { Link } from 'react-router-dom';
-import useAuth from '../../../hooks/useAuth';
+import { useAuth } from '../../../hooks/useAuth';
 
 export default function AccountMenu() {
 
@@ -35,70 +35,70 @@ export default function AccountMenu() {
 
     return (
         <React.Fragment>
-        <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', cursor: 'pointer' }}>
-            
-            <Tooltip title="Perfil">
-            <Box
-                onClick={handleClick}
-                size="small"
-                sx={{ ml: 2, display: 'flex', alignItems: 'center' }}
-                aria-controls={open ? 'account-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-            >
-                <Avatar sx={{ width: 32, height: 32 }}>{usuario?.usuario.charAt(0)}</Avatar>
-                <p>{usuario?.usuario}</p>
+            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', cursor: 'pointer' }}>
+
+                <Tooltip title="Perfil">
+                    <Box
+                        onClick={handleClick}
+                        size="small"
+                        sx={{ ml: 2, display: 'flex', alignItems: 'center' }}
+                        aria-controls={open ? 'account-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                    >
+                        <Avatar sx={{ width: 32, height: 32 }}>{usuario?.usuario.charAt(0)}</Avatar>
+                        <p>{usuario?.usuario}</p>
+                    </Box>
+                </Tooltip>
             </Box>
-            </Tooltip>
-        </Box>
-        <Menu
-            anchorEl={anchorEl}
-            id="account-menu"
-            open={open}
-            onClose={handleClose}
-            onClick={handleClose}
-            sx={{top: '15px'}}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        >
-            
-            <MenuItem onClick={handleClose}>
-                <Link to={routes.perfil} 
-                    style={{display: 'flex', alignItems: 'center', color: 'black'}}>
-                    <Avatar /><p style={{marginLeft: 10}}>Mi perfil</p>
-                </Link>
-            </MenuItem>
+            <Menu
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={handleClose}
+                onClick={handleClose}
+                sx={{ top: '15px' }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
 
-            <Divider />
-            
-            <MenuItem onClick={handleClose}>
-                <Link to={routes.perfil} 
-                    style={{display: 'flex', alignItems: 'center', color: 'black'}}>
+                <MenuItem onClick={handleClose}>
+                    <Link to={routes.perfil}
+                        style={{ display: 'flex', alignItems: 'center', color: 'black' }}>
+                        <Avatar /><p style={{ marginLeft: 10 }}>Mi perfil</p>
+                    </Link>
+                </MenuItem>
+
+                <Divider />
+
+                <MenuItem onClick={handleClose}>
+                    <Link to={routes.perfil}
+                        style={{ display: 'flex', alignItems: 'center', color: 'black' }}>
+                        <ListItemIcon>
+                            <ListIcon fontSize="small" />
+                        </ListItemIcon>
+                        Mis listas
+                    </Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                    <Link to={routes.perfil}
+                        style={{ display: 'flex', alignItems: 'center', color: 'black' }}>
+                        <ListItemIcon>
+                            <Settings fontSize="small" />
+                        </ListItemIcon>
+                        Configuraciones
+                    </Link>
+                </MenuItem>
+
+                <MenuItem onClick={() => { logOut() }}>
                     <ListItemIcon>
-                        <ListIcon fontSize="small" />
+                        <Logout fontSize="small" />
                     </ListItemIcon>
-                    Mis listas
-                </Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-                <Link to={routes.perfil} 
-                    style={{display: 'flex', alignItems: 'center', color: 'black'}}>
-                    <ListItemIcon>
-                        <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Configuraciones
-                </Link>
-            </MenuItem>
+                    Cerrar sesion
+                </MenuItem>
 
-            <MenuItem onClick={() => {logOut()}}>
-            <ListItemIcon>
-                <Logout fontSize="small" />
-            </ListItemIcon>
-            Cerrar sesion
-            </MenuItem>
-            
 
-        </Menu>
+            </Menu>
         </React.Fragment>
     );
 }

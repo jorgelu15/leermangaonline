@@ -9,27 +9,40 @@ import PanelMiembros from "./Panel/PanelMiembros";
 
 import panelC from "../../img/tachometer-alt-solid.svg"
 import libroP from "../../img/book-solid.svg"
-import miembros from "../../img/users-solid.svg"
+import miembrosicon from "../../img/users-solid.svg"
 import personas from "../../img/user-group-solid.svg"
 import registro from "../../img/file-lines-solid.svg"
 import config from "../../img/user-gear-solid.svg"
 
-import useAuth from "../../hooks/useAuth";
 import gruposContext from "../../context/grupos/gruposContext";
 import PanelControl from "./Panel/PanelControl";
 import PanelGeneros from "./Panel/PanelGeneros";
 
 import { Link, useParams } from "react-router-dom";
 import PanelProyectos from "./Panel/PanelProyectos";
+import { useGrupos } from "../../hooks/useGrupos";
+import { useAuth } from "../../hooks/useAuth";
 
 
 const ContainerPanel = (props) => {
 
     const { usuario } = useAuth();
+    const { proyectos, miembros, getMiembros, getProyectos } = useGrupos();
     const { grupo, solicitudes, getGrupo, getSolicitudes } = useContext(gruposContext)
 
-    const { autenticado, usuarioAutenticado } = useAuth();
     let { id } = useParams();
+
+    useEffect(() => {
+        if (!proyectos) {
+            getProyectos(id);
+        }
+    }, [proyectos, id]);
+
+    useEffect(() => {
+        if (!miembros) {
+            getMiembros(id);
+        }
+    }, [miembros, id]);
 
     useEffect(() => {
         if (!grupo) {
@@ -55,7 +68,7 @@ const ContainerPanel = (props) => {
         <div className="content-panel">
             <div className="menu-panel">
                 <div className="perfil-menu">
-                    <p className="nombre">{ grupo?.nombre }</p>
+                    <p className="nombre">{grupo?.nombre}</p>
                     <p>{usuario?.usuario} - admin</p>
                 </div>
                 <div className="lista">
@@ -68,7 +81,7 @@ const ContainerPanel = (props) => {
                             <img src={libroP} /><a>Proyectos</a>
                         </li>
                         <li className={panel == 3 ? 'active' : ''} onClick={() => handleChangePl(3)}>
-                            <img src={miembros} /><a>Miembros</a>
+                            <img src={miembrosicon} /><a>Miembros</a>
                         </li>
                         <li className={panel == 4 ? 'active' : ''} onClick={() => handleChangePl(4)}>
                             <img src={personas} /><a>Solicitudes</a>
@@ -105,11 +118,11 @@ const ContainerPanel = (props) => {
                         </div>
                     </div> */}
 
-                    {panel == 1 && (<PanelControl />)}
+                    {panel == 1 && (<PanelControl miembros={miembros} proyectos={proyectos} />)}
                     {panel == 2 && (<PanelProyectos />)}
                     {panel == 3 && (<PanelMiembros />)}
                     {panel == 4 && (<PanelSolicitudes />)}
-                    
+
                     {/* {panel == 5 && (<PanelGeneros />)} */}
 
                 </div>

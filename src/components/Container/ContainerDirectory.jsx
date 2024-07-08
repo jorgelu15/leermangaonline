@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import React from "react";
 
-import useAuth from "../../hooks/useAuth";
+import {useAuth} from "../../hooks/useAuth";
 import SearchDirectory from "../Search/SearchDirectory";
 import CardDirectory from "../Card/CardDirectory";
 import FormFilter from "../Form/FormFilter";

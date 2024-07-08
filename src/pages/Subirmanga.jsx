@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import ContainerSubirmanga from "../components/Container/ContainerSubirmanga";
 
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 import serieContext from "../context/serie/serieContext";
 import gruposContext from "../context/grupos/gruposContext";
 
@@ -29,9 +29,9 @@ const Subirmanga = () => {
 
   return (
     <>
-      <Header/>
-      <ContainerSubirmanga/>
-      <Footer/>
+      <Header />
+      <ContainerSubirmanga />
+      <Footer />
     </>
   );
 };

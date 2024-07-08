@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSeries } from "../../hooks/useSeries";
-import useAuth from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 const Rating = (props) => {
-    
+
     const {
         votos,
         rate
@@ -12,7 +12,7 @@ const Rating = (props) => {
     const { usuario } = useAuth();
     const { serie, subirVotoSerie } = useSeries();
     const [rating, setRating] = useState(rate);
-  
+
     const handleClick = async (value) => {
         const datos = {
             id_usuario: usuario?.id,
@@ -23,13 +23,13 @@ const Rating = (props) => {
     };
 
     const handleMouseEnter = (i) => {
-        setRating(i+1)
+        setRating(i + 1)
     };
 
     const handleMouseOut = (i) => {
         setRating(rate)
     };
-  
+
     return (
         <div className="rating">
             <div className="number">
@@ -38,26 +38,26 @@ const Rating = (props) => {
             </div>
             <div className='stars'>
                 <div>
-                
-                {[...Array(5)].map((star, i) => {
-                    const ratingValue = i + 1;
-                    
-                    return (
-                        <span 
-                        className='star'
-                        key={i}
-                        onMouseEnter={() => handleMouseEnter(i)}
-                        onMouseOut={() => handleMouseOut(i)}
-                        onClick={() => handleClick(ratingValue)}
-                        style={{ cursor: 'pointer' }}
-                        >
-                        { rating ? 
-                            ratingValue <= rating ? '★' : '☆' : 
-                            ratingValue <= rate ? '★' : '☆'
-                        }
-                        </span>
-                    );
-                })}
+
+                    {[...Array(5)].map((star, i) => {
+                        const ratingValue = i + 1;
+
+                        return (
+                            <span
+                                className='star'
+                                key={i}
+                                onMouseEnter={() => handleMouseEnter(i)}
+                                onMouseOut={() => handleMouseOut(i)}
+                                onClick={() => handleClick(ratingValue)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                {rating ?
+                                    ratingValue <= rating ? '★' : '☆' :
+                                    ratingValue <= rate ? '★' : '☆'
+                                }
+                            </span>
+                        );
+                    })}
                 </div>
                 <div>
                     <p><span>{votos}</span> VOTOS</p>
@@ -65,6 +65,6 @@ const Rating = (props) => {
             </div>
         </div>
     );
-  };
-  
-  export default Rating;
+};
+
+export default Rating;

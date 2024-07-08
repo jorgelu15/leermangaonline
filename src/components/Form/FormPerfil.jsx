@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import ModalGrupo from "../Modal/ModalGrupo";
 import gruposContext from "../../context/grupos/gruposContext";
 

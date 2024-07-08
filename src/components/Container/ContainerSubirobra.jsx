@@ -11,7 +11,7 @@ import addicon from '../../img/add.svg'
 import arrow from '../../img/arrow-right.svg'
 import folder from '../../img/folder.svg'
 import close from '../../img/close.svg'
-import useAuth from "../../hooks/useAuth"
+import { useAuth } from "../../hooks/useAuth"
 import serieContext from "../../context/serie/serieContext"
 import generoContext from "../../context/genero/generoContext"
 
@@ -19,6 +19,7 @@ import generoContext from "../../context/genero/generoContext"
 import { v4 } from 'uuid';
 import routes from "../../helpers/routes";
 import { TailSpin } from "react-loader-spinner";
+import { useGrupos } from "../../hooks/useGrupos";
 
 const FallbackLoader = () => {
     return (
@@ -49,11 +50,21 @@ const FallbackLoader = () => {
 };
 
 const ContainerSubirobra = (props) => {
+    const { usuario } = useAuth();
+    const { grupos, getGrupos } = useGrupos();
+    const { subirSerie } = useContext(serieContext);
+    const { generos, getGeneros } = useContext(generoContext);
 
-    const suppGrupos = [
-        { label: 'Okasa', value: 'okasa' },
-        { label: 'tapis', value: 'tapis' },
-    ]
+    useEffect(() => {
+        if (!grupos) {
+            getGrupos(usuario?.id)
+        }
+    }, []);
+
+    const suppGrupos = grupos?.map(grupo => {
+        return { label: grupo.nombre, value: grupo.nombre }
+    })
+
     // const obraId = v4();
 
     const [obraId, setObraId] = useState(v4());
@@ -73,14 +84,6 @@ const ContainerSubirobra = (props) => {
         tipo: "",
     })
 
-
-
-    const { usuario } = useAuth();
-
-    const { subirSerie } = useContext(serieContext);
-    const { generos, getGeneros } = useContext(generoContext);
-
-
     useEffect(() => {
         getGeneros();
     }, [])
@@ -97,7 +100,7 @@ const ContainerSubirobra = (props) => {
     const onChangeGrupo = e => {
         setNewSerie({
             ...newSerie,
-            id_grupo: e.value == 'okasa' ? 1 : e.value == 'tapis' ? 2 : 0
+            id_grupo: e.value
         })
     }
 
@@ -196,6 +199,25 @@ const ContainerSubirobra = (props) => {
         })
     }
 
+    const customStyles = {
+        control: (provided) => ({
+            ...provided,
+            backgroundColor: "#ffffff", // Fondo del select
+        }),
+        singleValue: (provided) => ({
+            ...provided,
+            color: "#000000", // Color del texto
+        }),
+        placeholder: (provided) => ({
+            ...provided,
+            color: "#000000", // Color del texto del placeholder
+        }),
+        menu: (provided) => ({
+            ...provided,
+            color: "#000000", // Color del texto en el menú desplegable
+        }),
+    };
+
     return (
         <div className="cont-subirmanga">
             <div className="subir-view">
@@ -254,6 +276,7 @@ const ContainerSubirobra = (props) => {
                         <label htmlFor="">Grupo*</label>
                         <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
                             <Select
+                                styles={customStyles}
                                 options={suppGrupos}
                                 placeholder={"Seleccione el grupo"}
                                 name="id_grupo"

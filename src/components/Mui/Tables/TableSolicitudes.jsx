@@ -20,7 +20,6 @@ import { TableHead } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
-import useAuth from '../../../hooks/useAuth';
 
 
 function TablePaginationActions(props) {

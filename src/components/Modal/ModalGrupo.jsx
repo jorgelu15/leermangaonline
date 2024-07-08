@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import close from "../../img/close.svg";
 import gruposContext from "../../context/grupos/gruposContext";
 import { useSnackbar } from "notistack";
+import { useAuth } from "../../hooks/useAuth";
 
 const ModalGrupo = (props) => {
     const {
@@ -10,22 +11,23 @@ const ModalGrupo = (props) => {
         setOpen,
     } = props;
 
+    const { usuario } = useAuth();
     const { insertGrupo, grupo } = useContext(gruposContext)
     const { enqueueSnackbar } = useSnackbar()
 
-    const [ nombre, setNombre ] = useState('')
-    const [ correo, setCorreo ] = useState('')
+    const [nombre, setNombre] = useState('')
+    const [correo, setCorreo] = useState('')
 
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-    
+
         if (nombre.trim() === "" || correo.trim() === "") {
-        //   mostrarAlerta('Todos los campos son obligatorios');
-          return;
+            //   mostrarAlerta('Todos los campos son obligatorios');
+            return;
         }
 
-        insertGrupo({usuarioId: "1", nombre, correo})
+        insertGrupo({ usuarioId: usuario?.id, nombre, correo })
 
         enqueueSnackbar("Grupo creado", {
             variant: "success",
@@ -53,17 +55,17 @@ const ModalGrupo = (props) => {
                 <div className="form-modal">
                     <div className="box">
                         <label htmlFor="nombre">Nombre</label>
-                        <input type="text" onChange={(e) => {setNombre(e.target.value)}} placeholder="nombre del grupo"/>
+                        <input type="text" onChange={(e) => { setNombre(e.target.value) }} placeholder="nombre del grupo" />
                     </div>
 
                     <div className="box">
                         <label htmlFor="correo">Correo</label>
-                        <input type="text" onChange={(e) => {setCorreo(e.target.value)}} placeholder="correo del grupo donde recibira notificaciones"/>
+                        <input type="text" onChange={(e) => { setCorreo(e.target.value) }} placeholder="correo del grupo donde recibira notificaciones" />
                     </div>
                 </div>
                 <div className="botons-modal">
                     <button onClick={() => setOpen(false)} className="cancel">Cancelar</button>
-                    <button onClick={(e) => {handlerSubmit(e), setOpen(false)}}>Crear</button>
+                    <button onClick={(e) => { handlerSubmit(e), setOpen(false) }}>Crear</button>
                 </div>
             </div>
         </div>

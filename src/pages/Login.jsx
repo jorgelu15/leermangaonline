@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import routes from "../helpers/routes";
 import { useEffect, useState } from "react";
 
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 
 const Login = () => {

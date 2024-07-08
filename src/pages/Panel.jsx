@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 import gruposContext from "../context/grupos/gruposContext";
 
 import HeaderPanel from "../components/Header/HeaderPanel";
@@ -20,20 +20,20 @@ const Panel = () => {
 
   useEffect(() => {
     const verificarAutenticacion = async () => {
-        if (!autenticado) {
-            await usuarioAutenticado();
-            // Aquí puedes realizar la redirección después de la autenticación.
-            // Puedes usar el estado actualizado después de usuarioAutenticado.
-            if (autenticado) {
-                navigate(from, { replace: true });
-            } else {
-                navigate(routes.login);
-            }
+      if (!autenticado) {
+        await usuarioAutenticado();
+        // Aquí puedes realizar la redirección después de la autenticación.
+        // Puedes usar el estado actualizado después de usuarioAutenticado.
+        if (autenticado) {
+          navigate(from, { replace: true });
+        } else {
+          navigate(routes.login);
         }
+      }
     };
 
     verificarAutenticacion();
-}, [autenticado, navigate, from, usuarioAutenticado]);
+  }, [autenticado, navigate, from, usuarioAutenticado]);
 
 
   return (
@@ -41,8 +41,8 @@ const Panel = () => {
       <div className="header--home">
         <HeaderPanel />
       </div>
-      <ContainerPanel/>
-      
+      <ContainerPanel />
+
     </div>
   );
 };

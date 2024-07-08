@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import routes from "../helpers/routes";
 import { useEffect, useState } from "react";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
 
@@ -26,19 +26,19 @@ const Register = () => {
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-    
+
         if (usuario.trim() === "" || correo.trim() === "" || clave.trim() === "" || claveC.trim() === "") {
-        //   mostrarAlerta('Todos los campos son obligatorios');
-          return;
+            //   mostrarAlerta('Todos los campos son obligatorios');
+            return;
         }
         if (clave !== claveC) {
-        //   mostrarAlerta('Claves distintas');
+            //   mostrarAlerta('Claves distintas');
             return;
         }
 
         signUp({ usuario, correo, clave, rol: "1" });
     };
-    
+
     return (
         <main className="container-general">
             <div className="width-page">

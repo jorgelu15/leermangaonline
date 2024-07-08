@@ -20,9 +20,6 @@ import { TableHead } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
-import useAuth from '../../../hooks/useAuth';
-import { useGrupos } from '../../../hooks/useGrupos';
-import { useParams } from 'react-router-dom';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
