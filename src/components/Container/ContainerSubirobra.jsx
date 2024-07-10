@@ -72,6 +72,9 @@ const ContainerSubirobra = (props) => {
     const [loading, setLoading] = useState(false);
     const [errorIndicator, setErrorIndicator] = useState(false);
 
+    const DEMOGRAFIAS = ["", "Seinen", "Shoujo", "Shounen", "Josei", "Kodomo"];
+    const TIPOS = ["", "Manga", "Manhua", "Manhwa", "Novela", "One shot", "Doujinshi", "Oel"];
+    const IDIOMAS = ["", "EN", "ES"];
 
     const [newSerie, setNewSerie] = useState({
         banner: "",
@@ -81,14 +84,23 @@ const ContainerSubirobra = (props) => {
         estado: "",
         sinopsis: "",
         id_grupo: "",
+        genero: "",
         tipo: "",
+        demografia: "",
+        idioma: "",
+        amateur: "",
+        erotico: "",
+        web_comic: "",
+        yonkoma: "",
+        sentido_lectura: "",
+        hentai: "",
     })
 
     useEffect(() => {
         getGeneros();
     }, [])
 
-    const { banner, portada, nombre, nombre_alt, estado, sinopsis, id_grupo, tipo } = newSerie;
+    const { banner, portada, nombre, nombre_alt, estado, sinopsis, id_grupo, genero, tipo, demografia, idioma, amateur, erotico, web_comic, yonkoma, sentido_lectura, hentai } = newSerie;
 
     const onChange = e => {
         setNewSerie({
@@ -136,7 +148,16 @@ const ContainerSubirobra = (props) => {
             portada?.trim() === "" ||
             nombre?.trim() === "" ||
             sinopsis?.trim() === "" ||
-            estado?.trim() === "") {
+            genero?.trim() === "" ||
+            tipo?.trim() === "" ||
+            idioma?.trim() === "" ||
+            demografia?.trim() === "" ||
+            amateur?.trim() === "" ||
+            erotico?.trim() === "" ||
+            web_comic?.trim() === "" ||
+            yonkoma?.trim() === "" ||
+            sentido_lectura?.trim() === "" ||
+            hentai?.trim() === "") {
             setErrorIndicator(true);
             enqueueSnackbar("Hay algunos campos que se deben llenar", {
                 variant: "default",
@@ -148,8 +169,6 @@ const ContainerSubirobra = (props) => {
             setLoading(false);
             return;
         }
-
-
 
         const f = new FormData();
 
@@ -163,7 +182,6 @@ const ContainerSubirobra = (props) => {
             ...newSerie,
             serie_uid: obraId,
             id_usuario: usuario?.id,
-            idioma: "EN"
         }));
         f.append("ruta", "obras");
         setObraId(v4());
@@ -288,9 +306,25 @@ const ContainerSubirobra = (props) => {
                     </div>
 
                     <div className="control-form">
+                        <label htmlFor="">Tipo*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="tipo" id="tipo" value={tipo} onChange={onChange}>
+                                {TIPOS && (
+                                    TIPOS.map((item, idx) => {
+                                        return (
+                                            <option value={item}>{item}</option>
+                                        )
+                                    })
+                                )}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="control-form">
                         <label htmlFor="">Genero*</label>
                         <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
-                            <select className="control-input" name="tipo" id="tipo" value={tipo} onChange={onChange} >
+                            <select className="control-input" name="genero" id="genero" value={genero} onChange={onChange}>
+                                <option value=""></option>
                                 {generos && (
                                     generos.map((item, idx) => {
                                         return (
@@ -298,6 +332,102 @@ const ContainerSubirobra = (props) => {
                                         )
                                     })
                                 )}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="control-form">
+                        <label htmlFor="">Demografía*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="demografia" id="demografia" value={demografia} onChange={onChange} >
+                                {DEMOGRAFIAS && (
+                                    DEMOGRAFIAS.map((item, idx) => {
+                                        return (
+                                            <option value={item}>{item}</option>
+                                        )
+                                    })
+                                )}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="control-form">
+                        <label htmlFor="">Idioma*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="idioma" id="idioma" value={idioma} onChange={onChange} >
+                                {IDIOMAS && (
+                                    IDIOMAS.map((item, idx) => {
+                                        return (
+                                            <option value={item}>{item}</option>
+                                        )
+                                    })
+                                )}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="control-form">
+                        <label htmlFor="">Amateur*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="amateur" id="amateur" value={amateur} onChange={onChange} >
+                                <option value="">Seleccione una opción</option>
+                                <option value={1}>Si</option>
+                                <option value={0}>No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="control-form">
+                        <label htmlFor="">Erotico*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="erotico" id="erotico" value={erotico} onChange={onChange} >
+                                <option value="">Seleccione una opción</option>
+                                <option value={1}>Si</option>
+                                <option value={0}>No</option>
+                            </select>
+                        </div>
+                    </div>
+              
+                    <div className="control-form">
+                        <label htmlFor="">Web comic*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="web_comic" id="web_comic" value={web_comic} onChange={onChange} >
+                                <option value="">Seleccione una opción</option>
+                                <option value={1}>Si</option>
+                                <option value={0}>No</option>
+                            </select>
+                        </div>
+                    </div>
+                   
+                    <div className="control-form">
+                        <label htmlFor="">Yonkoma*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="yonkoma" id="yonkoma" value={yonkoma} onChange={onChange} >
+                                <option value="">Seleccione una opción</option>
+                                <option value={1}>Si</option>
+                                <option value={0}>No</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div className="control-form">
+                        <label htmlFor="">Sentido de lectura*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="sentido_lectura" id="sentido_lectura" value={sentido_lectura} onChange={onChange} >
+                                <option value="">Seleccione una opción</option>
+                                <option value={0}>Derecha a izquierda</option>
+                                <option value={1}>Izquierda a derecha</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="control-form">
+                        <label htmlFor="">Hentai*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="hentai" id="hentai" value={hentai} onChange={onChange} >
+                                <option value="">Seleccione una opción</option>
+                                <option value={1}>Si</option>
+                                <option value={0}>No</option>
                             </select>
                         </div>
                     </div>
