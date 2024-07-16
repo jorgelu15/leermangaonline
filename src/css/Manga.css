@@ -1,416 +1,465 @@
-
 /* ----------------------------- */
 
 .manga-desc {
-    /* background-image: linear-gradient(to bottom, transparent, black), url('../img/background.jpg'); */
-    background-image: linear-gradient(to bottom, transparent, black), url('../img/juj-portada.webp');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center 25%;
-    width: 100vw;
-  }
-  
-  .desc-content {
-    max-width: 1280px;
-    display: flex;
-    margin: auto;
-    height: 600px;
-    align-items: end;
-  }
-  
-  .content {
-    display: flex;
-    /* align-items: center; */
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
-  
-  .desc-content .imagen img {
-    height: 380px;
-  }
-  
-  .desc-content .resumen {
-    text-align: start;
-    margin-left: 30px;
-  }
-  
-  .desc-content .resumen h2 {
-    font-size: 2.6rem;
-    margin-top: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .desc-content .resumen p {
-    font-size: 1.3rem;
-  }
+  /* background-image: linear-gradient(to bottom, transparent, black), url('../img/background.jpg'); */
+  background-image: linear-gradient(to bottom, transparent, black), url('../img/juj-portada.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 25%;
+  width: 100vw;
+}
 
-  .desc-content .resumen .rating{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    overflow: hidden;
-    min-height: 70px;
-    background-color: rgb(31 31 40);
-  }
+.desc-content {
+  max-width: 1280px;
+  display: flex;
+  margin: auto;
+  height: 600px;
+  align-items: end;
+}
 
-  .desc-content .resumen .rating .number{
-    display: flex;
-    align-items: center;
-    font-size: 1.6rem;
-    min-height: 70px;
-    background-color: rgb(224, 26, 26);
-    padding: 10px 15px;
+.content {
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
 
-  }
+.desc-content .imagen img {
+  height: 380px;
+}
 
-  .desc-content .resumen .rating .stars{
-    display: flex;
-    flex-direction: column;
-    min-height: 70px;
-    padding: 5px 15px;
-  }
+.desc-content .resumen {
+  text-align: start;
+  margin-left: 30px;
+}
 
-  .desc-content .resumen .rating .stars p{
-    font-size: .7rem;
-  }
+.desc-content .resumen h2 {
+  font-size: 2.6rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
 
-  .desc-content .resumen .rating .stars span{
-    font-weight: 900;
-  }
+.desc-content .resumen p {
+  font-size: 1.3rem;
+}
 
-  .desc-content .resumen .rating .stars .star{
-    font-size: 1.4rem;
-  }
+.desc-content .resumen .rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  overflow: hidden;
+  min-height: 70px;
+  background-color: rgb(31 31 40);
+}
 
-  .desc-content .resumen .res-top{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .capitulos {
-    max-width: 1280px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-  
-  .cap-box .wid-box,
-  .manga-type {
-    background-color: rgb(31 31 40);
-    text-align: left;
-  }
-  
-  .manga-type {
-    padding: 20px;
-  }
-  
-  .manga-type div {
-    margin-bottom: 20px;
-  }
-  
-  .manga-type .point-red {
-    background-color: rgb(228, 0, 0);
-    width: 14px;
-    height: 14px;
-    border-radius: 7px;
-    margin: 0;
-    margin-right: 10px;
-  }
-  
-  .manga-type .public {
-    display: flex;
-    align-items: center;
-  }
-  
-  .manga-type .compartir .socials {
-    display: flex;
-    gap: 10px;
-    padding-top: 10px;
-  }
-  
-  .manga-type .compartir .socials img {
-    width: 50px;
-    border-radius: 2px;
-    cursor: pointer;
-  }
-  
-  .cap-box {
-    width: 68%;
-  }
-  
-  .cap-box hr {
-    width: 100%;
-  }
-  
-  .cap-box .wid-box .start-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 95%;
-    padding-bottom: 10px;
-    padding-top: 10px;
-  }
-  
-  .cap-box .wid-box {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .cap-box .accordion {
-    width: 100%;
-  }
-  
-  .manga-type {
-    width: 30%;
-  }
-  
-  .cap-box input {
-    margin: 0;
-    padding: 10px;
-    background-color: rgb(31, 31, 31);
-    outline: none;
-    border: 1px solid rgb(83, 90, 117);
-    color: white;
-    min-width: 220px;
-    margin-bottom: 5px;
-  }
-  
-  .typography {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-  }
-  
-  .capitulos .manga-type .type-titles {
-    font-size: 25px;
-  }
-  
-  .generos .genero button {
-    background-color: rgb(104, 104, 104);
-    color: #ffffff;
-    border-radius: 20px;
-    border: none;
-    padding: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin: 5px;
-  }
-  
-  .chat {
-    margin-top: 50px;
-  }
-  
-  /* ---------------------------------------- */
-  
-  /* 
+.desc-content .resumen .rating .number {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  min-height: 70px;
+  background-color: rgb(224, 26, 26);
+  padding: 10px 15px;
+
+}
+
+.desc-content .resumen .rating .stars {
+  display: flex;
+  flex-direction: column;
+  min-height: 70px;
+  padding: 5px 15px;
+}
+
+.desc-content .resumen .rating .stars p {
+  font-size: .7rem;
+}
+
+.desc-content .resumen .rating .stars span {
+  font-weight: 900;
+}
+
+.desc-content .resumen .rating .stars .star {
+  font-size: 1.4rem;
+}
+
+.desc-content .resumen .res-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.capitulos {
+  max-width: 1280px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.cap-box .wid-box,
+.manga-type {
+  background-color: rgb(31 31 40);
+  text-align: left;
+}
+
+.manga-type {
+  padding: 20px;
+}
+
+.manga-type div {
+  margin-bottom: 20px;
+}
+
+.manga-type .point-red {
+  background-color: rgb(228, 0, 0);
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.manga-type .public {
+  display: flex;
+  align-items: center;
+}
+
+.manga-type .compartir .socials {
+  display: flex;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.manga-type .compartir .socials img {
+  width: 50px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.cap-box {
+  width: 68%;
+}
+
+.cap-box hr {
+  width: 100%;
+}
+
+.cap-box .wid-box .start-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.cap-box .wid-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cap-box .accordion {
+  width: 100%;
+}
+
+.manga-type {
+  width: 30%;
+}
+
+.cap-box input {
+  margin: 0;
+  padding: 10px;
+  background-color: rgb(31, 31, 31);
+  outline: none;
+  border: 1px solid rgb(83, 90, 117);
+  color: white;
+  min-width: 220px;
+  margin-bottom: 5px;
+}
+
+.typography {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.capitulos .manga-type .type-titles {
+  font-size: 25px;
+}
+
+.generos .genero button {
+  background-color: rgb(104, 104, 104);
+  color: #ffffff;
+  border-radius: 20px;
+  border: none;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 5px;
+}
+
+.chat {
+  margin-top: 50px;
+}
+
+/* ---------------------------------------- */
+
+/* 
   .css-1aquho2-MuiTabs-indicator{
     display: none !important;
   } */
-  
-  .main-home .css-1ujnqem-MuiTabs-root,
-  .aside-home .css-1ujnqem-MuiTabs-root {
-    border-radius: 10px !important;
-    margin-bottom: 20px;
+
+.main-home .css-1ujnqem-MuiTabs-root,
+.aside-home .css-1ujnqem-MuiTabs-root {
+  border-radius: 10px !important;
+  margin-bottom: 20px;
+}
+
+.css-1vw5i9y-MuiButtonBase-root-MuiTab-root {
+  font-weight: bold !important;
+  font-size: 1.2rem !important;
+  text-transform: none !important;
+  color: white !important;
+  opacity: 1 !important;
+  min-width: fit-content !important;
+  padding: 12px 30px !important;
+}
+
+.main-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root,
+.aside-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root {
+  background-color: #ffffff0d !important;
+}
+
+.main-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected,
+.aside-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  background-color: rgb(177, 5, 5) !important;
+  transition: all .5s;
+}
+
+
+
+.css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  /* background-color: transparent; */
+}
+
+.css-8je8zh-MuiTouchRipple-root {
+  display: none;
+}
+
+.css-11yukd5-MuiTabs-indicator {
+  display: none;
+}
+
+.css-19kzrtu {
+  padding: 0px !important;
+}
+
+
+@media (max-width: 1200px) {
+
+  .cont-card {
+    width: 25%;
   }
-  
-  .css-1vw5i9y-MuiButtonBase-root-MuiTab-root {
-    font-weight: bold !important;
-    font-size: 1.2rem !important;
-    text-transform: none !important;
-    color: white !important;
-    opacity: 1 !important;
-    min-width: fit-content !important;
-    padding: 12px 30px !important;
+
+  .sec-noticias .cards {
+    flex-direction: column;
   }
-  
-  .main-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root,
-  .aside-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root {
-    background-color: #ffffff0d !important;
+
+  .sec-noticias .card {
+    width: 100%;
+    margin-bottom: 15px;
   }
-  
-  .main-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected,
-  .aside-home .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected {
-    background-color: rgb(177, 5, 5) !important;
-    transition: all .5s;
+}
+
+
+@media (max-width: 990px) {
+
+  .cont-card {
+    width: 33.33333333%;
   }
-  
-  
-  
-  .css-1vw5i9y-MuiButtonBase-root-MuiTab-root.Mui-selected {
-    /* background-color: transparent; */
-  }
-  
-  .css-8je8zh-MuiTouchRipple-root {
-    display: none;
-  }
-  
-  .css-11yukd5-MuiTabs-indicator {
-    display: none;
-  }
-  
-  .css-19kzrtu {
-    padding: 0px !important;
-  }
-  
-  
-  @media (max-width: 1200px) {
-  
-    .cont-card {
-      width: 25%;
-    }
-  
-    .sec-noticias .cards {
-      flex-direction: column;
-    }
-  
-    .sec-noticias .card {
-      width: 100%;
-      margin-bottom: 15px;
-    }
-  }
-  
-  
-  @media (max-width: 990px) {
-  
-    .cont-card {
-      width: 33.33333333%;
-    }
-  
-    .navbar {
-      padding-right: 20px;
-      padding-left: 20px;
-      width: 100%;
-    }
-  
-    .aside-home {
-      display: none;
-    }
-  
-    .main-home {
-      width: 100%;
-    }
-  
-    .sec-grupos .cont-cardgr {
-      width: 49%;
-    }
-  
-    /* -------------------------------- */
-  
-    .manga-desc .desc-content .content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .manga-desc {
-      background-image: var(--barStas) !important;
-    }
-  
-    .manga-desc .desc-content {
-      height: auto;
-    }
-  
-    .capitulos {
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: center;
-      width: 90%;
-    }
-  
-    .capitulos .manga-type,
-    .capitulos .cap-box {
-      width: 100%;
-      margin-bottom: 25px;
-    }
-  
-    .capitulos .chat img {
-      width: 100%;
-    }
-  
-    .capitulos .chat {
-      margin-top: 25px;
-    }
-  
-    .manga-desc .imagen {
-      width: 100%;
-      /* background-image: linear-gradient(to bottom, transparent, black), url('../img/background.jpg') !important; */
-      background-repeat: no-repeat !important;
-      background-position: bottom !important;
-      background-size: cover;
-    }
-  
-    .manga-desc .imagen {
-      padding-top: 200px;
-      padding-bottom: 20px;
-    }
-  
-    .desc-content .resumen {
-      width: 90%;
-      margin: 0;
-    }
-  
-    .desc-content .resumen h1 {
-      text-align: center;
-      margin-top: 30px;
-      margin-bottom: 10px;
-    }
-  
-  }
-  
-  @media (max-width: 768px) {
-  
-    .cont-card {
-      width: 50%;
-    }
-  }
-  
-  /* manga-view -------------------------------- */
-  
-  .manga-view {
-    max-width: 1260px;
-    margin: auto;
-    margin-bottom: 40px;
-  }
-  
-  .manga-view img {
+
+  .navbar {
+    padding-right: 20px;
+    padding-left: 20px;
     width: 100%;
   }
-  
-  /* Login register ------------------------------- */
-  
-  .cont-login {
-    height: 100%;
+
+  .aside-home {
+    display: none;
+  }
+
+  .main-home {
+    width: 100%;
+  }
+
+  .sec-grupos .cont-cardgr {
+    width: 49%;
+  }
+
+  /* -------------------------------- */
+
+  .manga-desc .desc-content .content {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    align-items: center;
   }
-  
-  /* .cont-login .form{
+
+  .manga-desc {
+    background-image: var(--barStas) !important;
+  }
+
+  .manga-desc .desc-content {
+    height: auto;
+  }
+
+  .capitulos {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 90%;
+  }
+
+  .capitulos .manga-type,
+  .capitulos .cap-box {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .capitulos .chat img {
+    width: 100%;
+  }
+
+  .capitulos .chat {
+    margin-top: 25px;
+  }
+
+  .manga-desc .imagen {
+    width: 100%;
+    /* background-image: linear-gradient(to bottom, transparent, black), url('../img/background.jpg') !important; */
+    background-repeat: no-repeat !important;
+    background-position: bottom !important;
+    background-size: cover;
+  }
+
+  .manga-desc .imagen {
+    padding-top: 200px;
+    padding-bottom: 20px;
+  }
+
+  .desc-content .resumen {
+    width: 90%;
+    margin: 0;
+  }
+
+  .desc-content .resumen h1 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .cont-card {
+    width: 50%;
+  }
+}
+
+/* reacciones -------------------------------- */
+
+.reaccion {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background: #000000;
+  position: relative;
+}
+
+.reaccion .reaccion-inner {
+  display: flex;
+  max-width: 1280px;
+  width: 100%;
+  justify-content: center;
+  background: #000000;
+  position: relative;
+  flex: 1;
+}
+
+.reaccion .reaccion-inner .reaccion-list {
+  display: flex;
+  flex-direction: row;
+  min-height: 48px;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  flex: 1;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reaccion .reaccion-inner .reaccion-list .reaccion-list-item {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.active-item-reaccion {
+  position: absolute;
+  display: block;
+  height: 5px;
+  background-color: #2792b0;
+  bottom: 0;
+  transition: left 0.3s ease, width 0.3s ease;
+}
+
+
+/* manga-view -------------------------------- */
+
+.manga-view {
+  max-width: 1260px;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.manga-view img {
+  width: 100%;
+}
+
+/* Login register ------------------------------- */
+
+.cont-login {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* .cont-login .form{
     margin: 40px 0px;
   } */
-  
-  
-  
-  /* alertas -------------------------------------- */
-  
-  
-  .go167266335 {
-    font-size: 1rem !important;
-    box-shadow: none !important;
-  }
-  
-  .go3162094071 {
-    padding-left: 16px !important;
-  }
-  
-  /* success */
-  .go1725278324 {
-    background-color: rgba(59, 157, 59, 0.9) !important;
-  }
+
+
+
+/* alertas -------------------------------------- */
+
+
+.go167266335 {
+  font-size: 1rem !important;
+  box-shadow: none !important;
+}
+
+.go3162094071 {
+  padding-left: 16px !important;
+}
+
+/* success */
+.go1725278324 {
+  background-color: rgba(59, 157, 59, 0.9) !important;
+}

@@ -12,10 +12,11 @@ import red3 from "../../img/redes/red3.png";
 import red4 from "../../img/redes/red4.png";
 import red5 from "../../img/redes/red5.png";
 
-import {useAuth} from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import { useSeries } from "../../hooks/useSeries";
 import { Link, useParams } from "react-router-dom";
 import Rating from "./Rating";
+import TabsReacciones from "../Mui/Tabs/TabsReacciones";
 
 const ContainerManga = (props) => {
     const { usuario } = useAuth();
@@ -25,6 +26,7 @@ const ContainerManga = (props) => {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredCapitulos, setFilteredCapitulos] = useState(capitulos);
+    const [viewPerfil, setViewPerfil] = useState(true);
 
     useEffect(() => {
         const results = capitulos?.filter(capitulo =>
@@ -43,6 +45,52 @@ const ContainerManga = (props) => {
     useEffect(() => {
         setFilteredCapitulos(capitulos);
     }, [capitulos]);
+
+    const items = {
+        tabs: 5,
+        cont: [
+            {
+                tab: "Leido",
+                cards: [
+                    { nombre: "jujutsu Kaisen", categoria: "Manga", calif: "8.53", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.webp" },
+                    { nombre: "oshi no ko", categoria: "Manga", calif: "9.05", url: "https://otakuteca.com/images/books/cover/5efe4afd1d0c5.webp" },
+                    { nombre: "Kanojo, Okarishimasu", categoria: "Manga", calif: "3.91", url: "https://otakuteca.com/images/books/cover/606cda6f538c7.webp" },
+                    { nombre: "Class de 2 Banme ni...", categoria: "Manga", calif: "8.40", url: "https://otakuteca.com/images/books/cover/62e1dbb29f444.webp" },
+                    { nombre: "Kanan-sama Might be...", categoria: "Manga", calif: "8.92", url: "https://otakuteca.com/images/books/cover/629634d78ab1c.webp" },
+                ]
+            },
+            {
+                tab: "Pendiente",
+                cards: [
+                    { nombre: "El dios de la escuela se...", categoria: "manhwa", calif: "8.78", url: "https://otakuteca.com/images/books/cover/5d3df9c5378b5.webp" },
+                    { nombre: "La vida despues de la muerte", categoria: "manhwa", calif: "8.89", url: "https://otakuteca.com/images/books/cover/5ddde8a92558c.webp" },
+                    { nombre: "Guerrero de nivelacion ha...", categoria: "manhwa", calif: "10.00", url: "https://otakuteca.com/images/books/cover/645feeabbf6ae.webp" }
+                ]
+            },
+            {
+                tab: "Siguiendo",
+                cards: [
+                    { nombre: "La era del gran diluvio", categoria: "manhua", calif: "10.00", url: "https://otakuteca.com/images/books/cover/642cb67221a43.webp" },
+                    { nombre: "Song of the skywalkers", categoria: "manhua", calif: "10.00", url: "https://otakuteca.com/images/books/cover/5d5fd8924ecb7.webp" },
+                    { nombre: "Comienzo de la era humana", categoria: "manhua", calif: "0.00", url: "https://otakuteca.com/images/books/cover/5f4ad3371b22a.webp" },
+                    { nombre: "¿Mi esposa es en realidad ...", categoria: "manhua", calif: "7.50", url: "https://otakuteca.com/images/books/cover/602a535b9f308.webp" }
+                ]
+            },
+            {
+                tab: "Favorito",
+                cards: [
+                    { nombre: "Mis discipulas son todas in...", categoria: "manhua", calif: "7.71", url: "https://otakuteca.com/images/books/cover/5fbb1b741ba61.webp" },
+                    { nombre: "Comienzo de la era humana", categoria: "manhua", calif: "0.00", url: "https://otakuteca.com/images/books/cover/5f4ad3371b22a.webp" },
+                    { nombre: "¿Mi esposa es en realidad ...", categoria: "manhua", calif: "7.50", url: "https://otakuteca.com/images/books/cover/602a535b9f308.webp" }
+                ]
+            },
+            {
+                tab: "Abandonado",
+                cards: [
+                ]
+            }
+        ]
+    }
 
     return (
         <div>
@@ -66,6 +114,9 @@ const ContainerManga = (props) => {
                     </div>
                 </div>
             </section>
+            <div className={viewPerfil ? 'hidden-indicator' : null}>
+                <TabsReacciones items={items} viewPerfil={viewPerfil} setViewPerfil={setViewPerfil}></TabsReacciones>
+            </div>
             <section className="capitulos">
                 <div className="cap-box">
                     <div className="wid-box">

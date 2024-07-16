@@ -321,22 +321,6 @@ const ContainerSubirobra = (props) => {
                     </div>
 
                     <div className="control-form">
-                        <label htmlFor="">Genero*</label>
-                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
-                            <select className="control-input" name="genero" id="genero" value={genero} onChange={onChange}>
-                                <option value=""></option>
-                                {generos && (
-                                    generos.map((item, idx) => {
-                                        return (
-                                            <option value={item.genero}>{item.genero}</option>
-                                        )
-                                    })
-                                )}
-                            </select>
-                        </div>
-                    </div>
-
-                    <div className="control-form">
                         <label htmlFor="">Demografía*</label>
                         <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
                             <select className="control-input" name="demografia" id="demografia" value={demografia} onChange={onChange} >
@@ -428,6 +412,22 @@ const ContainerSubirobra = (props) => {
                                 <option value="">Seleccione una opción</option>
                                 <option value={1}>Si</option>
                                 <option value={0}>No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="control-form">
+                        <label htmlFor="">Genero*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <select className="control-input" name="genero" id="genero" value={genero} onChange={onChange}>
+                                <option value=""></option>
+                                {generos && (
+                                    generos.map((item, idx) => {
+                                        return (
+                                            <option value={item.genero}>{item.genero}</option>
+                                        )
+                                    })
+                                )}
                             </select>
                         </div>
                     </div>
