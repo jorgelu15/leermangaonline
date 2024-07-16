@@ -10,6 +10,7 @@ import SerieState from './context/serie/serieState'
 import GeneroState from './context/genero/generoState'
 import CapituloState from './context/capitulo/capituloState'
 import VermangaState from './context/vermanga/vermangaState'
+import ReaccionesState from './context/reacciones/reaccionesState'
 
 function App() {
 
@@ -22,9 +23,11 @@ function App() {
               <GeneroState>
                 <CapituloState>
                   <VermangaState>
+                    <ReaccionesState>
 
-                    <Navigator />
+                      <Navigator />
                   
+                    </ReaccionesState>
                   </VermangaState>
                 </CapituloState>
               </GeneroState>
