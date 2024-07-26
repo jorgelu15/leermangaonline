@@ -38,28 +38,19 @@ const PanelMiembros = (props) => {
         }
     };
 
-
     useEffect(() => {
-        if (!miembros) {
+        if (id) {
             getMiembros(id);
-        } else {
-            setResultados(miembros);
         }
-    }, [miembros, id]);
+    }, []);
 
-    useEffect(() => {
-        getMiembros(id);
-    }, [id]);
-    
+
     return (
         <div className="panel-miembros">
-
             <div className="cont-miembros">
                 <div className="titulo">
                     <h2>Miembros</h2>
-                    {/* <p>Miembros totales: {filterSolic ? filterSolic.length : 0}</p> */}
                 </div>
-
                 <div className="c-table">
                     <SearchMiembros buscarUsuario={buscarUsuario} onChange={onChange} setResultados={setResultados} usuario={usuario} miembros={miembros} setParamQ={setParamQ} paramQ={paramQ} />
 
@@ -67,7 +58,6 @@ const PanelMiembros = (props) => {
                         : <p className="mensaje">No hay miembros.</p>}
                 </div>
             </div>
-
         </div>
     )
 }

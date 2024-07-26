@@ -10,10 +10,11 @@ import {
     OBTENER_GRUPOS,
     INSERTAR_SOLICITUD,
     OBTENER_SOLICITUDES,
+    OBTENER_SOLICITUD,
     ACTUALIZAR_SOLICITUD,
     OBTENER_MIEMBROS,
     MENSAJE_ERROR,
-    OBTENER_PROYECTOS
+    OBTENER_PROYECTOS,
 } from '../../types';
 
 const GruposState = props => {
@@ -114,11 +115,10 @@ const GruposState = props => {
     const insertSolicitud = async (datos) => {
 
         try {
-            const respuesta = await clienteAxios.post('/usuariogrupo/', datos);
-            console.log(respuesta.data, "linea 97")
+            const respuesta = await clienteAxios.post('/grupo/solicitud', datos);
             dispatch({
                 type: INSERTAR_SOLICITUD,
-                payload: respuesta.data.usuariogrupo
+                payload: respuesta.data.msg
             })
 
         } catch (error) {
@@ -132,11 +132,27 @@ const GruposState = props => {
     const getSolicitudes = async (grupoId) => {
         // console.log("llega aca: ", grupoId)
         try {
-            const respuesta = await clienteAxios.get(`/usuariogrupo/${grupoId}/`);
-
+            const respuesta = await clienteAxios.get(`/grupo/solicitudes/${grupoId}`);
             dispatch({
                 type: OBTENER_SOLICITUDES,
-                payload: respuesta.data.usuariogrupo
+                payload: respuesta.data.solicitudes
+            })
+        } catch (error) {
+
+            dispatch({
+                type: MENSAJE_ERROR,
+                payload: error.response.data.msg
+            })
+        }
+    }
+
+    const getSolicitud = async (id_usuario) => {
+        try {
+            const respuesta = await clienteAxios.get(`/grupo/solicitud/${id_usuario}`);
+
+            dispatch({
+                type: OBTENER_SOLICITUD,
+                payload: respuesta.data.solicitud
             })
         } catch (error) {
 
@@ -149,9 +165,8 @@ const GruposState = props => {
 
     const updateSolicitud = async (datos) => {
         try {
-            const respuesta = await clienteAxios.put('/usuariogrupo/', datos);
+            const respuesta = await clienteAxios.put('/grupo/solicitud', datos);
 
-            console.log(respuesta.data.usuariogrupo, "linea 132")
             dispatch({
                 type: ACTUALIZAR_SOLICITUD,
                 payload: respuesta.data.usuariogrupo
@@ -169,10 +184,9 @@ const GruposState = props => {
         try {
 
             const res = await clienteAxios.get(`/usuariogrupo/${grupoId}`);
-
             dispatch({
                 type: OBTENER_MIEMBROS,
-                payload: res.data.usuariogrupo
+                payload: res.data.usuarios
             })
         } catch (error) {
         }
@@ -180,7 +194,7 @@ const GruposState = props => {
 
     const getProyectos = async (grupoId) => {
         try {
-            const res = await clienteAxios.get(`/usuariogrupo/proyectos/${grupoId}`);
+            const res = await clienteAxios.get(`/serie/proyectos/${grupoId}`);
 
             dispatch({
                 type: OBTENER_PROYECTOS,
@@ -224,6 +238,7 @@ const GruposState = props => {
                 getMiembros,
                 getGruposByCapitulo,
                 getProyectos,
+                getSolicitud,
                 buscar
             }}
         >

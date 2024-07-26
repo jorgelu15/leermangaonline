@@ -6,7 +6,6 @@ import { useGrupos } from "../../../hooks/useGrupos";
 import TableProyectos from "../../Mui/Tables/TableProyectos";
 import SearchProyectos from "../../Search/SearchProyectos";
 
-
 const PanelProyectos = (props) => {
 
     const { proyectos, getProyectos } = useGrupos();

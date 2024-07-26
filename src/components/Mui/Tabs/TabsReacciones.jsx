@@ -1,8 +1,15 @@
+import { useSnackbar } from 'notistack';
 import React, { useState, useEffect } from 'react';
+import { useReaccion } from '../../../hooks/useReaccion';
+import { useAuth } from '../../../hooks/useAuth';
 
-const TabsReacciones = () => {
+const TabsReacciones = ({ id, ...props }) => {
+  const { usuario } = useAuth();
+  const { setReaccion } = useReaccion();
   const [activeIndex, setActiveIndex] = useState(0);
   const [indicatorStyle, setIndicatorStyle] = useState({});
+  const { enqueueSnackbar } = useSnackbar()
+  const reacciones = ['Leido', 'Pendiente', 'Siguiendo', 'Favorito', 'Abandonado'];
 
   useEffect(() => {
     const listItem = document.querySelectorAll('.reaccion-list-item')[activeIndex];
@@ -16,17 +23,39 @@ const TabsReacciones = () => {
 
   const handleTabClick = (index) => {
     setActiveIndex(index);
+    setReaccion({
+      id_usuario: usuario?.id,
+      id_serie: id,
+      tipo: index + 1
+    }).then(data => {
+      enqueueSnackbar(`Se ha marcado como ${reacciones[activeIndex]}`, {
+        variant: "success",
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "right"
+        }
+      });
+    }).catch(e => {
+      enqueueSnackbar(`No se pudo seleccionar la eleccion`, {
+        variant: "success",
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "right"
+        }
+      });
+    })
+    
   };
 
   return (
     <div className='reaccion'>
       <div className='reaccion-inner'>
         <ul className='reaccion-list'>
-          {['Leido', 'Pendiente', 'Siguiendo', 'Favorito', 'Abandonado'].map((tab, index) => (
+          {reacciones.map((tab, index) => (
             <li
               key={index}
               className={`reaccion-list-item ${activeIndex === index ? 'active' : ''}`}
-              onClick={() => handleTabClick(index)}
+              onClick={() => handleTabClick(index )}
             >
               {tab}
             </li>

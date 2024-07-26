@@ -5,29 +5,24 @@ import clienteAxiosUpload from '../../config/axiosUpload';
 import CapituloContext from './capituloContext';
 import CapituloReducer from './capituloReducer';
 
-import {
-    
-} from '../../types';
+import { MENSAJE_ERROR,OBTENER_CAPITULOS } from '../../types';
 
 const CapituloState = props => {
 
     const initialState = {
         msg: null,
+        capitulos: []
     }
 
     const [state, dispatch] = useReducer(CapituloReducer, initialState);
 
-    const subirCapitulo = async (file) => {
+    const subirGrupoCapitulo = async (file) => {
         try {
-            const respuesta = await clienteAxios.post(`/capitulo`, file);
-            
+            const respuesta = await clienteAxios.post(`/capitulo/grupoCapitulo`, file);
+
             const respuesta2 = await clienteAxiosUpload.post(`/uploadCapitulo`, file);
-            // dispatch({
-            //     type: SUBIR_SERIE,
-            //     payload: respuesta.data.perfil
-            // })
         } catch (error) {
-  
+
             dispatch({
                 type: MENSAJE_ERROR,
                 payload: error.response.data.msg
@@ -35,11 +30,38 @@ const CapituloState = props => {
         }
     }
 
+    const subirCapitulo = async (data) => {
+        try {
+            const res = await clienteAxios.post(`/capitulo`, data);
+            dispatch({
+                type: MENSAJE_ERROR,
+                payload: res.data.msg
+            })
+            return res.data;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getCapitulos = async (serie_uid) => {
+        try {
+            const res = await clienteAxios.get(`/capitulos/${serie_uid}`)
+            dispatch({
+                type: OBTENER_CAPITULOS,
+                payload: res.data.capitulos
+            })
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <CapituloContext.Provider
             value={{
                 msg: state.msg,
-                subirCapitulo
+                subirGrupoCapitulo,
+                subirCapitulo,
+                getCapitulos
             }}
         >
             {props.children}

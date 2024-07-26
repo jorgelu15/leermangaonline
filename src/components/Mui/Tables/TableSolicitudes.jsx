@@ -20,6 +20,7 @@ import { TableHead } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
+import { useGrupos } from '../../../hooks/useGrupos';
 
 
 function TablePaginationActions(props) {
@@ -123,11 +124,10 @@ export default function TableSolicitudes(props) {
     setPage(0);
   };
 
-  const { updateSolicitud } = useContext(gruposContext)
+  const { updateSolicitud } = useGrupos();
 
 
   const handleAceptar = (solic) => {
-
     enqueueSnackbar("Miembro Aceptado", {
       variant: "success",
       anchorOrigin: {
@@ -135,12 +135,10 @@ export default function TableSolicitudes(props) {
         horizontal: "right"
       }
     })
-    updateSolicitud({ usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 1 })
-
+    updateSolicitud({ id_usuario: solic.usuarioId, id_grupo: solic.grupoId, status: 2 });
   }
 
   const handleRechazar = (solic) => {
-
     enqueueSnackbar("Solicitud Rechazada", {
       variant: "success",
       anchorOrigin: {
@@ -172,7 +170,7 @@ export default function TableSolicitudes(props) {
           <TableRow>
             <TableCell>Usuario</TableCell>
             <TableCell align="center">Correo</TableCell>
-            <TableCell align="center">Fecha de solicitud</TableCell>
+            <TableCell align="center">Pais</TableCell>
             <TableCell align="center">Acciones</TableCell>
           </TableRow>
         </TableHead>
@@ -183,14 +181,14 @@ export default function TableSolicitudes(props) {
             : solicitudesV ? solicitudesV : []
           ).map((solicitud, idx) => (
             <TableRow key={idx}>
-              <TableCell component="th" scope="row">
-                {solicitud.Usuario?.usuario}
+              <TableCell component="th" scope="row" style={{textTransform: "capitalize", fontWeight: "bold"}}>
+                {solicitud?.usuario}
               </TableCell>
               <TableCell component="th" align="center">
-                {solicitud.Usuario?.correo}
+                {solicitud?.correo}
               </TableCell>
-              <TableCell component="th" align="center">
-                {formatDate(solicitud.createdAt)}
+              <TableCell component="th" align="center" style={{textTransform: "capitalize", fontWeight: "bold"}}>
+                {solicitud?.pais}
               </TableCell>
               <TableCell component="th" align="center">
                 <div className='table-btn-cont'>

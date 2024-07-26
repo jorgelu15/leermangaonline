@@ -146,7 +146,7 @@ const router = createBrowserRouter([
     element: <Suspense fallback={<FallbackLoader />}><Terms /></Suspense>
   },
   {
-    path: routes.scanlation,
+    path: routes.scanlation + `/:id_grupo`,
     element: <Suspense fallback={<FallbackLoader />}><Scanlation /></Suspense>
   },
   {

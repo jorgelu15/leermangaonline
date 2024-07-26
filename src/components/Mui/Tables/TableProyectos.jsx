@@ -153,7 +153,6 @@ export default function TableProyectos(props) {
             <TableCell align="center">Demografia</TableCell>
             <TableCell align="center">Estado</TableCell>
             <TableCell align="center">Fecha de creacion</TableCell>
-            <TableCell align="center">Acciones</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -173,12 +172,6 @@ export default function TableProyectos(props) {
               </TableCell>
               <TableCell component="th" align="center">
                 {formatDate(solicitud.createdAt)}
-              </TableCell>
-              <TableCell component="th" align="center">
-                <div className='table-btn-cont'>
-                  <button onClick={() => { handleOpenUpdate(solicitud) }} className='table-btn-ac'>Actualizar</button>
-                  <button onClick={() => { handleOpenDelete(solicitud) }} className='table-btn-re'>Eliminar</button>
-                </div>
               </TableCell>
             </TableRow>
           ))}

@@ -16,8 +16,9 @@ const ReaccionesState = props => {
 
     const initialState = {
         msg: null,
-        reacciones: null,
-        reacciones_usuario: null
+        reacciones: [],
+        reacciones_usuario: [],
+        reaccionesPorUsuario: []
     }
 
     const [state, dispatch] = useReducer(ReaccionesReducer, initialState);
@@ -31,20 +32,37 @@ const ReaccionesState = props => {
                 payload: reacciones.data.reacciones
             })
         } catch (error) {
-            
+
         }
     }
 
     const setReaccion = async (datos) => {
         try {
             const respuesta = await clienteAxios.put('/reaccion', datos);
-            
+
             dispatch({
                 type: SUBIR_REACCION,
                 payload: respuesta.data
             })
         } catch (error) {
-  
+
+            dispatch({
+                type: MENSAJE_ERROR,
+                payload: error.response.data.msg
+            })
+        }
+    }
+
+    const postReaccion = async (datos) => {
+        try {
+            const respuesta = await clienteAxios.put('/reaccion', datos);
+
+            dispatch({
+                type: SUBIR_REACCION,
+                payload: respuesta.data
+            })
+        } catch (error) {
+
             dispatch({
                 type: MENSAJE_ERROR,
                 payload: error.response.data.msg
@@ -54,14 +72,13 @@ const ReaccionesState = props => {
 
     const getReaccionesUsuario = async (id_usuario) => {
         try {
-            const reacciones = await clienteAxios.get(`/reaccion/usuario/${id_usuario}`)
-
+            const res = await clienteAxios.get(`/reaccion/usuario/${id_usuario}`)
             dispatch({
                 type: OBTENER_REACCIONES_USUARIO,
-                payload: reacciones.data.reacciones
+                payload: res.data.series
             })
         } catch (error) {
-            
+
         }
     }
 
@@ -74,7 +91,7 @@ const ReaccionesState = props => {
                 payload: reacciones.data.reacciones
             })
         } catch (error) {
-            
+
         }
     }
 
@@ -84,10 +101,12 @@ const ReaccionesState = props => {
                 msg: state.msg,
                 reacciones: state.reacciones,
                 reacciones_usuario: state.reacciones_usuario,
+                reaccionesPorUsuario: state.reaccionesPorUsuario,
                 getReacciones,
                 setReaccion,
                 getReaccionesUsuario,
-                getSeriesPorReaccionUsuario
+                getSeriesPorReaccionUsuario,
+                postReaccion
             }}
         >
             {props.children}

@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react"
 import React, { useRef } from 'react';
-import { useContext } from "react";
 
 import TableSolicitudes from "../../Mui/Tables/TableSolicitudes";
-
-import gruposContext from "../../../context/grupos/gruposContext";
 import SearchSolicitudes from "../../Search/SearchMiembros";
+import { useGrupos } from "../../../hooks/useGrupos";
+import { useParams } from "react-router-dom";
 
 
 const PanelSolicitudes = (props) => {
 
-    const { solicitudes } = useContext(gruposContext)
-    const [ filterSolic, setFilterSolic ] = useState([])
-
+    const { solicitudes, getSolicitudes } = useGrupos();
+    const [filterSolic, setFilterSolic] = useState(solicitudes)
+    let { id } = useParams();
     useEffect(() => {
-        setFilterSolic(solicitudes?.filter((item) => item.estado === 0))
-    }, [solicitudes])
+        if (id) {
+            getSolicitudes(id);
+        }
+    }, [])
+    console.log({ solicitudes })
 
     useEffect(() => {
     }, [filterSolic])
@@ -30,15 +32,15 @@ const PanelSolicitudes = (props) => {
                     {/* <p>Solicitudes pendientes: {filterSolic ? filterSolic.length : 0}</p> */}
                 </div>
                 <div className="c-table">
-                    <SearchSolicitudes/>
+                    <SearchSolicitudes />
 
-                    {filterSolic ? filterSolic.length !== 0 ? <TableSolicitudes solicitudesV={filterSolic}></TableSolicitudes> 
-                    : <p className="mensaje">No hay solicitudes pendientes.</p> : 
-                      <p className="mensaje">No hay solicitudes pendientes.</p>
+                    {filterSolic ? filterSolic.length !== 0 ? <TableSolicitudes solicitudesV={filterSolic}></TableSolicitudes>
+                        : <p className="mensaje">No hay solicitudes pendientes.</p> :
+                        <p className="mensaje">No hay solicitudes pendientes.</p>
                     }
                 </div>
             </div>
-    
+
         </div>
     )
 }

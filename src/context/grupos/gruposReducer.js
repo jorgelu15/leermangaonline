@@ -4,6 +4,7 @@ import {
     OBTENER_GRUPOS,
     INSERTAR_SOLICITUD,
     OBTENER_SOLICITUDES,
+    OBTENER_SOLICITUD,
     ACTUALIZAR_SOLICITUD,
     OBTENER_MIEMBROS,
     MENSAJE_ERROR,
@@ -32,13 +33,17 @@ export default (state, action) => {
         case INSERTAR_SOLICITUD:
             return {
                 ...state,
-                solicitud: action.payload,
-                solicitudes: [...state.solicitudes, action.payload]
+                msg: action.payload
             }
         case OBTENER_SOLICITUDES:
             return {
                 ...state,
                 solicitudes: action.payload
+            }
+        case OBTENER_SOLICITUD:
+            return {
+                ...state,
+                solicitud: action.payload
             }
         case ACTUALIZAR_SOLICITUD:
             return {
@@ -46,13 +51,9 @@ export default (state, action) => {
                 solicitudes: state.solicitudes.map((item) => item.id === action.payload.id ? action.payload : item)
             }
         case OBTENER_MIEMBROS:
-            const miembros = action.payload.map(miembro => {
-                return miembro.Usuario;
-            });
-
             return {
                 ...state,
-                miembros: miembros
+                miembros: action.payload
             }
         case OBTENER_PROYECTOS:
             return {

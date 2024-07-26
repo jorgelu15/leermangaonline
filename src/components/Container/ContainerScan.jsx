@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useState, useContext, useEffect } from "react"
 
 import routes from "../../helpers/routes";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
 import { useAuth } from "../../hooks/useAuth";
@@ -11,40 +11,48 @@ import gruposContext from "../../context/grupos/gruposContext";
 import TabsScan from "../Mui/Tabs/TabsScan";
 import FotoPerfil from "../../img/isugo.jpg";
 import CardScan from '../Card/CardScan';
+import { useGrupos } from '../../hooks/useGrupos';
+import { useText } from '../../hooks/useText';
 
 
 const ContainerScan = (props) => {
 
     const { usuario } = useAuth();
-    const { grupo, solicitudes, miembros, insertSolicitud, getMiembros } = useContext(gruposContext)
+    const { grupo, solicitud, miembros, insertSolicitud, getMiembros, getGrupo, getSolicitudes, getSolicitud } = useGrupos();
     const { enqueueSnackbar } = useSnackbar()
 
-    const [statusSl, setStatusSl] = useState([]);
+    let { id_grupo } = useParams();
 
     useEffect(() => {
-        if (usuario?.usuario) {
-            let stat = solicitudes?.find((item) => (item.grupoId === grupo.id && item.usuarioId === usuario.id));
-            setStatusSl(stat ? stat : [])
+        if (id_grupo) {
+            getMiembros(id_grupo);
         }
-        getMiembros()
+    }, [id_grupo])
 
-    }, [solicitudes])
+    useEffect(() => {
+        if (id_grupo) {
+            getGrupo(id_grupo);
+        }
+    }, []);
 
+    useEffect(() => {
+        if (usuario) {
+            getSolicitud(usuario?.id);
+        }
+    }, [usuario])
 
     const handleSolicitud = (e) => {
         e.preventDefault();
 
-        if (statusSl.length === 0) {
-            enqueueSnackbar("Solicitud Enviada", {
-                variant: "success",
-                anchorOrigin: {
-                    vertical: "bottom",
-                    horizontal: "right"
-                }
-            })
+        enqueueSnackbar("Solicitud Enviada", {
+            variant: "success",
+            anchorOrigin: {
+                vertical: "bottom",
+                horizontal: "right"
+            }
+        })
 
-            insertSolicitud({ usuarioId: usuario?.id, grupoId: grupo?.id })
-        }
+        insertSolicitud({ id_usuario: usuario?.id, id_grupo: grupo?.id, status: 1 })
     }
 
 
@@ -107,7 +115,7 @@ const ContainerScan = (props) => {
                     </div>
                     <div className="info">
                         <div className="etiq-cards">
-                            <h4>{grupo?.nombre}</h4>
+                            <h4 style={{ textTransform: "capitalize" }}>{grupo?.nombre}</h4>
                         </div>
                         <div className="desc-scan">
                             <p>{grupo?.descripcion}</p>
@@ -121,14 +129,18 @@ const ContainerScan = (props) => {
                     <div className="members">
                         <div className="member-titles">
                             <h2>Miembros</h2>
+                            {solicitud?.status === 0 ? (
+                                <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button>
+                            ) : solicitud?.status === 1 ? (
+                                (
+                                    <button className="btn-req-member">Solicitud Enviada</button>
+                                )
+                            ) : solicitud?.status === 2 ? (
+                                <button className="btn-req-member">Solicitud rechazada</button>
+                            ) : (
+                                <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button>
+                            )}
 
-                            {
-                                statusSl.length !== 0
-                                    ? statusSl.estado === 0
-                                        ? <button className="btn-req-member">Solicitud Realizada</button>
-                                        : statusSl.estado === 1 ? <button className="btn-req-member">Gestionar</button> : null
-                                    : <button onClick={handleSolicitud} className="btn-req-member">Solicitar ingreso</button>
-                            }
                         </div>
 
                         <div className="member-cards">

@@ -15,40 +15,41 @@
   margin-bottom: 20px;
 }
 
-.subir-view form .msg{
+ form .msg{
   padding: 20px 0px;
 }
 
 
-.subir-view .control-form{
+ .control-form{
   display: flex;
   justify-content: space-between;
   padding: 10px;
   /* color-scheme: light; */
 }
 
-.subir-view .control-form label{
+ .control-form label{
   min-width: 100px;
   width: 300px;
   font-weight: 600;
 }
 
-.subir-view .control-form .r-sel{
+ .control-form .r-sel{
   color-scheme: dark;
   flex: 1;
 }
 
-.subir-view .control-form .r-sel p{
+ .control-form .r-sel p{
   margin-top: 4px;
   font-size: 0.8rem;
+  
 }
 
-.subir-view .control-form .r-sel span{
+.control-form .r-sel span{
   cursor: pointer;
   color: rgb(154, 111, 255);
 }
 
-.subir-view .control-form .control-input{
+ .control-input{
   padding: 10px 10px;
   width: 100%;
   background-color: white;
@@ -58,6 +59,8 @@
   /* height: 38px; */
   border-radius: 3px;
   font-size: 0.9rem;
+  border: 1px solid #bebebe;
+
 }
 
 
@@ -96,14 +99,13 @@
 
 /*  */
 
-.subir-view .control-button{
+.control-button{
   display: flex;
   justify-content: space-between;
-  padding: 10px;
   padding-top: 30px;
 }
 
-.subir-view .control-button .btn-subir{
+.control-button .btn-subir{
   padding: 10px 20px;
   background-color: rgb(0, 149, 255);
   font-size: 1rem;
@@ -113,7 +115,7 @@
   cursor: pointer;
 }
 
-.subir-view .control-button .btn-cancelar{
+ .control-button .btn-cancelar{
   padding: 10px 20px;
   background: rgb(60, 65, 83);
   font-size: 1rem;

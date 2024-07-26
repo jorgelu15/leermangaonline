@@ -101,7 +101,7 @@ export default function TableMiembros(props) {
     miembros
   } = props;
 
- 
+
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -151,6 +151,7 @@ export default function TableMiembros(props) {
     return (`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
   }
 
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -159,7 +160,6 @@ export default function TableMiembros(props) {
             <TableCell>Usuario</TableCell>
             <TableCell align="center">Rol</TableCell>
             <TableCell align="center">Correo</TableCell>
-            <TableCell align="center">Fecha de entrada</TableCell>
             <TableCell align="center">Acciones</TableCell>
           </TableRow>
         </TableHead>
@@ -167,31 +167,30 @@ export default function TableMiembros(props) {
           {(rowsPerPage > 0
             ? miembros?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : miembros ? miembros : []
-          )?.map((solicitud, idx) => (
-            <TableRow key={idx}>
-              <TableCell component="th" scope="row">
-                {solicitud?.usuario}
-              </TableCell>
-              <TableCell component="th" align="center">
-                {solicitud.rol === "0" ? "Administrador" : "Miembro"}
-              </TableCell>
-              <TableCell component="th" align="center">
-                {solicitud?.correo}
-              </TableCell>
-              <TableCell component="th" align="center">
-                {formatDate(solicitud.createdAt)}
-              </TableCell>
-              <TableCell component="th" align="center">
-                <div className='table-btn-cont'>
-                  {solicitud.rol === "0"
-                    ? <button className='table-btn-ac'>Contactar</button>
-                    : <button onClick={() => { handleExpulsar(solicitud) }} className='table-btn-re'>Expulsar</button>
-                  }
+          )?.map((miembro, idx) => {
+            return (
+              <TableRow key={idx}>
+                <TableCell component="th" scope="row" style={{textTransform: "capitalize", fontWeight: "bold"}}>
+                  {miembro?.usuario}
+                </TableCell>
+                <TableCell component="th" align="center">
+                  {miembro.rol === "0" ? "Administrador" : "Miembro"}
+                </TableCell>
+                <TableCell component="th" align="center">
+                  {miembro?.correo}
+                </TableCell>
+                <TableCell component="th" align="center">
+                  <div className='table-btn-cont'>
+                    {miembro.rol === "0"
+                      ? <button className='table-btn-ac'>Contactar</button>
+                      : <button onClick={() => { handleExpulsar(miembro) }} className='table-btn-re'>Expulsar</button>
+                    }
 
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
+                  </div>
+                </TableCell>
+              </TableRow>
+            )
+          })}
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={6} />

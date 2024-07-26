@@ -6,6 +6,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
+import routes from '../../../helpers/routes';
+import { useText } from '../../../hooks/useText';
 
 
 function TabPanel(props) {
@@ -46,6 +49,7 @@ export default function TabsCategory(props) {
   const { items, viewPerfil, setViewPerfil } = props;
 
   const theme = useTheme();
+  const { reemplazarEspaciosConGuiones } = useText();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -88,25 +92,25 @@ export default function TabsCategory(props) {
           <div className='cont-tabs'>
             {
               items ?
-                items.cont.map((item, idx) => {
+                items?.cont.map((item, idx) => {
                   return (
 
                     <TabPanel key={idx} value={value} index={idx} dir={theme.direction}>
                       <h3 className='title'>Obras {item.tab}s</h3>
                       <div className="sec-cards">
                         {
-                          item.cards.length ?
+                          item?.cards.length ?
                             item.cards.map((card, idx) => {
                               return (
-                                <div key={idx} className="cont-card">
-                                  <div className="card" style={{ backgroundImage: `url('${card.url}')` }}>
+                                <Link key={idx} className="cont-card" to={`${routes.manga}/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre.toLowerCase())}`}>
+                                  <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${card.portada}')` }}>
                                     <div>
-                                      <p className="categoria">{card.categoria}</p>
-                                      <p className="calificacion">{card.calif}</p>
+                                      <p className="categoria">{card.demografia}</p>
+                                      {card.votos && card.votos[0] && <p className="calificacion">{card?.votos[0].prom_vot}</p>}
                                     </div>
                                     <p className="nombre">{card.nombre}</p>
                                   </div>
-                                </div>
+                                </Link>
                               )
                             }) :
                             <div>

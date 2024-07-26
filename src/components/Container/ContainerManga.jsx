@@ -115,7 +115,7 @@ const ContainerManga = (props) => {
                 </div>
             </section>
             <div className={viewPerfil ? 'hidden-indicator' : null}>
-                <TabsReacciones items={items} viewPerfil={viewPerfil} setViewPerfil={setViewPerfil}></TabsReacciones>
+                <TabsReacciones id={id} items={items} viewPerfil={viewPerfil} setViewPerfil={setViewPerfil}></TabsReacciones>
             </div>
             <section className="capitulos">
                 <div className="cap-box">

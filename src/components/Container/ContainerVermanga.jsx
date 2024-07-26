@@ -10,7 +10,6 @@ import vermangaContext from "../../context/vermanga/vermangaContext";
 const ContainerVermanga = (props) => {
 
     const { id_grupo, serie_uid, numCap, paginas } = useContext(vermangaContext);
-    console.log(paginas)
 
     return (
         <div>

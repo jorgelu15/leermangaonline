@@ -1,18 +1,15 @@
-import * as React from 'react';
-import { useState } from "react"
-// import React, { useRef } from 'react';
-
-import FotoPerfil from "../../img/perfil1.jpg"
-import TabsCategory from "../Mui/Tabs/TabsCategory"
-import FormPerfil from "../Form/FormPerfil";
+import { useEffect, useState } from "react"
 import { useAuth } from "../../hooks/useAuth";
 
-import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { Avatar } from "@mui/material";
+import TabsCategory from "../Mui/Tabs/TabsCategory";
+import FormPerfil from "../Form/FormPerfil";
+import { useReaccion } from "../../hooks/useReaccion";
 
 const ContainerPerfil = (props) => {
 
     const { usuario } = useAuth();
+    const { reacciones_usuario, getReaccionesUsuario } = useReaccion();
 
     const [viewPerfil, setViewPerfil] = useState(true)
 
@@ -20,48 +17,33 @@ const ContainerPerfil = (props) => {
         setViewPerfil(!viewPerfil)
     }
 
+    useEffect(() => {
+        getReaccionesUsuario(usuario?.id);
+    }, []);
+
+
     const items = {
         tabs: 5,
         cont: [
             {
                 tab: "Leido",
-                cards: [
-                    { nombre: "jujutsu Kaisen", categoria: "Manga", calif: "8.53", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.webp" },
-                    { nombre: "oshi no ko", categoria: "Manga", calif: "9.05", url: "https://otakuteca.com/images/books/cover/5efe4afd1d0c5.webp" },
-                    { nombre: "Kanojo, Okarishimasu", categoria: "Manga", calif: "3.91", url: "https://otakuteca.com/images/books/cover/606cda6f538c7.webp" },
-                    { nombre: "Class de 2 Banme ni...", categoria: "Manga", calif: "8.40", url: "https://otakuteca.com/images/books/cover/62e1dbb29f444.webp" },
-                    { nombre: "Kanan-sama Might be...", categoria: "Manga", calif: "8.92", url: "https://otakuteca.com/images/books/cover/629634d78ab1c.webp" },
-                ]
+                cards: reacciones_usuario.leido
             },
             {
                 tab: "Pendiente",
-                cards: [
-                    { nombre: "El dios de la escuela se...", categoria: "manhwa", calif: "8.78", url: "https://otakuteca.com/images/books/cover/5d3df9c5378b5.webp" },
-                    { nombre: "La vida despues de la muerte", categoria: "manhwa", calif: "8.89", url: "https://otakuteca.com/images/books/cover/5ddde8a92558c.webp" },
-                    { nombre: "Guerrero de nivelacion ha...", categoria: "manhwa", calif: "10.00", url: "https://otakuteca.com/images/books/cover/645feeabbf6ae.webp" }
-                ]
+                cards: reacciones_usuario.pendiente
             },
             {
                 tab: "Siguiendo",
-                cards: [
-                    { nombre: "La era del gran diluvio", categoria: "manhua", calif: "10.00", url: "https://otakuteca.com/images/books/cover/642cb67221a43.webp" },
-                    { nombre: "Song of the skywalkers", categoria: "manhua", calif: "10.00", url: "https://otakuteca.com/images/books/cover/5d5fd8924ecb7.webp" },
-                    { nombre: "Comienzo de la era humana", categoria: "manhua", calif: "0.00", url: "https://otakuteca.com/images/books/cover/5f4ad3371b22a.webp" },
-                    { nombre: "¿Mi esposa es en realidad ...", categoria: "manhua", calif: "7.50", url: "https://otakuteca.com/images/books/cover/602a535b9f308.webp" }
-                ]
+                cards: reacciones_usuario.siguiendo
             },
             {
                 tab: "Favorito",
-                cards: [
-                    { nombre: "Mis discipulas son todas in...", categoria: "manhua", calif: "7.71", url: "https://otakuteca.com/images/books/cover/5fbb1b741ba61.webp" },
-                    { nombre: "Comienzo de la era humana", categoria: "manhua", calif: "0.00", url: "https://otakuteca.com/images/books/cover/5f4ad3371b22a.webp" },
-                    { nombre: "¿Mi esposa es en realidad ...", categoria: "manhua", calif: "7.50", url: "https://otakuteca.com/images/books/cover/602a535b9f308.webp" }
-                ]
+                cards: reacciones_usuario.favorito
             },
             {
                 tab: "Abandonado",
-                cards: [
-                ]
+                cards: reacciones_usuario.abandonado
             }
         ]
     }

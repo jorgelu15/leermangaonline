@@ -10,7 +10,7 @@ import SearchGrupos from "../Search/SearchGrupos";
 const ContainerGroupScans = (props) => {
 
     const { grupos, getAllGrupos } = useContext(gruposContext)
-
+    
     useEffect(() => {
         getAllGrupos()
     }, [])
