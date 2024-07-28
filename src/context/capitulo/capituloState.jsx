@@ -5,13 +5,18 @@ import clienteAxiosUpload from '../../config/axiosUpload';
 import CapituloContext from './capituloContext';
 import CapituloReducer from './capituloReducer';
 
-import { MENSAJE_ERROR, OBTENER_CAPITULOS } from '../../types';
+import {
+    MENSAJE_ERROR,
+    OBTENER_CAPITULOS,
+    OBTENER_CAPITULO
+} from '../../types';
 
 const CapituloState = props => {
 
     const initialState = {
         msg: null,
-        capitulos: []
+        capitulos: [],
+        capitulo: null
     }
 
     const [state, dispatch] = useReducer(CapituloReducer, initialState);
@@ -47,7 +52,7 @@ const CapituloState = props => {
 
     const getCapitulos = async (serie_uid) => {
         try {
-            const res = await clienteAxios.get(`/capitulos/${serie_uid}`)
+            const res = await clienteAxios.get(`/capitulo/capitulos/${serie_uid}`)
             dispatch({
                 type: OBTENER_CAPITULOS,
                 payload: res.data.capitulos
@@ -58,13 +63,28 @@ const CapituloState = props => {
         }
     }
 
+    const getCapitulo = async (id_capitulo) => {
+        try {
+            const res = await clienteAxios.get(`/capitulo/${id_capitulo}`)
+            dispatch({
+                type: OBTENER_CAPITULO,
+                payload: res.data.capitulo
+            })
+
+        } catch (error) {
+
+        }
+    }
+
     return (
         <CapituloContext.Provider
             value={{
+                capitulo: state.capitulo,
                 msg: state.msg,
                 subirGrupoCapitulo,
                 subirCapitulo,
-                getCapitulos
+                getCapitulos,
+                getCapitulo
             }}
         >
             {props.children}

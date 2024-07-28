@@ -1,11 +1,34 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import moon from '../../img/moon.svg'
 import routes from '../../helpers/routes';
+import { useSeries } from '../../hooks/useSeries';
+import { useEffect } from 'react';
+import { useText } from '../../hooks/useText';
 
 const Header = (props) => {
 
     const { paginacion, setPaginacion } = props
 
+    const { serie_uid, num_cap, id_capitulo } = useParams();
+
+    const { serie, capitulo, getSerie, getCapitulo } = useSeries();
+
+    const { reemplazarEspaciosConGuiones } = useText();
+
+    useEffect(() => {
+        if(serie_uid){
+            getSerie(serie_uid);
+        }
+    }, [serie_uid]);
+
+    useEffect(() => {
+        if(id_capitulo){
+            getCapitulo(id_capitulo);
+        }
+    }, [id_capitulo]);
+
+    console.log(capitulo)
+    
     return (
         <header className="header-vermanga">
             <nav className="navbar">
@@ -15,7 +38,7 @@ const Header = (props) => {
                     </ul>
                     <div className="info">
                         <div>
-                            <p className='title'><Link to="../manga">Jujutsu Kaisen</Link> Capitulo 70.00 Inventario Oculto...</p>
+                            <p className='title' style={{ textTransform: "capitalize" }}><Link to={routes.manga + `/${serie_uid}/${reemplazarEspaciosConGuiones(serie?.nombre.toLowerCase())}`}>{serie?.nombre}</Link> Capitulo: {num_cap} {capitulo?.titulo}</p>
                             <p>Subido por <a href="#">El club de askin</a></p>
                         </div>
                         <p>MANGA. El sentido de la lectura es de izquierda a derecha</p>

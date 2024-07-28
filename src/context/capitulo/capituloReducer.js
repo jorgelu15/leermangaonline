@@ -1,4 +1,4 @@
-import { MENSAJE_ERROR, SUBIR_SERIE } from '../../types';
+import { MENSAJE_ERROR, SUBIR_SERIE, OBTENER_CAPITULO } from '../../types';
 
 export default (state, action) => {
 
@@ -7,6 +7,11 @@ export default (state, action) => {
             return {
                 ...state,
                 msg: action.payload
+            }
+        case OBTENER_CAPITULO:
+            return {
+                ...state,
+                capitulo: action.payload
             }
         case MENSAJE_ERROR:
             return {
