@@ -15,6 +15,9 @@ import {
     OBTENER_MIEMBROS,
     MENSAJE_ERROR,
     OBTENER_PROYECTOS,
+    OBTENER_SEGUIDORES,
+    SEGUIR_GRUPO,
+    DEJAR_DE_SEGUIR_GRUPO
 } from '../../types';
 
 const GruposState = props => {
@@ -26,6 +29,7 @@ const GruposState = props => {
         miembros: null,
         solicitud: null,
         solicitudes: null,
+        seguidores: null,
         msg: null
     }
 
@@ -218,6 +222,37 @@ const GruposState = props => {
         }
     }
 
+    const getSeguidores = async (grupoId) => {
+        try {
+            const res = await clienteAxios.get(`/seguidor/${grupoId}`);
+            dispatch({
+                type: OBTENER_SEGUIDORES,
+                payload: res.data.seguidores
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const seguirGrupo = async (datos) => {
+        try {
+            const res = await clienteAxios.post(`/seguidor`, datos);
+            if(res.data.borrado){
+                dispatch({
+                    type: DEJAR_DE_SEGUIR_GRUPO,
+                    payload: datos
+                })
+            }else{
+                dispatch({
+                    type: SEGUIR_GRUPO,
+                    payload: res.data.seguidor
+                })
+            }
+        } catch (error) {
+
+        }
+    }
+
     return (
         <GruposContext.Provider
             value={{
@@ -227,6 +262,7 @@ const GruposState = props => {
                 miembros: state.miembros,
                 solicitud: state.solicitud,
                 solicitudes: state.solicitudes,
+                seguidores: state.seguidores,
                 msg: state.msg,
                 insertGrupo,
                 insertSolicitud,
@@ -239,7 +275,9 @@ const GruposState = props => {
                 getGruposByCapitulo,
                 getProyectos,
                 getSolicitud,
-                buscar
+                buscar,
+                getSeguidores,
+                seguirGrupo
             }}
         >
             {props.children}

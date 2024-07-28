@@ -8,7 +8,10 @@ import {
     ACTUALIZAR_SOLICITUD,
     OBTENER_MIEMBROS,
     MENSAJE_ERROR,
-    OBTENER_PROYECTOS
+    OBTENER_PROYECTOS,
+    OBTENER_SEGUIDORES,
+    SEGUIR_GRUPO,
+    DEJAR_DE_SEGUIR_GRUPO
 } from '../../types';
 
 export default (state, action) => {
@@ -65,7 +68,21 @@ export default (state, action) => {
                 ...state,
                 msg: action.payload
             }
-
+        case OBTENER_SEGUIDORES:
+            return {
+                ...state,
+                seguidores: action.payload
+            }
+        case SEGUIR_GRUPO:
+            return {
+                ...state,
+                seguidores: [...state.seguidores, action.payload]
+            }
+        case DEJAR_DE_SEGUIR_GRUPO:
+            return {
+                ...state,
+                seguidores: state.seguidores.filter(item => !(item.id_usuario === action.payload.id_usuario && item.id_grupo === action.payload.id_grupo))
+            }
         default:
             return state;
     }

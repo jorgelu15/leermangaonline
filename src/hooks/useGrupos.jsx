@@ -9,6 +9,7 @@ export const useGrupos = () => {
         grupo,
         proyectos,
         miembros,
+        seguidores,
         insertSolicitud,
         getSolicitudes,
         getGruposByCapitulo,
@@ -17,7 +18,9 @@ export const useGrupos = () => {
         getMiembros,
         getProyectos,
         getSolicitud,
-        buscar
+        buscar,
+        getSeguidores,
+        seguirGrupo
     } = useContext(gruposContext);
 
 
@@ -28,6 +31,7 @@ export const useGrupos = () => {
         grupo,
         proyectos,
         miembros,
+        seguidores,
         insertSolicitud,
         getSolicitudes,
         getGruposByCapitulo,
@@ -36,6 +40,8 @@ export const useGrupos = () => {
         getMiembros,
         getProyectos,
         getSolicitud,
-        buscar
+        buscar,
+        getSeguidores,
+        seguirGrupo
     }
 }

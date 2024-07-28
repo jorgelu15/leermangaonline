@@ -174,7 +174,6 @@ const SerieState = props => {
     const postVisualizacion = async (id_serie) => {
         try {
             const respuesta = await clienteAxios.post('/visualizacion', {id_serie: id_serie});
-            
         } catch (error) {
   
             dispatch({

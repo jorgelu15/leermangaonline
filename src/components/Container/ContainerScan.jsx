@@ -18,7 +18,7 @@ import { useText } from '../../hooks/useText';
 const ContainerScan = (props) => {
 
     const { usuario } = useAuth();
-    const { proyectos, grupo, solicitud, miembros, insertSolicitud, getMiembros, getGrupo, getSolicitudes, getSolicitud, getProyectos } = useGrupos();
+    const { proyectos, grupo, solicitud, miembros, seguidores, insertSolicitud, getMiembros, getGrupo, getSolicitudes, getSolicitud, getProyectos, getSeguidores, seguirGrupo } = useGrupos();
     const { enqueueSnackbar } = useSnackbar()
 
     let { id_grupo } = useParams();
@@ -47,6 +47,12 @@ const ContainerScan = (props) => {
         }
     }, [id_grupo])
 
+    useEffect(() => {
+        if (id_grupo) {
+            getSeguidores(id_grupo);
+        }
+    }, [id_grupo])
+
     const handleSolicitud = (e) => {
         e.preventDefault();
 
@@ -61,6 +67,40 @@ const ContainerScan = (props) => {
         insertSolicitud({ id_usuario: usuario?.id, id_grupo: grupo?.id, status: 1 })
     }
 
+    const handleSeguir = (e) => {
+        e.preventDefault();
+
+        if(!usuario){
+            enqueueSnackbar("Necesitas iniciar sesión", {
+                variant: "error",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            })    
+            return;
+        }
+
+        if(!(seguidores?.find(seguidor => seguidor.id_usuario === usuario?.id))){
+            enqueueSnackbar("Empezaste a seguir este grupo", {
+                variant: "success",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            })
+        }else{
+            enqueueSnackbar("Dejaste de seguir este grupo", {
+                variant: "success",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            })
+        }
+
+        seguirGrupo({id_usuario: usuario?.id, id_grupo: id_grupo})
+    }
 
     const items = {
         tabs: 1,
@@ -81,7 +121,7 @@ const ContainerScan = (props) => {
                     <div className="img">
                         <div className="type-scan">Scanlation</div>
                         <img src={FotoPerfil} alt="scanProfile" />
-                        <button style={{ padding: 10, width: "90%", backgroundColor: "#7bb9ff", border: "none", borderRadius: 3, fontWeight: "700", textTransform: "uppercase" }}>Seguir</button>
+                        <button onClick={handleSeguir} style={{ padding: 10, width: "90%", backgroundColor: "#7bb9ff", border: "none", borderRadius: 3, fontWeight: "700", textTransform: "uppercase" }}>{seguidores?.find(seguidor => seguidor.id_usuario === usuario?.id) ? "Dejar de seguir" : "Seguir"}</button>
                     </div>
                     <div className="info">
                         <div className="etiq-cards">
