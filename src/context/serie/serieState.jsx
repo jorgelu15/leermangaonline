@@ -174,11 +174,7 @@ const SerieState = props => {
     const postVisualizacion = async (id_serie) => {
         try {
             const respuesta = await clienteAxios.post('/visualizacion', {id_serie: id_serie});
-            console.log(id_serie);
-            dispatch({
-                type: INSERTAR_VISUALIZACIONE_SERIE,
-                payload: respuesta.data
-            })
+            
         } catch (error) {
   
             dispatch({

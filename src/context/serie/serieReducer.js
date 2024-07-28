@@ -68,11 +68,6 @@ export default (state, action) => {
                 ...state,
                 visualizaciones: action.payload
             }
-        case INSERTAR_VISUALIZACIONE_SERIE:
-            return {
-                ...state,
-                visualizaciones: action.payload
-            }
         default:
             return state;
     }
