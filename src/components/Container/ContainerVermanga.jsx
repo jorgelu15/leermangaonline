@@ -11,17 +11,33 @@ import { useParams } from "react-router-dom";
 
 const ContainerVermanga = (props) => {
 
-    const {id_grupo, serie_uid, id_capitulo, num_cap} = useParams();
+    const { paginacion } = props;
+
+    const [paginaActual, setPaginaActual] = useState(0);
+
+    const { id_grupo, serie_uid, id_capitulo, num_cap } = useParams();
 
     const { paginas, getCapitulo } = useContext(vermangaContext);
 
+    const numeroPaginas = paginas?.length;
+
+    const next = () => {
+        if (paginaActual + 1 < numeroPaginas) {
+            setPaginaActual(paginaActual + 1);
+        }
+    }
+
+    const prev = () => {
+        if (paginaActual - 1 >= 0) {
+            setPaginaActual(paginaActual - 1);
+        }
+    }
+
     useEffect(() => {
-        if(id_capitulo){
+        if (id_capitulo) {
             getCapitulo(id_capitulo);
         }
-      }, [id_capitulo]);
-
-      console.log(num_cap)
+    }, [id_capitulo]);
 
     const { postVisualizacion } = useSeries();
 
@@ -32,11 +48,25 @@ const ContainerVermanga = (props) => {
     return (
         <div>
             <div className="manga-view">
-                {paginas?.map((capitulo, indx) => <img src={`http://upload.leermangaonline.com/uploads/capitulos/${id_grupo + '_' + serie_uid + '_' + id_capitulo + '/' + capitulo?.url}`} alt="capitulo" key={indx} />)}
-                {/* <img src={pagina1}/>
-                <img src={pagina2}/>
-                <img src={pagina3}/> */}
+                {
+                    paginacion ?
+                        paginas?.map((capitulo, indx) => <img src={`http://upload.leermangaonline.com/uploads/capitulos/${id_grupo + '_' + serie_uid + '_' + id_capitulo + '/' + capitulo?.url}`} alt="capitulo" key={indx} />)
+                        :
+                        paginas ?
+                            <img src={`http://upload.leermangaonline.com/uploads/capitulos/${id_grupo + '_' + serie_uid + '_' + id_capitulo + '/' + paginas[paginaActual]?.url}`} alt="capitulo" />
+                            :
+                            null
+                }
             </div>
+            {
+                !paginacion ?
+                    <div>
+                        {paginaActual + 1 < numeroPaginas ? <button onClick={next} style={{ padding: 5, backgroundColor: "#7bb9ff", border: "none", borderRadius: 3, fontWeight: "700", textTransform: "uppercase" }}>Siguiente</button> : null}
+                        <br />
+                        {paginaActual - 1 >= 0 ? <button onClick={prev} style={{ padding: 5, backgroundColor: "#7bb9ff", border: "none", borderRadius: 3, fontWeight: "700", textTransform: "uppercase" }}>Anterior</button> : null}
+                    </div>
+                    : null
+            }
         </div>
     )
 }

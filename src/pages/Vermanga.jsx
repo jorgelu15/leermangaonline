@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import HeaderManga from "../components/Header/HeaderManga";
 import Footer from "../components/Footer/Footer";
@@ -7,12 +7,14 @@ import vermangaContext from "../context/vermanga/vermangaContext";
 
 const Vermanga = () => {
 
+  const [paginacion, setPaginacion] = useState(0);//0 para paginado, 1 para cascada
+
   return (
     <>
       <div className="header--home">
-        <HeaderManga/>
+        <HeaderManga paginacion={paginacion} setPaginacion={setPaginacion}/>
       </div>
-      <ContainerVermanga/>
+      <ContainerVermanga paginacion={paginacion}/>
       <Footer/>
     </>
   );

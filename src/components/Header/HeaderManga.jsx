@@ -4,6 +4,8 @@ import routes from '../../helpers/routes';
 
 const Header = (props) => {
 
+    const { paginacion, setPaginacion } = props
+
     return (
         <header className="header-vermanga">
             <nav className="navbar">
@@ -17,6 +19,8 @@ const Header = (props) => {
                             <p>Subido por <a href="#">El club de askin</a></p>
                         </div>
                         <p>MANGA. El sentido de la lectura es de izquierda a derecha</p>
+                        <button onClick={() => setPaginacion(!paginacion)}  style={{ padding: 5, backgroundColor: "#7bb9ff", border: "none", borderRadius: 3, fontWeight: "700", textTransform: "uppercase" }}>{paginacion ? "Paginado" : "cascada"}</button>
+
                     </div>
                     
                 </div>
