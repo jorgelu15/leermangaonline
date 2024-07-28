@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import React from 'react';
+import { Icon } from '@mui/material';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 import CustomizedAccordions from "../Mui/Accordions/Accordion";
 import image from "../../img/jujutsu-manga.jpg";
@@ -20,7 +22,7 @@ import TabsReacciones from "../Mui/Tabs/TabsReacciones";
 
 const ContainerManga = (props) => {
     const { usuario } = useAuth();
-    const { serie, capitulos, generosSerie, votos, getSerie, getGeneroSerie, getPromVotoSerie, getCapitulosSerie } = useSeries();
+    const { serie, visualizaciones, capitulos, generosSerie, votos, getSerie, getGeneroSerie, getPromVotoSerie, getCapitulosSerie, getVisualizacion } = useSeries();
 
     let { id } = useParams();
 
@@ -92,6 +94,11 @@ const ContainerManga = (props) => {
         ]
     }
 
+    useEffect(() => {
+        if (id) {
+            getVisualizacion(id)
+        }
+    }, [id])
     return (
         <div>
             <section className="manga-desc" style={{
@@ -138,6 +145,10 @@ const ContainerManga = (props) => {
                     </div>
                 </div>
                 <div className="manga-type">
+                    <div className="tipo">
+                        <p className="type-titles">Visualizaciones</p>
+                        <p style={{ display: "flex", alignItems: "center" }}><RemoveRedEyeIcon style={{ marginRight: 5 }} /> {visualizaciones}</p>
+                    </div>
                     <div className="generos">
                         <p className="type-titles">Generos</p>
                         {generosSerie?.map((serie, idx) => {
