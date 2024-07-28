@@ -48,6 +48,7 @@ function a11yProps(index) {
 export default function TabsScan(props) {
 
   const { items } = props;
+  console.log({items})
 
   const theme = useTheme();
   const [value, setValue] = useState(0);
@@ -57,8 +58,6 @@ export default function TabsScan(props) {
   };
 
   const { reemplazarEspaciosConGuiones } = useText();
-
-  console.log(items)
 
   return (
     <Box sx={{ width: '100%', marginBottom: 8 }}>
@@ -72,12 +71,11 @@ export default function TabsScan(props) {
           aria-label="full width tabs example"
         >
           {
-            items ?
-              items.cont.map((item, idx) => {
-                return (
-                  <Tab key={idx} label={item.tab} {...a11yProps(idx)} />
-                )
-              }) : null
+            items?.cont.map((item, idx) => {
+              return (
+                <Tab key={idx} label={item.tab} {...a11yProps(idx)} />
+              )
+            })
           }
 
         </Tabs>
@@ -95,7 +93,7 @@ export default function TabsScan(props) {
                       <h3 className='title'>Proyectos {item.tab}</h3>
                       <div className="sec-cards">
                         {
-                          item.cards.length ?
+                          item?.cards?.length ?
                             item.cards.map((card, idx) => {
                               return (
                                 <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre)}`} key={idx} className="cont-card">

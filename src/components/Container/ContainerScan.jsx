@@ -63,7 +63,7 @@ const ContainerScan = (props) => {
 
 
     const items = {
-        tabs: 3,
+        tabs: 1,
         cont: [
             {
                 tab: "Añadidos recientemente",
