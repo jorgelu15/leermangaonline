@@ -10,6 +10,7 @@ export const useGrupos = () => {
         proyectos,
         miembros,
         seguidores,
+        seguidores_por_fecha,
         insertSolicitud,
         getSolicitudes,
         getGruposByCapitulo,
@@ -20,7 +21,8 @@ export const useGrupos = () => {
         getSolicitud,
         buscar,
         getSeguidores,
-        seguirGrupo
+        seguirGrupo,
+        getSeguidoresAnoActual
     } = useContext(gruposContext);
 
 
@@ -32,6 +34,7 @@ export const useGrupos = () => {
         proyectos,
         miembros,
         seguidores,
+        seguidores_por_fecha,
         insertSolicitud,
         getSolicitudes,
         getGruposByCapitulo,
@@ -42,6 +45,7 @@ export const useGrupos = () => {
         getSolicitud,
         buscar,
         getSeguidores,
-        seguirGrupo
+        seguirGrupo,
+        getSeguidoresAnoActual
     }
 }

@@ -17,7 +17,8 @@ import {
     OBTENER_PROYECTOS,
     OBTENER_SEGUIDORES,
     SEGUIR_GRUPO,
-    DEJAR_DE_SEGUIR_GRUPO
+    DEJAR_DE_SEGUIR_GRUPO,
+    OBTENER_SEGUIDORES_FECHA_ACTUAL
 } from '../../types';
 
 const GruposState = props => {
@@ -30,6 +31,7 @@ const GruposState = props => {
         solicitud: null,
         solicitudes: null,
         seguidores: null,
+        seguidores_por_fecha: null,
         msg: null
     }
 
@@ -233,7 +235,7 @@ const GruposState = props => {
             console.log(error)
         }
     }
-
+    
     const seguirGrupo = async (datos) => {
         try {
             const res = await clienteAxios.post(`/seguidor`, datos);
@@ -253,6 +255,19 @@ const GruposState = props => {
         }
     }
 
+    const getSeguidoresAnoActual = async (grupoId) => {
+        try {
+            const res = await clienteAxios.get(`/seguidor/seguidoresporfecha/${grupoId}`);
+            console.log(res)
+            dispatch({
+                type: OBTENER_SEGUIDORES_FECHA_ACTUAL,
+                payload: res.data.stats
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
     return (
         <GruposContext.Provider
             value={{
@@ -263,6 +278,7 @@ const GruposState = props => {
                 solicitud: state.solicitud,
                 solicitudes: state.solicitudes,
                 seguidores: state.seguidores,
+                seguidores_por_fecha: state.seguidores_por_fecha,
                 msg: state.msg,
                 insertGrupo,
                 insertSolicitud,
@@ -277,7 +293,8 @@ const GruposState = props => {
                 getSolicitud,
                 buscar,
                 getSeguidores,
-                seguirGrupo
+                seguirGrupo,
+                getSeguidoresAnoActual
             }}
         >
             {props.children}

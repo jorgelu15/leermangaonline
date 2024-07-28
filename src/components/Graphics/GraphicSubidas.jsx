@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import React, { useRef } from 'react';
 
 import {
@@ -13,6 +13,8 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import faker from 'faker';
+import { useGrupos } from "../../hooks/useGrupos";
+import { useParams } from "react-router-dom";
 
 ChartJS.register(
   CategoryScale,
@@ -37,27 +39,32 @@ export const options = {
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Subidas',
-      data: labels.map(() => faker.datatype.number({ min: -0, max: 1000 })),
-      borderColor: 'rgb(43, 125, 254)',
-      backgroundColor: 'rgba(43, 125, 254, 0.5)',
-    },
-    //   {
-    //     label: 'Dataset 2',
-    //     data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-    //     borderColor: 'rgb(53, 162, 235)',
-    //     backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    //   },
-  ],
-};
 
 const GraphicSubidas = (props) => {
+  
+  const { id } = useParams();
+  
+  const { seguidores_por_fecha, getSeguidoresAnoActual } = useGrupos();
+  
+  useEffect(() => {
+    if(id){
+      getSeguidoresAnoActual(id);
+    }
+  }, [id])
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Series',
+        data: seguidores_por_fecha?.datasets[0].data,
+        borderColor: 'rgb(43, 125, 254)',
+        backgroundColor: 'rgba(43, 125, 254, 0.5)',
+      },
+    ],
+  };
 
   return (
     <div className="graf-seg">

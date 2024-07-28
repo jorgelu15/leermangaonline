@@ -11,7 +11,8 @@ import {
     OBTENER_PROYECTOS,
     OBTENER_SEGUIDORES,
     SEGUIR_GRUPO,
-    DEJAR_DE_SEGUIR_GRUPO
+    DEJAR_DE_SEGUIR_GRUPO,
+    OBTENER_SEGUIDORES_FECHA_ACTUAL
 } from '../../types';
 
 export default (state, action) => {
@@ -82,6 +83,11 @@ export default (state, action) => {
             return {
                 ...state,
                 seguidores: state.seguidores.filter(item => !(item.id_usuario === action.payload.id_usuario && item.id_grupo === action.payload.id_grupo))
+            }
+        case OBTENER_SEGUIDORES_FECHA_ACTUAL:
+            return {
+                ...state,
+                seguidores_por_fecha: action.payload
             }
         default:
             return state;
