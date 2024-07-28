@@ -97,7 +97,7 @@ export default function TabsScan(props) {
                             item.cards.map((card, idx) => {
                               return (
                                 <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre)}`} key={idx} className="cont-card">
-                                  <div className="card" style={{ backgroundImage: `url('${card.portada}')` }}>
+                                  <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${card.portada}')` }}>
                                     <div>
                                       <p className="categoria">{card.demografia}</p>
                                       {card.votos && card.votos[0] && <p className="calificacion">{card?.votos[0].prom_vot}</p>}
