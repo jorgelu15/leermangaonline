@@ -135,7 +135,15 @@ const ContainerSubirmanga = (props) => {
         data.append("data", JSON.stringify(infoCap));
         data.append("ruta", "capitulos");
         data.append("carpeta", `${id_grupo}_${serie_uid}_${numero}`);
-        subirGrupoCapitulo(data);
+        subirGrupoCapitulo(data).then (r => {
+            enqueueSnackbar("Capítulo creado exitosamente", {
+                variant: "success",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            });
+        });
     };
 
     const crearCapitulo = () => {
@@ -152,6 +160,7 @@ const ContainerSubirmanga = (props) => {
 
         subirCapitulo({ tituloObra, serie_uid, numeroCapitulo })
             .then((response) => {
+                console.log(response)
                 if (response.status === 200) {
                     enqueueSnackbar("Capítulo creado exitosamente", {
                         variant: "success",

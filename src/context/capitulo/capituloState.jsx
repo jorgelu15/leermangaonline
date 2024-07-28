@@ -5,7 +5,7 @@ import clienteAxiosUpload from '../../config/axiosUpload';
 import CapituloContext from './capituloContext';
 import CapituloReducer from './capituloReducer';
 
-import { MENSAJE_ERROR,OBTENER_CAPITULOS } from '../../types';
+import { MENSAJE_ERROR, OBTENER_CAPITULOS } from '../../types';
 
 const CapituloState = props => {
 
@@ -21,6 +21,8 @@ const CapituloState = props => {
             const respuesta = await clienteAxios.post(`/capitulo/grupoCapitulo`, file);
 
             const respuesta2 = await clienteAxiosUpload.post(`/uploadCapitulo`, file);
+
+            return { data: { status: 200 } }
         } catch (error) {
 
             dispatch({
@@ -50,8 +52,9 @@ const CapituloState = props => {
                 type: OBTENER_CAPITULOS,
                 payload: res.data.capitulos
             })
+
         } catch (error) {
-            
+
         }
     }
 
