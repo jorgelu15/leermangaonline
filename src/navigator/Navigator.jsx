@@ -138,7 +138,7 @@ const router = createBrowserRouter([
     element: <Suspense fallback={<FallbackLoader />}><Manga /></Suspense>
   },
   {
-    path: routes.vermanga,
+    path: routes.vermanga + "/:id_grupo/:serie_uid/:id_capitulo/:num_cap",
     element: <Suspense fallback={<FallbackLoader />}><Vermanga /></Suspense>
   },
   {

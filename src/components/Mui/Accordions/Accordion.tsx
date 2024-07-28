@@ -13,6 +13,7 @@ import { any } from 'prop-types';
 import { useGrupos } from '../../../hooks/useGrupos';
 import vermangaContext from '../../../context/vermanga/vermangaContext';
 import formatearFecha from '../../../adapters/formatearFecha';
+import routes from '../../../helpers/routes';
 
 
 
@@ -82,7 +83,7 @@ export default function CustomizedAccordions({ id, filteredCapitulos, ...props }
             return (
               <AccordionDetails key={index} sx={{ backgroundColor: '#181818' }}>
                 <Typography>
-                  <Link to="../vermanga" onClick={() => setCapituloInfo(cap.id_capitulo, translator.id_grupo, cap.serie_uid, cap.numero)}>
+                  <Link to={routes.vermanga + `/${translator.id_grupo}/${cap.serie_uid}}/${cap.id_capitulo}/${cap.numero}`} onClick={() => setCapituloInfo(cap.id_capitulo, translator.id_grupo, cap.serie_uid, cap.numero)}>
                     <div className='typography'>
                       <div>
                         {capitalize(translator.nombreGrupo)}
