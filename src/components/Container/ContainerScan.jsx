@@ -81,7 +81,7 @@ const ContainerScan = (props) => {
                     <div className="img">
                         <div className="type-scan">Scanlation</div>
                         <img src={FotoPerfil} alt="scanProfile" />
-
+                        <button style={{ padding: 10, width: "90%", backgroundColor: "#7bb9ff", border: "none", borderRadius: 3, fontWeight: "700", textTransform: "uppercase" }}>Seguir</button>
                     </div>
                     <div className="info">
                         <div className="etiq-cards">
@@ -90,6 +90,7 @@ const ContainerScan = (props) => {
                         <div className="desc-scan">
                             <p>{grupo?.descripcion}</p>
                         </div>
+
                     </div>
                 </div>
             </div>
