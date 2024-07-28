@@ -20,6 +20,9 @@ import { TableHead } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
+import { EXPULSADO } from '../../../types';
+import { useGrupos } from '../../../hooks/useGrupos';
+import { useParams } from 'react-router-dom';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -122,11 +125,12 @@ export default function TableMiembros(props) {
     setPage(0);
   };
 
-  const { updateSolicitud } = useContext(gruposContext)
+  const { insertSolicitud } = useGrupos();
+  const { id } = useParams();
 
 
   const handleExpulsar = (solic) => {
-
+    console.log(solic)
     enqueueSnackbar("Miembro expulsado", {
       variant: "success",
       anchorOrigin: {
@@ -134,8 +138,7 @@ export default function TableMiembros(props) {
         horizontal: "right"
       }
     })
-    updateSolicitud({ usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 3 })
-
+    insertSolicitud({ id_usuario: solic.id, id_grupo: id, estado: EXPULSADO });
   }
 
   const formatDate = (fecha) => {
@@ -170,7 +173,7 @@ export default function TableMiembros(props) {
           )?.map((miembro, idx) => {
             return (
               <TableRow key={idx}>
-                <TableCell component="th" scope="row" style={{textTransform: "capitalize", fontWeight: "bold"}}>
+                <TableCell component="th" scope="row" style={{ textTransform: "capitalize", fontWeight: "bold" }}>
                   {miembro?.usuario}
                 </TableCell>
                 <TableCell component="th" align="center">

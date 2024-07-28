@@ -17,7 +17,6 @@ const PanelSolicitudes = (props) => {
             getSolicitudes(id);
         }
     }, [])
-    console.log({ solicitudes })
 
     useEffect(() => {
     }, [filterSolic])
@@ -25,7 +24,6 @@ const PanelSolicitudes = (props) => {
 
     return (
         <div className="panel-miembros">
-
             <div className="cont-miembros">
                 <div className="titulo">
                     <h2>Solicitudes</h2>

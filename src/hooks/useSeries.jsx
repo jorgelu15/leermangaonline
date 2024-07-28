@@ -3,6 +3,8 @@ import serieContext from "../context/serie/serieContext";
 
 export const useSeries = () => {
     const {
+        solicitud,
+        stats,
         series,
         serie,
         capitulos,
@@ -14,7 +16,9 @@ export const useSeries = () => {
         getGeneroSerie,
         subirVotoSerie,
         getPromVotoSerie,
-        getCapitulosSerie
+        getCapitulosSerie,
+        getStatsSerie,
+        getTypeSolicitudes
     } = useContext(serieContext);
 
     useEffect(() => {
@@ -22,6 +26,8 @@ export const useSeries = () => {
     }, [])
 
     return {
+        solicitud,
+        stats,
         series,
         serie,
         capitulos,
@@ -33,6 +39,8 @@ export const useSeries = () => {
         getGeneroSerie,
         getPromVotoSerie,
         subirVotoSerie,
-        getCapitulosSerie
+        getCapitulosSerie,
+        getStatsSerie,
+        getTypeSolicitudes
     }
 }

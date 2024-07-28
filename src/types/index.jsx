@@ -6,6 +6,14 @@ export const ONE_SHOT  =  "One shot";
 export const DOUJINSHI  =  "Doujinshi";
 export const OEL  =  "Oel";
 
+export const NO_MIEMBRO = "0";
+export const SOLICITUD_ENVIADA = "1";
+export const RECHAZADO = "2";
+export const ACEPTADO = "3";
+export const EXPULSADO = "4";
+
+
+
 
 // Auth
 export const LOGIN_EXITOSO = 'LOGIN_EXITOSO';
@@ -32,6 +40,8 @@ export const OBTENER_SOLICITUD = "OBTENER_SOLICITUD";
 export const ACTUALIZAR_SOLICITUD = 'ACTUALIZAR_SOLICITUD';
 export const OBTENER_MIEMBROS = 'OBTENER_MIEMBROS';
 export const OBTENER_PROYECTOS = 'OBTENER_PROYECTOS';
+export const OBTENER_STATS = 'OBTENER_STATS';
+export const OBTENER_TIPO_SOLICITUDES = 'OBTENER_TIPO_SOLICITUDES';
 
 //Perfil
 export const OBTENER_PERFIL = 'OBTENER_PERFIL';

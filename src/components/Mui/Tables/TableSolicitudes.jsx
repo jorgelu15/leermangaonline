@@ -21,6 +21,8 @@ import { useSnackbar } from 'notistack';
 import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
 import { useGrupos } from '../../../hooks/useGrupos';
+import { ACEPTADO, RECHAZADO } from '../../../types';
+import { useParams } from 'react-router-dom';
 
 
 function TablePaginationActions(props) {
@@ -103,10 +105,7 @@ export default function TableSolicitudes(props) {
     solicitudesV
   } = props;
 
-  // console.log(solicitudesV, "linea 106")
-
   const { enqueueSnackbar } = useSnackbar()
-
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -124,7 +123,9 @@ export default function TableSolicitudes(props) {
     setPage(0);
   };
 
-  const { updateSolicitud } = useGrupos();
+  const { insertSolicitud } = useGrupos();
+
+  const { id } = useParams();
 
 
   const handleAceptar = (solic) => {
@@ -135,7 +136,7 @@ export default function TableSolicitudes(props) {
         horizontal: "right"
       }
     })
-    updateSolicitud({ id_usuario: solic.usuarioId, id_grupo: solic.grupoId, status: 2 });
+    insertSolicitud({ id_usuario: solic.id, id_grupo: id, status: ACEPTADO });
   }
 
   const handleRechazar = (solic) => {
@@ -146,8 +147,7 @@ export default function TableSolicitudes(props) {
         horizontal: "right"
       }
     })
-    updateSolicitud({ usuarioId: solic.usuarioId, grupoId: solic.grupoId, estado: 2 })
-
+    insertSolicitud({ id_usuario: solic.id, id_grupo: id, status: RECHAZADO });
   }
 
   const formatDate = (fecha) => {
@@ -181,13 +181,13 @@ export default function TableSolicitudes(props) {
             : solicitudesV ? solicitudesV : []
           ).map((solicitud, idx) => (
             <TableRow key={idx}>
-              <TableCell component="th" scope="row" style={{textTransform: "capitalize", fontWeight: "bold"}}>
+              <TableCell component="th" scope="row" style={{ textTransform: "capitalize", fontWeight: "bold" }}>
                 {solicitud?.usuario}
               </TableCell>
               <TableCell component="th" align="center">
                 {solicitud?.correo}
               </TableCell>
-              <TableCell component="th" align="center" style={{textTransform: "capitalize", fontWeight: "bold"}}>
+              <TableCell component="th" align="center" style={{ textTransform: "capitalize", fontWeight: "bold" }}>
                 {solicitud?.pais}
               </TableCell>
               <TableCell component="th" align="center">

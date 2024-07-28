@@ -7,6 +7,9 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import routes from '../../../helpers/routes';
+import { useText } from '../../../hooks/useText';
 
 
 function TabPanel(props) {
@@ -53,6 +56,10 @@ export default function TabsScan(props) {
     setValue(newValue);
   };
 
+  const { reemplazarEspaciosConGuiones } = useText();
+
+  console.log(items)
+
   return (
     <Box sx={{ width: '100%', marginBottom: 8 }}>
       <div className='cont-tabs'>
@@ -65,60 +72,60 @@ export default function TabsScan(props) {
           aria-label="full width tabs example"
         >
           {
-            items ? 
-            items.cont.map((item, idx) => {
-              return (
-                <Tab key={idx} label={item.tab} {...a11yProps(idx)}/>
-              )
-            }) : null
+            items ?
+              items.cont.map((item, idx) => {
+                return (
+                  <Tab key={idx} label={item.tab} {...a11yProps(idx)} />
+                )
+              }) : null
           }
 
         </Tabs>
       </div>
-      
-      <div style={{backgroundColor: '#e9eaed'}}>
+
+      <div style={{ backgroundColor: '#e9eaed' }}>
         <div className='cont-tabs'>
-          <div className='proyect'> 
-        {
-          items ? 
-          items.cont.map((item, idx) => {
-            return(
-              
-              <TabPanel key={idx} value={value} index={idx} dir={theme.direction}>
-              <h3 className='title'>Proyectos {item.tab}</h3>
-              <div className="sec-cards">
-                {
-                  item.cards.length ?
-                  item.cards.map((card, idx)=>{
-                    return (
-                      <div key={idx} className="cont-card">
-                        <div className="card" style={{backgroundImage: `url('${card.url}')`}}>
-                        <div>
-                          <p className="categoria">{card.categoria}</p>
-                          <p className="calificacion">{card.calif}</p>
-                        </div>
-                        <p className="nombre">{card.nombre}</p>
-                        </div>
+          <div className='proyect'>
+            {
+              items ?
+                items.cont.map((item, idx) => {
+                  return (
+
+                    <TabPanel key={idx} value={value} index={idx} dir={theme.direction}>
+                      <h3 className='title'>Proyectos {item.tab}</h3>
+                      <div className="sec-cards">
+                        {
+                          item.cards.length ?
+                            item.cards.map((card, idx) => {
+                              return (
+                                <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre)}`} key={idx} className="cont-card">
+                                  <div className="card" style={{ backgroundImage: `url('${card.portada}')` }}>
+                                    <div>
+                                      <p className="categoria">{card.demografia}</p>
+                                      {card.votos && card.votos[0] && <p className="calificacion">{card?.votos[0].prom_vot}</p>}
+                                    </div>
+                                    <p className="nombre">{card.nombre}</p>
+                                  </div>
+                                </Link>
+                              )
+                            }) :
+                            <div>
+                              <h4 className='mensaje'>No hay mangas</h4>
+                            </div>
+                        }
                       </div>
-                    )
-                  }) :
-                  <div>
-                    <h4 className='mensaje'>No hay mangas</h4>
-                  </div>
-                }
-              </div>
-            </TabPanel>
-            )
-          }) : null
-          
-        }
-        </div>
-        { props.children }
+                    </TabPanel>
+                  )
+                }) : null
+
+            }
+          </div>
+          {props.children}
 
         </div>
       </div>
-        
-      
+
+
     </Box>
   );
 }

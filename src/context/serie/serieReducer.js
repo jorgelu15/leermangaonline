@@ -4,6 +4,8 @@ import {
     OBTENER_GENEROS_SERIE,
     OBTENER_SERIE,
     OBTENER_SERIES,
+    OBTENER_STATS,
+    OBTENER_TIPO_SOLICITUDES,
     OBTENER_VOTOS,
     SUBIR_SERIE,
     SUBIR_VOTO_SERIE
@@ -43,11 +45,21 @@ export default (state, action) => {
                 ...state,
                 votos: action.payload
             }
+        case OBTENER_STATS:
+            return {
+                ...state,
+                stats: action.payload
+            }
         case SUBIR_VOTO_SERIE:
             return {
                 ...state,
                 votos: action.payload.serie,
                 msg: action.payload.msg
+            }
+        case OBTENER_TIPO_SOLICITUDES:
+            return {
+                ...state,
+                solicitud: action.payload
             }
         default:
             return state;

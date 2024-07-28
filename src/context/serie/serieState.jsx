@@ -10,6 +10,8 @@ import {
     OBTENER_GENEROS_SERIE,
     OBTENER_SERIE,
     OBTENER_SERIES,
+    OBTENER_STATS,
+    OBTENER_TIPO_SOLICITUDES,
     OBTENER_VOTOS,
     SUBIR_SERIE,
     SUBIR_VOTO_SERIE
@@ -24,7 +26,9 @@ const SerieState = props => {
         capitulos: null,
         generosSerie: null,
         votos: null,
-        seriesFiltradas: null
+        seriesFiltradas: null,
+        stats: null,
+        solicitud: null
     }
 
     const [state, dispatch] = useReducer(SerieReducer, initialState);
@@ -127,9 +131,35 @@ const SerieState = props => {
         }
     }
 
+    const getStatsSerie = async (grupoId)=>{
+        try {
+            const res = await clienteAxios.get(`/serie/stats/${grupoId}`);
+            console.log(res.data.stats)
+            dispatch({
+            type: OBTENER_STATS,
+            payload: res.data.stats
+            })
+        } catch (error) {
+            
+        }
+    }
+
+    const getTypeSolicitudes = async (grupoId) => {
+        try {
+            const res = await clienteAxios.get(`/grupo/solicitudes/tipo/${grupoId}`);
+            dispatch({
+                type: OBTENER_TIPO_SOLICITUDES,
+                payload: res.data.solicitud
+            })
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <SerieContext.Provider
             value={{
+                stats: state.stats,
                 msg: state.msg,
                 series: state.series,
                 seriesFiltradas: state.seriesFiltradas,
@@ -137,13 +167,16 @@ const SerieState = props => {
                 capitulos: state.capitulos,
                 generosSerie: state.generosSerie,
                 votos: state.votos,
+                solicitud: state.solicitud,
                 getSeries,
                 getSerie,
                 subirSerie,
                 subirVotoSerie,
                 getGeneroSerie,
                 getPromVotoSerie,
-                getCapitulosSerie
+                getCapitulosSerie,
+                getStatsSerie,
+                getTypeSolicitudes
             }}
         >
             {props.children}

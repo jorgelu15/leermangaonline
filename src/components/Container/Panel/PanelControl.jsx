@@ -11,11 +11,22 @@ import icon_check from "../../../img/panel/icon-check.svg"
 import icon_times from "../../../img/panel/icon-times.svg"
 import icon_close from "../../../img/panel/icon-close.svg"
 import icon_bloc from "../../../img/panel/icon-bloc.svg"
+import { useSeries } from "../../../hooks/useSeries";
+import { useParams } from "react-router-dom";
 
 
 
 const PanelControl = (props) => {
     const { miembros, proyectos } = props;
+    const { solicitud, getTypeSolicitudes } = useSeries();
+    const { id } = useParams();
+    useEffect(() => {
+        if (id) {
+            getTypeSolicitudes(id)
+        }
+    }, [])
+
+    console.log(solicitud)
     return (
         <div className="panel-control">
 
@@ -46,7 +57,7 @@ const PanelControl = (props) => {
                         <h4>Aceptadas</h4>
                         <div className="port">
                             <img src={icon_check} />
-                            <p className="number">0</p>
+                            <p className="number">{solicitud?.aceptadas}</p>
                         </div>
                     </div>
 
@@ -62,7 +73,7 @@ const PanelControl = (props) => {
                         <h4>Rechazadas</h4>
                         <div className="port">
                             <img src={icon_close} className="scal" />
-                            <p className="number">0</p>
+                            <p className="number">{solicitud?.rechazadas}</p>
                         </div>
                     </div>
 
@@ -70,7 +81,7 @@ const PanelControl = (props) => {
                         <h4>Bloqueadas</h4>
                         <div className="port">
                             <img src={icon_bloc} />
-                            <p className="number">0</p>
+                            <p className="number">{solicitud?.bloqueadas}</p>
                         </div>
                     </div>
                 </div>
