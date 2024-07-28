@@ -11,6 +11,7 @@ export const useSeries = () => {
         generosSerie,
         votos,
         seriesFiltradas,
+        visualizaciones,
         getSeries,
         getSerie,
         getGeneroSerie,
@@ -18,7 +19,9 @@ export const useSeries = () => {
         getPromVotoSerie,
         getCapitulosSerie,
         getStatsSerie,
-        getTypeSolicitudes
+        getTypeSolicitudes,
+        getVisualizacion,
+        postVisualizacion
     } = useContext(serieContext);
 
     useEffect(() => {
@@ -34,6 +37,7 @@ export const useSeries = () => {
         generosSerie,
         votos,
         seriesFiltradas,
+        visualizaciones,
         getSeries,
         getSerie,
         getGeneroSerie,
@@ -41,6 +45,8 @@ export const useSeries = () => {
         subirVotoSerie,
         getCapitulosSerie,
         getStatsSerie,
-        getTypeSolicitudes
+        getTypeSolicitudes,
+        getVisualizacion,
+        postVisualizacion
     }
 }

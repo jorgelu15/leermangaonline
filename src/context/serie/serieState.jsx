@@ -14,7 +14,9 @@ import {
     OBTENER_TIPO_SOLICITUDES,
     OBTENER_VOTOS,
     SUBIR_SERIE,
-    SUBIR_VOTO_SERIE
+    SUBIR_VOTO_SERIE,
+    OBTENER_VISUALIZACIONES_SERIE,
+    INSERTAR_VISUALIZACIONE_SERIE
 } from '../../types';
 
 const SerieState = props => {
@@ -28,7 +30,8 @@ const SerieState = props => {
         votos: null,
         seriesFiltradas: null,
         stats: null,
-        solicitud: null
+        solicitud: null,
+        visualizaciones: null
     }
 
     const [state, dispatch] = useReducer(SerieReducer, initialState);
@@ -156,6 +159,35 @@ const SerieState = props => {
         }
     }
 
+    const getVisualizacion = async (serie_uid) => {
+        try {
+            const res = await clienteAxios.get(`/visualizacion/${serie_uid}`);
+            dispatch({
+                type: OBTENER_VISUALIZACIONES_SERIE,
+                payload: res.data.visualizaciones
+            })
+        } catch (error) {
+
+        }
+    }
+
+    const postVisualizacion = async (id_serie) => {
+        try {
+            const respuesta = await clienteAxios.post('/visualizacion', {id_serie: id_serie});
+            console.log(id_serie);
+            dispatch({
+                type: INSERTAR_VISUALIZACIONE_SERIE,
+                payload: respuesta.data
+            })
+        } catch (error) {
+  
+            dispatch({
+                type: MENSAJE_ERROR,
+                payload: error.response.data.msg
+            })
+        }
+    }
+
     return (
         <SerieContext.Provider
             value={{
@@ -168,6 +200,7 @@ const SerieState = props => {
                 generosSerie: state.generosSerie,
                 votos: state.votos,
                 solicitud: state.solicitud,
+                visualizaciones: state.visualizaciones,
                 getSeries,
                 getSerie,
                 subirSerie,
@@ -176,7 +209,9 @@ const SerieState = props => {
                 getPromVotoSerie,
                 getCapitulosSerie,
                 getStatsSerie,
-                getTypeSolicitudes
+                getTypeSolicitudes,
+                getVisualizacion,
+                postVisualizacion
             }}
         >
             {props.children}

@@ -8,7 +8,9 @@ import {
     OBTENER_TIPO_SOLICITUDES,
     OBTENER_VOTOS,
     SUBIR_SERIE,
-    SUBIR_VOTO_SERIE
+    SUBIR_VOTO_SERIE,
+    OBTENER_VISUALIZACIONES_SERIE,
+    INSERTAR_VISUALIZACIONE_SERIE
 } from '../../types';
 
 export default (state, action) => {
@@ -60,6 +62,16 @@ export default (state, action) => {
             return {
                 ...state,
                 solicitud: action.payload
+            }
+        case OBTENER_VISUALIZACIONES_SERIE:
+            return {
+                ...state,
+                visualizaciones: action.payload
+            }
+        case INSERTAR_VISUALIZACIONE_SERIE:
+            return {
+                ...state,
+                visualizaciones: action.payload
             }
         default:
             return state;
