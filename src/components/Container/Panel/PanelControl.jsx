@@ -26,7 +26,6 @@ const PanelControl = (props) => {
         }
     }, [])
 
-    console.log(solicitud)
     return (
         <div className="panel-control">
 

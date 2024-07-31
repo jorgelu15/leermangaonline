@@ -48,7 +48,6 @@ function a11yProps(index) {
 export default function TabsScan(props) {
 
   const { items } = props;
-  console.log({items})
 
   const theme = useTheme();
   const [value, setValue] = useState(0);

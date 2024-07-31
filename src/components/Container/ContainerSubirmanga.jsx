@@ -160,7 +160,6 @@ const ContainerSubirmanga = (props) => {
 
         subirCapitulo({ tituloObra, serie_uid, numeroCapitulo })
             .then((response) => {
-                console.log(response)
                 if (response.status === 200) {
                     enqueueSnackbar("Capítulo creado exitosamente", {
                         variant: "success",

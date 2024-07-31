@@ -214,7 +214,7 @@ const GruposState = props => {
     const buscar = async (busqueda) => {
         try {
             const res = await clienteAxios.post(`/grupo/busqueda`, busqueda);
-            
+
             dispatch({
                 type: OBTENER_GRUPOS,
                 payload: res.data.grupos
@@ -235,16 +235,16 @@ const GruposState = props => {
             console.log(error)
         }
     }
-    
+
     const seguirGrupo = async (datos) => {
         try {
             const res = await clienteAxios.post(`/seguidor`, datos);
-            if(res.data.borrado){
+            if (res.data.borrado) {
                 dispatch({
                     type: DEJAR_DE_SEGUIR_GRUPO,
                     payload: datos
                 })
-            }else{
+            } else {
                 dispatch({
                     type: SEGUIR_GRUPO,
                     payload: res.data.seguidor
@@ -258,7 +258,6 @@ const GruposState = props => {
     const getSeguidoresAnoActual = async (grupoId) => {
         try {
             const res = await clienteAxios.get(`/seguidor/seguidoresporfecha/${grupoId}`);
-            console.log(res)
             dispatch({
                 type: OBTENER_SEGUIDORES_FECHA_ACTUAL,
                 payload: res.data.stats
@@ -267,7 +266,17 @@ const GruposState = props => {
             console.log(error)
         }
     }
-    
+
+    const putInfoGrupo = async (data, id_grupo) => {
+        try {
+            const res = await clienteAxios.put(`/grupo/${id_grupo}`, data);
+
+
+        } catch (error) {
+
+        }
+    }
+
     return (
         <GruposContext.Provider
             value={{
@@ -294,7 +303,8 @@ const GruposState = props => {
                 buscar,
                 getSeguidores,
                 seguirGrupo,
-                getSeguidoresAnoActual
+                getSeguidoresAnoActual,
+                putInfoGrupo
             }}
         >
             {props.children}

@@ -130,7 +130,6 @@ export default function TableMiembros(props) {
 
 
   const handleExpulsar = (solic) => {
-    console.log(solic)
     enqueueSnackbar("Miembro expulsado", {
       variant: "success",
       anchorOrigin: {

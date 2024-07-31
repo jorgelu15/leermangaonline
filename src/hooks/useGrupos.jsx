@@ -22,7 +22,8 @@ export const useGrupos = () => {
         buscar,
         getSeguidores,
         seguirGrupo,
-        getSeguidoresAnoActual
+        getSeguidoresAnoActual,
+        putInfoGrupo
     } = useContext(gruposContext);
 
 
@@ -46,6 +47,7 @@ export const useGrupos = () => {
         buscar,
         getSeguidores,
         seguirGrupo,
-        getSeguidoresAnoActual
+        getSeguidoresAnoActual,
+        putInfoGrupo
     }
 }

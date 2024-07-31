@@ -137,7 +137,6 @@ const SerieState = props => {
     const getStatsSerie = async (grupoId)=>{
         try {
             const res = await clienteAxios.get(`/serie/stats/${grupoId}`);
-            console.log(res.data.stats)
             dispatch({
             type: OBTENER_STATS,
             payload: res.data.stats
