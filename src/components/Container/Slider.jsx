@@ -38,6 +38,10 @@ const Slider = () => {
         return Math.floor(currentIndex / slidesToShow) % Math.ceil(slides.length / slidesToShow);
     };
 
+    const goToSlide = (index) => {
+        setCurrentIndex(index * slidesToShow);
+    };
+
     return (
         <div className="wrapper">
             <div
@@ -58,6 +62,7 @@ const Slider = () => {
                         <button
                             key={index}
                             className={`pin-control ${index === getActiveIndex() ? 'active' : ''}`}
+                            onClick={() => goToSlide(index)}
                         ></button>
                     ))}
                 </div>

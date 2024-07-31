@@ -22,6 +22,7 @@ import { Link, useParams } from "react-router-dom";
 import PanelProyectos from "./Panel/PanelProyectos";
 import { useGrupos } from "../../hooks/useGrupos";
 import { useAuth } from "../../hooks/useAuth";
+import PanelInformacion from "./Panel/PanelInformacion";
 
 
 const ContainerPanel = (props) => {
@@ -122,6 +123,7 @@ const ContainerPanel = (props) => {
                     {panel == 2 && (<PanelProyectos />)}
                     {panel == 3 && (<PanelMiembros />)}
                     {panel == 4 && (<PanelSolicitudes />)}
+                    {panel == 5 && (<PanelInformacion />)}
 
                     {/* {panel == 5 && (<PanelGeneros />)} */}
 
