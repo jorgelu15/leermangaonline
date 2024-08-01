@@ -11,6 +11,7 @@ import GeneroState from './context/genero/generoState'
 import CapituloState from './context/capitulo/capituloState'
 import VermangaState from './context/vermanga/vermangaState'
 import ReaccionesState from './context/reacciones/reaccionesState'
+import AdministracionState from './context/administracion/administracionState'
 
 function App() {
 
@@ -24,9 +25,11 @@ function App() {
                 <CapituloState>
                   <VermangaState>
                     <ReaccionesState>
+                      <AdministracionState>
 
-                      <Navigator />
+                        <Navigator />
                   
+                      </AdministracionState>
                     </ReaccionesState>
                   </VermangaState>
                 </CapituloState>

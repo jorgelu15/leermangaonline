@@ -1,14 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
-import slider1 from "../../assets/slide.jpg";
-import slider2 from "../../assets/slide.jpg";
-import slider3 from "../../assets/slide.jpg";
+import administracionContext from '../../context/administracion/administracionContext';
 
 const Slider = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [slidesToShow, setSlidesToShow] = useState(3);
     const intervalRef = useRef(null);
-    const slides = [slider1, slider2, slider3, slider1, slider2, slider3];
+
+    const { slider } = useContext(administracionContext);
+
+    const [slides, setSlides] = useState([]);
+    
+    useEffect(() => {
+        if(slider){
+            setSlides(slider);
+        }
+    }, [slider])
 
     useEffect(() => {
         const handleResize = () => {
@@ -52,7 +59,7 @@ const Slider = () => {
             >
                 {slides.map((slide, index) => (
                     <div className='slide' key={index}>
-                        <img src={slide} alt={`Slide ${index + 1}`} />
+                        <img src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/slider/' + slide.url} alt={`Slide ${index + 1}`} />
                     </div>
                 ))}
             </div>
