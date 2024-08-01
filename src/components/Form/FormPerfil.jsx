@@ -70,7 +70,6 @@ const FormPerfil = () => {
         updatePerfil(usuario?.id, f);
     }
 
-    console.log(usuario)
 
     return (
         <div className="perfil-info">

@@ -8,6 +8,8 @@ import { useAdmin } from "../../../hooks/useAdmin";
 import TableSlides from "../../Mui/Tables/TableSlides";
 import { Box, Modal, Typography } from "@mui/material";
 
+import { v4 } from 'uuid';
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -21,7 +23,7 @@ const style = {
 };
 
 const PanelCarousel = (props) => {
-    const { slider, getSliderImages } = useAdmin();
+    const { slider, getSliderImages, postSliderImage } = useAdmin();
     const [resultados, setResultados] = useState([]);
 
     useEffect(() => {
@@ -46,6 +48,32 @@ const PanelCarousel = (props) => {
         setModalProjects({ ...modalProjects, update: false, upload: !modalProjects.upload })
     };
     const handleClose = () => setModalProjects({ ...modalProjects, update: false, upload: false });
+
+    const [name, setName] = useState(null);
+    const [archivo, setArchivo] = useState(null);
+    const subirArchivo = (e) => {
+        setArchivo(e);
+        const nombreCortado = e.name.split('.');
+        const extension = nombreCortado[nombreCortado.length - 1];
+        const newName = v4() + '.' + extension;
+        setName(newName);
+    }
+
+    const actualizarUsuario = () => {
+        const f = new FormData();
+
+        if (archivo !== null) {
+            const nombreCortado = archivo.name.split('.');
+            const extension = nombreCortado[nombreCortado.length - 1];
+            const newName = v4() + '.' + extension;
+            setName(newName);
+            f.append("archivo", archivo, newName);
+            f.append("data", JSON.stringify(newName));
+            f.append("ruta", "slider");
+            postSliderImage(f);
+        }
+    }
+
     return (
         <div className="panel-miembros">
             <div className="cont-miembros">
@@ -73,10 +101,10 @@ const PanelCarousel = (props) => {
                 <Box sx={style}>
                     <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Subir un slide</Typography>
                     <div className="query">
-                        <input type="file" className="input-src" placeholder="Titulo" style={{ width: '100%' }} />
+                        <input type="file" className="input-src" placeholder="Titulo" style={{ width: '100%' }} onChange={(e) => subirArchivo(e.target.files[0])}/>
                     </div>
                     <div className="query">
-                        <button style={{ width: "100%", padding: 10 }}>Subir</button>
+                        <button onClick={actualizarUsuario} style={{ width: "100%", padding: 10 }}>Subir</button>
                     </div>
                 </Box>
             </Modal>

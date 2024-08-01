@@ -22,6 +22,7 @@ import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
 import { SUPERADMIN } from '../../../types';
 import { useAuth } from '../../../hooks/useAuth';
+import { useAdmin } from '../../../hooks/useAdmin';
 
 const style = {
     position: 'absolute',
@@ -107,6 +108,7 @@ export default function TableSlides(props) {
     const { enqueueSnackbar } = useSnackbar()
     const { usuario } = useAuth();
 
+    const { deleteSliderImage } = useAdmin();
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -140,8 +142,12 @@ export default function TableSlides(props) {
     const [modalProjects, setModalProjects] = React.useState({
         delete: false
     });
-    const handleOpenDelete = () => {
+
+    const [imageDelete, setImageDelete] = React.useState(null);
+
+    const handleOpenDelete = (solicitud) => {
         setModalProjects({ ...modalProjects, delete: !modalProjects.update })
+        setImageDelete(solicitud);
     };
     const handleClose = () => setModalProjects({ ...modalProjects, delete: false });
     const onAuthorizeSerie = () => {
@@ -172,7 +178,7 @@ export default function TableSlides(props) {
                             </TableCell>
                             {usuario?.rol === SUPERADMIN ? (
                                 <TableCell component="th" align="center">
-                                    <button onClick={handleOpenDelete} className='table-btn-ac'>Eliminar</button>
+                                    <button onClick={() => handleOpenDelete(solicitud)} className='table-btn-ac'>Eliminar</button>
                                 </TableCell>
                             ) : <TableCell component="th" align="center"></TableCell>}
 
@@ -212,10 +218,10 @@ export default function TableSlides(props) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Esta seguro de eliminar estas serie?</Typography>
+                    <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Esta seguro de eliminar esta imagen?</Typography>
                     <div style={{ flexDirection: 'row', display: 'flex', width: "100%", justifyContent: "space-between" }}>
                         <div className="query">
-                            <button style={{ width: "98%", padding: 10 }}>Si</button>
+                            <button style={{ width: "98%", padding: 10 }} onClick={() => deleteSliderImage(imageDelete?.id_slider)}>Si</button>
                         </div>
                         <div className="query">
                             <button onClick={handleClose} style={{ width: "98%", padding: 10, backgroundColor: "#2a7cce" }}>No</button>
