@@ -18,7 +18,9 @@ const ContainerPerfil = (props) => {
     }
 
     useEffect(() => {
-        getReaccionesUsuario(usuario?.id);
+        if (usuario) {
+            getReaccionesUsuario(usuario?.id);
+        }
     }, []);
 
 
@@ -27,23 +29,23 @@ const ContainerPerfil = (props) => {
         cont: [
             {
                 tab: "Leido",
-                cards: reacciones_usuario.leido
+                cards: reacciones_usuario?.leido
             },
             {
                 tab: "Pendiente",
-                cards: reacciones_usuario.pendiente
+                cards: reacciones_usuario?.pendiente
             },
             {
                 tab: "Siguiendo",
-                cards: reacciones_usuario.siguiendo
+                cards: reacciones_usuario?.siguiendo
             },
             {
                 tab: "Favorito",
-                cards: reacciones_usuario.favorito
+                cards: reacciones_usuario?.favorito
             },
             {
                 tab: "Abandonado",
-                cards: reacciones_usuario.abandonado
+                cards: reacciones_usuario?.abandonado
             }
         ]
     }

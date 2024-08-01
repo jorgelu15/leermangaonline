@@ -32,7 +32,8 @@ const ContainerManga = (props) => {
 
     useEffect(() => {
         const results = capitulos?.filter(capitulo =>
-            capitulo.titulo.toLowerCase().includes(searchTerm.toLowerCase())
+            capitulo.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            capitulo.numero.toString().toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredCapitulos(results);
     }, [searchTerm, capitulos]);

@@ -29,7 +29,23 @@ const PanelInformacion = () => {
             return;
         }
 
-        putInfoGrupo({ correo, name, descripcion }, id)
+        putInfoGrupo({ correo, name, descripcion }, id).then(e => {
+            enqueueSnackbar("Informacion actualizada", {
+                variant: "success",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            })
+        }).catch(e => {
+            enqueueSnackbar("Hubo un error al actualizar", {
+                variant: "error",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            })
+        })
 
     }
 

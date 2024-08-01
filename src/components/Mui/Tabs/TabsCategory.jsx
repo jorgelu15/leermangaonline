@@ -81,9 +81,6 @@ export default function TabsCategory(props) {
               }) : null
           }
 
-          {/* <Tab label="Mangas" {...a11yProps(0)} />
-          <Tab label="P.Manwas" {...a11yProps(1)} />
-          <Tab label="P.Manhuas" {...a11yProps(2)} /> */}
         </Tabs>
       </div>
 
@@ -92,14 +89,14 @@ export default function TabsCategory(props) {
           <div className='cont-tabs'>
             {
               items ?
-                items?.cont.map((item, idx) => {
+                items?.cont?.map((item, idx) => {
                   return (
 
                     <TabPanel key={idx} value={value} index={idx} dir={theme.direction}>
                       <h3 className='title'>Obras {item.tab}s</h3>
                       <div className="sec-cards">
                         {
-                          item?.cards.length ?
+                          item?.cards?.length ?
                             item.cards.map((card, idx) => {
                               return (
                                 <Link key={idx} className="cont-card" to={`${routes.manga}/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre.toLowerCase())}`}>
