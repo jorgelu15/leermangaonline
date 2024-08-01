@@ -8,6 +8,9 @@ import CardScanPl from "../Card/CardScanPl";
 import { v4 } from 'uuid';
 import perfilContext from "../../context/perfil/perfilContext";
 import { useGrupos } from "../../hooks/useGrupos";
+import { Link } from "react-router-dom";
+import routes from "../../helpers/routes";
+import { SUPERADMIN } from "../../types";
 
 
 const FormPerfil = () => {
@@ -66,6 +69,8 @@ const FormPerfil = () => {
         f.append("ruta", "avatar");
         updatePerfil(usuario?.id, f);
     }
+
+    console.log(usuario)
 
     return (
         <div className="perfil-info">
@@ -183,6 +188,7 @@ const FormPerfil = () => {
                 <div>
                     <button onClick={() => setViewEdit(true)} className={'btn-perfil'}>Editar perfil</button>
                     <button onClick={() => setViewEdit(false)} className={'btn-perfil'}>Mis grupos</button>
+                    {usuario?.rol === SUPERADMIN && <Link to={routes.panelAdmin+`/${usuario?.id}/${usuario?.usuario}`} className={'btn-perfil'}>Moderacion</Link>}
                 </div>
             </div>
             <ModalGrupo open={openMG} setOpen={setOpenMG}></ModalGrupo>

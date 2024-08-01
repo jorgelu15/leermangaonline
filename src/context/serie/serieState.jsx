@@ -182,6 +182,19 @@ const SerieState = props => {
         }
     }
 
+    const getAllCapitulos = async () => {
+        try {
+            const res = await clienteAxios.get(`/capitulo`);
+
+            dispatch({
+                type: OBTENER_CAPITULOS,
+                payload: res.data.capitulos
+            })
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <SerieContext.Provider
             value={{
@@ -205,7 +218,8 @@ const SerieState = props => {
                 getStatsSerie,
                 getTypeSolicitudes,
                 getVisualizacion,
-                postVisualizacion
+                postVisualizacion,
+                getAllCapitulos
             }}
         >
             {props.children}

@@ -49,6 +49,12 @@ const Panel = lazy(async () => {
     new Promise((resolve) => setTimeout(resolve, 1500)),
   ]).then(([moduleExports]) => moduleExports);
 });
+const PanelAdministracion = lazy(async () => {
+  return Promise.all([
+    import('../pages/PanelAdministracion'),
+    new Promise((resolve) => setTimeout(resolve, 1500)),
+  ]).then(([moduleExports]) => moduleExports);
+});
 const Subirmanga = lazy(async () => {
   return Promise.all([
     import('../pages/Subirmanga'),
@@ -180,6 +186,16 @@ const router = createBrowserRouter([
       {
         path: routes.panel + "/:id/:grupo",
         element: <Suspense fallback={<FallbackLoader />}><Panel /></Suspense>
+      },
+    ]
+  },
+  {
+    path: '/',
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: routes.panelAdmin + "/:id/:usuario",
+        element: <Suspense fallback={<FallbackLoader />}><PanelAdministracion /></Suspense>
       },
     ]
   },

@@ -12,6 +12,9 @@ export const RECHAZADO = "2";
 export const ACEPTADO = "3";
 export const EXPULSADO = "4";
 
+export const SUPERADMIN = "0";
+export const USUARIOS_COMUNES = "1";
+
 
 
 

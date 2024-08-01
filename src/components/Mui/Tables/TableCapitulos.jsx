@@ -97,7 +97,7 @@ TablePaginationActions.propTypes = {
 };
 
 
-export default function TableProyectos(props) {
+export default function TableCapitulos(props) {
 
   const {
     proyectos
@@ -154,9 +154,8 @@ export default function TableProyectos(props) {
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <TableCell>Nombre de la serie</TableCell>
-            <TableCell align="center">Demografia</TableCell>
-            <TableCell align="center">Estado</TableCell>
+            <TableCell>Nombre del capitulo</TableCell>
+            <TableCell align="center">Numero</TableCell>
             <TableCell align="center">Fecha de creacion</TableCell>
             {usuario?.rol === SUPERADMIN && <TableCell align="center">Acciones</TableCell>}
           </TableRow>
@@ -168,20 +167,17 @@ export default function TableProyectos(props) {
           )?.map((solicitud, idx) => (
             <TableRow key={idx}>
               <TableCell component="th" scope="row">
-                {solicitud.nombre}
+                {solicitud.titulo}
               </TableCell>
               <TableCell component="th" align="center">
-                <b>{solicitud.demografia}</b>
-              </TableCell>
-              <TableCell component="th" align="center">
-                <b>{solicitud.estado}</b>
+                <b>{`Capitulo ${solicitud.numero}`}</b>
               </TableCell>
               <TableCell component="th" align="center">
                 {formatDate(solicitud.createdAt)}
               </TableCell>
-              {usuario?.rol === SUPERADMIN && solicitud.verificacion === 0 ? (
+              {usuario?.rol === SUPERADMIN ? (
                 <TableCell component="th" align="center">
-                  <button onClick={onAuthorizeSerie} className='table-btn-ac'>Autorizar</button>
+                  <button onClick={handleOpenUpdate} className='table-btn-ac'>Actualizar</button>
                 </TableCell>
               ) : <TableCell component="th" align="center"></TableCell>}
 
