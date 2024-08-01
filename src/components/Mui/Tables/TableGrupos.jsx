@@ -15,25 +15,14 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import { Modal, TableHead, Typography } from '@mui/material';
+import { TableHead } from '@mui/material';
 
 import { useSnackbar } from 'notistack';
 import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
-import { SUPERADMIN } from '../../../types';
-import { useAuth } from '../../../hooks/useAuth';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import { EXPULSADO } from '../../../types';
+import { useGrupos } from '../../../hooks/useGrupos';
+import { useParams } from 'react-router-dom';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -96,16 +85,15 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-
-export default function TableCapitulos(props) {
+export default function TableGrupos(props) {
 
   const {
-    proyectos
+    items
   } = props;
 
 
+
   const { enqueueSnackbar } = useSnackbar()
-  const { usuario } = useAuth();
 
 
   const [page, setPage] = React.useState(0);
@@ -113,7 +101,7 @@ export default function TableCapitulos(props) {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - proyectos?.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -123,6 +111,21 @@ export default function TableCapitulos(props) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const { insertSolicitud } = useGrupos();
+  const { id } = useParams();
+
+
+  const handleExpulsar = (solic) => {
+    enqueueSnackbar("items expulsado", {
+      variant: "success",
+      anchorOrigin: {
+        vertical: "bottom",
+        horizontal: "right"
+      }
+    })
+    insertSolicitud({ id_usuario: solic.id, id_grupo: id, estado: EXPULSADO });
+  }
 
   const formatDate = (fecha) => {
     const date = new Date(fecha);
@@ -137,52 +140,54 @@ export default function TableCapitulos(props) {
     return (`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
   }
 
-  const [modalProjects, setModalProjects] = React.useState({
-    update: false,
-    delete: false
-  });
-  const handleOpenUpdate = () => {
-    setModalProjects({ ...modalProjects, update: !modalProjects.update, delete: false })
-  };
-  const handleClose = () => setModalProjects({ ...modalProjects, update: false, delete: false });
-  const onAuthorizeSerie = () => {
-    console.log("autorizada")
-  }
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <TableCell>Nombre del capitulo</TableCell>
-            <TableCell align="center">Numero</TableCell>
+            <TableCell>Nombre del grupo</TableCell>
+            <TableCell align="center">Correo</TableCell>
+            <TableCell align="center">Tipo</TableCell>
+            <TableCell align="center">Descripcion</TableCell>
+            <TableCell align="center">Estado</TableCell>
             <TableCell align="center">Fecha de creacion</TableCell>
-            {usuario?.rol === SUPERADMIN && <TableCell align="center">Acciones</TableCell>}
+            <TableCell align="center">Acciones</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {(rowsPerPage > 0
-            ? proyectos?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : proyectos ? proyectos : []
-          )?.map((solicitud, idx) => (
-            <TableRow key={idx}>
-              <TableCell component="th" scope="row">
-                {solicitud.titulo}
-              </TableCell>
-              <TableCell component="th" align="center">
-                <b>{`Capitulo ${solicitud.numero}`}</b>
-              </TableCell>
-              <TableCell component="th" align="center">
-                {formatDate(solicitud.createdAt)}
-              </TableCell>
-              {usuario?.rol === SUPERADMIN ? (
-                <TableCell component="th" align="center">
-                  <button onClick={handleOpenUpdate} className='table-btn-ac'>Actualizar</button>
+            ? items?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : items ? items : []
+          )?.map((item, idx) => {
+            return (
+              <TableRow key={idx}>
+                <TableCell component="th" scope="row" style={{ textTransform: "capitalize", fontWeight: "bold" }}>
+                  {item?.nombre}
                 </TableCell>
-              ) : <TableCell component="th" align="center"></TableCell>}
-
-            </TableRow>
-          ))}
+                <TableCell component="th" align="center">
+                  {item.correo}
+                </TableCell>
+                <TableCell component="th" align="center">
+                  {item?.tipo}
+                </TableCell>
+                <TableCell component="th" align="center">
+                  {item?.descripcion}
+                </TableCell>
+                <TableCell component="th" align="center">
+                  {item?.estado}
+                </TableCell>
+                <TableCell component="th" align="center">
+                  {formatDate(item.createdAt)}
+                </TableCell>
+                <TableCell component="th" align="center">
+                  <div className='table-btn-cont'>
+                    <button className='table-btn-ac'>Contactar</button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            )
+          })}
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={6} />
@@ -194,7 +199,7 @@ export default function TableCapitulos(props) {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
-              count={proyectos?.length}
+              count={items?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
@@ -210,43 +215,6 @@ export default function TableCapitulos(props) {
           </TableRow>
         </TableFooter>
       </Table>
-      <Modal
-        open={modalProjects?.update}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Actualizar capitulo</Typography>
-          <div className="query">
-            <input type="text" className="input-src" placeholder="Introduzca el titulo del capitulo" style={{ width: '100%' }} />
-          </div>
-          <div className="query">
-            <input type="text" className="input-src" placeholder="Introduzca el numero del capitulo" style={{ width: '100%' }} />
-          </div>
-          <div className="query">
-            <button style={{ width: "100%", padding: 10 }}>Actualizar</button>
-          </div>
-        </Box>
-      </Modal>
-      <Modal
-        open={modalProjects?.delete}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Esta seguro de eliminar estas serie?</Typography>
-          <div style={{ flexDirection: 'row', display: 'flex', width: "100%", justifyContent: "space-between" }}>
-            <div className="query">
-              <button style={{ width: "98%", padding: 10 }}>Si</button>
-            </div>
-            <div className="query">
-              <button onClick={handleClose} style={{ width: "98%", padding: 10, backgroundColor: "#2a7cce" }}>No</button>
-            </div>
-          </div>
-        </Box>
-      </Modal>
     </TableContainer>
   );
 }

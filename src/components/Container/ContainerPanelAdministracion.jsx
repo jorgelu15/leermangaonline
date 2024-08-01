@@ -18,17 +18,16 @@ import registro from "../../img/file-lines-solid.svg"
 import config from "../../img/user-gear-solid.svg"
 
 import gruposContext from "../../context/grupos/gruposContext";
-import PanelControl from "./Panel/PanelControl";
-import PanelGeneros from "./Panel/PanelGeneros";
+
 
 import { Link, useParams } from "react-router-dom";
-import PanelProyectos from "./Panel/PanelProyectos";
 import { useGrupos } from "../../hooks/useGrupos";
 import { useAuth } from "../../hooks/useAuth";
 import PanelInformacion from "./Panel/PanelInformacion";
 import PanelSeries from "./PanelAdministacion/PanelSeries";
 import PanelCapitulos from "./PanelAdministacion/PanelCapitulos";
 import PanelCarousel from "./PanelAdministacion/PanelCarousel";
+import PanelGrupos from "./PanelAdministacion/PanelGrupos";
 
 
 const ContainerPanelAdministracion = (props) => {
@@ -104,7 +103,7 @@ const ContainerPanelAdministracion = (props) => {
                     {panel == 1 && (<PanelSeries />)}
                     {panel == 2 && (<PanelCapitulos />)}
                     {panel == 3 && (<PanelCarousel />)}
-                    {panel == 4 && (<PanelInformacion />)}
+                    {panel == 4 && (<PanelGrupos />)}
 
                 </div>
             </main>

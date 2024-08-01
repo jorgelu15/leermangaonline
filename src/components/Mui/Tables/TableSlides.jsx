@@ -138,13 +138,12 @@ export default function TableSlides(props) {
     }
 
     const [modalProjects, setModalProjects] = React.useState({
-        update: false,
         delete: false
     });
-    const handleOpenUpdate = () => {
-        setModalProjects({ ...modalProjects, update: !modalProjects.update, delete: false })
+    const handleOpenDelete = () => {
+        setModalProjects({ ...modalProjects, delete: !modalProjects.update })
     };
-    const handleClose = () => setModalProjects({ ...modalProjects, update: false, delete: false });
+    const handleClose = () => setModalProjects({ ...modalProjects, delete: false });
     const onAuthorizeSerie = () => {
         console.log("autorizada")
     }
@@ -173,7 +172,7 @@ export default function TableSlides(props) {
                             </TableCell>
                             {usuario?.rol === SUPERADMIN ? (
                                 <TableCell component="th" align="center">
-                                    <button onClick={handleOpenUpdate} className='table-btn-ac'>Actualizar</button>
+                                    <button onClick={handleOpenDelete} className='table-btn-ac'>Eliminar</button>
                                 </TableCell>
                             ) : <TableCell component="th" align="center"></TableCell>}
 
@@ -207,69 +206,6 @@ export default function TableSlides(props) {
                 </TableFooter>
             </Table>
             <Modal
-                open={modalProjects?.update}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
-                    <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Actualizar serie</Typography>
-                    <div className="query">
-                        <input type="text" className="input-src" placeholder="Titulo" style={{ width: '100%' }} />
-                    </div>
-                    <div className="query">
-                        <input type="text" className="input-src" placeholder="Titulo alternativo" style={{ width: '100%' }} />
-                    </div>
-                    <div className="query">
-                        <textarea className="input-src" name="sinopsis" id="sinopsis" cols="30" rows="4" placeholder="presentacion..."
-                            style={{ background: 'white', width: "100%", resize: "none", color: "black", padding: 5, border: '1px solid #dfdfdf' }}></textarea>
-                    </div>
-                    <div className="query">
-                        <select className='input-src' style={{ width: "100%" }}>
-                            <option>Seleccione un estado</option>
-                            <option>Publicandose</option>
-                            <option>En pausa</option>
-                            <option>Finalizado</option>
-                        </select>
-                    </div>
-                    <div className="query">
-                        <select className='input-src' style={{ width: "100%" }}>
-                            <option>Seleccione un tipo</option>
-                            <option>Manga</option>
-                            <option>Manhua</option>
-                            <option>Manhwa</option>
-                            <option>Novela</option>
-                            <option>One shot</option>
-                            <option>Doujinshi</option>
-                            <option>Oel</option>
-                        </select>
-                    </div>
-                    <div className="query">
-                        <select className='input-src' style={{ width: "100%" }}>
-                            <option>Seleccione la demografia</option>
-                            <option>Seinen</option>
-                            <option>Shoujo</option>
-                            <option>shounen</option>
-                            <option>Josei</option>
-                            <option>Kodomo</option>
-                        </select>
-                    </div>
-                    <div className="query">
-                        <select className='input-src' style={{ width: "100%" }}>
-                            <option>Seleccione los idioma</option>
-                            <option>Seinen</option>
-                            <option>Shoujo</option>
-                            <option>shounen</option>
-                            <option>Josei</option>
-                            <option>Kodomo</option>
-                        </select>
-                    </div>
-                    <div className="query">
-                        <button style={{ width: "100%", padding: 10 }}>Actualizar</button>
-                    </div>
-                </Box>
-            </Modal>
-            <Modal
                 open={modalProjects?.delete}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
@@ -287,6 +223,7 @@ export default function TableSlides(props) {
                     </div>
                 </Box>
             </Modal>
+
         </TableContainer>
     );
 }

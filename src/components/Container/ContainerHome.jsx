@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import Slider from "./Slider";
 
@@ -17,7 +17,7 @@ import routes from '../../helpers/routes';
 
 
 const ContainerHome = (props) => {
-    const { series } = useSeries();
+    const { series, seriesTrending, getSeriesTrending } = useSeries();
     const { reemplazarEspaciosConGuiones } = useText();
 
     let items = {
@@ -43,13 +43,7 @@ const ContainerHome = (props) => {
         cont: [
             {
                 tab: "Top Semanal",
-                cards: [
-                    { nombre: "One piece", categoria: "manga", calif: "1", url: "https://otakuteca.com/images/books/cover/615b37c54415c.webp" },
-                    { nombre: "Jujutsu kaisen", categoria: "manga", calif: "2", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.webp" },
-                    { nombre: "Solo leveling", categoria: "manhwa", calif: "3", url: "https://otakuteca.com/images/books/cover/5c2efcd42cd5e.webp" },
-                    { nombre: "Bersek", categoria: "manga", calif: "4", url: "https://otakuteca.com/images/books/cover/5bc80d3ce44c3.webp" },
-                    { nombre: "Naruto", categoria: "manga", calif: "5", url: "https://otakuteca.com/images/books/cover/617ebf11e0cdf.webp" },
-                ]
+                cards: seriesTrending
             },
             {
                 tab: "Top Mensual",
@@ -63,6 +57,13 @@ const ContainerHome = (props) => {
             }
         ]
     }
+
+
+    
+
+    useEffect(() => {
+        getSeriesTrending();
+    }, [])
 
     return (
         <div>
@@ -170,7 +171,7 @@ const ContainerHome = (props) => {
 
                         <h2>Tendencias</h2>
                         <div className="sec-cards">
-                        {
+                            {
                                 series?.map(serie => {
                                     return (
                                         <Link to={routes.manga + `/${serie.serie_uid}/${reemplazarEspaciosConGuiones(serie.nombre.toLowerCase())}`} className="cont-card">

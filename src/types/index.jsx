@@ -57,6 +57,7 @@ export const ACTUALIZAR_PERFIL = 'ACTUALIZAR_PERFIL';
 
 //directorio
 export const OBTENER_SERIES = 'OBTENER_SERIES';
+export const OBTENER_SERIES_TRENDING = 'OBTENER_SERIES_TRENDING';
 export const FILTRAR = 'FILTRAR';
 
 //Serie

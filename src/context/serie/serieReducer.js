@@ -10,7 +10,8 @@ import {
     SUBIR_SERIE,
     SUBIR_VOTO_SERIE,
     OBTENER_VISUALIZACIONES_SERIE,
-    INSERTAR_VISUALIZACIONE_SERIE
+    INSERTAR_VISUALIZACIONE_SERIE,
+    OBTENER_SERIES_TRENDING
 } from '../../types';
 
 export default (state, action) => {
@@ -67,6 +68,11 @@ export default (state, action) => {
             return {
                 ...state,
                 visualizaciones: action.payload
+            }
+        case OBTENER_SERIES_TRENDING:
+            return {
+                ...state,
+                seriesTrending:  action.payload
             }
         default:
             return state;

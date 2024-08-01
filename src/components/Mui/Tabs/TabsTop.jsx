@@ -72,28 +72,24 @@ export default function TabsTop(props) {
             }) : null
           }
 
-          {/* <Tab label="Mangas" {...a11yProps(0)} />
-          <Tab label="P.Manwas" {...a11yProps(1)} />
-          <Tab label="P.Manhuas" {...a11yProps(2)} /> */}
         </Tabs>
       </div>
       
       {
-        items ? 
-        items.cont.map((item, idx) => {
+        items?.cont?.map((item, idx) => {
           return(
             <TabPanel key={idx} value={value} index={idx} dir={theme.direction}>
             <div style={{paddingLeft: 50}}>
               {
-                item.cards.map((card, idx)=>{
+                item?.cards.map((card, idx)=>{
                   return (
                     <div className="card" key={idx}>
-                      <div className="cont-img" style={{backgroundImage:`url(${card.url})`}}>
-                        <p>{card.calif}</p>
+                      <div className="cont-img" style={{backgroundImage:`url('http://upload.leermangaonline.com/uploads/obras/${card.portada}')`}}>
+                        <p>{idx+1}</p>
                       </div>
                       <div className="info">
                         <p className="nombre">{card.nombre}</p>
-                        <p className="categoria">{card.categoria}</p>
+                        <p className="categoria">{card.demografia}</p>
                       </div>
                     </div>
                   )
@@ -102,7 +98,7 @@ export default function TabsTop(props) {
             </div>
           </TabPanel>
           )
-        }) : null
+        })
       }
       
     </Box>

@@ -16,7 +16,8 @@ import {
     SUBIR_SERIE,
     SUBIR_VOTO_SERIE,
     OBTENER_VISUALIZACIONES_SERIE,
-    INSERTAR_VISUALIZACIONE_SERIE
+    INSERTAR_VISUALIZACIONE_SERIE,
+    OBTENER_SERIES_TRENDING
 } from '../../types';
 
 const SerieState = props => {
@@ -195,6 +196,15 @@ const SerieState = props => {
         }
     }
 
+    const getSeriesTrending = async () => {
+        const res = await clienteAxios.get(`/serie/trending`);
+
+        dispatch({
+            type: OBTENER_SERIES_TRENDING,
+            payload: res.data.series
+        })
+    }
+
     return (
         <SerieContext.Provider
             value={{
@@ -208,6 +218,7 @@ const SerieState = props => {
                 votos: state.votos,
                 solicitud: state.solicitud,
                 visualizaciones: state.visualizaciones,
+                seriesTrending: state.seriesTrending,
                 getSeries,
                 getSerie,
                 subirSerie,
@@ -219,7 +230,8 @@ const SerieState = props => {
                 getTypeSolicitudes,
                 getVisualizacion,
                 postVisualizacion,
-                getAllCapitulos
+                getAllCapitulos,
+                getSeriesTrending
             }}
         >
             {props.children}

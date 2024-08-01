@@ -4,6 +4,7 @@ import capituloContext from "../context/capitulo/capituloContext";
 
 export const useSeries = () => {
     const {
+        seriesTrending,
         solicitud,
         stats,
         series,
@@ -23,7 +24,8 @@ export const useSeries = () => {
         getTypeSolicitudes,
         getVisualizacion,
         postVisualizacion,
-        getAllCapitulos
+        getAllCapitulos,
+        getSeriesTrending
     } = useContext(serieContext);
 
     const { capitulo, getCapitulo } = useContext(capituloContext);
@@ -33,6 +35,7 @@ export const useSeries = () => {
     }, [])
 
     return {
+        seriesTrending,
         solicitud,
         stats,
         series,
@@ -54,6 +57,7 @@ export const useSeries = () => {
         getVisualizacion,
         postVisualizacion,
         getCapitulo,
-        getAllCapitulos
+        getAllCapitulos,
+        getSeriesTrending
     }
 }
