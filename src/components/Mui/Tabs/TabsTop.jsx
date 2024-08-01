@@ -54,7 +54,7 @@ export default function TabsTop(props) {
 
   return (
     <Box sx={{ width: '100%', marginBottom: 8 }}>
-      <div style={{paddingLeft: 15, paddingRight: 15}}>
+      <div style={{ paddingLeft: 15, paddingRight: 15 }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -64,43 +64,42 @@ export default function TabsTop(props) {
           aria-label="full width tabs example"
         >
           {
-            items ? 
-            items.cont.map((item, idx) => {
+            items?.cont.map((item, idx) => {
               return (
-                <Tab key={idx} label={item.tab} {...a11yProps(idx)}/>
+                <Tab key={idx} label={item.tab} {...a11yProps(idx)} />
               )
-            }) : null
+            })
           }
 
         </Tabs>
       </div>
-      
+
       {
         items?.cont?.map((item, idx) => {
-          return(
+          return (
             <TabPanel key={idx} value={value} index={idx} dir={theme.direction}>
-            <div style={{paddingLeft: 50}}>
-              {
-                item?.cards.map((card, idx)=>{
-                  return (
-                    <div className="card" key={idx}>
-                      <div className="cont-img" style={{backgroundImage:`url('http://upload.leermangaonline.com/uploads/obras/${card.portada}')`}}>
-                        <p>{idx+1}</p>
+              <div style={{ paddingLeft: 50 }}>
+                {
+                  item?.cards?.map((card, idx) => {
+                    return (
+                      <div className="card" key={idx}>
+                        <div className="cont-img" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${card.portada}')` }}>
+                          <p>{idx + 1}</p>
+                        </div>
+                        <div className="info">
+                          <p className="nombre">{card.nombre}</p>
+                          <p className="categoria">{card.demografia}</p>
+                        </div>
                       </div>
-                      <div className="info">
-                        <p className="nombre">{card.nombre}</p>
-                        <p className="categoria">{card.demografia}</p>
-                      </div>
-                    </div>
-                  )
-                })
-              }
-            </div>
-          </TabPanel>
+                    )
+                  })
+                }
+              </div>
+            </TabPanel>
           )
         })
       }
-      
+
     </Box>
   );
 }
