@@ -63,11 +63,12 @@ body.dark-mode {
   width: 100%;
   display: block;
   border-radius: 10px;
-  height: auto;
+  height: 225px;
   -webkit-transform: scale(1);
   transform: scale(1);
   -webkit-transition: all .2s;
   transition: all .2s;
+  object-fit: cover;
 }
 
 .wrapper .slider_inner img:hover {
@@ -76,7 +77,8 @@ body.dark-mode {
   transform: scale(1.025);
   -webkit-transition: all .2s;
   transition: all .2s;
-  height: auto;
+  height: 225px;
+  object-fit: cover;
 }
 
 .wrapper .controls {

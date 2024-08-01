@@ -1,52 +1,27 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import TableProyectos from "../../Mui/Tables/TableProyectos";
-import SearchProyectos from "../../Search/SearchProyectos";
 import { useSeries } from "../../../hooks/useSeries";
 import TableCapitulos from "../../Mui/Tables/TableCapitulos";
 import SearchCapitulos from "../../Search/SearchCapitulos";
+import { useAdmin } from "../../../hooks/useAdmin";
+import TableSlides from "../../Mui/Tables/TableSlides";
 
 const PanelCarousel = (props) => {
-    const { capitulos, getAllCapitulos } = useSeries(); // Set default value
+    const { slider, getSliderImages } = useAdmin();
     const [resultados, setResultados] = useState([]);
-    const [paramQ, setParamQ] = useState(null);
-
-    const [busqueda, guardarBusqueda] = useState({
-        proyecto: "",
-        tipo: false,
-    });
-    const { proyecto } = busqueda;
-
-    const onChange = (e) => {
-        guardarBusqueda({
-            ...busqueda,
-            [e.target.name]: e.target.value,
-        });
-    };
 
     useEffect(() => {
         const fetchData = async () => {
-            await getAllCapitulos(); // Fetch series data
+            await getSliderImages(); // Fetch series data
         };
         fetchData();
     }, []); // Only depend on getSeries
 
     useEffect(() => {
         // Update resultados only when series changes
-        setResultados(capitulos);
-    }, [capitulos]);
-
-    const buscarProyecto = () => {
-        if (proyecto.trim() !== "") {
-            const resultadosBusqueda = capitulos.filter((project) =>
-                project.titulo.toLowerCase().includes(proyecto.toLowerCase())
-            );
-            setParamQ(proyecto);
-            setResultados(resultadosBusqueda);
-            guardarBusqueda({ ...busqueda, proyecto: "" });
-        }
-    };
+        setResultados(slider);
+    }, [slider]);
 
     return (
         <div className="panel-miembros">
@@ -55,18 +30,12 @@ const PanelCarousel = (props) => {
                     <h2>Carousel</h2>
                 </div>
                 <div className="c-table">
-                    <SearchCapitulos
-                        buscarProyecto={buscarProyecto}
-                        onChange={onChange}
-                        setResultados={setResultados}
-                        proyecto={proyecto}
-                        proyectos={capitulos}
-                        setParamQ={setParamQ}
-                        paramQ={paramQ}
-                    />
+                    <div className="query">
+                        <button className="table-btn-ac" style={{padding: 10, background: "#2a7cce"}}>Subir slide</button>
+                    </div>
 
                     {resultados?.length !== 0 ? (
-                        <TableCapitulos proyectos={resultados} />
+                        <TableSlides proyectos={resultados} />
                     ) : (
                         <p className="mensaje">No hay solicitudes pendientes.</p>
                     )}
