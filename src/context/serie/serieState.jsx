@@ -17,7 +17,8 @@ import {
     SUBIR_VOTO_SERIE,
     OBTENER_VISUALIZACIONES_SERIE,
     INSERTAR_VISUALIZACIONE_SERIE,
-    OBTENER_SERIES_TRENDING
+    OBTENER_SERIES_TRENDING,
+    EDITAR_CAPITULO
 } from '../../types';
 
 const SerieState = props => {
@@ -186,7 +187,6 @@ const SerieState = props => {
     const getAllCapitulos = async () => {
         try {
             const res = await clienteAxios.get(`/capitulo`);
-
             dispatch({
                 type: OBTENER_CAPITULOS,
                 payload: res.data.capitulos
@@ -203,6 +203,19 @@ const SerieState = props => {
             type: OBTENER_SERIES_TRENDING,
             payload: res.data.series
         })
+    }
+
+    const editarCapitulo = async (data) => {
+        try {
+            const res = await clienteAxios.put(`/capitulo/${data.id_capitulo}`, data);
+            console.log(res.data.capitulo)
+            dispatch({
+                type: EDITAR_CAPITULO,
+                payload: data
+            })
+        } catch (error) {
+    
+        }
     }
 
     return (
@@ -231,7 +244,8 @@ const SerieState = props => {
                 getVisualizacion,
                 postVisualizacion,
                 getAllCapitulos,
-                getSeriesTrending
+                getSeriesTrending,
+                editarCapitulo
             }}
         >
             {props.children}

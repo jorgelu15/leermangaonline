@@ -25,7 +25,8 @@ export const useSeries = () => {
         getVisualizacion,
         postVisualizacion,
         getAllCapitulos,
-        getSeriesTrending
+        getSeriesTrending,
+        editarCapitulo
     } = useContext(serieContext);
 
     const { capitulo, getCapitulo } = useContext(capituloContext);
@@ -58,6 +59,7 @@ export const useSeries = () => {
         postVisualizacion,
         getCapitulo,
         getAllCapitulos,
-        getSeriesTrending
+        getSeriesTrending,
+        editarCapitulo
     }
 }

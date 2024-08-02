@@ -22,6 +22,7 @@ import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
 import { SUPERADMIN } from '../../../types';
 import { useAuth } from '../../../hooks/useAuth';
+import { useSeries } from '../../../hooks/useSeries';
 
 const style = {
   position: 'absolute',
@@ -141,8 +142,34 @@ export default function TableCapitulos(props) {
     update: false,
     delete: false
   });
-  const handleOpenUpdate = () => {
+
+  const [capituloEdit, setCapituloEdit] = React.useState({
+    id_capitulo: "",
+    titulo: "",
+    numero: ""
+  })
+
+  const { id_capitulo, titulo, numero } = capituloEdit;
+  const onChange = (e) => {
+    setCapituloEdit({
+        ...capituloEdit,
+        [e.target.name]: e.target.value
+    });
+};
+
+  const { editarCapitulo } = useSeries();
+
+  const handleEditarCapitulo = () => {
+    editarCapitulo(capituloEdit);
+  }
+
+  const handleOpenUpdate = (solicitud) => {
     setModalProjects({ ...modalProjects, update: !modalProjects.update, delete: false })
+    setCapituloEdit({
+      id_capitulo: solicitud.id_capitulo,
+      titulo: solicitud.titulo,
+      numero: solicitud.numero
+    })
   };
   const handleClose = () => setModalProjects({ ...modalProjects, update: false, delete: false });
   const onAuthorizeSerie = () => {
@@ -154,6 +181,7 @@ export default function TableCapitulos(props) {
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
+            <TableCell>Nombre de la serie</TableCell>
             <TableCell>Nombre del capitulo</TableCell>
             <TableCell align="center">Numero</TableCell>
             <TableCell align="center">Fecha de creacion</TableCell>
@@ -167,6 +195,9 @@ export default function TableCapitulos(props) {
           )?.map((solicitud, idx) => (
             <TableRow key={idx}>
               <TableCell component="th" scope="row">
+                {solicitud.titulo_serie}
+              </TableCell>
+              <TableCell component="th" scope="row">
                 {solicitud.titulo}
               </TableCell>
               <TableCell component="th" align="center">
@@ -177,7 +208,7 @@ export default function TableCapitulos(props) {
               </TableCell>
               {usuario?.rol === SUPERADMIN ? (
                 <TableCell component="th" align="center">
-                  <button onClick={handleOpenUpdate} className='table-btn-ac'>Actualizar</button>
+                  <button onClick={() => handleOpenUpdate(solicitud)} className='table-btn-ac'>Actualizar</button>
                 </TableCell>
               ) : <TableCell component="th" align="center"></TableCell>}
 
@@ -219,13 +250,13 @@ export default function TableCapitulos(props) {
         <Box sx={style}>
           <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Actualizar capitulo</Typography>
           <div className="query">
-            <input type="text" className="input-src" placeholder="Introduzca el titulo del capitulo" style={{ width: '100%' }} />
+            <input type="text" className="input-src" placeholder="Introduzca el titulo del capitulo" style={{ width: '100%' }} name="titulo" value={titulo} onChange={onChange}/>
           </div>
           <div className="query">
-            <input type="text" className="input-src" placeholder="Introduzca el numero del capitulo" style={{ width: '100%' }} />
+            <input type="text" className="input-src" placeholder="Introduzca el numero del capitulo" style={{ width: '100%' }} name="numero" value={numero} onChange={onChange}/>
           </div>
           <div className="query">
-            <button style={{ width: "100%", padding: 10 }}>Actualizar</button>
+            <button style={{ width: "100%", padding: 10 }} onClick={handleEditarCapitulo}>Actualizar</button>
           </div>
         </Box>
       </Modal>

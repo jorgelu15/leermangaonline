@@ -11,7 +11,8 @@ import {
     SUBIR_VOTO_SERIE,
     OBTENER_VISUALIZACIONES_SERIE,
     INSERTAR_VISUALIZACIONE_SERIE,
-    OBTENER_SERIES_TRENDING
+    OBTENER_SERIES_TRENDING,
+    EDITAR_CAPITULO
 } from '../../types';
 
 export default (state, action) => {
@@ -73,6 +74,11 @@ export default (state, action) => {
             return {
                 ...state,
                 seriesTrending:  action.payload
+            }
+        case EDITAR_CAPITULO:
+            return {
+                ...state,
+                capitulos:  state.capitulos.map((capitulo) => capitulo.id_capitulo === action.payload.id_capitulo ? ({...capitulo, ...action.payload}) : capitulo )
             }
         default:
             return state;
