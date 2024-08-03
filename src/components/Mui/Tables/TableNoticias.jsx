@@ -181,9 +181,12 @@ export default function TableNoticias(props) {
                 {formatDate(solicitud.createdAt)}
               </TableCell>
               {usuario?.rol === SUPERADMIN && solicitud.verificacion === 0 ? (
-                <TableCell component="th" align="center">
-                  <button onClick={onAuthorizeSerie} className='table-btn-ac'>Autorizar</button>
-                </TableCell>
+                <>
+                  <TableCell component="th" align="center" style={{justifyContent: "space-between"}}>
+                    <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{margin:  "0 5px"}}>Actualizar</button>
+                    <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{background: "rgb(89, 165, 92)"}}>Eliminar</button>
+                  </TableCell>
+                </>
               ) : <TableCell component="th" align="center"></TableCell>}
 
             </TableRow>
@@ -226,8 +229,8 @@ export default function TableNoticias(props) {
           <div className="query">
             <input type="text" className="input-src" placeholder="Titulo" style={{ width: '100%' }} />
           </div>
-          <div className="query" style={{flexDirection: "column", color: "black"}}>
-            <input type="file" className="input-src"style={{ width: '100%' }} />
+          <div className="query" style={{ flexDirection: "column", color: "black" }}>
+            <input type="file" className="input-src" style={{ width: '100%' }} />
           </div>
           <div className="query">
             <textarea className="input-src" name="sinopsis" id="sinopsis" cols="30" rows="4" placeholder="Descripcion..."
