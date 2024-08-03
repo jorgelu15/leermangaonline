@@ -28,6 +28,7 @@ import PanelSeries from "./PanelAdministacion/PanelSeries";
 import PanelCapitulos from "./PanelAdministacion/PanelCapitulos";
 import PanelCarousel from "./PanelAdministacion/PanelCarousel";
 import PanelGrupos from "./PanelAdministacion/PanelGrupos";
+import PanelNoticias from "./PanelAdministacion/PanelNoticias";
 
 
 const ContainerPanelAdministracion = (props) => {
@@ -104,6 +105,7 @@ const ContainerPanelAdministracion = (props) => {
                     {panel == 2 && (<PanelCapitulos />)}
                     {panel == 3 && (<PanelCarousel />)}
                     {panel == 4 && (<PanelGrupos />)}
+                    {panel == 5 && (<PanelNoticias />)}
 
                 </div>
             </main>

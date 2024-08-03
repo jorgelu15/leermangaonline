@@ -38,6 +38,24 @@ const ContainerHome = (props) => {
         ]
     }
 
+    let items_trend = {
+        tabs: 3,
+        cont: [
+            {
+                tab: "Mangas",
+                cards: seriesTrending?.filter(serie => serie.tipo === MANGA)
+            },
+            {
+                tab: "T.Manhuas",
+                cards: seriesTrending?.filter(serie => serie.tipo === MANHUA)
+            },
+            {
+                tab: "T.Manhwas",
+                cards: seriesTrending?.filter(serie => serie.tipo === MANHWA)
+            }
+        ]
+    }
+
     const items_tp = {
         tabs: 2,
         cont: [
@@ -72,7 +90,7 @@ const ContainerHome = (props) => {
                 <main className="main-home">
 
                     <TabsHome items={items}></TabsHome>
-                    <TabsHome items={items}></TabsHome>
+                    <TabsHome items={items_trend}></TabsHome>
 
                     <section className="sec-grupos">
                         <h2>Los mejores scan/grupos del mes</h2>
