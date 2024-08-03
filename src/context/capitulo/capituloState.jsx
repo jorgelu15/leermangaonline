@@ -8,7 +8,7 @@ import CapituloReducer from './capituloReducer';
 import {
     MENSAJE_ERROR,
     OBTENER_CAPITULOS,
-    OBTENER_CAPITULO
+    OBTENER_CAPITULO,
 } from '../../types';
 
 const CapituloState = props => {
