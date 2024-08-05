@@ -17,7 +17,7 @@ import routes from '../../helpers/routes';
 
 
 const ContainerHome = (props) => {
-    const { series, seriesTrending, getSeriesTrending } = useSeries();
+    const { series, seriesTrendingSemanal, seriesTrendingMensual, getSeriesTrending } = useSeries();
     const { reemplazarEspaciosConGuiones } = useText();
 
     let items = {
@@ -43,15 +43,15 @@ const ContainerHome = (props) => {
         cont: [
             {
                 tab: "Mangas",
-                cards: seriesTrending?.filter(serie => serie.tipo === MANGA)
+                cards: seriesTrendingSemanal?.filter(serie => serie.tipo === MANGA)
             },
             {
                 tab: "T.Manhuas",
-                cards: seriesTrending?.filter(serie => serie.tipo === MANHUA)
+                cards: seriesTrendingSemanal?.filter(serie => serie.tipo === MANHUA)
             },
             {
                 tab: "T.Manhwas",
-                cards: seriesTrending?.filter(serie => serie.tipo === MANHWA)
+                cards: seriesTrendingSemanal?.filter(serie => serie.tipo === MANHWA)
             }
         ]
     }
@@ -61,17 +61,11 @@ const ContainerHome = (props) => {
         cont: [
             {
                 tab: "Top Semanal",
-                cards: seriesTrending
+                cards: seriesTrendingSemanal
             },
             {
                 tab: "Top Mensual",
-                cards: [
-                    { nombre: "One piece", categoria: "manga", calif: "1", url: "https://otakuteca.com/images/books/cover/615b37c54415c.webp" },
-                    { nombre: "Solo leveling", categoria: "manhwa", calif: "2", url: "https://otakuteca.com/images/books/cover/5c2efcd42cd5e.webp" },
-                    { nombre: "Jujutsu kaisen", categoria: "manga", calif: "3", url: "https://otakuteca.com/images/books/cover/5ea1f703b755f.webp" },
-                    { nombre: "Kimetsu no yaiba", categoria: "manga", calif: "4", url: "	https://otakuteca.com/images/books/cover/6347011a463ea.webp" },
-                    { nombre: "Naruto", categoria: "manga", calif: "5", url: "https://otakuteca.com/images/books/cover/617ebf11e0cdf.webp" },
-                ]
+                cards: seriesTrendingMensual
             }
         ]
     }
@@ -80,7 +74,8 @@ const ContainerHome = (props) => {
     
 
     useEffect(() => {
-        getSeriesTrending();
+        getSeriesTrending("semanal");
+        getSeriesTrending("mensual");
     }, [])
 
     return (

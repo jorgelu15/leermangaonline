@@ -15,8 +15,9 @@ export const EXPULSADO = "4";
 export const SUPERADMIN = "0";
 export const USUARIOS_COMUNES = "1";
 
-
-
+export const SERIE_PENDIENTE = "0";
+export const SERIE_ACEPTADA = "1";
+export const SERIE_RECHAZADA = "2";
 
 // Auth
 export const LOGIN_EXITOSO = 'LOGIN_EXITOSO';
@@ -57,7 +58,8 @@ export const ACTUALIZAR_PERFIL = 'ACTUALIZAR_PERFIL';
 
 //directorio
 export const OBTENER_SERIES = 'OBTENER_SERIES';
-export const OBTENER_SERIES_TRENDING = 'OBTENER_SERIES_TRENDING';
+export const OBTENER_SERIES_TRENDING_SEMANAL = 'OBTENER_SERIES_TRENDING_SEMANAL';
+export const OBTENER_SERIES_TRENDING_MENSUAL = 'OBTENER_SERIES_TRENDING_MENSUAL';
 export const FILTRAR = 'FILTRAR';
 
 //Serie

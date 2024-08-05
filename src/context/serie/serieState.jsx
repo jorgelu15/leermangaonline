@@ -17,7 +17,8 @@ import {
     SUBIR_VOTO_SERIE,
     OBTENER_VISUALIZACIONES_SERIE,
     INSERTAR_VISUALIZACIONE_SERIE,
-    OBTENER_SERIES_TRENDING,
+    OBTENER_SERIES_TRENDING_SEMANAL,
+    OBTENER_SERIES_TRENDING_MENSUAL,
     EDITAR_CAPITULO
 } from '../../types';
 
@@ -33,7 +34,9 @@ const SerieState = props => {
         seriesFiltradas: null,
         stats: null,
         solicitud: null,
-        visualizaciones: null
+        visualizaciones: null,
+        seriesTrendingSemanal: null,
+        seriesTrendingMensual: null
     }
 
     const [state, dispatch] = useReducer(SerieReducer, initialState);
@@ -196,13 +199,24 @@ const SerieState = props => {
         }
     }
 
-    const getSeriesTrending = async () => {
-        const res = await clienteAxios.get(`/serie/trending`);
+    const getSeriesTrending = async (categoria) => {
+        try{
+            const res = await clienteAxios.get(`/serie/trending/${categoria}`);
+            
+            if(categoria === "semanal"){
+                dispatch({
+                    type: OBTENER_SERIES_TRENDING_SEMANAL,
+                    payload: res.data.series
+                })
+            }else if(categoria === "mensual") {
+                dispatch({
+                    type: OBTENER_SERIES_TRENDING_MENSUAL,
+                    payload: res.data.series
+                })
+            }
+        }catch (error){
 
-        dispatch({
-            type: OBTENER_SERIES_TRENDING,
-            payload: res.data.series
-        })
+        }
     }
 
     const editarCapitulo = async (data) => {
@@ -231,7 +245,8 @@ const SerieState = props => {
                 votos: state.votos,
                 solicitud: state.solicitud,
                 visualizaciones: state.visualizaciones,
-                seriesTrending: state.seriesTrending,
+                seriesTrendingSemanal: state.seriesTrendingSemanal,
+                seriesTrendingMensual: state.seriesTrendingMensual,
                 getSeries,
                 getSerie,
                 subirSerie,

@@ -4,7 +4,8 @@ import capituloContext from "../context/capitulo/capituloContext";
 
 export const useSeries = () => {
     const {
-        seriesTrending,
+        seriesTrendingSemanal,
+        seriesTrendingMensual,
         solicitud,
         stats,
         series,
@@ -36,7 +37,8 @@ export const useSeries = () => {
     }, [])
 
     return {
-        seriesTrending,
+        seriesTrendingSemanal,
+        seriesTrendingMensual,
         solicitud,
         stats,
         series,

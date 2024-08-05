@@ -11,8 +11,9 @@ import {
     SUBIR_VOTO_SERIE,
     OBTENER_VISUALIZACIONES_SERIE,
     INSERTAR_VISUALIZACIONE_SERIE,
-    OBTENER_SERIES_TRENDING,
-    EDITAR_CAPITULO
+    OBTENER_SERIES_TRENDING_SEMANAL,
+    OBTENER_SERIES_TRENDING_MENSUAL,
+    EDITAR_CAPITULO,
 } from '../../types';
 
 export default (state, action) => {
@@ -70,10 +71,15 @@ export default (state, action) => {
                 ...state,
                 visualizaciones: action.payload
             }
-        case OBTENER_SERIES_TRENDING:
+        case OBTENER_SERIES_TRENDING_SEMANAL:
             return {
                 ...state,
-                seriesTrending:  action.payload
+                seriesTrendingSemanal:  action.payload
+            }
+        case OBTENER_SERIES_TRENDING_MENSUAL:
+            return {
+                ...state,
+                seriesTrendingMensual:  action.payload
             }
         case EDITAR_CAPITULO:
             return {
