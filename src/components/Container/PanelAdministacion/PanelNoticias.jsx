@@ -6,9 +6,10 @@ import SearchProyectos from "../../Search/SearchProyectos";
 import { useSeries } from "../../../hooks/useSeries";
 import SearchNoticias from "../../Search/SearchNoticias";
 import TableNoticias from "../../Mui/Tables/TableNoticias";
+import { useAdmin } from "../../../hooks/useAdmin";
 
 const PanelNoticias = (props) => {
-    const { series = [], getSeries } = useSeries(); // Set default value
+    const { noticias, getAllNoticias } = useAdmin(); // Set default value
     const [resultados, setResultados] = useState([]);
     const [paramQ, setParamQ] = useState(null);
     const [openModal, setOpenModal] = useState(false)
@@ -28,20 +29,20 @@ const PanelNoticias = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await getSeries(); // Fetch series data
+            await getAllNoticias(); // Fetch series data
         };
         fetchData();
     }, []); // Only depend on getSeries
 
     useEffect(() => {
         // Update resultados only when series changes
-        setResultados(series);
-    }, [series]);
+        setResultados(noticias);
+    }, [noticias]);
 
     const buscarProyecto = () => {
         if (proyecto.trim() !== "") {
-            const resultadosBusqueda = series.filter((project) =>
-                project.nombre.toLowerCase().includes(proyecto.toLowerCase())
+            const resultadosBusqueda = noticias.filter((project) =>
+                project.titulo.toLowerCase().includes(proyecto.toLowerCase())
             );
             setParamQ(proyecto);
             setResultados(resultadosBusqueda);
@@ -61,7 +62,7 @@ const PanelNoticias = (props) => {
                         onChange={onChange}
                         setResultados={setResultados}
                         proyecto={proyecto}
-                        proyectos={series}
+                        proyectos={noticias}
                         setParamQ={setParamQ}
                         paramQ={paramQ}
                         setOpenModal={setOpenModal}

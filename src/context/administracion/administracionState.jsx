@@ -8,7 +8,8 @@ import AdministracionReducer from './administracionReducer';
 import {
     OBTENER_IMAGENES_SLIDER,
     SUBIR_IMAGEN_SLIDER,
-    BORRAR_IMAGEN_SLIDER
+    BORRAR_IMAGEN_SLIDER,
+    OBTENER_NOTICIAS
 } from '../../types';
 
 const AdministracionState = props => {
@@ -16,6 +17,7 @@ const AdministracionState = props => {
     const initialState = {
         msg: null,
         slider: null,
+        noticias: null
     }
 
     const [state, dispatch] = useReducer(AdministracionReducer, initialState);
@@ -58,15 +60,29 @@ const AdministracionState = props => {
         }
     }
 
+    const getAllNoticias = async () => {
+        try {
+            const res =await clienteAxios.get(`/noticias`);
+
+            dispatch({
+                type: OBTENER_NOTICIAS,
+                payload: res.data.noticias
+            })
+        } catch (error) {
+            
+        }
+    }
 
     return (
         <AdministracionContext.Provider
             value={{
                 msg: state.msg,
                 slider: state.slider,
+                noticias: state.noticias,
                 getSliderImages,
                 postSliderImage,
-                deleteSliderImage
+                deleteSliderImage,
+                getAllNoticias
             }}
         >
             {props.children}

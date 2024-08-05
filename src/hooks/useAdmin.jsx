@@ -3,16 +3,20 @@ import administracionContext from "../context/administracion/administracionConte
 
 export const useAdmin = () => {
     const {
+        noticias,
         slider,
         getSliderImages,
         postSliderImage,
-        deleteSliderImage
+        deleteSliderImage,
+        getAllNoticias
     } = useContext(administracionContext);
 
     return {
+        noticias,
         slider,
         getSliderImages,
         postSliderImage,
-        deleteSliderImage
+        deleteSliderImage,
+        getAllNoticias
     }
 }

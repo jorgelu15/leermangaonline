@@ -15,13 +15,15 @@ import { MANGA, MANHUA, MANHWA } from "../../types";
 import { useText } from "../../hooks/useText";
 import routes from '../../helpers/routes';
 import { useGrupos } from '../../hooks/useGrupos';
+import { useAdmin } from '../../hooks/useAdmin';
 
 
 const ContainerHome = (props) => {
+    const { noticias, getAllNoticias } = useAdmin(); // Set default value
     const { series, seriesPopulares, seriesTrendingSemanal, seriesTrendingMensual, getSeriesTrending, getSeriesPopulares } = useSeries();
     const { reemplazarEspaciosConGuiones } = useText();
     const { grupos, getBestScans } = useGrupos();
-    console.log(seriesPopulares)
+
     let items = {
         tabs: 3,
         cont: [
@@ -85,6 +87,26 @@ const ContainerHome = (props) => {
         getSeriesPopulares()
     }, [])
 
+    useEffect(() => {
+        const fetchData = async () => {
+            await getAllNoticias(); // Fetch series data
+        };
+        fetchData();
+    }, []); // Only depend on getSeries
+
+    const formatDate = (fecha) => {
+        const date = new Date(fecha);
+
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+
+        return (`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
+    }
+
     return (
         <div>
             <Slider></Slider>
@@ -119,29 +141,23 @@ const ContainerHome = (props) => {
                         <h2>Ultimas Noticias</h2>
 
                         <div className="cards">
-                            <div className="card">
-                                <img src={stafs} />
-                                <div className="info">
-                                    <div>
-                                        <h3>Se buscan STAFFS</h3>
-                                        <p>Se busca personal con o sin experiencia con ganas de colaborar, somos un scan que se decica a la traduccion
-                                            de mangas que fueron abandonados por otros scan, o que son poco conocidos, se busca Redrawer, traductores.
-                                        </p>
-                                    </div>
-                                    <p className="fecha">08/03/2023</p>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <img src="https://www.geekmi.news/__export/1665685634810/sites/debate/img/2022/10/13/makima3.jpg_423682103.jpg" />
-                                <div className="info">
-                                    <div>
-                                        <h3>¿Cosplay por la candidatura?</h3>
-                                        <p>Candidata en Argentina promete vestirse de Makima si gana. En una publicación reciente por parte de Lilia Lemoine, quien se describe a sí mis...
-                                        </p>
-                                    </div>
-                                    <p className="fecha">18/10/2023</p>
-                                </div>
-                            </div>
+                            {
+                                noticias?.map((noticia, idx) => {
+                                    return (
+                                        <div key={idx} className="card">
+                                            <img src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/slider/' + noticia.url} />
+                                            <div className="info">
+                                                <div>
+                                                    <h3>{noticia.titulo}</h3>
+                                                    <p>{noticia.contenido}
+                                                    </p>
+                                                </div>
+                                                <p className="fecha">{formatDate(noticia.createdAt)}</p>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </section>
 

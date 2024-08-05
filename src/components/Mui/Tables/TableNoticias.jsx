@@ -169,22 +169,23 @@ export default function TableNoticias(props) {
           )?.map((solicitud, idx) => (
             <TableRow key={idx}>
               <TableCell component="th" scope="row">
-                {solicitud.nombre}
+                <b>{solicitud.titulo}</b>
+
               </TableCell>
               <TableCell component="th" align="center">
-                <b>{solicitud.demografia}</b>
+                {solicitud.contenido}
               </TableCell>
               <TableCell component="th" align="center">
-                <b>{solicitud.estado}</b>
+                <img width={80} height={40} alt={solicitud.url} src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/slider/' + solicitud.url} />
               </TableCell>
               <TableCell component="th" align="center">
                 {formatDate(solicitud.createdAt)}
               </TableCell>
               {usuario?.rol === SUPERADMIN && solicitud.verificacion === 0 ? (
                 <>
-                  <TableCell component="th" align="center" style={{justifyContent: "space-between"}}>
-                    <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{margin:  "0 5px"}}>Actualizar</button>
-                    <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{background: "rgb(89, 165, 92)"}}>Eliminar</button>
+                  <TableCell component="th" align="center" style={{ justifyContent: "space-between" }}>
+                    <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{ margin: "0 5px" }}>Actualizar</button>
+                    <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{ background: "rgb(89, 165, 92)" }}>Eliminar</button>
                   </TableCell>
                 </>
               ) : <TableCell component="th" align="center"></TableCell>}

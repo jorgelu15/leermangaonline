@@ -2,7 +2,8 @@ import { act } from 'react-dom/test-utils';
 import {
     OBTENER_IMAGENES_SLIDER,
     SUBIR_IMAGEN_SLIDER,
-    BORRAR_IMAGEN_SLIDER
+    BORRAR_IMAGEN_SLIDER,
+    OBTENER_NOTICIAS
 } from '../../types';
 
 export default (state, action) => {
@@ -22,6 +23,11 @@ export default (state, action) => {
             return {
                 ...state,
                 slider: state.slider.filter((image) => image.id_slider !== action.payload),
+            }
+        case OBTENER_NOTICIAS:
+            return{
+                ...state,
+                noticias: action.payload
             }
         default:
             return state;
