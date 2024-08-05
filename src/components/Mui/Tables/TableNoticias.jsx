@@ -151,74 +151,80 @@ export default function TableNoticias(props) {
   }
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Titulo</TableCell>
-            <TableCell align="center">Descripcion</TableCell>
-            <TableCell align="center">Imagen</TableCell>
-            <TableCell align="center">Fecha de creacion</TableCell>
-            {usuario?.rol === SUPERADMIN && <TableCell align="center">Acciones</TableCell>}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {(rowsPerPage > 0
-            ? proyectos?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : proyectos ? proyectos : []
-          )?.map((solicitud, idx) => (
-            <TableRow key={idx}>
-              <TableCell component="th" scope="row">
-                <b>{solicitud.titulo}</b>
+    <>
+      {proyectos?.length !== 0 ? (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Titulo</TableCell>
+                <TableCell align="center">Descripcion</TableCell>
+                <TableCell align="center">Imagen</TableCell>
+                <TableCell align="center">Fecha de creacion</TableCell>
+                {usuario?.rol === SUPERADMIN && <TableCell align="center">Acciones</TableCell>}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {(rowsPerPage > 0
+                ? proyectos?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                : proyectos ? proyectos : []
+              )?.map((solicitud, idx) => (
+                <TableRow key={idx}>
+                  <TableCell component="th" scope="row">
+                    <b>{solicitud.titulo}</b>
 
-              </TableCell>
-              <TableCell component="th" align="center">
-                {solicitud.contenido}
-              </TableCell>
-              <TableCell component="th" align="center">
-                <img width={80} height={40} alt={solicitud.url} src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/slider/' + solicitud.url} />
-              </TableCell>
-              <TableCell component="th" align="center">
-                {formatDate(solicitud.createdAt)}
-              </TableCell>
-              {usuario?.rol === SUPERADMIN && solicitud.verificacion === 0 ? (
-                <>
-                  <TableCell component="th" align="center" style={{ justifyContent: "space-between" }}>
-                    <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{ margin: "0 5px" }}>Actualizar</button>
-                    <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{ background: "rgb(89, 165, 92)" }}>Eliminar</button>
                   </TableCell>
-                </>
-              ) : <TableCell component="th" align="center"></TableCell>}
+                  <TableCell component="th" align="center">
+                    {solicitud.contenido}
+                  </TableCell>
+                  <TableCell component="th" align="center">
+                    <img width={80} height={40} alt={solicitud.url} src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/slider/' + solicitud.url} />
+                  </TableCell>
+                  <TableCell component="th" align="center">
+                    {formatDate(solicitud.createdAt)}
+                  </TableCell>
+                  {usuario?.rol === SUPERADMIN && solicitud.verificacion === 0 ? (
+                    <>
+                      <TableCell component="th" align="center" style={{ justifyContent: "space-between" }}>
+                        <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{ margin: "0 5px" }}>Actualizar</button>
+                        <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{ background: "rgb(89, 165, 92)" }}>Eliminar</button>
+                      </TableCell>
+                    </>
+                  ) : <TableCell component="th" align="center"></TableCell>}
 
-            </TableRow>
-          ))}
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={proyectos?.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
+                </TableRow>
+              ))}
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 53 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                  colSpan={3}
+                  count={proyectos?.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    inputProps: {
+                      'aria-label': 'rows per page',
+                    },
+                    native: true,
+                  }}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActions}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      ) : (
+        <p className="mensaje">No hay solicitudes pendientes.</p>
+      )}
       <Modal
         open={openModal}
         onClose={handleClose}
@@ -260,6 +266,6 @@ export default function TableNoticias(props) {
           </div>
         </Box>
       </Modal>
-    </TableContainer>
+    </>
   );
 }
