@@ -69,12 +69,8 @@ const PanelNoticias = (props) => {
                         openModal={openModal}
                     />
 
-                    {resultados?.length !== 0 ? (
-                        <TableNoticias proyectos={resultados} setOpenModal={setOpenModal}
-                            openModal={openModal} />
-                    ) : (
-                        <p className="mensaje">No hay solicitudes pendientes.</p>
-                    )}
+                    <TableNoticias proyectos={resultados} setOpenModal={setOpenModal}
+                        openModal={openModal} />
                 </div>
             </div>
         </div>
