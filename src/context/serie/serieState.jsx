@@ -19,7 +19,8 @@ import {
     INSERTAR_VISUALIZACIONE_SERIE,
     OBTENER_SERIES_TRENDING_SEMANAL,
     OBTENER_SERIES_TRENDING_MENSUAL,
-    EDITAR_CAPITULO
+    EDITAR_CAPITULO,
+    OBTENER_SERIES_POPULARES
 } from '../../types';
 
 const SerieState = props => {
@@ -36,7 +37,8 @@ const SerieState = props => {
         solicitud: null,
         visualizaciones: null,
         seriesTrendingSemanal: null,
-        seriesTrendingMensual: null
+        seriesTrendingMensual: null,
+        seriesPopulares: null
     }
 
     const [state, dispatch] = useReducer(SerieReducer, initialState);
@@ -232,6 +234,19 @@ const SerieState = props => {
         }
     }
 
+    const getSeriesPopulares = async () => {
+        try {
+            const res = await clienteAxios.get(`/serie/populares`)
+
+            dispatch({
+                type: OBTENER_SERIES_POPULARES,
+                payload: res.data.series
+            })
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <SerieContext.Provider
             value={{
@@ -247,6 +262,7 @@ const SerieState = props => {
                 visualizaciones: state.visualizaciones,
                 seriesTrendingSemanal: state.seriesTrendingSemanal,
                 seriesTrendingMensual: state.seriesTrendingMensual,
+                seriesPopulares: state.seriesPopulares,
                 getSeries,
                 getSerie,
                 subirSerie,
@@ -260,7 +276,8 @@ const SerieState = props => {
                 postVisualizacion,
                 getAllCapitulos,
                 getSeriesTrending,
-                editarCapitulo
+                editarCapitulo,
+                getSeriesPopulares
             }}
         >
             {props.children}

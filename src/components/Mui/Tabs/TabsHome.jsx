@@ -83,19 +83,22 @@ export default function BasicTabs(props) {
               <div className="sec-cards">
                 {
                   item.cards?.map((card, idx) => {
-                    return (
-                      <div className="cont-card" key={idx}>
-                        <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre.toLowerCase())}`}>
-                          <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${card.portada}')` }}>
-                            <div>
-                              <p className="categoria">{card.tipo}</p>
-                              <p className="calificacion">3.4</p>{/*  falta la calificacion */}
+                    if (card.votos) {
+                      return (
+                        <div className="cont-card" key={idx}>
+                          <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre.toLowerCase())}`}>
+                            <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${card.portada}')` }}>
+                              <div>
+                                <p className="categoria">{card.tipo}</p>
+                                <p className="calificacion">{card.votos?.prom_vot}</p>{/*  falta la calificacion */}
+                              </div>
+                              <p className="nombre">{card.nombre}</p>
                             </div>
-                            <p className="nombre">{card.nombre}</p>
-                          </div>
-                        </Link>
-                      </div>
-                    )
+                          </Link>
+                        </div>
+                      )
+                    }
+
                   })
                 }
               </div>

@@ -18,23 +18,24 @@ import { useGrupos } from '../../hooks/useGrupos';
 
 
 const ContainerHome = (props) => {
-    const { series, seriesTrendingSemanal, seriesTrendingMensual, getSeriesTrending } = useSeries();
+    const { series, seriesPopulares, seriesTrendingSemanal, seriesTrendingMensual, getSeriesTrending, getSeriesPopulares } = useSeries();
     const { reemplazarEspaciosConGuiones } = useText();
     const { grupos, getBestScans } = useGrupos();
+    console.log(seriesPopulares)
     let items = {
         tabs: 3,
         cont: [
             {
                 tab: "Mangas",
-                cards: series?.filter(serie => serie.tipo === MANGA)
+                cards: seriesPopulares?.filter(serie => serie.tipo === MANGA)
             },
             {
                 tab: "P.Manhuas",
-                cards: series?.filter(serie => serie.tipo === MANHUA)
+                cards: seriesPopulares?.filter(serie => serie.tipo === MANHUA)
             },
             {
                 tab: "P.Manhwas",
-                cards: series?.filter(serie => serie.tipo === MANHWA)
+                cards: seriesPopulares?.filter(serie => serie.tipo === MANHWA)
             }
         ]
     }
@@ -80,6 +81,10 @@ const ContainerHome = (props) => {
         getBestScans();
     }, [])
 
+    useEffect(() => {
+        getSeriesPopulares()
+    }, [])
+
     return (
         <div>
             <Slider></Slider>
@@ -96,7 +101,7 @@ const ContainerHome = (props) => {
                             {
                                 grupos?.map((grupo, idx) => {
                                     return (
-                                        <div  key={idx} className="cont-cardgr">
+                                        <div key={idx} className="cont-cardgr">
                                             <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${grupo.portada}')` }}>
                                                 <div>
                                                 </div>

@@ -14,6 +14,7 @@ import {
     OBTENER_SERIES_TRENDING_SEMANAL,
     OBTENER_SERIES_TRENDING_MENSUAL,
     EDITAR_CAPITULO,
+    OBTENER_SERIES_POPULARES,
 } from '../../types';
 
 export default (state, action) => {
@@ -85,6 +86,11 @@ export default (state, action) => {
             return {
                 ...state,
                 capitulos:  state.capitulos.map((capitulo) => capitulo.id_capitulo === action.payload.id_capitulo ? ({...capitulo, ...action.payload}) : capitulo )
+            }
+        case OBTENER_SERIES_POPULARES:
+            return{
+                ...state,
+                seriesPopulares: action.payload
             }
         default:
             return state;
