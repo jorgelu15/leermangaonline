@@ -14,12 +14,13 @@ import { useSeries } from "../../hooks/useSeries";
 import { MANGA, MANHUA, MANHWA } from "../../types";
 import { useText } from "../../hooks/useText";
 import routes from '../../helpers/routes';
+import { useGrupos } from '../../hooks/useGrupos';
 
 
 const ContainerHome = (props) => {
     const { series, seriesTrendingSemanal, seriesTrendingMensual, getSeriesTrending } = useSeries();
     const { reemplazarEspaciosConGuiones } = useText();
-
+    const { grupos, getBestScans } = useGrupos();
     let items = {
         tabs: 3,
         cont: [
@@ -70,12 +71,13 @@ const ContainerHome = (props) => {
         ]
     }
 
-
-    
-
     useEffect(() => {
         getSeriesTrending("semanal");
         getSeriesTrending("mensual");
+    }, [])
+
+    useEffect(() => {
+        getBestScans();
     }, [])
 
     return (
@@ -91,35 +93,19 @@ const ContainerHome = (props) => {
                         <h2>Los mejores scan/grupos del mes</h2>
                         <div className="sec-cards">
 
-                            <div className="cont-cardgr">
-                                <div className="card" style={{ backgroundImage: 'url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e2dfe33e-32e3-41b7-b62c-96985dd07256/ddqgbel-4966b57e-8ece-4b9e-9bfb-24c5a640b664.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2UyZGZlMzNlLTMyZTMtNDFiNy1iNjJjLTk2OTg1ZGQwNzI1NlwvZGRxZ2JlbC00OTY2YjU3ZS04ZWNlLTRiOWUtOWJmYi0yNGM1YTY0MGI2NjQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.aJQ9fk9-siEIHnugL3GVwytfEMdR5EhJ0p7X9v5-InY")' }}>
-                                    <div>
-                                        <p></p>
-                                        <p className="calificacion">1</p>
-                                    </div>
-                                    <p className="nombre">SUNFLOWER TRANSLATIONS</p>
-                                </div>
-                            </div>
-
-                            <div className="cont-cardgr">
-                                <div className="card" style={{ backgroundImage: 'url("https://img1.japanreader.com/images/groups/logo/6111f7e3c74b0.webp")' }}>
-                                    <div>
-                                        <p></p>
-                                        <p className="calificacion">2</p>
-                                    </div>
-                                    <p className="nombre">BAKAGUYA SCANLATION</p>
-                                </div>
-                            </div>
-
-                            <div className="cont-cardgr">
-                                <div className="card">
-                                    <div>
-                                        <p></p>
-                                        <p className="calificacion">3</p>
-                                    </div>
-                                    <p className="nombre">RAKUEN TRANSLATIONS</p>
-                                </div>
-                            </div>
+                            {
+                                grupos?.map((grupo, idx) => {
+                                    return (
+                                        <div  key={idx} className="cont-cardgr">
+                                            <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${grupo.portada}')` }}>
+                                                <div>
+                                                </div>
+                                                <p className="nombre">{grupo.nombre}</p>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
 
                         </div>
                     </section>
@@ -159,11 +145,11 @@ const ContainerHome = (props) => {
                         <h2>Ultimos Subidos</h2>
                         <div className="sec-cards">
                             {
-                                series?.map(serie => {
+                                series?.map((serie, idx) => {
                                     return (
-                                        <Link to={routes.manga + `/${serie.serie_uid}/${reemplazarEspaciosConGuiones(serie.nombre.toLowerCase())}`} className="cont-card">
+                                        <Link key={idx} to={routes.manga + `/${serie.serie_uid}/${reemplazarEspaciosConGuiones(serie.nombre.toLowerCase())}`} className="cont-card">
                                             <div className="card" style={{
-                                                backgroundImage: `url("${serie.portada}")`
+                                                backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${serie.portada}')`
                                             }}>
                                                 <div>
                                                     <p></p>
@@ -185,11 +171,11 @@ const ContainerHome = (props) => {
                         <h2>Tendencias</h2>
                         <div className="sec-cards">
                             {
-                                series?.map(serie => {
+                                series?.map((serie, idx) => {
                                     return (
-                                        <Link to={routes.manga + `/${serie.serie_uid}/${reemplazarEspaciosConGuiones(serie.nombre.toLowerCase())}`} className="cont-card">
+                                        <Link key={idx} to={routes.manga + `/${serie.serie_uid}/${reemplazarEspaciosConGuiones(serie.nombre.toLowerCase())}`} className="cont-card">
                                             <div className="card" style={{
-                                                backgroundImage: `url("${serie.portada}")`
+                                                backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${serie.portada}')`
                                             }}>
                                                 <div>
                                                     <p></p>

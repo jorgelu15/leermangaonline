@@ -86,7 +86,7 @@ export default function BasicTabs(props) {
                     return (
                       <div className="cont-card" key={idx}>
                         <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre.toLowerCase())}`}>
-                          <div className="card" style={{ backgroundImage: `url('${card.portada}')` }}>
+                          <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${card.portada}')` }}>
                             <div>
                               <p className="categoria">{card.tipo}</p>
                               <p className="calificacion">3.4</p>{/*  falta la calificacion */}

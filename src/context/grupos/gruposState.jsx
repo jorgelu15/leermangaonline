@@ -277,6 +277,19 @@ const GruposState = props => {
         }
     }
 
+    const getBestScans = async () => {
+        try {
+            const res =await clienteAxios.get(`/grupo/bestScans`);
+
+            dispatch({
+                type: OBTENER_GRUPOS,
+                payload: res.data.grupos
+            })
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <GruposContext.Provider
             value={{
@@ -304,7 +317,8 @@ const GruposState = props => {
                 getSeguidores,
                 seguirGrupo,
                 getSeguidoresAnoActual,
-                putInfoGrupo
+                putInfoGrupo,
+                getBestScans
             }}
         >
             {props.children}
