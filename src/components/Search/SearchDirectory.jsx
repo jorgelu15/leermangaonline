@@ -10,7 +10,7 @@ const FallbackLoader = () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      flexDirection: "row", // Alinea los elementos en columna,
+      flexDirection: "row",
     }}>
       <TailSpin
         visible={true}
@@ -19,7 +19,7 @@ const FallbackLoader = () => {
         color="#ffffff"
         ariaLabel="tail-spin-loading"
         radius={1}
-        thickness={4} // Ajusta el grosor del spinner aquí
+        thickness={4}
         wrapperStyle={{}}
         wrapperClass=""
         contentLoader={(props) => (
@@ -50,8 +50,7 @@ const SearchDirectory = (props) => {
 
   const onClickBuscar = async () => {
     setLoading(true);
-    // Simular un retraso de 2 segundos antes de realizar la búsqueda
-
+    console.log(consulta);
     setTimeout(async () => {
       try {
         if ((filtros?.genero.length >= 0 || filtros?.demografia.length >= 0 || filtros?.tipo.length >= 0) && consulta?.trim() === "") {
@@ -71,14 +70,14 @@ const SearchDirectory = (props) => {
       } finally {
         setLoading(false);
       }
-    }, 1500); // 2000 milisegundos = 2 segundos
+    }, 1500);
   };
 
   const onKeyDown = (e) => {
     if (e.key === "Enter") {
-      onClickBuscar()
+      onClickBuscar();
     }
-  }
+  };
 
   const location = useLocation();
   const query = new URLSearchParams(location.search).get('q');
@@ -87,7 +86,7 @@ const SearchDirectory = (props) => {
     if (query?.trim() !== "") {
       buscador({ consulta: query });
     }
-  }, [query])
+  }, [query]);
 
   return (
     <div className="query">

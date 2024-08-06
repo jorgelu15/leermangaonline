@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useSeries } from "../../../hooks/useSeries";
@@ -9,6 +9,7 @@ import TableSlides from "../../Mui/Tables/TableSlides";
 import { Box, Modal, Typography } from "@mui/material";
 
 import { v4 } from 'uuid';
+import { useSnackbar } from "notistack";
 
 const style = {
     position: 'absolute',
@@ -25,6 +26,8 @@ const style = {
 const PanelCarousel = (props) => {
     const { slider, getSliderImages, postSliderImage } = useAdmin();
     const [resultados, setResultados] = useState([]);
+    const { enqueueSnackbar } = useSnackbar();
+    const sliderInputRef  = useRef(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -59,7 +62,7 @@ const PanelCarousel = (props) => {
         setName(newName);
     }
 
-    const actualizarUsuario = () => {
+    const onUpdatetSlide = () => {
         const f = new FormData();
 
         if (archivo !== null) {
@@ -70,8 +73,29 @@ const PanelCarousel = (props) => {
             f.append("archivo", archivo, newName);
             f.append("data", JSON.stringify(newName));
             f.append("ruta", "slider");
-            postSliderImage(f);
+            postSliderImage(f).then(status => {
+                if (status === 200) {
+                    enqueueSnackbar("Se subio la imagen exitosamente", {
+                        variant: "success",
+                        anchorOrigin: {
+                            vertical: "bottom",
+                            horizontal: "right"
+                        }
+                    })
+                    if(sliderInputRef.current) sliderInputRef.current.value = "";
+                } else {
+                    enqueueSnackbar(response.msg, {
+                        variant: "error",
+                        anchorOrigin: {
+                            vertical: "bottom",
+                            horizontal: "right"
+                        }
+                    });
+                }
+            });
         }
+
+        handleClose()
     }
 
     return (
@@ -101,10 +125,10 @@ const PanelCarousel = (props) => {
                 <Box sx={style}>
                     <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Subir un slide</Typography>
                     <div className="query">
-                        <input type="file" className="input-src" placeholder="Titulo" style={{ width: '100%' }} onChange={(e) => subirArchivo(e.target.files[0])}/>
+                        <input ref={sliderInputRef} type="file" className="input-src" placeholder="Titulo" style={{ width: '100%' }} onChange={(e) => subirArchivo(e.target.files[0])} />
                     </div>
                     <div className="query">
-                        <button onClick={actualizarUsuario} style={{ width: "100%", padding: 10 }}>Subir</button>
+                        <button onClick={onUpdatetSlide} style={{ width: "100%", padding: 10 }}>Subir</button>
                     </div>
                 </Box>
             </Modal>

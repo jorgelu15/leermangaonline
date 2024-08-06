@@ -43,8 +43,12 @@ const AdministracionState = props => {
                 type: SUBIR_IMAGEN_SLIDER,
                 payload: res.data.slider
             })
+
+            return res.status;
+
         } catch (error) {
-            
+            const errorMessage = error.response?.data?.msg || 'Error desconocido';
+            throw new Error(errorMessage); // Lanzar el error para que pueda ser manejado en la llamada de la función
         }
     }
 
@@ -55,8 +59,11 @@ const AdministracionState = props => {
                 type: BORRAR_IMAGEN_SLIDER,
                 payload: id_slider
             })
+
+            return res.status;
         } catch (error) {
-            
+            const errorMessage = error.response?.data?.msg || 'Error desconocido';
+            throw new Error(errorMessage); // Lanzar el error para que pueda ser manejado en la llamada de la función
         }
     }
 

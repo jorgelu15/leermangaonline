@@ -224,13 +224,16 @@ const SerieState = props => {
     const editarCapitulo = async (data) => {
         try {
             const res = await clienteAxios.put(`/capitulo/${data.id_capitulo}`, data);
-            console.log(res.data.capitulo)
+            
             dispatch({
                 type: EDITAR_CAPITULO,
                 payload: data
             })
+
+            return res.status;
         } catch (error) {
-    
+            const errorMessage = error.response?.data?.msg || 'Error desconocido';
+            throw new Error(errorMessage); // Lanzar el error para que pueda ser manejado en la llamada de la función
         }
     }
 

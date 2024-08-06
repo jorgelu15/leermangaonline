@@ -45,7 +45,6 @@ body.dark-mode {
 .wrapper .slider_inner {
   display: flex;
   flex-wrap: nowrap;
-  overflow: hidden;
   transition: transform 0.5s ease;
   padding: 20px 0.8%;
   height: auto;

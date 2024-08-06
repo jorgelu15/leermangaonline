@@ -154,6 +154,29 @@ export default function TableSlides(props) {
         console.log("autorizada")
     }
 
+    const onDeleteSlider = () => {
+        deleteSliderImage(imageDelete?.id_slider).then(status => {
+            if (status === 200) {
+                enqueueSnackbar("Se elimino la imagen exitosamente", {
+                    variant: "success",
+                    anchorOrigin: {
+                        vertical: "bottom",
+                        horizontal: "right"
+                    }
+                })
+                handleClose()
+            } else {
+                enqueueSnackbar(response.msg, {
+                    variant: "error",
+                    anchorOrigin: {
+                        vertical: "bottom",
+                        horizontal: "right"
+                    }
+                });
+            }
+        });
+    }
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -221,7 +244,7 @@ export default function TableSlides(props) {
                     <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Esta seguro de eliminar esta imagen?</Typography>
                     <div style={{ flexDirection: 'row', display: 'flex', width: "100%", justifyContent: "space-between" }}>
                         <div className="query">
-                            <button style={{ width: "98%", padding: 10 }} onClick={() => deleteSliderImage(imageDelete?.id_slider)}>Si</button>
+                            <button style={{ width: "98%", padding: 10 }} onClick={onDeleteSlider}>Si</button>
                         </div>
                         <div className="query">
                             <button onClick={handleClose} style={{ width: "98%", padding: 10, backgroundColor: "#2a7cce" }}>No</button>
@@ -230,6 +253,6 @@ export default function TableSlides(props) {
                 </Box>
             </Modal>
 
-        </TableContainer>
+        </TableContainer >
     );
 }

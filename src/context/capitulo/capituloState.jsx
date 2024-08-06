@@ -27,13 +27,10 @@ const CapituloState = props => {
 
             const respuesta2 = await clienteAxiosUpload.post(`/uploadCapitulo`, file);
 
-            return { data: { status: 200 } }
+            return respuesta.status
         } catch (error) {
-
-            dispatch({
-                type: MENSAJE_ERROR,
-                payload: error.response.data.msg
-            })
+            const errorMessage = error.response?.data?.msg || 'Error desconocido';
+            throw new Error(errorMessage); // Lanzar el error para que pueda ser manejado en la llamada de la función
         }
     }
 

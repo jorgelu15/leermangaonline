@@ -41,33 +41,46 @@ const DirectorioState = props => {
             const res = await clienteAxios.post(`/serie/filtros`, {
                 busquedaAvanzada: filtros
             });
+    
+            // Verifica si hay resultados
+            const seriesFounded = res.data.seriesFounded || [];
             
             dispatch({
                 type: FILTRAR,
-                payload: res.data.seriesFounded
-            })
-
+                payload: seriesFounded
+            });
+    
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            dispatch({
+                type: FILTRAR,
+                payload: []
+            });
         }
-    }
-
+    };
+    
     const buscador = async (busqueda) => {
-        
         try {
             const res = await clienteAxios.post(`/serie/busqueda`, {
                 busquedaAvanzada: busqueda
             });
+    
+            // Verifica si hay resultados
+            const seriesFounded = res.data.seriesFounded || [];
             
             dispatch({
                 type: FILTRAR,
-                payload: res.data.seriesFounded
-            })
-
+                payload: seriesFounded
+            });
+    
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            dispatch({
+                type: FILTRAR,
+                payload: []
+            });
         }
-    }
+    };
 
     return (
         <DirectorioContext.Provider

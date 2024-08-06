@@ -20,6 +20,7 @@ import { v4 } from 'uuid';
 import routes from "../../helpers/routes";
 import { TailSpin } from "react-loader-spinner";
 import { useGrupos } from "../../hooks/useGrupos";
+import { useNavigate } from "react-router-dom";
 
 const FallbackLoader = () => {
     return (
@@ -50,6 +51,7 @@ const FallbackLoader = () => {
 };
 
 const ContainerSubirobra = (props) => {
+    const navigate = useNavigate();
     const { usuario } = useAuth();
     const { grupos, getGrupos } = useGrupos();
     const { subirSerie } = useContext(serieContext);
@@ -441,10 +443,10 @@ const ContainerSubirobra = (props) => {
                         </div>
                     </div>
 
-                    <div className="control-button" style={{ justifyContent: "flex-end" }}>
-                        {/* <div className="btn-cancelar">
+                    <div className="control-button" style={{ justifyContent: "space-between" }}>
+                        <div onClick={() => navigate(-1)} className="btn-cancelar">
                             <p>Cancelar</p>
-                        </div> */}
+                        </div>
                         <div className="btn-subir" onClick={() => subirObra()}>
                             {loading ? <FallbackLoader /> : <p>Subir</p>}
                         </div>

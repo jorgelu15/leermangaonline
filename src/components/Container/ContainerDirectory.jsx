@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import React from "react";
 
-import {useAuth} from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import SearchDirectory from "../Search/SearchDirectory";
 import CardDirectory from "../Card/CardDirectory";
 import FormFilter from "../Form/FormFilter";
@@ -24,7 +24,7 @@ const ContainerDirectory = () => {
 
     const getData = () => {
         const end = counter + 18;
-        const slice = (filtrados.length > 0 ? filtrados : seriesFiltradas)?.slice(counter, end);
+        const slice = (filtrados?.length > 0 ? filtrados : seriesFiltradas)?.slice(counter, end);
         setCounter(counter + 18);
         setData(prevData => [...prevData, ...slice]);
     };
@@ -35,7 +35,7 @@ const ContainerDirectory = () => {
     };
 
     useEffect(() => {
-        if (seriesFiltradas || filtrados) {
+        if (seriesFiltradas?.length || filtrados?.length) {
             initData();
             setCounter(18);
         }
@@ -45,7 +45,7 @@ const ContainerDirectory = () => {
         const scrollHeight = document.documentElement.scrollHeight;
 
         if (window.scrollY + window.innerHeight >= scrollHeight) {
-            if (counter < ((filtrados.length > 0 ? filtrados : seriesFiltradas)?.length)) {
+            if (counter < (filtrados.length > 0 ? filtrados.length : seriesFiltradas.length)) {
                 getData();
             }
         }
@@ -58,6 +58,13 @@ const ContainerDirectory = () => {
         };
     }, [counter, filters]);
 
+    useEffect(() => {
+        // Reinitialize data when filters change
+        initData();
+        setCounter(18);
+    }, [filters]);
+
+    console.log(data)
     return (
         <div className="scan-groups">
             <aside className="filter">
@@ -72,7 +79,11 @@ const ContainerDirectory = () => {
             <main className="main-home">
                 <SearchDirectory filtros={filters} />
                 <div className="groups">
-                    {data && <CardDirectory cards={data} />}
+                    {data?.length > 0 ? (
+                        <CardDirectory cards={data} />
+                    ) : (
+                        <p>No se encontraron resultados</p>
+                    )}
                 </div>
             </main>
         </div>

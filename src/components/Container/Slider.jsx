@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-
 import administracionContext from '../../context/administracion/administracionContext';
 
 const Slider = () => {
@@ -8,14 +7,13 @@ const Slider = () => {
     const intervalRef = useRef(null);
 
     const { slider } = useContext(administracionContext);
-
     const [slides, setSlides] = useState([]);
-    
+
     useEffect(() => {
-        if(slider){
+        if (slider) {
             setSlides(slider);
         }
-    }, [slider])
+    }, [slider]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -32,7 +30,12 @@ const Slider = () => {
         window.addEventListener('resize', handleResize);
 
         intervalRef.current = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + slidesToShow) % slides.length);
+            setCurrentIndex((prevIndex) => {
+                if (prevIndex + slidesToShow >= slides.length) {
+                    return 0;
+                }
+                return prevIndex + 1;
+            });
         }, 5000);
 
         return () => {
@@ -42,7 +45,7 @@ const Slider = () => {
     }, [slides.length, slidesToShow]);
 
     const getActiveIndex = () => {
-        return Math.floor(currentIndex / slidesToShow) % Math.ceil(slides.length / slidesToShow);
+        return Math.floor(currentIndex / slidesToShow);
     };
 
     const goToSlide = (index) => {
@@ -55,10 +58,11 @@ const Slider = () => {
                 className="slider_inner"
                 style={{
                     transform: `translateX(-${(currentIndex / slidesToShow) * 100}%)`,
+                    transition: 'transform 0.5s ease'
                 }}
             >
                 {slides.map((slide, index) => (
-                    <div className='slide' key={index}>
+                    <div className='slide' key={index} style={{ width: `${100 / slidesToShow}%` }}>
                         <img src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/slider/' + slide.url} alt={`Slide ${index + 1}`} />
                     </div>
                 ))}

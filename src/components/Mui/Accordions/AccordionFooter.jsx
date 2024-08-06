@@ -4,11 +4,13 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Link } from 'react-router-dom';
+import routes from '../../../helpers/routes';
 
 export default function AccordionFooter() {
   return (
     <div>
-      <Accordion sx={{backgroundColor: "transparent", color: "white"}}>
+      <Accordion sx={{ backgroundColor: "transparent", color: "white" }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -19,19 +21,17 @@ export default function AccordionFooter() {
         <AccordionDetails>
           <Typography>
             <ul>
-                <li><a href="#">Sobre LeerMangaOnline</a></li>
-                <li><a href="#">Preguntas Frecuentes</a></li>
-                <li><a href="#">Manual de Uso</a></li>
-                <li><a href="#">Colaborar</a></li>
-                <li><a href="#">Normas de la Comunidad</a></li>
-                <li><a href="#">Terminos de Uso</a></li>
-                <li><a href="#">Politica de Privacidad</a></li>
-                <li><a href="#">Contacto</a></li>
+              <li><Link to={routes.terms}>Sobre LeerMangaOnline</Link></li>
+              <li><Link to={routes.terms}>Preguntas Frecuentes</Link></li>
+              <li><Link to={routes.terms}>Manual de Uso</Link></li>
+              <li><Link to={routes.terms}>Normas de la Comunidad</Link></li>
+              <li><Link to={routes.terms}>Terminos de Uso</Link></li>
+              <li><Link to={routes.terms}>Politica de Privacidad</Link></li>
             </ul>
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion sx={{backgroundColor: "transparent", color: "white"}}>
+      <Accordion sx={{ backgroundColor: "transparent", color: "white" }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
@@ -42,14 +42,13 @@ export default function AccordionFooter() {
         <AccordionDetails>
           <Typography>
             <ul>
-                <li><a href="#">Biblioteca</a></li>
-                <li><a href="#">Grupos</a></li>
-                <li><a href="#">Listas</a></li>
+              <li><Link to={routes.directory}>Biblioteca</Link></li>
+              <li><Link to={routes.groups}>Grupos</Link></li>
             </ul>
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion sx={{backgroundColor: "transparent", color: "white"}}>
+      <Accordion sx={{ backgroundColor: "transparent", color: "white" }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3a-content"
@@ -60,13 +59,13 @@ export default function AccordionFooter() {
         <AccordionDetails>
           <Typography>
             <p>LeerMangaOnline no realiza las traducciones aqui realizadas
-                y solo es un repositorio con visor propio para que distintos
-                grupos de traduccion puedan compartir de forma publica y 
-                organizada para el disfrute de todos.
+              y solo es un repositorio con visor propio para que distintos
+              grupos de traduccion puedan compartir de forma publica y
+              organizada para el disfrute de todos.
             </p>
             <p>
-                This site is protected by reCAPTCHA and the Google Privacy
-                and Terms of Service apply.
+              This site is protected by reCAPTCHA and the Google Privacy
+              and Terms of Service apply.
             </p>
           </Typography>
         </AccordionDetails>

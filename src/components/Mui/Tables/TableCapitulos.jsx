@@ -160,7 +160,26 @@ export default function TableCapitulos(props) {
   const { editarCapitulo } = useSeries();
 
   const handleEditarCapitulo = () => {
-    editarCapitulo(capituloEdit);
+    editarCapitulo(capituloEdit).then(status => {
+      if (status === 200) {
+          enqueueSnackbar("Se actualizo el capitulo exitosamente", {
+              variant: "success",
+              anchorOrigin: {
+                  vertical: "bottom",
+                  horizontal: "right"
+              }
+          })
+          handleClose();
+      } else {
+          enqueueSnackbar(response.msg, {
+              variant: "error",
+              anchorOrigin: {
+                  vertical: "bottom",
+                  horizontal: "right"
+              }
+          });
+      }
+  });;
   }
 
   const handleOpenUpdate = (solicitud) => {

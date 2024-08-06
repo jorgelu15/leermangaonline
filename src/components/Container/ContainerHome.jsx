@@ -123,13 +123,13 @@ const ContainerHome = (props) => {
                             {
                                 grupos?.map((grupo, idx) => {
                                     return (
-                                        <div key={idx} className="cont-cardgr">
+                                        <Link to={routes.scanlation+`/${grupo.id}`} key={idx} className="cont-cardgr">
                                             <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${grupo.portada}')` }}>
                                                 <div>
                                                 </div>
                                                 <p className="nombre">{grupo.nombre}</p>
                                             </div>
-                                        </div>
+                                        </Link>
                                     )
                                 })
                             }
@@ -174,7 +174,7 @@ const ContainerHome = (props) => {
                                             }}>
                                                 <div>
                                                     <p></p>
-                                                    <p className="calificacion">8.0</p>{/** falta la calif*/}
+                                                    <p className="calificacion">{serie?.votos[0]?.prom_vot}</p>{/*  falta la calificacion */}
                                                 </div>
                                                 <p className="nombre">{serie.nombre}</p>
                                             </div>
@@ -193,6 +193,7 @@ const ContainerHome = (props) => {
                         <div className="sec-cards">
                             {
                                 series?.map((serie, idx) => {
+                                    console.log(serie)
                                     return (
                                         <Link key={idx} to={routes.manga + `/${serie.serie_uid}/${reemplazarEspaciosConGuiones(serie.nombre.toLowerCase())}`} className="cont-card">
                                             <div className="card" style={{
@@ -200,7 +201,7 @@ const ContainerHome = (props) => {
                                             }}>
                                                 <div>
                                                     <p></p>
-                                                    <p className="calificacion">8.0</p>{/** falta la calif*/}
+                                                    <p className="calificacion">{serie?.votos[0]?.prom_vot}</p>{/*  falta la calificacion */}
                                                 </div>
                                                 <p className="nombre">{serie.nombre}</p>
                                             </div>

@@ -9,7 +9,7 @@ import arrow from '../../img/arrow-right.svg'
 import folder from '../../img/folder.svg'
 import close from '../../img/close.svg'
 import routes from "../../helpers/routes"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import capituloContext from "../../context/capitulo/capituloContext"
 import serieContext from "../../context/serie/serieContext"
 import gruposContext from "../../context/grupos/gruposContext"
@@ -30,7 +30,7 @@ const style = {
     p: 4,
 };
 const ContainerSubirmanga = (props) => {
-
+    const navigate = useNavigate();
     const [suppObras, setSuppObras] = useState([]);
     const [suppCap, setSuppCap] = useState([]);
     const [suppGrupos, setSuppGrupos] = useState([]);
@@ -43,7 +43,7 @@ const ContainerSubirmanga = (props) => {
     const { series, capitulos, getCapitulosSerie } = useSeries();
     const { grupos } = useContext(gruposContext);
     const { msg, subirGrupoCapitulo, subirCapitulo } = useContext(capituloContext);
-
+    const imagenesInputRef = useRef(null);
     const [infoCap, setInfoCap] = useState({
         serie_uid: "",
         id_grupo: "",
@@ -119,7 +119,7 @@ const ContainerSubirmanga = (props) => {
     };
 
     const subirObra = () => {
-        if (numero === "" || serie_uid?.trim() === "" || id_grupo === "" || fecha_pub === "") {
+        if (numero === "" || serie_uid?.trim() === "" || id_grupo === "" || fecha_pub === "" || id_capitulo.trim() === "" || link_desc.trim() === "") {
             enqueueSnackbar("Hay algunos campos que se deben llenar", {
                 variant: "default",
                 anchorOrigin: {
@@ -129,15 +129,37 @@ const ContainerSubirmanga = (props) => {
             });
             return;
         }
-        
 
         const data = packFiles(serieCapitulo);
         data.append("data", JSON.stringify(infoCap));
         data.append("ruta", "capitulos");
         data.append("carpeta", `${id_grupo}_${serie_uid}_${numero}`);
-        subirGrupoCapitulo(data).then (r => {
-            enqueueSnackbar("Capítulo creado exitosamente", {
-                variant: "success",
+        subirGrupoCapitulo(data).then(status => {
+            if (status === 200) {
+                enqueueSnackbar("Capítulo creado exitosamente", {
+                    variant: "success",
+                    anchorOrigin: {
+                        vertical: "bottom",
+                        horizontal: "right"
+                    }
+                });
+                // Vaciar campos
+                setInfoCap({
+                    serie_uid: "",
+                    id_grupo: "",
+                    titulo: "",
+                    numero: "",
+                    link_desc: "",
+                    fecha_pub: "",
+                    id_capitulo: ""
+                });
+
+                // Limpiar el input de archivos
+                if (imagenesInputRef.current) imagenesInputRef.current.value = "";
+            }
+        }).catch(error => {
+            enqueueSnackbar(error.message, {
+                variant: "error",
                 anchorOrigin: {
                     vertical: "bottom",
                     horizontal: "right"
@@ -291,14 +313,14 @@ const ContainerSubirmanga = (props) => {
                     <div className="control-form">
                         <label htmlFor="">Imagenes</label>
                         <div className="r-file">
-                            <input type="file" name="serieCapitulo" id="serieCapitulo" onChange={subirSerieCapitulo} multiple />
+                            <input ref={imagenesInputRef} type="file" name="serieCapitulo" id="serieCapitulo" onChange={subirSerieCapitulo} multiple />
                         </div>
                     </div>
 
                     <div className="control-button">
-                        <div className="btn-cancelar">
-                            <p>Cancelar</p>
-                        </div>
+                        <Link onClick={() => navigate(-1)} className="btn-cancelar">
+                            <p>Regresar</p>
+                        </Link>
                         <div className="btn-subir" onClick={subirObra}>
                             <p>Subir</p>
                         </div>
