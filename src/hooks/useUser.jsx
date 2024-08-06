@@ -6,7 +6,8 @@ export const useUser = () => {
         perfil,
         msg,
         getPerfil,
-        updatePerfil
+        updatePerfil,
+        deletePerfil
     } = useContext(perfilContext);
 
 
@@ -14,6 +15,7 @@ export const useUser = () => {
         perfil,
         msg,
         getPerfil,
-        updatePerfil
+        updatePerfil,
+        deletePerfil
     }
 }

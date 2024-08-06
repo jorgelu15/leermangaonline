@@ -14,7 +14,7 @@ import { SUPERADMIN } from "../../types";
 import { useSnackbar } from "notistack";
 
 
-const FormPerfil = () => {
+const FormPerfil = ({deletePerfil, ...props}) => {
 
     const { usuario } = useAuth();
     const { grupos, grupo, getGrupos } = useGrupos();
@@ -72,6 +72,29 @@ const FormPerfil = () => {
         updatePerfil(usuario?.id, f).then(status => {
             if (status === 200) {
                 enqueueSnackbar("Los datos del usuario han sido actualizados", {
+                    variant: "success",
+                    anchorOrigin: {
+                        vertical: "bottom",
+                        horizontal: "right"
+                    }
+                });
+                return;
+            }
+        }).catch(error => {
+            enqueueSnackbar(error.message, {
+                variant: "error",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            });
+        })
+    }
+
+    const onDeletePerfil = async (id) => {
+        await deletePerfil(id).then(status => {
+            if (status === 200) {
+                enqueueSnackbar("Se ha eliminado la cuenta", {
                     variant: "success",
                     anchorOrigin: {
                         vertical: "bottom",
@@ -173,7 +196,7 @@ const FormPerfil = () => {
                     <button className="btn-guardar" onClick={actualizarUsuario}>Guardar</button>
 
                     <p className="mensaje-elim">Ten cuidado la eliminacion de la cuenta es <b>Permanente</b></p>
-                    <button className="btn-eliminar">Eliminar cuenta</button>
+                    <button className="btn-eliminar" onClick={() => onDeletePerfil(usuario?.id)}>Eliminar cuenta</button>
                 </div>
                 :
                 <div className="perfil-grupos">

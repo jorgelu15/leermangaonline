@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 const ContainerPerfil = (props) => {
 
     const { usuario } = useAuth();
-    const { getPerfil, perfil } = useUser();
+    const { getPerfil, perfil, deletePerfil } = useUser();
     const { reacciones_usuario, getReaccionesUsuario } = useReaccion();
     const { id_usuario } = useParams();
     const [viewPerfil, setViewPerfil] = useState(true)
@@ -89,7 +89,7 @@ const ContainerPerfil = (props) => {
             </div>
             {usuario && (
                 <div className="cont-perfil-info">
-                    {viewPerfil ? <FormPerfil /> : null}
+                    {viewPerfil ? <FormPerfil deletePerfil={deletePerfil} /> : null}
                 </div>
             )}
 

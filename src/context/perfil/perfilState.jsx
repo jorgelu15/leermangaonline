@@ -1,4 +1,4 @@
-    import React, { useReducer } from 'react';
+import React, { useReducer } from 'react';
 import clienteAxios from '../../config/axios';
 import clienteAxiosUpload from '../../config/axiosUpload';
 
@@ -29,7 +29,7 @@ const PerfilState = props => {
                 payload: respuesta.data.usuario
             })
         } catch (error) {
-  
+
             dispatch({
                 type: MENSAJE_ERROR,
                 payload: error.response.data.msg
@@ -52,6 +52,17 @@ const PerfilState = props => {
         }
     }
 
+    const deletePerfil = async (id) => {
+        try {
+            const res = await clienteAxios.delete(`/usuarios/${id}`)
+
+            return res.status;
+        } catch (error) {
+            const errorMessage = error.response?.data?.msg || 'Error desconocido';
+            throw new Error(errorMessage); // Lanzar el error para que pueda ser manejado en la llamada de la función
+        }
+    }
+
     return (
         <PerfilContext.Provider
             value={{
@@ -59,6 +70,7 @@ const PerfilState = props => {
                 msg: state.msg,
                 getPerfil,
                 updatePerfil,
+                deletePerfil
             }}
         >
             {props.children}

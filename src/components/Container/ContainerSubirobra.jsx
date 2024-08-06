@@ -71,7 +71,8 @@ const ContainerSubirobra = (props) => {
     const { enqueueSnackbar } = useSnackbar()
     const [loading, setLoading] = useState(false);
     const [errorIndicator, setErrorIndicator] = useState(false);
-
+    const bannerInputRef = useRef(null);
+    const portadaInputRef = useRef(null);
     const DEMOGRAFIAS = ["", "Seinen", "Shoujo", "Shounen", "Josei", "Kodomo"];
     const TIPOS = ["", "Manga", "Manhua", "Manhwa", "Novela", "One shot", "Doujinshi", "Oel"];
     const IDIOMAS = ["", "EN", "ES"];
@@ -187,7 +188,7 @@ const ContainerSubirobra = (props) => {
         setObraId(v4());
         setTimeout(async () => {
             try {
-                await subirSerie(f);
+                // await subirSerie(f);
             } catch (error) {
                 console.log(error);
             } finally {
@@ -201,13 +202,21 @@ const ContainerSubirobra = (props) => {
                     estado: "",
                     sinopsis: "",
                     id_grupo: "",
-                    tipo: ""
-                })
-
+                    tipo: "",
+                    idioma: "",
+                    demografia: "",
+                    amateur: "",
+                    erotico: "",
+                    hentai: "",
+                    sentido_lectura: "",
+                    web_comic: "",
+                    yonkoma: ""
+                });
+                if (bannerInputRef.current) bannerInputRef.current.value = '';
+                if (portadaInputRef.current) portadaInputRef.current.value = '';
                 setLoading(false);
             }
         }, 1500);
-
         enqueueSnackbar("Obra creada", {
             variant: "success",
             anchorOrigin: {
@@ -246,14 +255,14 @@ const ContainerSubirobra = (props) => {
                     <div className="control-form">
                         <label htmlFor="">Banner*</label>
                         <div className="r-file" style={errorIndicator ? { border: `2px solid Red` } : null}>
-                            <input type="file" name="banner" id="banner" onChange={(e) => subirBanner(e.target.files[0])} />
+                            <input type="file" name="banner" id="banner" onChange={(e) => subirBanner(e.target.files[0])} ref={bannerInputRef} />
                         </div>
                     </div>
 
                     <div className="control-form">
                         <label htmlFor="">Miniatura*</label>
                         <div className="r-file " style={errorIndicator ? { border: `2px solid Red` } : null}>
-                            <input type="file" name="portada" id="portada" onChange={(e) => subirPortada(e.target.files[0])} />
+                            <input type="file" name="portada" id="portada" onChange={(e) => subirPortada(e.target.files[0])} ref={portadaInputRef} />
                         </div>
                     </div>
 
@@ -371,7 +380,7 @@ const ContainerSubirobra = (props) => {
                             </select>
                         </div>
                     </div>
-              
+
                     <div className="control-form">
                         <label htmlFor="">Web comic*</label>
                         <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
@@ -382,7 +391,7 @@ const ContainerSubirobra = (props) => {
                             </select>
                         </div>
                     </div>
-                   
+
                     <div className="control-form">
                         <label htmlFor="">Yonkoma*</label>
                         <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
@@ -393,7 +402,7 @@ const ContainerSubirobra = (props) => {
                             </select>
                         </div>
                     </div>
-                    
+
                     <div className="control-form">
                         <label htmlFor="">Sentido de lectura*</label>
                         <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
