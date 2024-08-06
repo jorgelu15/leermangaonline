@@ -22,11 +22,11 @@ const PerfilState = props => {
 
     const getPerfil = async (id) => {
         try {
-            const respuesta = await clienteAxios.get(`/perfil/${id}/`);
+            const respuesta = await clienteAxios.get(`/usuarios/${id}/`);
 
             dispatch({
                 type: OBTENER_PERFIL,
-                payload: respuesta.data.perfil
+                payload: respuesta.data.usuario
             })
         } catch (error) {
   
@@ -45,12 +45,10 @@ const PerfilState = props => {
                 type: ACTUALIZAR_PERFIL,
                 payload: respuesta.data.perfil
             })
+            return respuesta.status;
         } catch (error) {
-  
-            dispatch({
-                type: MENSAJE_ERROR,
-                payload: error.response.data.msg
-            })
+            const errorMessage = error.response?.data?.msg || 'Error desconocido';
+            throw new Error(errorMessage); // Lanzar el error para que pueda ser manejado en la llamada de la función
         }
     }
 

@@ -35,13 +35,13 @@ const AuthState = props => {
                 type: LOGIN_EXITOSO,
                 payload: respuesta.data
             })
-            
-            usuarioAutenticado();
+
+            const status = respuesta.data ? respuesta.status : usuarioAutenticado();
+            return status;
         } catch (error) {
-            dispatch({
-                type: LOGIN_ERROR,
-                payload: error.response.data.msg
-            })
+            const errorMessage = error.response?.data?.msg || 'Error desconocido';
+            throw new Error(errorMessage); // Lanzar el error para que pueda ser manejado en la llamada de la función
+
         }
     }
 
@@ -53,7 +53,7 @@ const AuthState = props => {
                 payload: respuesta.data
             })
         } catch (error) {
-  
+
             dispatch({
                 type: REGISTRO_ERROR,
                 payload: error.response.data.msg
@@ -62,7 +62,7 @@ const AuthState = props => {
     }
 
     const usuarioAutenticado = async () => {
-        
+
         const token = localStorage.getItem('token');
         tokenAuth(token);
 
@@ -72,6 +72,7 @@ const AuthState = props => {
                 type: USUARIO_AUTENTICADO,
                 payload: respuesta.data.usuario
             })
+            return respuesta.status;
         } catch (error) {
             logOut();
         }

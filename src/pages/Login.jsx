@@ -4,13 +4,19 @@ import { useEffect, useState } from "react";
 
 import { useAuth } from "../hooks/useAuth";
 
+import eye from "../img/eye.svg";
+import noEye from "../img/no-eye.svg";
+import { useSnackbar } from "notistack";
+
 
 const Login = () => {
 
-    const { autenticado, usuario, signIn, usuarioAutenticado } = useAuth();
+    const { autenticado, usuario, msg, signIn, usuarioAutenticado } = useAuth();
 
     let navigate = useNavigate();
     let location = useLocation();
+    const { enqueueSnackbar } = useSnackbar();
+    const [showPass, setShowPass] = useState(false);
 
     let from = location.state?.from?.pathname || routes.login;
 
@@ -33,11 +39,37 @@ const Login = () => {
         e.preventDefault();
 
         if (correo.trim() === "" || clave.trim() === "") {
-            //   mostrarAlerta('Todos los campos son obligatorios');
+            enqueueSnackbar("Todos los campos son obligatorios", {
+                variant: "error",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            });
             return;
         }
 
-        signIn({ correo, clave });
+        signIn({ correo, clave }).then(status => {
+            if (status === 200) {
+                enqueueSnackbar("Autenticando usuario", {
+                    variant: "success",
+                    anchorOrigin: {
+                        vertical: "bottom",
+                        horizontal: "right"
+                    }
+                });
+                return;
+            }
+        }).catch(error => {
+            enqueueSnackbar(error.message, {
+                variant: "error",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            });
+        })
+
     };
 
     return (
@@ -58,9 +90,12 @@ const Login = () => {
                         </div>
                         <div className="form-group">
                             <label htmlFor="password" className="text-label">contrasena</label>
-                            <input type="password" placeholder="Contrasena" id="password" className="input-style"
-                                value={clave} onChange={(e) => setClave(e.target.value)}
-                            />
+                            <div style={{ position: "relative" }}>
+                                <input type={showPass ? "text" : "password"} placeholder="Contrasena" id="password" className="input-style"
+                                    value={clave} onChange={(e) => setClave(e.target.value)}
+                                />
+                                <img onClick={() => setShowPass(!showPass)} src={showPass ? noEye : eye} style={{ filter: "invert(1)", position: "absolute", right: 20, top: 30, cursor: "pointer" }} width={24} />
+                            </div>
                         </div>
                         <div className="form-group">
                             <div onClick={handlerSubmit} className="input-style btn-primary">Siguiente</div>

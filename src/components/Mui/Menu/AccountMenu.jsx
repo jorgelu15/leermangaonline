@@ -16,11 +16,12 @@ import ListIcon from '@mui/icons-material/List';
 import routes from '../../../helpers/routes';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
+import { useText } from '../../../hooks/useText';
 
 export default function AccountMenu() {
 
     const { usuario, logOut } = useAuth();
-
+    const { reemplazarEspaciosConGuiones } = useText();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -63,7 +64,7 @@ export default function AccountMenu() {
             >
 
                 <MenuItem onClick={handleClose}>
-                    <Link to={routes.perfil}
+                    <Link to={routes.perfil + `/${usuario?.id}/${reemplazarEspaciosConGuiones(usuario?.usuario)}`}
                         style={{ display: 'flex', alignItems: 'center', color: 'black' }}>
                         <Avatar /><p style={{ marginLeft: 10 }}>Mi perfil</p>
                     </Link>
@@ -72,7 +73,7 @@ export default function AccountMenu() {
                 <Divider />
 
                 <MenuItem onClick={handleClose}>
-                    <Link to={routes.perfil}
+                    <Link to={routes.perfil + `/${usuario?.id}/${reemplazarEspaciosConGuiones(usuario?.usuario)}`}
                         style={{ display: 'flex', alignItems: 'center', color: 'black' }}>
                         <ListItemIcon>
                             <ListIcon fontSize="small" />
@@ -81,7 +82,7 @@ export default function AccountMenu() {
                     </Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                    <Link to={routes.perfil}
+                    <Link to={routes.perfil + `/${usuario?.id}/${reemplazarEspaciosConGuiones(usuario?.usuario)}`}
                         style={{ display: 'flex', alignItems: 'center', color: 'black' }}>
                         <ListItemIcon>
                             <Settings fontSize="small" />

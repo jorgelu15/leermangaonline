@@ -200,14 +200,8 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/',
-    element: <ProtectedRoute />,
-    children: [
-      {
-        path: routes.perfil,
+    path: routes.perfil+`/:id_usuario/:name_usuario`,
         element: <Suspense fallback={<FallbackLoader />}><Perfil /></Suspense>
-      },
-    ]
   },
 ]);
 

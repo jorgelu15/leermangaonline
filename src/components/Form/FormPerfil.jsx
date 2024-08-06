@@ -11,6 +11,7 @@ import { useGrupos } from "../../hooks/useGrupos";
 import { Link } from "react-router-dom";
 import routes from "../../helpers/routes";
 import { SUPERADMIN } from "../../types";
+import { useSnackbar } from "notistack";
 
 
 const FormPerfil = () => {
@@ -19,6 +20,7 @@ const FormPerfil = () => {
     const { grupos, grupo, getGrupos } = useGrupos();
 
     const { updatePerfil } = useContext(perfilContext);
+    const { enqueueSnackbar } = useSnackbar();
 
     const [userEdit, setUserEdit] = useState({});
     const onChangeUser = e => {
@@ -67,7 +69,26 @@ const FormPerfil = () => {
         }
         f.append("data", JSON.stringify(userEdit));
         f.append("ruta", "avatar");
-        updatePerfil(usuario?.id, f);
+        updatePerfil(usuario?.id, f).then(status => {
+            if (status === 200) {
+                enqueueSnackbar("Los datos del usuario han sido actualizados", {
+                    variant: "success",
+                    anchorOrigin: {
+                        vertical: "bottom",
+                        horizontal: "right"
+                    }
+                });
+                return;
+            }
+        }).catch(error => {
+            enqueueSnackbar(error.message, {
+                variant: "error",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            });
+        })
     }
 
 
@@ -85,7 +106,7 @@ const FormPerfil = () => {
 
                         <div className="box">
                             <label htmlFor="correo">Correo</label>
-                            <input type="text" name="correo" value={userEdit?.correo} onChange={onChangeUser} />
+                            <input type="text" name="correo" value={userEdit?.correo} onChange={onChangeUser} disabled />
                         </div>
 
                         <div className="box">
