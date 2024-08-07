@@ -183,6 +183,9 @@ const ContainerSubirmanga = (props) => {
         subirCapitulo({ tituloObra, serie_uid, numeroCapitulo })
             .then((response) => {
                 if (response.status === 200) {
+                    if (serie_uid) {
+                        getCapitulosSerie(serie_uid);
+                    }
                     enqueueSnackbar("Capítulo creado exitosamente", {
                         variant: "success",
                         anchorOrigin: {
@@ -333,7 +336,7 @@ const ContainerSubirmanga = (props) => {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={style}>
-                        <Typography fontSize={20} color="white" marginBottom={2} fontWeight={600}>¿Está seguro de eliminar esta serie?</Typography>
+                        <Typography fontSize={20} color="white" marginBottom={2} fontWeight={600}>Creación de capítulo</Typography>
                         <div style={{ flexDirection: 'column', display: 'flex', width: "100%", marginBottom: 10 }}>
                             <label htmlFor="tituloObra" style={{ color: "#ffffff" }}>Título del capítulo</label>
                             <div className="r-sel">
