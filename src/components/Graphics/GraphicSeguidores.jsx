@@ -42,7 +42,6 @@ export const options = {
 const labels = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
 
-console.log(labels.map(() => faker.datatype.number({ min: 0, max: 1000 })))
 
 const GraphicSeguidores = (props) => {
   const { id } = useParams();

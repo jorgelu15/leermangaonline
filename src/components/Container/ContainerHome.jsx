@@ -193,7 +193,6 @@ const ContainerHome = (props) => {
                         <div className="sec-cards">
                             {
                                 series?.map((serie, idx) => {
-                                    console.log(serie)
                                     return (
                                         <Link key={idx} to={routes.manga + `/${serie.serie_uid}/${reemplazarEspaciosConGuiones(serie.nombre.toLowerCase())}`} className="cont-card">
                                             <div className="card" style={{

@@ -14,7 +14,7 @@ import { SUPERADMIN } from "../../types";
 import { useSnackbar } from "notistack";
 
 
-const FormPerfil = ({deletePerfil, ...props}) => {
+const FormPerfil = ({ deletePerfil, ...props }) => {
 
     const { usuario } = useAuth();
     const { grupos, grupo, getGrupos } = useGrupos();
@@ -51,7 +51,7 @@ const FormPerfil = ({deletePerfil, ...props}) => {
 
     useEffect(() => {
         getGrupos(usuario?.id);
-    }, []);
+    }, [usuario]);
 
 
     const actualizarUsuario = () => {
@@ -208,16 +208,9 @@ const FormPerfil = ({deletePerfil, ...props}) => {
                     <div className="cards-scan">
 
                         {
-                            grupos ?
-                                grupos.length !== 0 ? grupos.map((item, idx) => item.estado ? (
-
-                                    <CardScanPl key={idx} grupo={item}></CardScanPl>
-
-                                ) : null) :
-                                    <div>
-                                        <p className="">No hay grupos</p>
-                                    </div>
-                                : <p className="">No hay grupos</p>
+                            grupos?.length > 0 ? grupos.map((item, idx) => item.estado && (
+                                <CardScanPl key={idx} grupo={item}></CardScanPl>
+                            )) : <p>No hay grupos</p>
                         }
 
                     </div>
@@ -231,7 +224,7 @@ const FormPerfil = ({deletePerfil, ...props}) => {
                 <div>
                     <button onClick={() => setViewEdit(true)} className={'btn-perfil'}>Editar perfil</button>
                     <button onClick={() => setViewEdit(false)} className={'btn-perfil'}>Mis grupos</button>
-                    {usuario?.rol === SUPERADMIN && <Link to={routes.panelAdmin+`/${usuario?.id}/${usuario?.usuario}`} className={'btn-perfil'}>Moderacion</Link>}
+                    {usuario?.rol === SUPERADMIN && <Link to={routes.panelAdmin + `/${usuario?.id}/${usuario?.usuario}`} className={'btn-perfil'}>Moderacion</Link>}
                 </div>
             </div>
             <ModalGrupo open={openMG} setOpen={setOpenMG}></ModalGrupo>

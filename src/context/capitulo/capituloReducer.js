@@ -6,7 +6,7 @@ export default (state, action) => {
         case SUBIR_SERIE:
             return {
                 ...state,
-                msg: action.payload
+                capitulos: [...state, action.payload]
             }
         case OBTENER_CAPITULO:
             return {

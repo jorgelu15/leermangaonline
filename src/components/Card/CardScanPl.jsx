@@ -1,14 +1,14 @@
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
 
-import gruposContext from "../../context/grupos/gruposContext";
 import routes from "../../helpers/routes";
 
 import group from "../../img/group.svg"
 import setting from "../../img/settings.png"
 import { useNavigate } from "react-router-dom";
 import { useText } from "../../hooks/useText";
+import { useGrupos } from "../../hooks/useGrupos";
 
 
 
@@ -17,12 +17,15 @@ const CardScanPl = (props) => {
         grupo,
     } = props;
 
-    const { getGrupo } = useContext(gruposContext)
+    const { miembros, getGrupo, getMiembros } = useGrupos();
     const { enqueueSnackbar } = useSnackbar();
     const { reemplazarEspaciosConGuiones } = useText();
 
     let navigate = useNavigate();
 
+    useEffect(() => {
+        getMiembros(grupo?.id);
+    }, [])
 
     const handleClick = async () => {
         enqueueSnackbar("Bienvenido al Panel de administracion", {
@@ -33,7 +36,7 @@ const CardScanPl = (props) => {
             }
         })
         await getGrupo(grupo)
-        navigate(routes.panel + `/${ grupo.id }/${ reemplazarEspaciosConGuiones(grupo.nombre.toLowerCase()) }`)
+        navigate(routes.panel + `/${grupo.id}/${reemplazarEspaciosConGuiones(grupo.nombre.toLowerCase())}`)
     }
 
     return (
@@ -43,8 +46,8 @@ const CardScanPl = (props) => {
                     <p>{grupo?.nombre}</p>
                 </div>
                 <div className="cont">
-                    <div className="etiq">UPLOADER</div>
-                    <div className="count"><img src={group} />{grupo?.id}</div>
+                    <div className="etiq" style={{textTransform: "uppercase"}}>{grupo?.tipo}</div>
+                    <div className="count"><img src={group} />{miembros?.length}</div>
                 </div>
             </div>
             <div onClick={handleClick} className="conf">

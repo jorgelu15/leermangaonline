@@ -39,7 +39,7 @@ const CapituloState = props => {
             const res = await clienteAxios.post(`/capitulo`, data);
             dispatch({
                 type: MENSAJE_ERROR,
-                payload: res.data.msg
+                payload: res.data.capitulo
             })
             return res.data;
         } catch (error) {

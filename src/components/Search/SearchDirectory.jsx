@@ -50,7 +50,6 @@ const SearchDirectory = (props) => {
 
   const onClickBuscar = async () => {
     setLoading(true);
-    console.log(consulta);
     setTimeout(async () => {
       try {
         if ((filtros?.genero.length >= 0 || filtros?.demografia.length >= 0 || filtros?.tipo.length >= 0) && consulta?.trim() === "") {

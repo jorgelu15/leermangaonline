@@ -4,6 +4,7 @@ import close from "../../img/close.svg";
 import gruposContext from "../../context/grupos/gruposContext";
 import { useSnackbar } from "notistack";
 import { useAuth } from "../../hooks/useAuth";
+import { useGrupos } from "../../hooks/useGrupos";
 
 const ModalGrupo = (props) => {
     const {
@@ -12,14 +13,14 @@ const ModalGrupo = (props) => {
     } = props;
 
     const { usuario } = useAuth();
-    const { insertGrupo, grupo } = useContext(gruposContext)
+    const { insertGrupo, grupo, getGrupos } = useGrupos();
     const { enqueueSnackbar } = useSnackbar()
 
     const [nombre, setNombre] = useState('')
     const [correo, setCorreo] = useState('')
 
 
-    const handlerSubmit = (e) => {
+    const handlerSubmit = async (e) => {
         e.preventDefault();
 
         if (nombre.trim() === "" || correo.trim() === "") {
@@ -27,8 +28,8 @@ const ModalGrupo = (props) => {
             return;
         }
 
-        insertGrupo({ usuarioId: usuario?.id, nombre, correo })
-
+        await insertGrupo({ usuarioId: usuario?.id, nombre, correo })
+        await getGrupos(usuario?.id)
         enqueueSnackbar("Grupo creado", {
             variant: "success",
             anchorOrigin: {

@@ -29,7 +29,6 @@ const ContainerPerfil = (props) => {
     useEffect(() => {
         getPerfil(id_usuario)
     }, [])
-    console.log(perfil)
 
     const items = {
         tabs: 5,

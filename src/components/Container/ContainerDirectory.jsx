@@ -64,7 +64,6 @@ const ContainerDirectory = () => {
         setCounter(18);
     }, [filters]);
 
-    console.log(data)
     return (
         <div className="scan-groups">
             <aside className="filter">
