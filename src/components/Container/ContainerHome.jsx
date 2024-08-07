@@ -145,7 +145,7 @@ const ContainerHome = (props) => {
                                 noticias?.map((noticia, idx) => {
                                     return (
                                         <div key={idx} className="card">
-                                            <img src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/slider/' + noticia.url} />
+                                            <img src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/noticia/' + noticia.url} />
                                             <div className="info">
                                                 <div>
                                                     <h3>{noticia.titulo}</h3>

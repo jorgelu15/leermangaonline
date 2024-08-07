@@ -8,7 +8,10 @@ export const useAdmin = () => {
         getSliderImages,
         postSliderImage,
         deleteSliderImage,
-        getAllNoticias
+        getAllNoticias,
+        postNoticia,
+        updateNoticia,
+        deleteNoticia
     } = useContext(administracionContext);
 
     return {
@@ -17,6 +20,9 @@ export const useAdmin = () => {
         getSliderImages,
         postSliderImage,
         deleteSliderImage,
-        getAllNoticias
+        getAllNoticias,
+        postNoticia,
+        updateNoticia,
+        deleteNoticia
     }
 }

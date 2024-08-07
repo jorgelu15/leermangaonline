@@ -22,6 +22,8 @@ import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
 import { SUPERADMIN } from '../../../types';
 import { useAuth } from '../../../hooks/useAuth';
+import { useAdmin } from '../../../hooks/useAdmin';
+import { v4 } from 'uuid';
 
 const style = {
   position: 'absolute',
@@ -101,43 +103,46 @@ export default function TableNoticias(props) {
 
   const {
     proyectos,
-    openModal, setOpenModal
+    openModal, 
+    setOpenModal,
+    openModalEdit,
+    setOpenModalEdit
   } = props;
 
-
+  
   const { enqueueSnackbar } = useSnackbar()
   const { usuario } = useAuth();
-
-
+  
+  
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - proyectos?.length) : 0;
-
+  page > 0 ? Math.max(0, (1 + page) * rowsPerPage - proyectos?.length) : 0;
+  
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+  
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+  
   const formatDate = (fecha) => {
     const date = new Date(fecha);
-
+    
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const seconds = date.getSeconds();
-
+    
     return (`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
   }
-
+  
   const [modalProjects, setModalProjects] = React.useState({
     update: false,
     delete: false
@@ -145,11 +150,137 @@ export default function TableNoticias(props) {
   const handleOpenUpdate = () => {
     setOpenModal(true)
   };
-  const handleClose = () => setOpenModal(false);
-  const onAuthorizeSerie = () => {
-    console.log("autorizada")
+  const handleClose = () => {
+    setOpenModal(false);
+    setOpenModalEdit(false);
+    setModalProjects({update: false, delete: false})
+  };
+
+  const { postNoticia, updateNoticia, deleteNoticia } = useAdmin()
+
+  const [infoNoticia, setInfoNoticia] = React.useState({
+    titulo: "",
+    descripcion: ""
+  });
+
+  const { titulo, descripcion } = infoNoticia;
+
+  const onChange = (e) => {
+    setInfoNoticia({
+      ...infoNoticia,
+      [e.target.name]: e.target.value
+    })
   }
 
+  const [archivo, setArchivo] = React.useState(null);
+
+  const subirArchivo = (e) => {
+      setArchivo(e);
+      // const nombreCortado = e.name.split('.');
+      // const extension = nombreCortado[nombreCortado.length - 1];
+      // const newName = v4() + '.' + extension;
+      // setName(newName);
+  }
+
+  const onUpdateNoticia = () => {
+      const f = new FormData();
+
+      if (archivo !== null) {
+          const nombreCortado = archivo.name.split('.');
+          const extension = nombreCortado[nombreCortado.length - 1];
+          const newName = v4() + '.' + extension;
+          f.append("archivo", archivo, newName);
+          f.append("titulo", JSON.stringify(titulo));
+          f.append("contenido", JSON.stringify(descripcion));
+          f.append("url", JSON.stringify(newName));
+          f.append("ruta", "noticia");
+          postNoticia(f).then(status => {
+              if (status === 200) {
+                  enqueueSnackbar("Se subio la noticia exitosamente", {
+                      variant: "success",
+                      anchorOrigin: {
+                          vertical: "bottom",
+                          horizontal: "right"
+                      }
+                  })
+                  if(sliderInputRef.current) sliderInputRef.current.value = "";
+              } else {
+                  enqueueSnackbar(response.msg, {
+                      variant: "error",
+                      anchorOrigin: {
+                          vertical: "bottom",
+                          horizontal: "right"
+                      }
+                  });
+              }
+          });
+      }
+      setInfoNoticia({
+        titulo: "",
+        descripcion: ""
+      });
+      handleClose()
+  }
+
+  const [infoEdit, setInfoEdit] = React.useState({
+    id_noticia: "",
+    tituloEdit: "",
+    descripcionEdit: ""
+  })
+
+  const { id_noticia, tituloEdit, descripcionEdit } = infoEdit;
+
+  const onChangeEdit = (e) => {
+    setInfoEdit({
+      ...infoEdit,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleUpdateNoticia = (id_noticia) => {
+    setOpenModalEdit(true);
+    const noticia = proyectos.find((item) => item.id_noticia === id_noticia)
+    setInfoEdit({
+      ...infoEdit,
+      id_noticia: noticia.id_noticia,
+      tituloEdit: noticia.titulo,
+      descripcionEdit: noticia.contenido
+    })
+  }
+
+  const [idDelete, setIdDelete] = React.useState("");
+
+  const actualizarNoticia = () => {
+
+    updateNoticia(infoEdit).then(status => {
+        if (status === 200) {
+            enqueueSnackbar("Se subio la noticia exitosamente", {
+                variant: "success",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            })
+            if(sliderInputRef.current) sliderInputRef.current.value = "";
+        } else {
+            enqueueSnackbar(response.msg, {
+                variant: "error",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            });
+        }
+  })
+  setInfoEdit({
+    id_noticia: "",
+    tituloEdit: "",
+    descripcionEdit: ""
+  })
+
+  handleClose();
+}
+  
   return (
     <>
       {proyectos?.length !== 0 ? (
@@ -178,16 +309,16 @@ export default function TableNoticias(props) {
                     {solicitud.contenido}
                   </TableCell>
                   <TableCell component="th" align="center">
-                    <img width={80} height={40} alt={solicitud.url} src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/slider/' + solicitud.url} />
+                    <img width={80} height={40} alt={solicitud.url} src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/noticia/' + solicitud.url} />
                   </TableCell>
                   <TableCell component="th" align="center">
                     {formatDate(solicitud.createdAt)}
                   </TableCell>
-                  {usuario?.rol === SUPERADMIN && solicitud.verificacion === 0 ? (
+                  {usuario?.rol === SUPERADMIN ? (
                     <>
                       <TableCell component="th" align="center" style={{ justifyContent: "space-between" }}>
-                        <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{ margin: "0 5px" }}>Actualizar</button>
-                        <button onClick={onAuthorizeSerie} className='table-btn-ac' style={{ background: "rgb(89, 165, 92)" }}>Eliminar</button>
+                        <button onClick={() => handleUpdateNoticia(solicitud.id_noticia)} className='table-btn-ac' style={{ margin: "0 5px" }}>Actualizar</button>
+                        <button onClick={() => {setModalProjects({update: false, delete: true}); setIdDelete(solicitud.id_noticia)}} className='table-btn-ac' style={{ background: "rgb(89, 165, 92)" }}>Eliminar</button>
                       </TableCell>
                     </>
                   ) : <TableCell component="th" align="center"></TableCell>}
@@ -234,17 +365,38 @@ export default function TableNoticias(props) {
         <Box sx={style}>
           <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Crear noticia</Typography>
           <div className="query">
-            <input type="text" className="input-src" placeholder="Titulo" style={{ width: '100%' }} />
+            <input type="text" className="input-src" placeholder="Titulo" style={{ width: '100%' }} name="titulo" value={titulo} onChange={onChange}/>
           </div>
           <div className="query" style={{ flexDirection: "column", color: "black" }}>
-            <input type="file" className="input-src" style={{ width: '100%' }} />
+            <input type="file" className="input-src" style={{ width: '100%' }} onChange={(e) => subirArchivo(e.target.files[0])}/>
           </div>
           <div className="query">
-            <textarea className="input-src" name="sinopsis" id="sinopsis" cols="30" rows="4" placeholder="Descripcion..."
-              style={{ background: 'white', width: "100%", resize: "none", color: "black", padding: 5, border: '1px solid #dfdfdf' }}></textarea>
+            <textarea className="input-src" id="sinopsis" cols="30" rows="4" placeholder="Descripcion..."
+              style={{ background: 'white', width: "100%", resize: "none", color: "black", padding: 5, border: '1px solid #dfdfdf' }} name="descripcion" value={descripcion} onChange={onChange}></textarea>
           </div>
           <div className="query">
-            <button style={{ width: "100%", padding: 10 }}>Crear</button>
+            <button style={{ width: "100%", padding: 10 }} onClick={onUpdateNoticia}>Crear</button>
+          </div>
+        </Box>
+      </Modal>
+      {/* modal de editar */}
+      <Modal
+        open={openModalEdit}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Editar noticia</Typography>
+          <div className="query">
+            <input type="text" className="input-src" placeholder="Titulo" style={{ width: '100%' }} name="tituloEdit" value={tituloEdit} onChange={onChangeEdit}/>
+          </div>
+          <div className="query">
+            <textarea className="input-src" id="sinopsis" cols="30" rows="4" placeholder="Descripcion..."
+              style={{ background: 'white', width: "100%", resize: "none", color: "black", padding: 5, border: '1px solid #dfdfdf' }} name="descripcionEdit" value={descripcionEdit} onChange={onChangeEdit}></textarea>
+          </div>
+          <div className="query">
+            <button style={{ width: "100%", padding: 10 }} onClick={actualizarNoticia}>Actualizar</button>
           </div>
         </Box>
       </Modal>
@@ -258,7 +410,7 @@ export default function TableNoticias(props) {
           <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Esta seguro de eliminar estas serie?</Typography>
           <div style={{ flexDirection: 'row', display: 'flex', width: "100%", justifyContent: "space-between" }}>
             <div className="query">
-              <button style={{ width: "98%", padding: 10 }}>Si</button>
+              <button onClick={() => {deleteNoticia(idDelete); setModalProjects({update: false, delete: false})}} style={{ width: "98%", padding: 10 }}>Si</button>
             </div>
             <div className="query">
               <button onClick={handleClose} style={{ width: "98%", padding: 10, backgroundColor: "#2a7cce" }}>No</button>

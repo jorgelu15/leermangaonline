@@ -13,6 +13,7 @@ const PanelNoticias = (props) => {
     const [resultados, setResultados] = useState([]);
     const [paramQ, setParamQ] = useState(null);
     const [openModal, setOpenModal] = useState(false)
+    const [openModalEdit, setOpenModalEdit] = useState(false)
 
     const [busqueda, guardarBusqueda] = useState({
         proyecto: "",
@@ -70,7 +71,7 @@ const PanelNoticias = (props) => {
                     />
 
                     <TableNoticias proyectos={resultados} setOpenModal={setOpenModal}
-                        openModal={openModal} />
+                        openModal={openModal} setOpenModalEdit={setOpenModalEdit} openModalEdit={openModalEdit} />
                 </div>
             </div>
         </div>
