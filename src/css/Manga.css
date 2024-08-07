@@ -429,7 +429,13 @@
 }
 
 .manga-view img {
-  width: 100%;
+  width: 70%;
+}
+
+@media (max-width: 760px) {
+  .manga-view img {
+    width: 100%;
+  }
 }
 
 /* Login register ------------------------------- */

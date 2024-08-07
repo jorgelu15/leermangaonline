@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useState } from "react"
 import React, { useRef } from 'react';
 
@@ -11,7 +10,7 @@ import { useParams } from "react-router-dom";
 
 const ContainerVermanga = (props) => {
 
-    const { paginacion } = props;
+    const { paginacion, toggleVisibility } = props;
 
     const [paginaActual, setPaginaActual] = useState(0);
 
@@ -21,15 +20,21 @@ const ContainerVermanga = (props) => {
 
     const numeroPaginas = paginas?.length;
 
+    const mangaViewRef = useRef(null);
+
     const next = () => {
         if (paginaActual + 1 < numeroPaginas) {
             setPaginaActual(paginaActual + 1);
+            // Deslizar la pantalla hacia arriba
+            mangaViewRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
     const prev = () => {
         if (paginaActual - 1 >= 0) {
             setPaginaActual(paginaActual - 1);
+            // Deslizar la pantalla hacia arriba
+            mangaViewRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
@@ -47,7 +52,7 @@ const ContainerVermanga = (props) => {
 
     return (
         <div>
-            <div className="manga-view">
+            <div ref={mangaViewRef} className="manga-view" onClick={toggleVisibility}>
                 {
                     paginacion ?
                         paginas?.map((capitulo, indx) => <img src={`http://upload.leermangaonline.com/uploads/capitulos/${id_grupo + '_' + serie_uid + '_' + id_capitulo + '/' + capitulo?.url}`} alt="capitulo" key={indx} />)
@@ -60,14 +65,63 @@ const ContainerVermanga = (props) => {
             </div>
             {
                 !paginacion ?
-                    <div>
-                        {paginaActual + 1 < numeroPaginas ? <button onClick={next} style={{ padding: 5, backgroundColor: "#7bb9ff", border: "none", borderRadius: 3, fontWeight: "700", textTransform: "uppercase" }}>Siguiente</button> : null}
-                        <br />
-                        {paginaActual - 1 >= 0 ? <button onClick={prev} style={{ padding: 5, backgroundColor: "#7bb9ff", border: "none", borderRadius: 3, fontWeight: "700", textTransform: "uppercase" }}>Anterior</button> : null}
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center", // Centra los elementos horizontalmente
+                        alignItems: "center", // Centra los elementos verticalmente
+                        width: "100%",
+                        maxWidth: "1280px",
+                        margin: "0 auto" // Centra el contenedor en su padre
+                    }}>
+                        {paginaActual - 1 >= 0 ? (
+                            <button
+                                onClick={prev}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    padding: '10px 20px',
+                                    backgroundColor: '#007bff',
+                                    color: '#fff',
+                                    border: 'none',
+                                    borderRadius: '5px',
+                                    fontWeight: '700',
+                                    textTransform: 'uppercase',
+                                    cursor: 'pointer',
+                                    marginRight: '10px' // Espacio entre los botones
+                                }}
+                            >
+                                Anterior
+                            </button>
+                        ) : null}
+                        {paginaActual + 1 < numeroPaginas ? (
+                            <button
+                                onClick={next}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    padding: '10px 20px',
+                                    backgroundColor: '#007bff',
+                                    color: '#fff',
+                                    border: 'none',
+                                    borderRadius: '5px',
+                                    fontWeight: '700',
+                                    textTransform: 'uppercase',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Siguiente
+                            </button>
+                        ) : null}
+
                     </div>
                     : null
             }
+
         </div>
+
     )
 }
 

@@ -8,13 +8,16 @@ import vermangaContext from "../context/vermanga/vermangaContext";
 const Vermanga = () => {
 
   const [paginacion, setPaginacion] = useState(0);//0 para paginado, 1 para cascada
-
+  const [isVisible, setIsVisible] = useState(true);
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+};
   return (
     <>
       <div className="header--home">
-        <HeaderManga paginacion={paginacion} setPaginacion={setPaginacion}/>
+        <HeaderManga isVisible={isVisible} paginacion={paginacion} setPaginacion={setPaginacion}/>
       </div>
-      <ContainerVermanga paginacion={paginacion}/>
+      <ContainerVermanga toggleVisibility={toggleVisibility} paginacion={paginacion}/>
       <Footer/>
     </>
   );
