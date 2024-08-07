@@ -15,6 +15,8 @@ import {
     OBTENER_SERIES_TRENDING_MENSUAL,
     EDITAR_CAPITULO,
     OBTENER_SERIES_POPULARES,
+    VALIDAR_SERIE,
+    OBTENER_SERIES_VERIFIED
 } from '../../types';
 
 export default (state, action) => {
@@ -30,6 +32,12 @@ export default (state, action) => {
                 ...state,
                 series: action.payload,
                 seriesFiltradas: action.payload
+            }
+        case OBTENER_SERIES_VERIFIED:
+            return {
+                ...state,
+                series_verified: action.payload,
+                seriesVerifiedFiltradas: action.payload
             }
         case OBTENER_SERIE:
             return {
@@ -91,6 +99,11 @@ export default (state, action) => {
             return{
                 ...state,
                 seriesPopulares: action.payload
+            }
+        case VALIDAR_SERIE:
+            return{
+                ...state,
+                series_verified: state.series_verified.map((item) => item.id_serie === action.payload.id_serie ? {...item, verificacion: action.payload.verificacion} : item)
             }
         default:
             return state;

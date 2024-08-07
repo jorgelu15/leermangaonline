@@ -6,7 +6,7 @@ import SearchProyectos from "../../Search/SearchProyectos";
 import { useSeries } from "../../../hooks/useSeries";
 
 const PanelSeries = (props) => {
-    const { series = [], getSeries } = useSeries(); // Set default value
+    const { series_verified = [], getSeriesVerified } = useSeries(); // Set default value
     const [resultados, setResultados] = useState([]);
     const [paramQ, setParamQ] = useState(null);
 
@@ -25,15 +25,15 @@ const PanelSeries = (props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await getSeries(); // Fetch series data
+            await getSeriesVerified(); // Fetch series data
         };
         fetchData();
     }, []); // Only depend on getSeries
 
     useEffect(() => {
         // Update resultados only when series changes
-        setResultados(series);
-    }, [series]);
+        setResultados(series_verified);
+    }, [series_verified]);
 
     const buscarProyecto = () => {
         if (proyecto.trim() !== "") {
@@ -58,7 +58,7 @@ const PanelSeries = (props) => {
                         onChange={onChange}
                         setResultados={setResultados}
                         proyecto={proyecto}
-                        proyectos={series}
+                        proyectos={series_verified}
                         setParamQ={setParamQ}
                         paramQ={paramQ}
                     />

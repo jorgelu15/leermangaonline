@@ -12,7 +12,7 @@ import {
     OBTENER_NOTICIAS,
     SUBIR_NOTICIA,
     ACTUALIZAR_NOTICIA,
-    BORRAR_NOTICIA
+    BORRAR_NOTICIA,
 } from '../../types';
 
 const AdministracionState = props => {

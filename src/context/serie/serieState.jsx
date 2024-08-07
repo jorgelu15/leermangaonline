@@ -20,7 +20,9 @@ import {
     OBTENER_SERIES_TRENDING_SEMANAL,
     OBTENER_SERIES_TRENDING_MENSUAL,
     EDITAR_CAPITULO,
-    OBTENER_SERIES_POPULARES
+    OBTENER_SERIES_POPULARES,
+    VALIDAR_SERIE,
+    OBTENER_SERIES_VERIFIED
 } from '../../types';
 
 const SerieState = props => {
@@ -28,11 +30,13 @@ const SerieState = props => {
     const initialState = {
         msg: null,
         series: null,
+        series_verified: null,
         serie: null,
         capitulos: null,
         generosSerie: null,
         votos: null,
         seriesFiltradas: null,
+        seriesVerifiedFiltradas: null,
         stats: null,
         solicitud: null,
         visualizaciones: null,
@@ -66,6 +70,18 @@ const SerieState = props => {
 
             dispatch({
                 type: OBTENER_SERIES,
+                payload: res.data.series
+            })
+        } catch (error) {
+            
+        }
+    }
+    const getSeriesVerified = async () => {
+        try {
+            const res = await clienteAxios.get(`/serie/verified`)
+
+            dispatch({
+                type: OBTENER_SERIES_VERIFIED,
                 payload: res.data.series
             })
         } catch (error) {
@@ -250,12 +266,29 @@ const SerieState = props => {
         }
     }
 
+    const validarSerie = async (id_serie, verificacion) => {
+        try {
+            const res = await clienteAxios.put(`/serie/validar/${id_serie}`, {verificacion: verificacion})
+            dispatch({
+                type: VALIDAR_SERIE,
+                payload: {id_serie, verificacion}
+            })
+
+            return res.status;
+        } catch (error) {
+            const errorMessage = error.response?.data?.msg || 'Error desconocido';
+            throw new Error(errorMessage); // Lanzar el error para que pueda ser manejado en la llamada de la función
+        }
+    }
+
+
     return (
         <SerieContext.Provider
             value={{
                 stats: state.stats,
                 msg: state.msg,
                 series: state.series,
+                series_verified: state.series_verified,
                 seriesFiltradas: state.seriesFiltradas,
                 serie: state.serie,
                 capitulos: state.capitulos,
@@ -267,6 +300,7 @@ const SerieState = props => {
                 seriesTrendingMensual: state.seriesTrendingMensual,
                 seriesPopulares: state.seriesPopulares,
                 getSeries,
+                getSeriesVerified,
                 getSerie,
                 subirSerie,
                 subirVotoSerie,
@@ -280,7 +314,8 @@ const SerieState = props => {
                 getAllCapitulos,
                 getSeriesTrending,
                 editarCapitulo,
-                getSeriesPopulares
+                getSeriesPopulares,
+                validarSerie
             }}
         >
             {props.children}

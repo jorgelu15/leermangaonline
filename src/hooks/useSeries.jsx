@@ -10,13 +10,16 @@ export const useSeries = () => {
         solicitud,
         stats,
         series,
+        series_verified,
         serie,
         capitulos,
         generosSerie,
         votos,
         seriesFiltradas,
+        seriesVerifiedFiltradas,
         visualizaciones,
         getSeries,
+        getSeriesVerified,
         getSerie,
         getGeneroSerie,
         subirVotoSerie,
@@ -29,7 +32,8 @@ export const useSeries = () => {
         getAllCapitulos,
         getSeriesTrending,
         editarCapitulo,
-        getSeriesPopulares
+        getSeriesPopulares,
+        validarSerie
     } = useContext(serieContext);
 
     const { capitulo, getCapitulo } = useContext(capituloContext);
@@ -45,14 +49,17 @@ export const useSeries = () => {
         solicitud,
         stats,
         series,
+        series_verified,
         serie,
         capitulos,
         capitulo,
         generosSerie,
         votos,
         seriesFiltradas,
+        seriesVerifiedFiltradas,
         visualizaciones,
         getSeries,
+        getSeriesVerified,
         getSerie,
         getGeneroSerie,
         getPromVotoSerie,
@@ -66,6 +73,7 @@ export const useSeries = () => {
         getAllCapitulos,
         getSeriesTrending,
         editarCapitulo,
-        getSeriesPopulares
+        getSeriesPopulares,
+        validarSerie
     }
 }

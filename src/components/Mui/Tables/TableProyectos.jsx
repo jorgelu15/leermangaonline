@@ -22,6 +22,7 @@ import { useContext } from 'react';
 import gruposContext from '../../../context/grupos/gruposContext';
 import { SUPERADMIN } from '../../../types';
 import { useAuth } from '../../../hooks/useAuth';
+import { useSeries } from '../../../hooks/useSeries';
 
 const style = {
   position: 'absolute',
@@ -145,8 +146,11 @@ export default function TableProyectos(props) {
     setModalProjects({ ...modalProjects, update: !modalProjects.update, delete: false })
   };
   const handleClose = () => setModalProjects({ ...modalProjects, update: false, delete: false });
-  const onAuthorizeSerie = () => {
-    console.log("autorizada")
+
+  const { validarSerie } = useSeries()
+
+  const onAuthorizeSerie = (solicitud) => {
+    validarSerie(solicitud.id_serie, 1);
   }
 
   return (
@@ -181,7 +185,7 @@ export default function TableProyectos(props) {
               </TableCell>
               {usuario?.rol === SUPERADMIN && solicitud.verificacion === 0 ? (
                 <TableCell component="th" align="center">
-                  <button onClick={onAuthorizeSerie} className='table-btn-ac'>Autorizar</button>
+                  <button onClick={() => onAuthorizeSerie(solicitud)} className='table-btn-ac'>Autorizar</button>
                 </TableCell>
               ) : <TableCell component="th" align="center"></TableCell>}
 
