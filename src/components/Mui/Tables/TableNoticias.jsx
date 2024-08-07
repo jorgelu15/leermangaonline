@@ -183,6 +183,20 @@ export default function TableNoticias(props) {
   }
 
   const onUpdateNoticia = () => {
+    if(
+      titulo.trim() === "" ||
+      descripcion.trim() === "" ||
+      archivo === null
+    ){
+      enqueueSnackbar("Todos los campos son obligatorios", {
+        variant: "error",
+        anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "right"
+        }
+    })
+    return;
+    }
       const f = new FormData();
 
       if (archivo !== null) {
@@ -203,7 +217,6 @@ export default function TableNoticias(props) {
                           horizontal: "right"
                       }
                   })
-                  if(sliderInputRef.current) sliderInputRef.current.value = "";
               } else {
                   enqueueSnackbar(response.msg, {
                       variant: "error",
@@ -251,6 +264,20 @@ export default function TableNoticias(props) {
   const [idDelete, setIdDelete] = React.useState("");
 
   const actualizarNoticia = () => {
+
+    if(
+      tituloEdit.trim() === "" ||
+      descripcionEdit.trim() === ""
+    ){
+      enqueueSnackbar("Todos los campos son obligatorios", {
+        variant: "error",
+        anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "right"
+        }
+    })
+    return;
+    }
 
     updateNoticia(infoEdit).then(status => {
         if (status === 200) {

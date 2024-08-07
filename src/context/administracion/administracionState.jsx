@@ -10,6 +10,7 @@ import {
     SUBIR_IMAGEN_SLIDER,
     BORRAR_IMAGEN_SLIDER,
     OBTENER_NOTICIAS,
+    SUBIR_NOTICIA,
     ACTUALIZAR_NOTICIA,
     BORRAR_NOTICIA
 } from '../../types';
@@ -86,6 +87,7 @@ const AdministracionState = props => {
         try {
             const res = await clienteAxios.post(`/noticias`, file)
             const respuesta2 = await clienteAxiosUpload.post(`/upload`, file);
+
             dispatch({
                 type: SUBIR_NOTICIA,
                 payload: res.data.noticia

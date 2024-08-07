@@ -33,9 +33,10 @@ export default (state, action) => {
                 noticias: action.payload
             }
         case SUBIR_NOTICIA:
+            console.log(action.payload)
             return{
                 ...state,
-                noticias: [...state.noticias, action.payload]
+                noticias: [action.payload, ...state.noticias]
             }
         case ACTUALIZAR_NOTICIA:
             return{
