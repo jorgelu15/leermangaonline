@@ -52,14 +52,15 @@ const PanelCarousel = (props) => {
     };
     const handleClose = () => setModalProjects({ ...modalProjects, update: false, upload: false });
 
-    const [name, setName] = useState(null);
+    const [link, setLink] = useState(null);
+
     const [archivo, setArchivo] = useState(null);
     const subirArchivo = (e) => {
         setArchivo(e);
-        const nombreCortado = e.name.split('.');
-        const extension = nombreCortado[nombreCortado.length - 1];
-        const newName = v4() + '.' + extension;
-        setName(newName);
+        // const nombreCortado = e.name.split('.');
+        // const extension = nombreCortado[nombreCortado.length - 1];
+        // const newName = v4() + '.' + extension;
+        // setName(newName);
     }
 
     const onUpdatetSlide = () => {
@@ -69,9 +70,9 @@ const PanelCarousel = (props) => {
             const nombreCortado = archivo.name.split('.');
             const extension = nombreCortado[nombreCortado.length - 1];
             const newName = v4() + '.' + extension;
-            setName(newName);
             f.append("archivo", archivo, newName);
             f.append("data", JSON.stringify(newName));
+            f.append("link", JSON.stringify(link));
             f.append("ruta", "slider");
             postSliderImage(f).then(status => {
                 if (status === 200) {
@@ -94,7 +95,7 @@ const PanelCarousel = (props) => {
                 }
             });
         }
-
+        setLink("");
         handleClose()
     }
 
@@ -126,6 +127,9 @@ const PanelCarousel = (props) => {
                     <Typography fontSize={20} color={"black"} marginBottom={2} fontWeight={600}>Subir un slide</Typography>
                     <div className="query">
                         <input ref={sliderInputRef} type="file" className="input-src" placeholder="Titulo" style={{ width: '100%' }} onChange={(e) => subirArchivo(e.target.files[0])} />
+                    </div>
+                    <div className="query">
+                        <input type="text" className="input-src" placeholder="link" style={{ width: '100%' }} name="link" value={link} onChange={(e) => setLink(e.target.value)} />
                     </div>
                     <div className="query">
                         <button onClick={onUpdatetSlide} style={{ width: "100%", padding: 10 }}>Subir</button>
