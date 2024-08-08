@@ -119,12 +119,11 @@ const GruposState = props => {
     }
 
     const insertSolicitud = async (datos) => {
-
         try {
             const respuesta = await clienteAxios.post('/grupo/solicitud', datos);
             dispatch({
                 type: INSERTAR_SOLICITUD,
-                payload: respuesta.data.msg
+                payload: datos
             })
 
         } catch (error) {

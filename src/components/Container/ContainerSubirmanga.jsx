@@ -119,7 +119,7 @@ const ContainerSubirmanga = (props) => {
     };
 
     const subirObra = () => {
-        if (numero === "" || serie_uid?.trim() === "" || id_grupo === "" || fecha_pub === "" || id_capitulo.trim() === "" || link_desc.trim() === "") {
+        if (numero === "" || serie_uid?.trim() === "" || id_grupo === "" || fecha_pub === "" || id_capitulo === "" || link_desc.trim() === "") {
             enqueueSnackbar("Hay algunos campos que se deben llenar", {
                 variant: "default",
                 anchorOrigin: {

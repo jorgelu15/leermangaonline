@@ -37,6 +37,7 @@ export default (state, action) => {
         case INSERTAR_SOLICITUD:
             return {
                 ...state,
+                solicitud: {...state.solicitud, status: action.payload.status},
                 msg: action.payload
             }
         case OBTENER_SOLICITUDES:

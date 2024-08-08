@@ -176,7 +176,7 @@ export default function TableMiembros(props) {
                   {miembro?.usuario}
                 </TableCell>
                 <TableCell component="th" align="center">
-                  {miembro.rol === "0" ? "Administrador" : "Miembro"}
+                  {miembro.estado === 3 ? "Administrador" : "Miembro"}
                 </TableCell>
                 <TableCell component="th" align="center">
                   {miembro?.correo}
