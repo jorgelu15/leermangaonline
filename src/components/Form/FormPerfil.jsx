@@ -53,7 +53,7 @@ const FormPerfil = ({ deletePerfil, ...props }) => {
         getGrupos(usuario?.id);
     }, [usuario]);
 
-
+    console.log(grupos)
     const actualizarUsuario = () => {
         const f = new FormData();
 

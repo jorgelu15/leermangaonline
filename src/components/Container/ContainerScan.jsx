@@ -37,7 +37,7 @@ const ContainerScan = (props) => {
 
     useEffect(() => {
         if (usuario) {
-            getSolicitud(usuario?.id);
+            getSolicitud(usuario?.id, id_grupo);
         }
     }, [usuario])
 

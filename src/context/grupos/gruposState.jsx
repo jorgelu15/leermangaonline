@@ -151,9 +151,9 @@ const GruposState = props => {
         }
     }
 
-    const getSolicitud = async (id_usuario) => {
+    const getSolicitud = async (id_usuario, grupoId) => {
         try {
-            const respuesta = await clienteAxios.get(`/grupo/solicitud/${id_usuario}`);
+            const respuesta = await clienteAxios.get(`/grupo/solicitud/${id_usuario}/${grupoId}`);
 
             dispatch({
                 type: OBTENER_SOLICITUD,
