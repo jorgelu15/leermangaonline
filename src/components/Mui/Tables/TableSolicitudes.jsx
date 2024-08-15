@@ -101,9 +101,17 @@ TablePaginationActions.propTypes = {
 
 export default function TableSolicitudes(props) {
 
-  const {
-    solicitudesV
-  } = props;
+  // const {
+    //   solicitudesV
+    // } = props;
+
+  const { insertSolicitud, solicitudes } = useGrupos();
+
+  const [solicitudesV, setSolicitudesV] = React.useState([]);
+
+  React.useEffect(() => {
+    setSolicitudesV(solicitudes);
+  }, [solicitudes])
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -123,10 +131,7 @@ export default function TableSolicitudes(props) {
     setPage(0);
   };
 
-  const { insertSolicitud } = useGrupos();
-
   const { id } = useParams();
-
 
   const handleAceptar = (solic) => {
     enqueueSnackbar("Miembro Aceptado", {

@@ -38,6 +38,7 @@ export default (state, action) => {
             return {
                 ...state,
                 solicitud: {...state.solicitud, status: action.payload.status},
+                solicitudes: state.solicitudes.filter(item => item.id !== action.payload.id_usuario),
                 msg: action.payload
             }
         case OBTENER_SOLICITUDES:

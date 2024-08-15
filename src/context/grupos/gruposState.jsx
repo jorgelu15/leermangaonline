@@ -18,7 +18,8 @@ import {
     OBTENER_SEGUIDORES,
     SEGUIR_GRUPO,
     DEJAR_DE_SEGUIR_GRUPO,
-    OBTENER_SEGUIDORES_FECHA_ACTUAL
+    OBTENER_SEGUIDORES_FECHA_ACTUAL,
+    ACEPTADO
 } from '../../types';
 
 const GruposState = props => {
@@ -121,6 +122,7 @@ const GruposState = props => {
     const insertSolicitud = async (datos) => {
         try {
             const respuesta = await clienteAxios.post('/grupo/solicitud', datos);
+            
             dispatch({
                 type: INSERTAR_SOLICITUD,
                 payload: datos
