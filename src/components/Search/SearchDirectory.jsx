@@ -34,7 +34,7 @@ const FallbackLoader = () => {
 
 const SearchDirectory = (props) => {
   const { filtros } = props;
-  const { filtrar, buscador } = useContext(directorioContext);
+  const { filtrar, buscador, getSeries } = useContext(directorioContext);
   const [loading, setLoading] = useState(false);
   const [busqueda, guardarBusqueda] = useState({
     consulta: "",
@@ -52,6 +52,13 @@ const SearchDirectory = (props) => {
     setLoading(true);
     setTimeout(async () => {
       try {
+
+        if (consulta?.trim() !== "") {
+          await buscador({ consulta: consulta });
+        }else{
+          getSeries();
+        }
+
         if ((filtros?.genero.length >= 0 || filtros?.demografia.length >= 0 || filtros?.tipo.length >= 0) && consulta?.trim() === "") {
           await filtrar({
             filters: filtros
@@ -60,9 +67,6 @@ const SearchDirectory = (props) => {
           return;
         }
 
-        if (consulta?.trim() !== "") {
-          await buscador({ consulta: consulta });
-        }
 
       } catch (error) {
         console.log(error);

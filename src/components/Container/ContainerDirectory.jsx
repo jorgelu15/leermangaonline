@@ -17,40 +17,40 @@ const ContainerDirectory = () => {
 
     const { usuario } = useAuth();
     const { seriesFiltradas } = useSeries();
-    const { filtrados } = useContext(directorioContext);
+    const { filtrados, getSeries } = useContext(directorioContext);
 
     const [data, setData] = useState([]);
     const [counter, setCounter] = useState(0);
 
     const getData = () => {
         const end = counter + 18;
-        const slice = (filtrados?.length > 0 ? filtrados : seriesFiltradas)?.slice(counter, end);
+        const slice = (filtrados?.length > 0 ? filtrados : [])?.slice(counter, end);
         setCounter(counter + 18);
         setData(prevData => [...prevData, ...slice]);
     };
 
     const initData = () => {
-        const slice = (filtrados?.length > 0 ? filtrados : seriesFiltradas)?.slice(0, 18);
+        const slice = (filtrados?.length > 0 ? filtrados : [])?.slice(0, 18);
         setData(slice);
     };
 
     useEffect(() => {
-        if (seriesFiltradas?.length || filtrados?.length) {
+        if (filtrados?.length) {
             initData();
             setCounter(18);
         }
-    }, [seriesFiltradas, filtrados]);
+    }, [filtrados]);
 
     const handleScroll = () => {
         const scrollHeight = document.documentElement.scrollHeight;
 
         if (window.scrollY + window.innerHeight >= scrollHeight) {
-            if (counter < (filtrados.length > 0 ? filtrados.length : seriesFiltradas.length)) {
+            if (counter < (filtrados.length > 0 ? filtrados.length : 0)) {
                 getData();
             }
         }
     };
-
+    console.log(filtrados)
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
