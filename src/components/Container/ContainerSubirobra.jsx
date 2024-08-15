@@ -4,13 +4,6 @@ import React, { useRef } from 'react'
 import Select from 'react-select'
 import { useSnackbar } from "notistack";
 
-import ModalObra from '../Modal/ModalObra'
-
-
-import addicon from '../../img/add.svg'
-import arrow from '../../img/arrow-right.svg'
-import folder from '../../img/folder.svg'
-import close from '../../img/close.svg'
 import { useAuth } from "../../hooks/useAuth"
 import serieContext from "../../context/serie/serieContext"
 import generoContext from "../../context/genero/generoContext"
@@ -21,6 +14,7 @@ import routes from "../../helpers/routes";
 import { TailSpin } from "react-loader-spinner";
 import { useGrupos } from "../../hooks/useGrupos";
 import { useNavigate } from "react-router-dom";
+import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 
 const FallbackLoader = () => {
     return (
@@ -427,7 +421,7 @@ const ContainerSubirobra = (props) => {
                         </div>
                     </div>
 
-                    <div className="control-form">
+                    {/* <div className="control-form">
                         <label htmlFor="">Genero*</label>
                         <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
                             <select className="control-input" name="genero" id="genero" value={genero} onChange={onChange}>
@@ -441,7 +435,31 @@ const ContainerSubirobra = (props) => {
                                 )}
                             </select>
                         </div>
+                    </div> */}
+
+                    <div className="control-form">
+                        <label htmlFor="">Generos*</label>
+                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
+                            <FormGroup style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+                                {generos && (
+                                    generos.map((item, idx) => {
+                                        return (
+                                            <FormControlLabel
+                                                control={<Checkbox defaultChecked={false} />}
+                                                label={`${item.genero}`}
+                                                sx={{
+                                                    '& .MuiFormControlLabel-label': {
+                                                        color: 'white',
+                                                    },
+                                                }}
+                                            />
+                                        )
+                                    })
+                                )}
+                            </FormGroup>
+                        </div>
                     </div>
+
 
                     <div className="control-button" style={{ justifyContent: "space-between" }}>
                         <div onClick={() => navigate(-1)} className="btn-cancelar">
