@@ -101,7 +101,7 @@ const ContainerScan = (props) => {
 
         seguirGrupo({id_usuario: usuario?.id, id_grupo: id_grupo})
     }
-
+    
     const items = {
         tabs: 1,
         cont: [
@@ -140,7 +140,8 @@ const ContainerScan = (props) => {
                     <div className="members">
                         <div className="member-titles">
                             <h2>Miembros</h2>
-                            {String(grupo?.usuarioId) === String(usuario?.id) ? (
+                            {miembros?.find(item => item.id_usuario === usuario?.id) ? null :
+                            String(grupo?.usuarioId) === String(usuario?.id) ? (
                                 null
                             ) : solicitud?.status === 1 ? (
                                 (
