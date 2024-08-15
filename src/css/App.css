@@ -362,6 +362,7 @@ body.dark-mode {
 .sec-noticias .card {
   background-color: #24252c;
   padding: 30px;
+  margin: 20px 0;
   display: flex;
   width: 48%;
 }
