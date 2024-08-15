@@ -142,7 +142,7 @@ const ContainerHome = (props) => {
 
                         <div className="cards">
                             {
-                                noticias?.map((noticia, idx) => {
+                                noticias?.slice(0,4).map((noticia, idx) => {
                                     return (
                                         <div key={idx} className="card">
                                             <img src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/noticia/' + noticia.url} />
