@@ -410,6 +410,10 @@
   cursor: pointer;
 }
 
+.reaccion .reaccion-inner .reaccion-list .reaccion-list-item.active {
+  border-bottom: 5px solid #2792b0;
+}
+
 .active-item-reaccion {
   position: absolute;
   display: block;

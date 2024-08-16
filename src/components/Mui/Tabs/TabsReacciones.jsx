@@ -6,29 +6,37 @@ import { useAuth } from '../../../hooks/useAuth';
 const TabsReacciones = ({ id, ...props }) => {
   const { usuario } = useAuth();
   const { setReaccion, reaccionesSerieUsuario } = useReaccion();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [indicatorStyle, setIndicatorStyle] = useState({});
-  const { enqueueSnackbar } = useSnackbar()
+  const [selectedIndices, setSelectedIndices] = useState([]);
+  const { enqueueSnackbar } = useSnackbar();
   const reacciones = ['Leido', 'Pendiente', 'Siguiendo', 'Favorito', 'Abandonado'];
 
   useEffect(() => {
-    const listItem = document.querySelectorAll('.reaccion-list-item')[activeIndex];
-    if (listItem) {
-      setIndicatorStyle({
-        left: listItem.offsetLeft,
-        width: listItem.offsetWidth
-      });
+    // Inicializa los índices seleccionados a partir de las reacciones del usuario
+    if (reaccionesSerieUsuario) {
+      const initialSelected = reaccionesSerieUsuario.map(reaccion => Number(reaccion.tipo) - 1);
+      setSelectedIndices(initialSelected);
     }
-  }, [activeIndex]);
+  }, [reaccionesSerieUsuario]);
 
   const handleTabClick = (index) => {
-    setActiveIndex(index);
+    let newSelectedIndices;
+    
+    if (selectedIndices.includes(index)) {
+      // Si ya está seleccionado, desmarcarlo
+      newSelectedIndices = selectedIndices.filter(i => i !== index);
+    } else {
+      // Si no está seleccionado, agregarlo
+      newSelectedIndices = [...selectedIndices, index];
+    }
+
+    setSelectedIndices(newSelectedIndices);
+
     setReaccion({
       id_usuario: usuario?.id,
       id_serie: id,
       tipo: index + 1
     }).then(data => {
-      enqueueSnackbar(`Se ha marcado como ${reacciones[activeIndex]}`, {
+      enqueueSnackbar(`Se ha marcado como ${reacciones[index]}`, {
         variant: "success",
         anchorOrigin: {
           vertical: "bottom",
@@ -36,35 +44,30 @@ const TabsReacciones = ({ id, ...props }) => {
         }
       });
     }).catch(e => {
-      enqueueSnackbar(`No se pudo seleccionar la eleccion`, {
-        variant: "success",
+      enqueueSnackbar(`No se pudo seleccionar la elección`, {
+        variant: "error",
         anchorOrigin: {
           vertical: "bottom",
           horizontal: "right"
         }
       });
-    })
-    
+    });
   };
+
   return (
     <div className='reaccion'>
       <div className='reaccion-inner'>
         <ul className='reaccion-list'>
-          {reacciones.map((tab, index) => {
-            console.log(reaccionesSerieUsuario?.find(item => Number(item.tipo) === (index + 1)) ? 'active' : '')
-            return (
-              <li
+          {reacciones.map((tab, index) => (
+            <li
               key={index}
-              className={`reaccion-list-item ${reaccionesSerieUsuario?.find(item => Number(item.tipo) === (index + 1)) ? 'active' : ''}`}
+              className={`reaccion-list-item ${selectedIndices.includes(index) ? 'active' : ''}`}
               onClick={() => handleTabClick(index)}
             >
               {tab}
             </li>
-            )
-          }
-          )}
+          ))}
         </ul>
-        <span className='active-item-reaccion' style={indicatorStyle}></span>
       </div>
     </div>
   );
