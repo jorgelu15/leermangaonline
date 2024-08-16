@@ -1,6 +1,7 @@
 import { act } from 'react-dom/test-utils';
 import {
     OBTENER_REACCIONES,
+    OBTENER_REACCIONES_SERIE_USUARIO,
     OBTENER_REACCIONES_USUARIO,
     OBTENER_SERIES_POR_REACCION_USUARIO,
     SUBIR_REACCION
@@ -23,6 +24,11 @@ export default (state, action) => {
             return {
                 ...state,
                 reaccionesPorUsuario: action.payload
+            }
+        case OBTENER_REACCIONES_SERIE_USUARIO:
+            return {
+                ...state,
+                reaccionesSerieUsuario: action.payload
             }
         default:
             return state;

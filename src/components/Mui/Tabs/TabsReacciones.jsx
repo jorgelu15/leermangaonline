@@ -5,7 +5,7 @@ import { useAuth } from '../../../hooks/useAuth';
 
 const TabsReacciones = ({ id, ...props }) => {
   const { usuario } = useAuth();
-  const { setReaccion } = useReaccion();
+  const { setReaccion, reaccionesSerieUsuario } = useReaccion();
   const [activeIndex, setActiveIndex] = useState(0);
   const [indicatorStyle, setIndicatorStyle] = useState({});
   const { enqueueSnackbar } = useSnackbar()
@@ -46,20 +46,23 @@ const TabsReacciones = ({ id, ...props }) => {
     })
     
   };
-
   return (
     <div className='reaccion'>
       <div className='reaccion-inner'>
         <ul className='reaccion-list'>
-          {reacciones.map((tab, index) => (
-            <li
+          {reacciones.map((tab, index) => {
+            console.log(reaccionesSerieUsuario?.find(item => Number(item.tipo) === (index + 1)) ? 'active' : '')
+            return (
+              <li
               key={index}
-              className={`reaccion-list-item ${activeIndex === index ? 'active' : ''}`}
-              onClick={() => handleTabClick(index )}
+              className={`reaccion-list-item ${reaccionesSerieUsuario?.find(item => Number(item.tipo) === (index + 1)) ? 'active' : ''}`}
+              onClick={() => handleTabClick(index)}
             >
               {tab}
             </li>
-          ))}
+            )
+          }
+          )}
         </ul>
         <span className='active-item-reaccion' style={indicatorStyle}></span>
       </div>

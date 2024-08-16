@@ -5,7 +5,9 @@ export const useReaccion = () => {
     const {
         reaccionesPorUsuario,
         reacciones_usuario,
+        reaccionesSerieUsuario,
         getSeriesPorReaccionUsuario,
+        getReaccionesSerieUsuario,
         getReaccionesUsuario,
         setReaccion
     } = useContext(reaccionesContext);
@@ -13,7 +15,9 @@ export const useReaccion = () => {
     return {
         reaccionesPorUsuario,
         reacciones_usuario,
+        reaccionesSerieUsuario,
         getSeriesPorReaccionUsuario,
+        getReaccionesSerieUsuario,
         getReaccionesUsuario,
         setReaccion
     }

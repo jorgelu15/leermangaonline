@@ -3,17 +3,23 @@ import Header from "../components/Header/Header";
 import ContainerManga from "../components/Container/ContainerManga";
 import Footer from "../components/Footer/Footer";
 import { useAuth } from "../hooks/useAuth";
+import { useReaccion } from "../hooks/useReaccion";
+import { useParams } from "react-router-dom";
 
 
 const Manga = () => {
 
-  const { autenticado, usuarioAutenticado } = useAuth();
+  const { usuario } = useAuth();
+
+  const { getReaccionesSerieUsuario } = useReaccion();
+
+  const { id } = useParams();
 
   useEffect(() => {
-    if (!autenticado) {
-      usuarioAutenticado();
+    if(usuario){
+      getReaccionesSerieUsuario(id, usuario?.id);
     }
-  }, [autenticado]);
+  }, [usuario])
 
   return (
     <>

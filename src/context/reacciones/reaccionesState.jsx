@@ -9,7 +9,8 @@ import {
     OBTENER_REACCIONES,
     SUBIR_REACCION,
     OBTENER_REACCIONES_USUARIO,
-    OBTENER_SERIES_POR_REACCION_USUARIO
+    OBTENER_SERIES_POR_REACCION_USUARIO,
+    OBTENER_REACCIONES_SERIE_USUARIO
 } from '../../types';
 
 const ReaccionesState = props => {
@@ -18,7 +19,8 @@ const ReaccionesState = props => {
         msg: null,
         reacciones: [],
         reacciones_usuario: [],
-        reaccionesPorUsuario: []
+        reaccionesPorUsuario: [],
+        reaccionesSerieUsuario: []
     }
 
     const [state, dispatch] = useReducer(ReaccionesReducer, initialState);
@@ -29,6 +31,18 @@ const ReaccionesState = props => {
 
             dispatch({
                 type: OBTENER_REACCIONES,
+                payload: reacciones.data.reacciones
+            })
+        } catch (error) {
+
+        }
+    }
+
+    const getReaccionesSerieUsuario = async (id_serie, id_usuario) => {
+        try {
+            const reacciones = await clienteAxios.get(`/reaccion/${id_usuario}/${id_serie}`)
+            dispatch({
+                type: OBTENER_REACCIONES_SERIE_USUARIO,
                 payload: reacciones.data.reacciones
             })
         } catch (error) {
@@ -102,7 +116,9 @@ const ReaccionesState = props => {
                 reacciones: state.reacciones,
                 reacciones_usuario: state.reacciones_usuario,
                 reaccionesPorUsuario: state.reaccionesPorUsuario,
+                reaccionesSerieUsuario: state.reaccionesSerieUsuario,
                 getReacciones,
+                getReaccionesSerieUsuario,
                 setReaccion,
                 getReaccionesUsuario,
                 getSeriesPorReaccionUsuario,
