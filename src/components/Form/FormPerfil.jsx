@@ -22,7 +22,13 @@ const FormPerfil = ({ deletePerfil, ...props }) => {
     const { updatePerfil } = useContext(perfilContext);
     const { enqueueSnackbar } = useSnackbar();
 
-    const [userEdit, setUserEdit] = useState({});
+    const [userEdit, setUserEdit] = useState({
+        password: "",
+        repeat_password: ""
+    });
+
+    const { password = "", repeat_password = "" } = userEdit;
+
     const onChangeUser = e => {
         setUserEdit({
             ...userEdit,
@@ -56,6 +62,17 @@ const FormPerfil = ({ deletePerfil, ...props }) => {
     console.log(grupos)
     const actualizarUsuario = () => {
         const f = new FormData();
+
+        if((password.trim() !== "" && repeat_password.trim() !== "") && password.trim() !== repeat_password.trim()){
+            enqueueSnackbar("Las contraseñas deben ser iguales", {
+                variant: "error",
+                anchorOrigin: {
+                    vertical: "bottom",
+                    horizontal: "right"
+                }
+            });
+            return;
+        }
 
         if (archivo !== null) {
             const nombreCortado = archivo.name.split('.');
@@ -134,12 +151,12 @@ const FormPerfil = ({ deletePerfil, ...props }) => {
 
                         <div className="box">
                             <label htmlFor="clave">Contraseña</label>
-                            <input type="password" name="password" />
+                            <input type="password" name="password" value={password} onChange={onChangeUser}/>
                         </div>
 
                         <div className="box">
                             <label htmlFor="clave">Repetir contraseña</label>
-                            <input type="password" />
+                            <input type="password" name="repeat_password" value={repeat_password} onChange={onChangeUser}/>
                         </div>
 
                         <div className="box box-avatar">

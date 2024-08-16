@@ -106,7 +106,7 @@ const ContainerHome = (props) => {
 
         return (`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
     }
-
+    console.log(grupos)
     return (
         <div>
             <Slider></Slider>
