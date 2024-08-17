@@ -81,7 +81,7 @@ const ContainerSubirobra = (props) => {
         estado: "",
         sinopsis: "",
         id_grupo: "",
-        genero: "",
+        genero: [],
         tipo: "",
         demografia: "",
         idioma: "",
@@ -105,6 +105,21 @@ const ContainerSubirobra = (props) => {
             [e.target.name]: e.target.value
         })
     }
+
+    const handleGeneroChange = (event, item) => {
+        console.log(item)
+        const { checked } = event.target;
+        setNewSerie(prevState => {
+            const genero = prevState.genero.includes(item.id_genero)
+                ? prevState.genero.filter(gen => gen !== item.id_genero) // Eliminar si está deseleccionado
+                : [...prevState.genero, item.id_genero]; // Agregar si está seleccionado
+
+            return {
+                ...prevState,
+                genero
+            };
+        });
+    };
 
     const onChangeGrupo = e => {
         setNewSerie({
@@ -145,7 +160,7 @@ const ContainerSubirobra = (props) => {
             portada?.trim() === "" ||
             nombre?.trim() === "" ||
             sinopsis?.trim() === "" ||
-            genero?.trim() === "" ||
+            genero?.length <= 0 ||
             tipo?.trim() === "" ||
             idioma?.trim() === "" ||
             demografia?.trim() === "" ||
@@ -184,7 +199,7 @@ const ContainerSubirobra = (props) => {
         setObraId(v4());
         setTimeout(async () => {
             try {
-                // await subirSerie(f);
+                await subirSerie(f);
             } catch (error) {
                 console.log(error);
             } finally {
@@ -421,41 +436,27 @@ const ContainerSubirobra = (props) => {
                         </div>
                     </div>
 
-                    {/* <div className="control-form">
-                        <label htmlFor="">Genero*</label>
-                        <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
-                            <select className="control-input" name="genero" id="genero" value={genero} onChange={onChange}>
-                                <option value=""></option>
-                                {generos && (
-                                    generos.map((item, idx) => {
-                                        return (
-                                            <option value={item.genero}>{item.genero}</option>
-                                        )
-                                    })
-                                )}
-                            </select>
-                        </div>
-                    </div> */}
-
                     <div className="control-form">
-                        <label htmlFor="">Generos*</label>
+                        <label htmlFor="">Géneros*</label>
                         <div className="r-sel" style={errorIndicator ? { border: `2px solid Red` } : null}>
                             <FormGroup style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-                                {generos && (
-                                    generos.map((item, idx) => {
-                                        return (
-                                            <FormControlLabel
-                                                control={<Checkbox defaultChecked={false} />}
-                                                label={`${item.genero}`}
-                                                sx={{
-                                                    '& .MuiFormControlLabel-label': {
-                                                        color: 'white',
-                                                    },
-                                                }}
+                                {generos?.map((item, idx) => (
+                                    <FormControlLabel
+                                        key={idx}
+                                        control={
+                                            <Checkbox
+                                                checked={newSerie.genero.includes(item.id_genero)}
+                                                onChange={(event) => handleGeneroChange(event, item)}
                                             />
-                                        )
-                                    })
-                                )}
+                                        }
+                                        label={`${item.genero}`}
+                                        sx={{
+                                            '& .MuiFormControlLabel-label': {
+                                                color: 'white',
+                                            },
+                                        }}
+                                    />
+                                ))}
                             </FormGroup>
                         </div>
                     </div>

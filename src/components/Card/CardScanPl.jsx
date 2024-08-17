@@ -25,7 +25,7 @@ const CardScanPl = (props) => {
 
     useEffect(() => {
         getMiembros(grupo?.id);
-    }, [])
+    }, []);
 
     const handleClick = async () => {
         enqueueSnackbar("Bienvenido al Panel de administracion", {
@@ -36,7 +36,7 @@ const CardScanPl = (props) => {
             }
         })
         await getGrupo(grupo)
-        navigate(routes.panel + `/${grupo.id}/${reemplazarEspaciosConGuiones(grupo.nombre.toLowerCase())}`)
+        navigate(routes.panel + `/${grupo.id}/${reemplazarEspaciosConGuiones(grupo.nombre.toLowerCase())}`);
     }
 
     return (

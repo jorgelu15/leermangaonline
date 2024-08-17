@@ -22,7 +22,8 @@ import {
     EDITAR_CAPITULO,
     OBTENER_SERIES_POPULARES,
     VALIDAR_SERIE,
-    OBTENER_SERIES_VERIFIED
+    OBTENER_SERIES_VERIFIED,
+    MENSAJE_ERROR
 } from '../../types';
 
 const SerieState = props => {
