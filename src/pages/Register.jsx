@@ -77,7 +77,7 @@ const Register = () => {
 
                 <div className="cont-login">
                     <h1 className="title-public-layout">
-                        Registrate para poder <span className="text-color-hover">LeerMangaOnline</span>
+                        Registrate para poder <span className="text-color-hover"><Link to={routes.home}>LeerMangaOnline</Link></span>
                     </h1>
                     <form className="form" autoComplete="off" onSubmit={handlerSubmit}>
                         <div className="form-group">

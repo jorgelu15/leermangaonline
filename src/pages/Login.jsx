@@ -78,7 +78,7 @@ const Login = () => {
 
                 <div className="cont-login">
                     <h1 className="title-public-layout">
-                        Inicia sesion y a <span className="text-color-hover">LeerMangaOnline</span>
+                        Inicia sesion y a <span className="text-color-hover"><Link to={routes.home}>LeerMangaOnline</Link></span>
                     </h1>
                     <form className="form" autoComplete="on">
 

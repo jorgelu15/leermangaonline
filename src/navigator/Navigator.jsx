@@ -19,6 +19,12 @@ const Login = lazy(async () => {
     new Promise((resolve) => setTimeout(resolve, 1500)),
   ]).then(([moduleExports]) => moduleExports);
 });
+const ForgotPassword = lazy(async () => {
+  return Promise.all([
+    import('../pages/ForgotPassword'),
+    new Promise((resolve) => setTimeout(resolve, 1500)),
+  ]).then(([moduleExports]) => moduleExports);
+});
 const Register = lazy(async () => {
   return Promise.all([
     import('../pages/Register'),
@@ -134,6 +140,10 @@ const router = createBrowserRouter([
   {
     path: routes.login,
     element: <Suspense fallback={<FallbackLoader />}><Login /></Suspense>
+  },
+  {
+    path: routes.forgotPassword,
+    element: <Suspense fallback={<FallbackLoader />}><ForgotPassword /></Suspense>
   },
   {
     path: routes.register,
