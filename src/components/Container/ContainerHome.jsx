@@ -106,7 +106,6 @@ const ContainerHome = (props) => {
 
         return (`${day}/${month}/${year} ${hours}:${minutes}:${seconds}`);
     }
-    console.log(grupos)
     return (
         <div>
             <Slider></Slider>
@@ -123,7 +122,7 @@ const ContainerHome = (props) => {
                             {
                                 grupos?.map((grupo, idx) => {
                                     return (
-                                        <Link to={routes.scanlation+`/${grupo.id}`} key={idx} className="cont-cardgr">
+                                        <Link to={routes.scanlation + `/${grupo.id}`} key={idx} className="cont-cardgr">
                                             <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${grupo.portada}')` }}>
                                                 <div>
                                                 </div>
@@ -142,7 +141,7 @@ const ContainerHome = (props) => {
 
                         <div className="cards">
                             {
-                                noticias?.slice(0,4).map((noticia, idx) => {
+                                noticias?.slice(0, 4).map((noticia, idx) => {
                                     return (
                                         <div key={idx} className="card">
                                             <img src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/noticia/' + noticia.url} />
@@ -165,6 +164,7 @@ const ContainerHome = (props) => {
 
                         <h2>Ultimos Subidos</h2>
                         <div className="sec-cards">
+                            {console.log(series)}
                             {
                                 series?.map((serie, idx) => {
                                     return (
@@ -174,7 +174,7 @@ const ContainerHome = (props) => {
                                             }}>
                                                 <div>
                                                     <p></p>
-                                                    <p className="calificacion">{serie?.votos[0]?.prom_vot}</p>{/*  falta la calificacion */}
+                                                    {serie?.votos[0] ? <p className="calificacion">{serie?.votos[0]?.prom_vot}</p> : null}
                                                 </div>
                                                 <p className="nombre">{serie.nombre}</p>
                                             </div>
@@ -200,7 +200,7 @@ const ContainerHome = (props) => {
                                             }}>
                                                 <div>
                                                     <p></p>
-                                                    <p className="calificacion">{serie?.votos[0]?.prom_vot}</p>{/*  falta la calificacion */}
+                                                    {serie?.votos[0] ? <p className="calificacion">{serie?.votos[0]?.prom_vot}</p> : null}
                                                 </div>
                                                 <p className="nombre">{serie.nombre}</p>
                                             </div>

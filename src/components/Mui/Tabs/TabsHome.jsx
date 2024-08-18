@@ -55,6 +55,7 @@ export default function BasicTabs(props) {
     setValue(newValue);
   };
 
+
   return (
     <Box sx={{ width: '100%', marginBottom: 8 }}>
       <div style={{ paddingLeft: 15, paddingRight: 15 }}>
@@ -98,6 +99,19 @@ export default function BasicTabs(props) {
                         </div>
                       )
                     }
+
+                    return (
+                      <div className="cont-card" key={idx}>
+                        <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre.toLowerCase())}`}>
+                          <div className="card" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${card.portada}')` }}>
+                            <div>
+                              <p className="categoria">{card.tipo}</p>
+                            </div>
+                            <p className="nombre">{card.nombre}</p>
+                          </div>
+                        </Link>
+                      </div>
+                    )
 
                   })
                 }
