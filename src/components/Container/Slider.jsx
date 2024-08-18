@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import administracionContext from '../../context/administracion/administracionContext';
+import { Link } from 'react-router-dom';
 
 const Slider = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -61,11 +62,14 @@ const Slider = () => {
                     transition: 'transform 0.5s ease'
                 }}
             >
-                {slides.map((slide, index) => (
-                    <div className='slide' key={index} style={{ width: `${100 / slidesToShow}%` }}>
-                        <img src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/slider/' + slide.url} alt={`Slide ${index + 1}`} />
-                    </div>
-                ))}
+                {slides.map((slide, index) => {
+                    console.log(slide)
+                    return (
+                        <div className='slide' key={index} style={{ width: `${100 / slidesToShow}%` }}>
+                            <Link target='_blank' to={slide.link} hrefLang={slide.link}><img src={import.meta.env.VITE_BASE_URL_IMAGES + '/uploads/slider/' + slide.url} alt={`Slide ${index + 1}`} /></Link>
+                        </div>
+                    )
+                })}
             </div>
             <div className='controls'>
                 <div className='inner_controls'>

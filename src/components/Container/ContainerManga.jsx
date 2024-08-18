@@ -110,7 +110,7 @@ const ContainerManga = (props) => {
                         <div className="imagen" style={{
                             backgroundImage: `linear-gradient(to bottom, transparent, black), url('http://upload.leermangaonline.com/uploads/obras/${serie?.banner}')`,
                         }}>
-                            <img src={`http://upload.leermangaonline.com/uploads/obras/${serie?.portada}`} alt="portada" />
+                            <img src={`http://upload.leermangaonline.com/uploads/obras/${serie?.portada}`} alt="portada" width={253} height={380} style={{objectFit: "cover"}} />
                         </div>
                         <div className="resumen">
                             <div className="res-top">
