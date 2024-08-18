@@ -291,7 +291,7 @@ const ContainerSubirmanga = (props) => {
                                 />
                                 <p>si el capitulo que quieres no esta, puedes crearlo
                                     <span>
-                                        <a onClick={() => handleOpenCreate()}> undiendo aqui</a>
+                                        <a style={{color: "#9c9fe3"}} onClick={() => handleOpenCreate()}> undiendo aqui</a>
                                     </span>
                                 </p>
                             </div>
@@ -314,7 +314,11 @@ const ContainerSubirmanga = (props) => {
                     </div>
 
                     <div className="control-form">
-                        <label htmlFor="">Imagenes</label>
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <label htmlFor="">Imagenes*</label>
+                            <i style={{ fontSize: 11, width: 250 }}>Las imagenes deben subirse enumeradas, ejemplo: 1.jpg, 2.jpg</i>
+                        </div>
+
                         <div className="r-file">
                             <input ref={imagenesInputRef} type="file" name="serieCapitulo" id="serieCapitulo" onChange={subirSerieCapitulo} multiple />
                         </div>

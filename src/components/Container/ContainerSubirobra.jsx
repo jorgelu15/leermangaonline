@@ -264,14 +264,20 @@ const ContainerSubirobra = (props) => {
                 <form action="">
 
                     <div className="control-form">
-                        <label htmlFor="">Banner*</label>
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <label htmlFor="">Banner*</label>
+                            <i style={{ fontSize: 12 }}>Resolucion recomendada: (1280x370)</i>
+                        </div>
                         <div className="r-file" style={errorIndicator ? { border: `2px solid Red` } : null}>
                             <input type="file" name="banner" id="banner" onChange={(e) => subirBanner(e.target.files[0])} ref={bannerInputRef} />
                         </div>
                     </div>
 
                     <div className="control-form">
-                        <label htmlFor="">Miniatura*</label>
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <label htmlFor="">Miniatura*</label>
+                            <i style={{ fontSize: 12 }}>Resolucion recomendada: (253x380)</i>
+                        </div>
                         <div className="r-file " style={errorIndicator ? { border: `2px solid Red` } : null}>
                             <input type="file" name="portada" id="portada" onChange={(e) => subirPortada(e.target.files[0])} ref={portadaInputRef} />
                         </div>
