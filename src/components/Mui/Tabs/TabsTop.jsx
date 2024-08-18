@@ -6,6 +6,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
+import { useText } from '../../../hooks/useText';
+import routes from '../../../helpers/routes';
 
 
 function TabPanel(props) {
@@ -44,13 +47,15 @@ function a11yProps(index) {
 export default function TabsTop(props) {
 
   const { items } = props;
-
+  const { reemplazarEspaciosConGuiones } = useText();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+
 
   return (
     <Box sx={{ width: '100%', marginBottom: 8 }}>
@@ -82,7 +87,7 @@ export default function TabsTop(props) {
                 {
                   item?.cards?.map((card, idx) => {
                     return (
-                      <div className="card" key={idx}>
+                      <Link to={routes.manga + `/${card.serie_uid}/${reemplazarEspaciosConGuiones(card.nombre.toLowerCase())}`} className="card" key={idx}>
                         <div className="cont-img" style={{ backgroundImage: `url('http://upload.leermangaonline.com/uploads/obras/${card.portada}')` }}>
                           <p>{idx + 1}</p>
                         </div>
@@ -90,7 +95,7 @@ export default function TabsTop(props) {
                           <p className="nombre">{card.nombre}</p>
                           <p className="categoria">{card.demografia}</p>
                         </div>
-                      </div>
+                      </Link >
                     )
                   })
                 }

@@ -218,21 +218,6 @@ const ContainerHome = (props) => {
                     <section className="sec-tops">
                         <TabsTop items={items_tp}></TabsTop>
                     </section>
-
-                    <section className="sec-chatmanga">
-                        <img src={chatej} />
-                    </section>
-
-                    <section className="sec-joindc">
-                        <img src={joindc} />
-                    </section>
-
-                    <section className="sec-dibujo">
-                        <h2>Dibujo del Mes</h2>
-                        <div className="cont-img">
-                            <img src={isugo} />
-                        </div>
-                    </section>
                 </aside>
             </div>
         </div>

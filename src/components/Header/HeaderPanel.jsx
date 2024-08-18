@@ -9,11 +9,13 @@ import upload from "../../img/upload-solid.svg"
 import userCircle from "../../img/circle-user-solid.svg"
 
 import logop1 from "../../img/logop2.png"
+import { useText } from '../../hooks/useText';
 
 
 const HeaderPanel = (props) => {
 
-
+    const { usuario, logOut } = useAuth();
+    const { reemplazarEspaciosConGuiones } = useText();
     return (
         <header className="header-manga header-panel">
             <nav className="navbar">
@@ -26,7 +28,7 @@ const HeaderPanel = (props) => {
                     <div>
                         <p><Link to={routes.subirobra}><img src={upload} />Subir obra</Link></p>
                         <p><Link to={routes.subirmanga}><img src={upload} />Subir capitulo</Link></p>
-                        <p><Link to={routes.perfil}><img src={userCircle} />Perfil</Link></p>
+                        <p> <Link to={routes.perfil + `/${usuario?.id}/${reemplazarEspaciosConGuiones(usuario?.usuario)}`}><img src={userCircle} />Perfil</Link></p>
                     </div>
                     <button><img src={menubar} alt="" /></button>
                 </div>

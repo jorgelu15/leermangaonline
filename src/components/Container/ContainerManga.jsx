@@ -24,7 +24,7 @@ const ContainerManga = (props) => {
     const { usuario } = useAuth();
     const { serie, visualizaciones, capitulos, generosSerie, votos, getSerie, getGeneroSerie, getPromVotoSerie, getCapitulosSerie, getVisualizacion } = useSeries();
 
-    let { id } = useParams();
+    let { id, serie: serie_param } = useParams();
 
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredCapitulos, setFilteredCapitulos] = useState(capitulos);
@@ -100,6 +100,21 @@ const ContainerManga = (props) => {
             getVisualizacion(id)
         }
     }, [id])
+
+    const shareFacebook = () => {
+
+        // URL de tu página que quieres compartir
+        const url = `${import.meta.env.VITE_BASE_URL}/manga/${id}/${serie_param}`;
+
+        // Texto opcional para el post en Facebook
+        const text = serie?.sinopsis;
+
+        // Construir la URL para compartir en Facebook
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`;
+
+        // Abrir una nueva ventana para compartir
+        window.open(facebookUrl, '_blank', 'width=600,height=400');
+    }
     return (
         <div>
             <section className="manga-desc" style={{
@@ -110,7 +125,7 @@ const ContainerManga = (props) => {
                         <div className="imagen" style={{
                             backgroundImage: `linear-gradient(to bottom, transparent, black), url('http://upload.leermangaonline.com/uploads/obras/${serie?.banner}')`,
                         }}>
-                            <img src={`http://upload.leermangaonline.com/uploads/obras/${serie?.portada}`} alt="portada" width={253} height={380} style={{objectFit: "cover"}} />
+                            <img src={`http://upload.leermangaonline.com/uploads/obras/${serie?.portada}`} alt="portada" width={253} height={380} style={{ objectFit: "cover" }} />
                         </div>
                         <div className="resumen">
                             <div className="res-top">
@@ -172,7 +187,7 @@ const ContainerManga = (props) => {
                     <div className="compartir">
                         <p className="type-titles">Compartir</p>
                         <div className="socials">
-                            <img src={red1} />
+                            <img onClick={shareFacebook} src={red1} />
                             <img src={red2} />
                             <img src={red3} />
                             <img src={red4} />
