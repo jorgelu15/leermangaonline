@@ -3,6 +3,7 @@ const routes = {
     login: "/login",
     register: "/register",
     forgotPassword: "/forgot-password",
+    restorePassword: "/restore-password",
     confirmAccount: "/confirm-account",
     perfil: "/perfil",
     panel: "/panel",

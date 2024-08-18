@@ -25,6 +25,13 @@ const ForgotPassword = lazy(async () => {
     new Promise((resolve) => setTimeout(resolve, 1500)),
   ]).then(([moduleExports]) => moduleExports);
 });
+
+const RestorePassword = lazy(async () => {
+  return Promise.all([
+    import('../pages/RestorePassword'),
+    new Promise((resolve) => setTimeout(resolve, 1500)),
+  ]).then(([moduleExports]) => moduleExports);
+});
 const Register = lazy(async () => {
   return Promise.all([
     import('../pages/Register'),
@@ -144,6 +151,10 @@ const router = createBrowserRouter([
   {
     path: routes.forgotPassword,
     element: <Suspense fallback={<FallbackLoader />}><ForgotPassword /></Suspense>
+  },
+  {
+    path: routes.restorePassword,
+    element: <Suspense fallback={<FallbackLoader />}><RestorePassword /></Suspense>
   },
   {
     path: routes.register,
