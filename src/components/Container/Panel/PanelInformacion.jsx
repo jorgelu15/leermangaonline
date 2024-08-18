@@ -15,10 +15,10 @@ const PanelInformacion = () => {
         }
     }, [id])
 
-    const { form, onChangeGeneral } = useForm({ correo: grupo.correo ? grupo.correo : "", name: grupo.nombre ? grupo.nombre : "", descripcion: grupo.descripcion ? grupo.descripcion : "" });
-    const { correo, name, descripcion } = form;
+    const { form, onChangeGeneral } = useForm({ correo: grupo.correo ? grupo.correo : "", name: grupo.nombre ? grupo.nombre : "", descripcion: grupo.descripcion ? grupo.descripcion : "", tablon: grupo.tablon ? grupo.tablon : "" });
+    const { correo, name, descripcion, tablon } = form;
     const onUpdateGrupo = () => {
-        if (correo?.trim() === "" || name?.trim() === "" || descripcion?.trim() === "") {
+        if (correo?.trim() === "" || name?.trim() === "" || descripcion?.trim() === "" || tablon?.trim() === "") {
             enqueueSnackbar("El campo de email es obligatorio", {
                 variant: "error",
                 anchorOrigin: {
@@ -29,7 +29,7 @@ const PanelInformacion = () => {
             return;
         }
 
-        putInfoGrupo({ correo, name, descripcion }, id).then(e => {
+        putInfoGrupo({ correo, name, descripcion, tablon }, id).then(e => {
             enqueueSnackbar("Informacion actualizada", {
                 variant: "success",
                 anchorOrigin: {
@@ -64,7 +64,7 @@ const PanelInformacion = () => {
                 <div className="c-table" style={{ minHeight: 0 }}>
                     <div className="query">
                         <textarea className="input-src" placeholder="Introduzca una breve descripcion sobre el trabajo de su grupo" name="descripcion" value={descripcion} onChange={(event) => onChangeGeneral(event, "descripcion")}></textarea>
-                        <textarea className="input-src" placeholder="Introduzca un mensaje en su tablon que podra ver todo el mundo" name="tablon" disabled></textarea>
+                        <textarea className="input-src" placeholder="Introduzca un mensaje en su tablon que podra ver todo el mundo" name="tablon" value={tablon} onChange={(event) => onChangeGeneral(event, "tablon")}></textarea>
                     </div>
                 </div>
                 <div className="c-table" style={{ minHeight: 0 }}>
