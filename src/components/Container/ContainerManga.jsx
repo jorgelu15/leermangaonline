@@ -102,7 +102,6 @@ const ContainerManga = (props) => {
     }, [id])
 
     const shareFacebook = () => {
-
         // URL de tu página que quieres compartir
         const url = `${import.meta.env.VITE_BASE_URL}/manga/${id}/${serie_param}`;
 
@@ -114,6 +113,58 @@ const ContainerManga = (props) => {
 
         // Abrir una nueva ventana para compartir
         window.open(facebookUrl, '_blank', 'width=600,height=400');
+    }
+    const shareX = () => {
+        // URL de tu página que quieres compartir
+        const url = `${import.meta.env.VITE_BASE_URL}/manga/${id}/${serie_param}`;
+
+        // Texto opcional para el post en Facebook
+        const text = serie?.sinopsis;
+
+        // Construir la URL para compartir en Facebook
+        const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+
+        // Abrir una nueva ventana para compartir
+        window.open(twitterShareUrl, '_blank', 'width=600,height=400');
+    }
+    const shareVK = () => {
+        // URL de tu página que quieres compartir
+        const url = `${import.meta.env.VITE_BASE_URL}/manga/${id}/${serie_param}`;
+
+        // Texto opcional para el post en Facebook
+        const text = serie?.sinopsis;
+
+        // Construir la URL para compartir en Facebook
+        const vkShareUrl = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`;
+
+        // Abrir una nueva ventana para compartir
+        window.open(vkShareUrl, '_blank', 'width=600,height=400');
+    }
+    const shareTelegram = () => {
+        // URL de tu página que quieres compartir
+        const url = `${import.meta.env.VITE_BASE_URL}/manga/${id}/${serie_param}`;
+
+        // Texto opcional para el post en Facebook
+        const text = serie?.sinopsis;
+
+        // Construir la URL para compartir en Facebook
+        const telegramShareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+
+        // Abrir una nueva ventana para compartir
+        window.open(telegramShareUrl, '_blank', 'width=600,height=400');
+    }
+    const shareWs = () => {
+        // URL de tu página que quieres compartir
+        const url = `${import.meta.env.VITE_BASE_URL}/manga/${id}/${serie_param}`;
+
+        // Texto opcional para el post en Facebook
+        const text = serie?.sinopsis;
+
+        // Construir la URL para compartir en Facebook
+        const whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}%20${encodeURIComponent(url)}`;
+
+        // Abrir una nueva ventana para compartir
+        window.open(whatsappShareUrl, '_blank', 'width=600,height=400');
     }
     return (
         <div>
@@ -188,10 +239,10 @@ const ContainerManga = (props) => {
                         <p className="type-titles">Compartir</p>
                         <div className="socials">
                             <img onClick={shareFacebook} src={red1} />
-                            <img src={red2} />
-                            <img src={red3} />
-                            <img src={red4} />
-                            <img src={red5} />
+                            <img onClick={shareX} src={red2} />
+                            <img onClick={shareVK} src={red3} />
+                            <img onClick={shareTelegram} src={red4} />
+                            <img onClick={shareWs} src={red5} />
                         </div>
                     </div>
                 </div>
