@@ -63,7 +63,7 @@ const FormPerfil = ({ deletePerfil, ...props }) => {
     const actualizarUsuario = () => {
         const f = new FormData();
 
-        if((password.trim() !== "" && repeat_password.trim() !== "") && password.trim() !== repeat_password.trim()){
+        if ((password.trim() !== "" && repeat_password.trim() !== "") && password.trim() !== repeat_password.trim()) {
             enqueueSnackbar("Las contraseñas deben ser iguales", {
                 variant: "error",
                 anchorOrigin: {
@@ -151,12 +151,12 @@ const FormPerfil = ({ deletePerfil, ...props }) => {
 
                         <div className="box">
                             <label htmlFor="clave">Contraseña</label>
-                            <input type="password" name="password" value={password} onChange={onChangeUser}/>
+                            <input type="password" name="password" value={password} onChange={onChangeUser} />
                         </div>
 
                         <div className="box">
                             <label htmlFor="clave">Repetir contraseña</label>
-                            <input type="password" name="repeat_password" value={repeat_password} onChange={onChangeUser}/>
+                            <input type="password" name="repeat_password" value={repeat_password} onChange={onChangeUser} />
                         </div>
 
                         <div className="box box-avatar">
@@ -223,9 +223,8 @@ const FormPerfil = ({ deletePerfil, ...props }) => {
 
                     {/* <MagicMotion> */}
                     <div className="cards-scan">
-
                         {
-                            grupos?.length > 0 ? grupos.map((item, idx) => item.estado && (
+                            grupos?.length > 0 ? grupos?.map((item, idx) => item.estado && (
                                 <CardScanPl key={idx} grupo={item}></CardScanPl>
                             )) : <p>No hay grupos</p>
                         }

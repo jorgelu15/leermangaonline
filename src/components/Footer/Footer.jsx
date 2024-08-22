@@ -59,7 +59,7 @@ const Footer = (props) => {
                         <img src={Instagram} />
                         <img src={Discord} />
                     </div>
-                    <p className="copyr">Copyright 2023 LeerMangaOnline, Todos los derechos reservados.</p>
+                    <p className="copyr">Copyright 2023 LeerMangaOnline, Todos los derechos reservados. Desarrollado por <b><Link to={'https://midgar.artosh.dev/landing'}>Midgar</Link></b></p>
                 </div>
             </div>
         </footer>
