@@ -4,8 +4,12 @@ import Header from "../components/Header/Header";
 import { useForm } from "../hooks/useForm";
 import routes from "../helpers/routes";
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const ForgotPassword = () => {
+
+    const { forgotpassword, validarCodigo } = useAuth();
+
     const { form, onChangeGeneral } = useForm({ email: '', code: '' });
     const { email, code } = form;
 
@@ -17,10 +21,12 @@ const ForgotPassword = () => {
 
     const onSendCode = () => {
         setSendedCode(true);
+        forgotpassword({correo: email});
     }
 
     const onVerifyCode = () => {
-        navigate(routes.restorePassword+`?code=${code}`);
+        validarCodigo({correo: email, codigo: code});
+        navigate(routes.restorePassword+`?email=${email}&code=${code}`);
     }
 
     return (

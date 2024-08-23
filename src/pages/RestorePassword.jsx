@@ -10,17 +10,13 @@ const ForgotPassword = () => {
     const { passwordnew, repeatPassword } = form;
 
     const [params] = useSearchParams();
-    const [sendedCode, setSendedCode] = useState(false);
 
     // Recuperar el valor de la variable "var"
-    const tokenRecovery = params.get('tokenRecovery');
+    const email = params.get('email');
+    const code = params.get('code');
 
+    const onSendPassword = () => {
 
-    const onSendCode = () => {
-        setSendedCode(true);
-
-
-        navigate(routes.restorePassword)
     }
 
 
@@ -51,7 +47,7 @@ const ForgotPassword = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="form-group" onClick={onSendCode}>
+                            <div className="form-group" onClick={onSendPassword}>
                                 <div className="input-style btn-primary">Cambiar contrasena</div>
                             </div>
 

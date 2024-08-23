@@ -12,6 +12,9 @@ import {
     REGISTRO_ERROR,
     USUARIO_AUTENTICADO,
     CERRAR_SESION,
+    FORGOT_PASSWORD,
+    VALIDAR_CODIGO,
+    CHANGE_PASSWORD,
 } from '../../types';
 
 const AuthState = props => {
@@ -21,7 +24,10 @@ const AuthState = props => {
         autenticado: false,
         usuario: null,
         msg: null,
-        cargando: true
+        cargando: true,
+        status: null,
+        codigo_status: null,
+        cambio_password_status: null
     }
 
     const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -84,6 +90,42 @@ const AuthState = props => {
         })
     }
 
+    const forgotpassword = async (correo) => {
+        try {
+            const respuesta = await clienteAxios.post('/auth/forgotpassword/', correo);
+            dispatch({
+                type: FORGOT_PASSWORD,
+                payload: respuesta.status
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const validarCodigo = async (correo, codigo) => {
+        try {
+            const respuesta = await clienteAxios.post('/auth/validarcodigo/', {correo, codigo});
+            dispatch({
+                type: VALIDAR_CODIGO,
+                payload: respuesta.status
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const changePassword = async (correo, codigo, password) => {
+        try {
+            const respuesta = await clienteAxios.post('/auth/changepassword/', {correo, codigo, password});
+            dispatch({
+                type: CHANGE_PASSWORD,
+                payload: respuesta.status
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <AuthContext.Provider
             value={{
@@ -92,10 +134,16 @@ const AuthState = props => {
                 usuario: state.usuario,
                 msg: state.msg,
                 cargando: state.cargando,
+                status: state.status,
+                codigo_status: state.codigo_status,
+                cambio_password_status: state.cambio_password_status,
                 signIn,
                 signUp,
                 usuarioAutenticado,
-                logOut
+                logOut,
+                forgotpassword,
+                validarCodigo,
+                changePassword
             }}
         >
             {props.children}

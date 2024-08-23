@@ -5,6 +5,9 @@ import {
     LOGIN_ERROR,
     USUARIO_AUTENTICADO,
     CERRAR_SESION,
+    VALIDAR_CODIGO,
+    FORGOT_PASSWORD,
+    CHANGE_PASSWORD,
 } from '../../types';
 
 export default (state, action) => {
@@ -43,6 +46,21 @@ export default (state, action) => {
                 usuario: action.payload,
                 cargando: false,
                 rol: parseInt(action.payload.rol)
+            }
+        case FORGOT_PASSWORD:
+            return{
+                ...state,
+                status: action.payload
+            }
+        case VALIDAR_CODIGO:
+            return{
+                ...state,
+                codigo_status: action.payload
+            }
+        case CHANGE_PASSWORD:
+            return{
+                ...state,
+                cambio_password_status: action.payload
             }
         default:
             return state;

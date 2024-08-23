@@ -5,10 +5,16 @@ export const useAuth = () => {
     const {
         usuario,
         autenticado,
+        status,
+        codigo_status,
+        cambio_password_status,
         signIn,
         signUp,
         usuarioAutenticado,
-        logOut
+        logOut,
+        forgotpassword,
+        validarCodigo,
+        changePassword
     } = useContext(authContext);
 
     useEffect(() => {
@@ -20,9 +26,15 @@ export const useAuth = () => {
     return {
         usuario,
         autenticado,
+        status,
+        codigo_status,
+        cambio_password_status,
         signIn,
         signUp,
         usuarioAutenticado,
-        logOut
+        logOut,
+        forgotpassword,
+        validarCodigo,
+        changePassword
     }
 }
