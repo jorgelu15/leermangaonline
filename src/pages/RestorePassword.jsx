@@ -4,10 +4,15 @@ import Header from "../components/Header/Header";
 import { useForm } from "../hooks/useForm";
 import routes from "../helpers/routes";
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
+import eye from "../img/eye.svg";
+import noEye from "../img/no-eye.svg";
 
 const ForgotPassword = () => {
     const { form, onChangeGeneral } = useForm({ passwordnew: '', repeatPassword: '' });
     const { passwordnew, repeatPassword } = form;
+
+    const { changePassword } = useAuth();
 
     const [params] = useSearchParams();
 
@@ -17,8 +22,15 @@ const ForgotPassword = () => {
 
     const onSendPassword = () => {
 
+        if(passwordnew.trim() === "" || repeatPassword.trim() === ""){
+
+            return;
+        }
+
+        changePassword(email, code, passwordnew);
     }
 
+    const [showPass, setShowPass] = useState(false);
 
     return (
         <>
@@ -34,17 +46,19 @@ const ForgotPassword = () => {
                             <div className="form-group">
                                 <label htmlFor="password" className="text-label">Contrasena nueva</label>
                                 <div style={{ position: "relative" }}>
-                                    <input type={"text"} placeholder="Introduzca su nueva contrasena" id="passwordnew" className="input-style"
+                                    <input type={showPass ? "text" : "password"} placeholder="Introduzca su nueva contrasena" id="passwordnew" className="input-style"
                                         value={passwordnew} onChange={(event) => onChangeGeneral(event, "passwordnew")}
                                     />
+                                    <img onClick={() => setShowPass(!showPass)} src={showPass ? noEye : eye} style={{ filter: "invert(1)", position: "absolute", right: 20, top: 30, cursor: "pointer" }} width={24} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password" className="text-label">Repita contrasena</label>
                                 <div style={{ position: "relative" }}>
-                                    <input type={"text"} placeholder="Introduzca nuevamente su contrasena" id="repeatPassword" className="input-style"
+                                    <input type={showPass ? "text" : "password"} placeholder="Introduzca nuevamente su contrasena" id="repeatPassword" className="input-style"
                                         value={repeatPassword} onChange={(event) => onChangeGeneral(event, "repeatPassword")}
                                     />
+                                    <img onClick={() => setShowPass(!showPass)} src={showPass ? noEye : eye} style={{ filter: "invert(1)", position: "absolute", right: 20, top: 30, cursor: "pointer" }} width={24} />
                                 </div>
                             </div>
                             <div className="form-group" onClick={onSendPassword}>

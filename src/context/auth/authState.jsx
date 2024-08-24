@@ -116,7 +116,8 @@ const AuthState = props => {
 
     const changePassword = async (correo, codigo, password) => {
         try {
-            const respuesta = await clienteAxios.post('/auth/changepassword/', {correo, codigo, password});
+            const respuesta = await clienteAxios.post('/auth/changepassword/', {correo: correo, codigo: codigo, password: password});
+            console.log(respuesta)
             dispatch({
                 type: CHANGE_PASSWORD,
                 payload: respuesta.status
